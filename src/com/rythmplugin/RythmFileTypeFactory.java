@@ -1,0 +1,20 @@
+package com.rythmplugin;
+
+
+import com.intellij.openapi.fileTypes.*;
+import org.jetbrains.annotations.NotNull;
+
+
+/**
+ * Created by mpl on 04.08.2016.
+ */
+public class RythmFileTypeFactory extends FileTypeFactory {
+
+
+    @Override
+    public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
+
+
+        fileTypeConsumer.consume(RythmFileType.INSTANCE, "rythm");
+    }
+}

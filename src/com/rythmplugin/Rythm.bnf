@@ -1,0 +1,20 @@
+{
+  parserClass="com.rythmplugin.parser.RythmParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Rythm"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.rythmplugin.psi"
+  psiImplPackage="com.rythmplugin.psi.impl"
+
+  elementTypeHolderClass="com.rythmplugin.psi.RythmTypes"
+  elementTypeClass="com.rythmplugin.psi.RythmElementType"
+  tokenTypeClass="com.rythmplugin.psi.RythmTokenType"
+}
+
+rythmFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY
