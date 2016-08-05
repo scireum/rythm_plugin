@@ -29,6 +29,7 @@
     <fileTypeFactory implementation="com.rythmplugin.RythmFileTypeFactory"/>
     <lang.parserDefinition language="Rythm" implementationClass="com.rythmplugin.RythmParserDefinition"/>
     <lang.formatter language="Rythm" implementationClass="com.rythmplugin.RythmFormattingBuilder"/>
+    <lang.syntaxHighlighterFactory key="Rythm" implementationClass="com.rythmplugin.RythmSyntaxHighlighterFactory"/>
   </extensions>
 
   <actions>
