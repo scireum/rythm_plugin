@@ -21,12 +21,22 @@ FIRST_VALUE_CHARACTER=[^ \n\r\f\\] | "\\"{CRLF} | "\\".
 VALUE_CHARACTER=[^\n\r\f\\] | "\\"{CRLF} | "\\".
 END_OF_LINE_COMMENT=("#"|"!")[^\r\n]*
 SEPARATOR=[:=]
-KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
+//KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
 
-AT = "@"
-AT_FOR = "@for"
-AT_IF = "@if"
-AT_WHILE = "@while"
+AT = "@"{AFTER_AT}{WHITE_SPACE}|"@"{AFTER_AT}{DOT}{AFTER_AT}{WHITE_SPACE}
+AT_FOR = "@for"{WHITE_SPACE}{STMT}
+AT_IF = "@if"{WHITE_SPACE}{STMT}
+AT_WHILE = "@while"{WHITE_SPACE}{STMT}
+LEFT_BRACE = "{"
+RIGHT_BRACE = "}"
+LP = "("
+RP = ")"
+DOT = "."
+STMT = {LP}{AFTER_AT}{RP}{LEFT_BRACE}
+AFTER_AT = [A-Za-z0-9]+
+
+
+
 
 %state WAITING_VALUE
 
@@ -42,7 +52,7 @@ AT_WHILE = "@while"
 
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return RythmTypes.COMMENT; }
 
-<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return RythmTypes.KEY; }
+//<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return RythmTypes.KEY; }
 
 <YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return RythmTypes.SEPARATOR; }
 

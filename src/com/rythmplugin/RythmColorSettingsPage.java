@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class RythmColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-            new AttributesDescriptor("Key", RythmSyntaxHighlighter.KEY),
+         //   new AttributesDescriptor("Key", RythmSyntaxHighlighter.KEY),
             new AttributesDescriptor("Separator", RythmSyntaxHighlighter.SEPARATOR),
             new AttributesDescriptor("Value", RythmSyntaxHighlighter.VALUE),
             new AttributesDescriptor("@", RythmSyntaxHighlighter.AT),
