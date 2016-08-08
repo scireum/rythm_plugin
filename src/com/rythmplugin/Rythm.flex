@@ -24,12 +24,21 @@ SEPARATOR=[:=]
 KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
 
 AT = "@"
+AT_FOR = "@for"
+AT_IF = "@if"
+AT_WHILE = "@while"
 
 %state WAITING_VALUE
 
 %%
 
 <WAITING_VALUE> {AT}                                        {yybegin(YYINITIAL); return RythmTypes.AT;}
+
+<WAITING_VALUE> {AT_FOR}                                        {yybegin(YYINITIAL); return RythmTypes.AT_FOR;}
+
+<WAITING_VALUE> {AT_WHILE}                                        {yybegin(YYINITIAL); return RythmTypes.AT_WHILE;}
+
+<WAITING_VALUE> {AT_IF}                                        {yybegin(YYINITIAL); return RythmTypes.AT_IF;}
 
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return RythmTypes.COMMENT; }
 

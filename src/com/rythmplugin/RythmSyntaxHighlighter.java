@@ -22,6 +22,10 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
     public static final TextAttributesKey COMMENT = createTextAttributesKey("RYTHM", DefaultLanguageHighlighterColors.LINE_COMMENT);
     public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("RYTHM_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
     public static final TextAttributesKey AT = createTextAttributesKey("RYTHM_AT", HighlighterColors.TEXT);
+    public static final TextAttributesKey AT_FOR = createTextAttributesKey("RYTHM_AT_FOR", HighlighterColors.TEXT);
+    public static final TextAttributesKey AT_IF = createTextAttributesKey("RYTHM_AT_IF", HighlighterColors.TEXT);
+    public static final TextAttributesKey AT_WHILE = createTextAttributesKey("RYTHM_AT_WHILE", HighlighterColors.TEXT);
+
 
 
 private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
@@ -32,6 +36,9 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
     private static final TextAttributesKey[] AT_KEYS = new TextAttributesKey[]{AT};
+    private static final TextAttributesKey[] AT_FOR_KEYS = new TextAttributesKey[]{AT_FOR};
+    private static final TextAttributesKey[] AT_WHILE_KEYS = new TextAttributesKey[]{AT_WHILE};
+    private static final TextAttributesKey[] AT_IF_KEYS = new TextAttributesKey[]{AT_IF};
 
 
 
@@ -59,6 +66,12 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
 
         }else if(tokenType.equals(RythmTypes.AT)){
             return AT_KEYS;
+        }else if (tokenType.equals(RythmTypes.AT_FOR)){
+           return AT_FOR_KEYS;
+        }else if(tokenType.equals(RythmTypes.AT_WHILE)){
+            return AT_WHILE_KEYS;
+        }else if(tokenType.equals(RythmTypes.AT_IF)){
+            return AT_IF_KEYS;
         }else{
             return EMPTY_KEYS;
         }
