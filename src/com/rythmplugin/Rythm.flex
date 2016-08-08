@@ -24,7 +24,7 @@ SEPARATOR=[:=]
 //KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
 
 AT = "@"{AFTER_AT}{WHITE_SPACE}|"@"{AFTER_AT}{DOT}{AFTER_AT}{WHITE_SPACE}
-AT_FOR = "@for"{WHITE_SPACE}{STMT}
+AT_FOR = "@for"{WHITE_SPACE}{STMT}|"@for"{WHITE_SPACE}{STMT}
 AT_IF = "@if"{WHITE_SPACE}{STMT}
 AT_WHILE = "@while"{WHITE_SPACE}{STMT}
 LEFT_BRACE = "{"
@@ -32,8 +32,15 @@ RIGHT_BRACE = "}"
 LP = "("
 RP = ")"
 DOT = "."
-STMT = {LP}{AFTER_AT}{RP}{LEFT_BRACE}
+STMT = {LP}{AFTER_AT}{RP}{LEFT_BRACE}|{LP}{AFTER_AT}{RP}{WHITE_SPACE}{LEFT_BRACE}
 AFTER_AT = [A-Za-z0-9]+
+
+SL = "/"
+BSL = "\\"
+
+HTML = {HTML_TAG_OPEN}|{HTML_TAG_CLOSE}
+HTML_TAG_OPEN = "<"{SL}{AFTER_AT}">"
+HTML_TAG_CLOSE = "<"{BSL}{AFTER_AT}">"
 
 
 
@@ -41,6 +48,8 @@ AFTER_AT = [A-Za-z0-9]+
 %state WAITING_VALUE
 
 %%
+
+<WAITING_VALUE> {HTML}                                      {yybegin (YYINITIAL); return RythmTypes.HTML;}
 
 <WAITING_VALUE> {AT}                                        {yybegin(YYINITIAL); return RythmTypes.AT;}
 

@@ -24,6 +24,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("@if", RythmSyntaxHighlighter.AT_IF),
             new AttributesDescriptor("@for", RythmSyntaxHighlighter.AT_FOR),
             new AttributesDescriptor("@while", RythmSyntaxHighlighter.AT_WHILE),
+            new AttributesDescriptor("HTML", RythmSyntaxHighlighter.HTML),
     };
 
     @Nullable
@@ -55,6 +56,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "message = @if\n"+
                         "message = @for\n"+
                         "message = @while\n"+
+                        "message = <html>\n"+
                         "# Add spaces to the key\n" +
                         "key\\ with\\ spaces = This is the value that could be looked up with the key \"key with spaces\".\n" +
                         "# Unicode\n" +
