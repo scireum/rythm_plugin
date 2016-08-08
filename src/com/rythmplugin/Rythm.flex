@@ -23,9 +23,13 @@ END_OF_LINE_COMMENT=("#"|"!")[^\r\n]*
 SEPARATOR=[:=]
 KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
 
+AT = "@"
+
 %state WAITING_VALUE
 
 %%
+
+<WAITING_VALUE> {AT}                                        {yybegin(YYINITIAL); return RythmTypes.AT;}
 
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return RythmTypes.COMMENT; }
 
@@ -36,6 +40,7 @@ KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
 <WAITING_VALUE> {WHITE_SPACE}+                              { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
+
 
 <WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return RythmTypes.VALUE; }
 

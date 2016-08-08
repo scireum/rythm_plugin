@@ -21,6 +21,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
     public static final TextAttributesKey VALUE = createTextAttributesKey("RYTHM_VALUE", DefaultLanguageHighlighterColors.STRING);
     public static final TextAttributesKey COMMENT = createTextAttributesKey("RYTHM", DefaultLanguageHighlighterColors.LINE_COMMENT);
     public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("RYTHM_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
+    public static final TextAttributesKey AT = createTextAttributesKey("RYTHM_AT", HighlighterColors.TEXT);
 
 
 private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
@@ -29,6 +30,9 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
     private static final TextAttributesKey[] VALUE_KEYS = new TextAttributesKey[]{VALUE};
     private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
+
+    private static final TextAttributesKey[] AT_KEYS = new TextAttributesKey[]{AT};
+
 
 
 
@@ -52,6 +56,9 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
             return COMMENT_KEYS;
         }else if (tokenType.equals(TokenType.BAD_CHARACTER)){
             return BAD_CHAR_KEYS;
+
+        }else if(tokenType.equals(RythmTypes.AT)){
+            return AT_KEYS;
         }else{
             return EMPTY_KEYS;
         }
