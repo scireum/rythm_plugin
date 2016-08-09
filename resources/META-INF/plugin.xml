@@ -1,8 +1,8 @@
 <idea-plugin version="2">
   <id>com.your.company.unique.plugin.id</id>
-  <name>Plugin display name here</name>
+  <name>Rythm Engine Detector</name>
   <version>1.0</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+  <vendor email="support@scireum.de" url="http://www.scireum.de">scireum GmbH</vendor>
 
   <description><![CDATA[
       Enter short description for your plugin here.<br>
