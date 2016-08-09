@@ -33,7 +33,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
 
 private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
     private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{SEPARATOR};
-    //private static final TextAttributesKey[] KEYS_KEYS = new TextAttributesKey[]{KEY};
+    private static final TextAttributesKey[] KEYS_KEYS = new TextAttributesKey[]{KEY};
     private static final TextAttributesKey[] VALUE_KEYS = new TextAttributesKey[]{VALUE};
     private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
@@ -60,9 +60,9 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType){
         if(tokenType.equals(RythmTypes.SEPARATOR)){
             return SEPARATOR_KEYS;
-        }else /*if (tokenType.equals(RythmTypes.KEY)){
+        }else if (tokenType.equals(RythmTypes.KEY)){
             return KEYS_KEYS;
-        }else */if (tokenType.equals(RythmTypes.VALUE)){
+        }else if (tokenType.equals(RythmTypes.VALUE)){
             return VALUE_KEYS;
         }else if (tokenType.equals(RythmTypes.COMMENT)){
             return COMMENT_KEYS;

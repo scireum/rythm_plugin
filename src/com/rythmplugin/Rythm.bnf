@@ -17,7 +17,7 @@ rythmFile ::= item_*
 
 private item_ ::= (property|COMMENT|CRLF|rythm|HTML_PART|JS_PART)
 
-property ::= (/*KEY?*/ SEPARATOR VALUE?) | /*KEY*/
+property ::= (KEY? SEPARATOR VALUE?) | KEY | AT
 
 rythm ::= (rythmat|rythmif|rythmfor|rythmwhile)
 

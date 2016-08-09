@@ -21,7 +21,7 @@ FIRST_VALUE_CHARACTER=[^ \n\r\f\\] | "\\"{CRLF} | "\\".
 VALUE_CHARACTER=[^\n\r\f\\] | "\\"{CRLF} | "\\".
 END_OF_LINE_COMMENT=("#"|"!")[^\r\n]*
 SEPARATOR=[:=]
-//KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
+KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
 
 
 HTML_PART = {HTML_HREF}|{HTML_LI}|{HTML_DIV}|{HTML_CANVAS}
@@ -91,21 +91,21 @@ HTML_TAG_CLOSE = "<"{BSL}{AFTER_AT}">"
 %state WAITING_VALUE
 
 %%
-<WAITING_VALUE> {JS_PART}                                      {yybegin (YYINITIAL); return RythmTypes.JS_PART;}
+<YYINITIAL> {JS_PART}                                      {yybegin (YYINITIAL); return RythmTypes.JS_PART;}
 
-<WAITING_VALUE> {HTML_PART}                                      {yybegin (YYINITIAL); return RythmTypes.HTML_PART;}
+<YYINITIAL> {HTML_PART}                                      {yybegin (YYINITIAL); return RythmTypes.HTML_PART;}
 
-<WAITING_VALUE> {AT}                                        {yybegin(YYINITIAL); return RythmTypes.AT;}
+<YYINITIAL> {AT}                                        {yybegin(YYINITIAL); return RythmTypes.AT;}
 
-<WAITING_VALUE> {AT_FOR}                                        {yybegin(YYINITIAL); return RythmTypes.AT_FOR;}
+<YYINITIAL> {AT_FOR}                                        {yybegin(YYINITIAL); return RythmTypes.AT_FOR;}
 
-<WAITING_VALUE> {AT_WHILE}                                        {yybegin(YYINITIAL); return RythmTypes.AT_WHILE;}
+<YYINITIAL> {AT_WHILE}                                        {yybegin(YYINITIAL); return RythmTypes.AT_WHILE;}
 
-<WAITING_VALUE> {AT_IF}                                        {yybegin(YYINITIAL); return RythmTypes.AT_IF;}
+<YYINITIAL> {AT_IF}                                        {yybegin(YYINITIAL); return RythmTypes.AT_IF;}
 
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return RythmTypes.COMMENT; }
 
-//<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return RythmTypes.KEY; }
+<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return RythmTypes.KEY; }
 
 <YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return RythmTypes.SEPARATOR; }
 
