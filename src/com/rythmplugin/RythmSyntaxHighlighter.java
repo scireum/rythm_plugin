@@ -26,7 +26,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
     public static final TextAttributesKey AT_FOR = createTextAttributesKey("RYTHM_AT_FOR", HighlighterColors.TEXT);
     public static final TextAttributesKey AT_IF = createTextAttributesKey("RYTHM_AT_IF", HighlighterColors.TEXT);
     public static final TextAttributesKey AT_WHILE = createTextAttributesKey("RYTHM_AT_WHILE", HighlighterColors.TEXT);
-    public static final TextAttributesKey HTML = createTextAttributesKey("RYTHM_HTML", HighlighterColors.TEXT);
+    public static final TextAttributesKey HTML_PART = createTextAttributesKey("RYTHM_HTML_PART", HighlighterColors.TEXT);
+    public static final TextAttributesKey JS_PART = createTextAttributesKey("RYTHM_JS_PART", HighlighterColors.TEXT);
 
 
 
@@ -41,7 +42,8 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
     private static final TextAttributesKey[] AT_FOR_KEYS = new TextAttributesKey[]{AT_FOR};
     private static final TextAttributesKey[] AT_WHILE_KEYS = new TextAttributesKey[]{AT_WHILE};
     private static final TextAttributesKey[] AT_IF_KEYS = new TextAttributesKey[]{AT_IF};
-    private static final TextAttributesKey[] HTML_KEYS = new TextAttributesKey[]{HTML};
+    private static final TextAttributesKey[] HTML_PART_KEYS = new TextAttributesKey[]{HTML_PART};
+    private static final TextAttributesKey[] JS_PART_KEYS = new TextAttributesKey[]{JS_PART};
 
 
 
@@ -75,9 +77,11 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
             return AT_WHILE_KEYS;
         }else if(tokenType.equals(RythmTypes.AT_IF)){
             return AT_IF_KEYS;
-        }else if (tokenType.equals(RythmTypes.HTML)){
-            return HTML_KEYS;
-        }else{
+        }else if (tokenType.equals(RythmTypes.HTML_PART)){
+            return HTML_PART_KEYS;
+        }else if (tokenType.equals(RythmTypes.JS_PART)){
+            return JS_PART_KEYS;
+        }{
             return EMPTY_KEYS;
         }
     }

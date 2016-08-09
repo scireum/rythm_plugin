@@ -24,7 +24,8 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("@if", RythmSyntaxHighlighter.AT_IF),
             new AttributesDescriptor("@for", RythmSyntaxHighlighter.AT_FOR),
             new AttributesDescriptor("@while", RythmSyntaxHighlighter.AT_WHILE),
-            new AttributesDescriptor("HTML", RythmSyntaxHighlighter.HTML),
+            new AttributesDescriptor("HTML", RythmSyntaxHighlighter.HTML_PART),
+            new AttributesDescriptor("JS", RythmSyntaxHighlighter.JS_PART),
     };
 
     @Nullable

@@ -24,6 +24,18 @@ SEPARATOR=[:=]
 //KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
 
 
+HTML_PART = {HTML_HREF}|{HTML_LI}|{HTML_DIV}|{HTML_CANVAS}
+HTML_HREF = "<a href=".*?.*?>
+HTML_LI = "<li".*?>|"</li>"
+HTML_DIV = "<div".*?>|"</div>"
+HTML_CANVAS = "<canvas".*?>|"</canvas>"
+
+
+JS_PART = {J_SCRIPT}
+J_SCRIPT = "<script".*?>|"</script>"
+//var
+
+
 
 AT = {AT_CHAR_WS}|{AT_DOT_AAT_WS}|{AT_AAT_CRLF}|{AT_AAT_LP_L_RP_WS_LB}|{AT_EXAN}
 
@@ -79,8 +91,9 @@ HTML_TAG_CLOSE = "<"{BSL}{AFTER_AT}">"
 %state WAITING_VALUE
 
 %%
+<WAITING_VALUE> {JS_PART}                                      {yybegin (YYINITIAL); return RythmTypes.JS_PART;}
 
-<WAITING_VALUE> {HTML}                                      {yybegin (YYINITIAL); return RythmTypes.HTML;}
+<WAITING_VALUE> {HTML_PART}                                      {yybegin (YYINITIAL); return RythmTypes.HTML_PART;}
 
 <WAITING_VALUE> {AT}                                        {yybegin(YYINITIAL); return RythmTypes.AT;}
 
