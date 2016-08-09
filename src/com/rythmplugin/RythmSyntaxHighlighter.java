@@ -22,10 +22,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
     public static final TextAttributesKey VALUE = createTextAttributesKey("RYTHM_VALUE", DefaultLanguageHighlighterColors.STRING);
     public static final TextAttributesKey COMMENT = createTextAttributesKey("RYTHM", DefaultLanguageHighlighterColors.LINE_COMMENT);
     public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("RYTHM_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
-    public static final TextAttributesKey AT = createTextAttributesKey("RYTHM_AT", HighlighterColors.TEXT);
-    public static final TextAttributesKey AT_FOR = createTextAttributesKey("RYTHM_AT_FOR", HighlighterColors.TEXT);
-    public static final TextAttributesKey AT_IF = createTextAttributesKey("RYTHM_AT_IF", HighlighterColors.TEXT);
-    public static final TextAttributesKey AT_WHILE = createTextAttributesKey("RYTHM_AT_WHILE", HighlighterColors.TEXT);
+    public static final TextAttributesKey RYTHM = createTextAttributesKey("RYTHM", HighlighterColors.TEXT);
+
     public static final TextAttributesKey HTML_PART = createTextAttributesKey("RYTHM_HTML_PART", HighlighterColors.TEXT);
     public static final TextAttributesKey JS_PART = createTextAttributesKey("RYTHM_JS_PART", HighlighterColors.TEXT);
 
@@ -38,10 +36,7 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
     private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
-    private static final TextAttributesKey[] AT_KEYS = new TextAttributesKey[]{AT};
-    private static final TextAttributesKey[] AT_FOR_KEYS = new TextAttributesKey[]{AT_FOR};
-    private static final TextAttributesKey[] AT_WHILE_KEYS = new TextAttributesKey[]{AT_WHILE};
-    private static final TextAttributesKey[] AT_IF_KEYS = new TextAttributesKey[]{AT_IF};
+    private static final TextAttributesKey[] RYTHM_KEYS = new TextAttributesKey[]{RYTHM};
     private static final TextAttributesKey[] HTML_PART_KEYS = new TextAttributesKey[]{HTML_PART};
     private static final TextAttributesKey[] JS_PART_KEYS = new TextAttributesKey[]{JS_PART};
 
@@ -69,14 +64,8 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
         }else if (tokenType.equals(TokenType.BAD_CHARACTER)){
             return BAD_CHAR_KEYS;
 
-        }else if(tokenType.equals(RythmTypes.AT)){
-            return AT_KEYS;
-        }else if (tokenType.equals(RythmTypes.AT_FOR)){
-           return AT_FOR_KEYS;
-        }else if(tokenType.equals(RythmTypes.AT_WHILE)){
-            return AT_WHILE_KEYS;
-        }else if(tokenType.equals(RythmTypes.AT_IF)){
-            return AT_IF_KEYS;
+        }else if(tokenType.equals(RythmTypes.RYTHM)){
+            return RYTHM_KEYS;
         }else if (tokenType.equals(RythmTypes.HTML_PART)){
             return HTML_PART_KEYS;
         }else if (tokenType.equals(RythmTypes.JS_PART)){

@@ -15,16 +15,7 @@
 
 rythmFile ::= item_*
 
-private item_ ::= (property|COMMENT|CRLF|rythm|HTML_PART|JS_PART)
+private item_ ::= (property|COMMENT|CRLF|HTML_PART|JS_PART)
 
-property ::= (KEY? SEPARATOR VALUE?) | KEY | AT
+property ::= (KEY? SEPARATOR VALUE?) | KEY | RYTHM
 
-rythm ::= (rythmat|rythmif|rythmfor|rythmwhile)
-
-rythmat ::= AT
-
-rythmif ::= AT_IF
-
-rythmwhile ::= AT_WHILE
-
-rythmfor ::= AT_FOR

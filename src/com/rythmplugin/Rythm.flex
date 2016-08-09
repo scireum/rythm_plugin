@@ -35,48 +35,7 @@ JS_PART = {J_SCRIPT}
 J_SCRIPT = "<script".*?>|"</script>"
 //var
 
-
-
-AT = {AT_CHAR_WS}|{AT_DOT_AAT_WS}|{AT_AAT_CRLF}|{AT_AAT_LP_L_RP_WS_LB}|{AT_EXAN}
-
-//Block für AT
-AT_CHAR_WS ="@"{AFTER_AT}{WHITE_SPACE}
-AT_DOT_AAT_WS = "@"{AFTER_AT}{DOT}{AFTER_AT}{WHITE_SPACE}
-AT_AAT_CRLF = "@"{AFTER_AT}{CRLF}
-AT_AAT_LP_L_RP_WS_LB = "@"{AFTER_AT}{LP}{LETTER}*{RP}{WHITE_SPACE}{LEFT_BRACE}
-AT_EXAN = "@"{ALPHA_NUMERIC}*{LP}*{DQ}{ALPHA_NUMERIC}*{DQ}{RP}{WHITE_SPACE}{RIGHT_BRACE}
-
-//Block für AT_IF
-AT_IF = {AT_IF_WS_STMT}|
-
-AT_IF_WS = "@if"{WHITE_SPACE}{STMT}
-
-AT_IF_WS_STMT = "@if"{WHITE_SPACE}{STMT}{WHITE_SPACE}{LEFT_BRACE}{WHITE_SPACE}{AT_EXAN}
-
-
-AT_FOR = "@for"{WHITE_SPACE}{STMT}|"@for"{WHITE_SPACE}{STMT}{AT_EXAN}
-AT_WHILE = "@while"{WHITE_SPACE}{STMT}
-AT_COMMENT = "/"
-
-STMT = {LP}{AFTER_AT}{RP}{LEFT_BRACE}|{LP}{AFTER_AT}{RP}{WHITE_SPACE}{LEFT_BRACE}
-
-
-LEFT_BRACE = "{"
-RIGHT_BRACE = "}"
-LP = "("
-RP = ")"
-DOT = "."
-
-AFTER_AT = {ALPHA_NUMERIC}+|{ALPHA_NUMERIC}*{DOT}*{LP}*{RP}*|{ALPHA_NUMERIC}*{DOT}*{ALPHA_NUMERIC}*{LP}*{RP}*
-
-ALPHA_NUMERIC = [A-Za-z0-9]
-LETTER = [A-Za-z]
-
-
-
-SL = "/"
-BSL = "\\"
-ANYCHAR = .*
+RYTHM = [^<]*|[^>]*|[^"<li>"]*
 
 DQ = "\""
 ANYCHAREXAN =[^[A-Za-z0-9]]*
@@ -85,7 +44,18 @@ HTML = {HTML_TAG_OPEN}|{HTML_TAG_CLOSE}
 HTML_TAG_OPEN = "<"{SL}{AFTER_AT}">"
 HTML_TAG_CLOSE = "<"{BSL}{AFTER_AT}">"
 
+SL = "/"
+BSL = "\\"
+ANYCHAR = .*
 
+ALPHA_NUMERIC = [A-Za-z0-9]
+LETTER = [A-Za-z]
+
+LEFT_BRACE = "{"
+RIGHT_BRACE = "}"
+LP = "("
+RP = ")"
+DOT = "."
 
 
 %state WAITING_VALUE
@@ -95,13 +65,7 @@ HTML_TAG_CLOSE = "<"{BSL}{AFTER_AT}">"
 
 <YYINITIAL> {HTML_PART}                                      {yybegin (YYINITIAL); return RythmTypes.HTML_PART;}
 
-<YYINITIAL> {AT}                                        {yybegin(YYINITIAL); return RythmTypes.AT;}
-
-<YYINITIAL> {AT_FOR}                                        {yybegin(YYINITIAL); return RythmTypes.AT_FOR;}
-
-<YYINITIAL> {AT_WHILE}                                        {yybegin(YYINITIAL); return RythmTypes.AT_WHILE;}
-
-<YYINITIAL> {AT_IF}                                        {yybegin(YYINITIAL); return RythmTypes.AT_IF;}
+<YYINITIAL> {RYTHM}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM;}
 
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return RythmTypes.COMMENT; }
 
