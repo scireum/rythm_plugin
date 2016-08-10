@@ -53,13 +53,13 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType){
-        if(tokenType.equals(RythmTypes.SEPARATOR)){
+       /* if(tokenType.equals(RythmTypes.SEPARATOR)){
             return SEPARATOR_KEYS;
         }else if (tokenType.equals(RythmTypes.KEY)){
             return KEYS_KEYS;
         }else if (tokenType.equals(RythmTypes.VALUE)){
             return VALUE_KEYS;
-        }else if (tokenType.equals(RythmTypes.COMMENT)){
+        }else */if (tokenType.equals(RythmTypes.COMMENT)){
             return COMMENT_KEYS;
         }else if (tokenType.equals(TokenType.BAD_CHARACTER)){
             return BAD_CHAR_KEYS;

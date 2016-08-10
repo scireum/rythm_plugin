@@ -24,18 +24,23 @@ SEPARATOR=[:=]
 KEY_CHARACTER=[^:=\ \n\r\t\f\\] | "\\ "
 
 
-HTML_PART = {HTML_HREF}|{HTML_LI}|{HTML_DIV}|{HTML_CANVAS}
-HTML_HREF = "<a href=".*?.*?>
+HTML_PART = {HTML_HREF}|{HTML_LI}|{HTML_DIV}|{HTML_CANVAS}|{HTML_UL}
+HTML_HREF = "<a href=".*?.*?>|"<a".*[^@].
 HTML_LI = "<li".*?>|"</li>"
 HTML_DIV = "<div".*?>|"</div>"
 HTML_CANVAS = "<canvas".*?>|"</canvas>"
+HTML_UL = "<ul".*?>|"</ul>"
 
 
 JS_PART = {J_SCRIPT}
 J_SCRIPT = "<script".*?>|"</script>"
-//var
 
-RYTHM = [^<]*|[^>]*|[^"<li>"]*
+RYTHM = @.*[^<|>]|"*".*[^<|>]|{RYTHM_ELSE}|"*".*[^[|]]
+RYTHM_ELSE = "else {"
+
+//[^<]*|[^>]*|[^"<li>"]*
+
+
 
 DQ = "\""
 ANYCHAREXAN =[^[A-Za-z0-9]]*
@@ -71,14 +76,14 @@ DOT = "."
 
 <YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return RythmTypes.KEY; }
 
-<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return RythmTypes.SEPARATOR; }
+//<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return RythmTypes.SEPARATOR; }
 
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
 <WAITING_VALUE> {WHITE_SPACE}+                              { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
 
 
-<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return RythmTypes.VALUE; }
+//<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return RythmTypes.VALUE; }
 
 ({CRLF}|{WHITE_SPACE})+                                     { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
