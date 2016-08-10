@@ -21,7 +21,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
     public static final TextAttributesKey KEY = createTextAttributesKey("RYTHM_KEY", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey VALUE = createTextAttributesKey("RYTHM_VALUE", DefaultLanguageHighlighterColors.STRING);
     public static final TextAttributesKey COMMENT = createTextAttributesKey("RYTHM", DefaultLanguageHighlighterColors.LINE_COMMENT);
-    public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("RYTHM_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
+   // public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("RYTHM_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
     public static final TextAttributesKey RYTHM = createTextAttributesKey("RYTHM", HighlighterColors.TEXT);
 
     public static final TextAttributesKey HTML_PART = createTextAttributesKey("RYTHM_HTML_PART", HighlighterColors.TEXT);
@@ -29,7 +29,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
 
 
 
-private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
+//private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
     private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{SEPARATOR};
     private static final TextAttributesKey[] KEYS_KEYS = new TextAttributesKey[]{KEY};
     private static final TextAttributesKey[] VALUE_KEYS = new TextAttributesKey[]{VALUE};
@@ -37,8 +37,8 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
     private static final TextAttributesKey[] RYTHM_KEYS = new TextAttributesKey[]{RYTHM};
-    private static final TextAttributesKey[] HTML_PART_KEYS = new TextAttributesKey[]{HTML_PART};
-    private static final TextAttributesKey[] JS_PART_KEYS = new TextAttributesKey[]{JS_PART};
+ //   private static final TextAttributesKey[] HTML_PART_KEYS = new TextAttributesKey[]{HTML_PART};
+   // private static final TextAttributesKey[] JS_PART_KEYS = new TextAttributesKey[]{JS_PART};
 
 
 
@@ -61,16 +61,16 @@ private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]
             return VALUE_KEYS;
         }else */if (tokenType.equals(RythmTypes.COMMENT)){
             return COMMENT_KEYS;
-        }else if (tokenType.equals(TokenType.BAD_CHARACTER)){
+        }else /*if (tokenType.equals(TokenType.BAD_CHARACTER)){
             return BAD_CHAR_KEYS;
 
-        }else if(tokenType.equals(RythmTypes.RYTHM)){
+        }else*/ if(tokenType.equals(RythmTypes.RYTHM)){
             return RYTHM_KEYS;
-        }else if (tokenType.equals(RythmTypes.HTML_PART)){
+        }else /*if (tokenType.equals(RythmTypes.HTML_PART)){
             return HTML_PART_KEYS;
         }else if (tokenType.equals(RythmTypes.JS_PART)){
             return JS_PART_KEYS;
-        }{
+        }*/{
             return EMPTY_KEYS;
         }
     }
