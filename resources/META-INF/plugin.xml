@@ -31,6 +31,8 @@
     <lang.formatter language="Rythm" implementationClass="com.rythmplugin.RythmFormattingBuilder"/>
     <lang.syntaxHighlighterFactory key="Rythm" implementationClass="com.rythmplugin.RythmSyntaxHighlighterFactory"/>
     <colorSettingsPage implementation="com.rythmplugin.RythmColorSettingsPage"/>
+    <codeStyleSettingsProvider implementation="com.rythmplugin.RythmCodeStyleSettingsProvider"/>
+    <langCodeStyleSettingsProvider implementation="com.rythmplugin.RythmLanguageCodeStyleSettingsProvider"/>
   </extensions>
 
   <actions>
