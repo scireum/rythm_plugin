@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageInjectionConfiguration>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>a</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("a")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+    <apply-to-subtags />
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>body</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("body")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+    <apply-to-subtags />
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>div</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("div")).withNamespace(string().equalTo("http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>head</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("head")).withNamespace(string().equalTo("http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd"))]]></place>
+    <apply-to-subtags />
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>html</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("html")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>label</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("label")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>li</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("li")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>ol</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("ol")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>option</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("option")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>p</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("p")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>script/@src</display-name>
+    <place><![CDATA[xmlAttribute().withLocalName(string().equalTo("src")).withParent(xmlTag().withLocalName(string().equalTo("script")).withNamespace(string().equalTo("http://www.w3.org/1999/html")))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>select</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("select")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>small</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("small")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>span</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("span")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+  <injection language="Rythm" injector-id="xml">
+    <display-name>title</display-name>
+    <place><![CDATA[xmlTag().withLocalName(string().equalTo("title")).withNamespace(string().equalTo("http://www.w3.org/1999/html"))]]></place>
+  </injection>
+</LanguageInjectionConfiguration>
+

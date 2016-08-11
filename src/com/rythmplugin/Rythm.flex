@@ -46,14 +46,17 @@ J_SCRIPT = "<script".*?>|"</script>"//|[[:lower:]]*
 
 
 //RYTHM = "@".*[^\s]*[^<|>]|"*".*[^\s]*[^<|>]|{RYTHM_ELSE}|"*".*[^\s]*[^[|]]|{RYTHM_IF}|"@*".*[^\s]*[^<|>]
-RYTHM = "@".*/*\s*/[^<|>]|"*".*[^<|>]|{RYTHM_ELSE}|"*".*[^[|]]|{RYTHM_IF}|"@*".*[^<|>]|{RYTHM_SECTION}|{RYTHM_ARGS}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}
+RYTHM = @.*{TEST}[^<][^>]
+//@.*|"\"@".*[^<|>]|"@".*/*\s*/{TEST}[^<|>]|"*".*[^<|>]|{RYTHM_ELSE}|"*".*[^[|]]|{RYTHM_IF}|"@*".*[^<|>]|{RYTHM_SECTION}|{RYTHM_ARGS}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}
+TEST = (.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*)*|(.*{WHITE_SPACE}|[^<][^>])*
+
 RYTHM_ARGS = "@args".*[^<|>]
 RYTHM_SECTION = "@section".*[^<|>]
 RYTHM_EXTENDS = "@extends".*[^<|>]
 RYTHM_IMPORT = "@import".*[^<|>]
 
 RYTHM_ELSE = "else {"|"}else {"|"}"{WHITE_SPACE}"else {"
-RYTHM_IF = "@if".*[^<|>]
+RYTHM_IF = "@if".*[^<|>].*
 
 //ALL_BUT_WS = [^\s*](.*)\s*
 

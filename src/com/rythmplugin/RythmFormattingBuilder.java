@@ -16,22 +16,24 @@ import com.sun.istack.internal.Nullable;
 public class RythmFormattingBuilder implements FormattingModelBuilder {
     @NotNull
     @Override
-    public FormattingModel createModel(PsiElement element, CodeStyleSettings settings){
-      return FormattingModelProvider.createFormattingModelForPsiFile(element.getContainingFile(),
-              new RythmBlock(element.getNode(), Wrap.createWrap(WrapType.NONE, false),
-                      Alignment.createAlignment(),createSpaceBuilder(settings)),
-              settings);
+    public FormattingModel createModel(PsiElement element, CodeStyleSettings settings) {
+        return FormattingModelProvider.createFormattingModelForPsiFile(element.getContainingFile(),
+                new RythmBlock(element.getNode(), Wrap.createWrap(WrapType.NONE, false),
+                        Alignment.createAlignment(), createSpaceBuilder(settings)),
+                settings);
     }
-    private static  SpacingBuilder createSpaceBuilder(CodeStyleSettings settings){
+
+    private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
         return new SpacingBuilder(settings, RythmLanguage.INSTANCE)
                 .around(RythmTypes.RYTHM).spaceIf(settings.SPACE_AROUND_ASSIGNMENT_OPERATORS)
-              //  .around(RythmTypes.SEPARATOR)
-              //  .spaceIf(settings.SPACE_AROUND_ASSIGNMENT_OPERATORS)
+                .around(RythmTypes.SEPARATOR)
+                .spaceIf(settings.SPACE_AROUND_ASSIGNMENT_OPERATORS)
                 .before(RythmTypes.PROPERTY).none();
     }
+
     @Nullable
     @Override
-    public TextRange getRangeAffectingIndent(PsiFile file, int offset, ASTNode elementAtOffset){
+    public TextRange getRangeAffectingIndent(PsiFile file, int offset, ASTNode elementAtOffset) {
         return null;
     }
 }
