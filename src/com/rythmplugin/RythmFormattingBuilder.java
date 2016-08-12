@@ -25,9 +25,9 @@ public class RythmFormattingBuilder implements FormattingModelBuilder {
 
     private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
         return new SpacingBuilder(settings, RythmLanguage.INSTANCE)
-                .around(RythmTypes.RYTHM).spaceIf(settings.SPACE_AROUND_ASSIGNMENT_OPERATORS)
+               // .around(RythmTypes.RYTHM).spaceIf(settings.WRAP_LONG_LINES)
                 .around(RythmTypes.SEPARATOR)
-                .spaceIf(settings.SPACE_AROUND_ASSIGNMENT_OPERATORS)
+                .spaceIf(settings.GENERATE_FINAL_PARAMETERS/*SPACE_AROUND_ASSIGNMENT_OPERATORS*/)
                 .before(RythmTypes.PROPERTY).none();
     }
 

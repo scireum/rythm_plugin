@@ -29,10 +29,10 @@
     <fileTypeFactory implementation="com.rythmplugin.RythmFileTypeFactory"/>
     <lang.parserDefinition language="Rythm" implementationClass="com.rythmplugin.RythmParserDefinition"/>
     <lang.formatter language="Rythm" implementationClass="com.rythmplugin.RythmFormattingBuilder"/>
-    <lang.syntaxHighlighterFactory key="Rythm" implementationClass="com.rythmplugin.RythmSyntaxHighlighterFactory"/>
-    <colorSettingsPage implementation="com.rythmplugin.RythmColorSettingsPage"/>
-    <codeStyleSettingsProvider implementation="com.rythmplugin.RythmCodeStyleSettingsProvider"/>
-    <langCodeStyleSettingsProvider implementation="com.rythmplugin.RythmLanguageCodeStyleSettingsProvider"/>
+    <lang.syntaxHighlighterFactory key="Rythm" implementationClass="com.rythmplugin.highlighter.RythmSyntaxHighlighterFactory"/>
+    <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
+    <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>
+    <langCodeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>
   </extensions>
 
   <actions>

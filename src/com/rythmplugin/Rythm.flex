@@ -46,8 +46,10 @@ J_SCRIPT = "<script".*?>|"</script>"//|[[:lower:]]*
 
 
 //RYTHM = "@".*[^\s]*[^<|>]|"*".*[^\s]*[^<|>]|{RYTHM_ELSE}|"*".*[^\s]*[^[|]]|{RYTHM_IF}|"@*".*[^\s]*[^<|>]
-RYTHM = @.*{TEST}[^<][^>]
-//@.*|"\"@".*[^<|>]|"@".*/*\s*/{TEST}[^<|>]|"*".*[^<|>]|{RYTHM_ELSE}|"*".*[^[|]]|{RYTHM_IF}|"@*".*[^<|>]|{RYTHM_SECTION}|{RYTHM_ARGS}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}
+RYTHM =@.*?\{|@.*\)|@.*?[::lower::]* // @.*?\)|"@".*{TEST}[^<|>]|{RYTHM_ELSE}|"*".*[^[|]]|{RYTHM_IF}|{RYTHM_SECTION}|{RYTHM_ARGS}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}
+
+/*@.*{TEST}[^<][^>]|[^#]*/
+
 TEST = (.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*)*|(.*{WHITE_SPACE}|[^<][^>])*
 
 RYTHM_ARGS = "@args".*[^<|>]
@@ -56,7 +58,7 @@ RYTHM_EXTENDS = "@extends".*[^<|>]
 RYTHM_IMPORT = "@import".*[^<|>]
 
 RYTHM_ELSE = "else {"|"}else {"|"}"{WHITE_SPACE}"else {"
-RYTHM_IF = "@if".*[^<|>].*
+RYTHM_IF = "@if".*[^<|>].*|@if
 
 //ALL_BUT_WS = [^\s*](.*)\s*
 
@@ -97,16 +99,16 @@ DOT = "."
 
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return RythmTypes.COMMENT; }
 
-<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return RythmTypes.KEY; }
+//<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return RythmTypes.KEY; }
 
-<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return RythmTypes.SEPARATOR; }
+//<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return RythmTypes.SEPARATOR; }
 
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
 <WAITING_VALUE> {WHITE_SPACE}+                              { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
 
 
-<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return RythmTypes.VALUE; }
+//<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return RythmTypes.VALUE; }
 
 ({CRLF}|{WHITE_SPACE})+                                     { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 

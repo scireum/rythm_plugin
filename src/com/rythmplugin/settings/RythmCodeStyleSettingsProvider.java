@@ -1,4 +1,4 @@
-package com.rythmplugin;
+package com.rythmplugin.settings;
 
 import com.intellij.application.options.CodeStyleAbstractConfigurable;
 import com.intellij.application.options.CodeStyleAbstractPanel;
@@ -7,6 +7,7 @@ import com.intellij.openapi.options.Configurable;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.codeStyle.CodeStyleSettingsProvider;
 import com.intellij.psi.codeStyle.CustomCodeStyleSettings;
+import com.rythmplugin.RythmLanguage;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
 

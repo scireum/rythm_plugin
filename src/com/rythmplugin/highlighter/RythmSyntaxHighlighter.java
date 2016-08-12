@@ -1,4 +1,4 @@
-package com.rythmplugin;
+package com.rythmplugin.highlighter;
 
 import com.intellij.lang.html.HTMLParser;
 import com.intellij.lexer.Lexer;
@@ -8,6 +8,7 @@ import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
+import com.rythmplugin.RythmLexerAdapter;
 import com.rythmplugin.psi.RythmTypes;
 import com.sun.istack.internal.NotNull;
 

@@ -1,4 +1,4 @@
-package com.rythmplugin;
+package com.rythmplugin.highlighter;
 
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;

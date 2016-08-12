@@ -1,8 +1,9 @@
-package com.rythmplugin;
+package com.rythmplugin.settings;
 
 import com.intellij.lang.Language;
 import com.intellij.psi.codeStyle.CodeStyleSettingsCustomizable;
 import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider;
+import com.rythmplugin.RythmLanguage;
 import com.sun.istack.internal.NotNull;
 
 /**

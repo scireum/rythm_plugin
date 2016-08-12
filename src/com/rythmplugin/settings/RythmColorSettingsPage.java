@@ -1,13 +1,14 @@
-package com.rythmplugin;
+package com.rythmplugin.settings;
 
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
+import com.rythmplugin.RythmIcons;
+import com.rythmplugin.highlighter.RythmSyntaxHighlighter;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
-import com.sun.javafx.collections.MappingChange;
 
 import javax.swing.*;
 import java.util.Map;

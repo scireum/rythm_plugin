@@ -15,7 +15,66 @@
 
 rythmFile ::= item_*
 
-private item_ ::= (property|COMMENT|CRLF/*|HTML_PART|JS_PART*/)
+private item_ ::= (property|COMMENT|CRLF|tokens/*|HTML_PART|JS_PART*/)
 
-property ::= /*(KEY? SEPARATOR VALUE?)*/ | KEY | RYTHM| SEPARATOR|VALUE/*HTML_PART|JS_PART*/
+property ::= /*(KEY? SEPARATOR VALUE?)*/ | /*KEY |*/ RYTHM| SEPARATOR/*|VALUE/*HTML_PART|JS_PART*/
 
+tokens ::= RBRACE|RBRACKET|RPAREN|PLUS_PLUS|MINUS_MINUS|LBRACE|LBRACKET|LPAREN|DOUBLE_COLON|
+COLON|SEMICOLON|COMMA|MULTI_ARGS|CLASS_ATTR_END|CLASS_ATTR_START|SHIFT_LEFT|SHIFT_RIGHT
+|UNSIGNED_SHIFT_RIGHT|CMP|EQ_EQ|NOT_EQ|LESS_OR_EQ|GREATER_OR_EQ|SEND_CHANNEL|PLUS_EQ|
+MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AND|
+LESS|GREATER|PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|DOT//|VOKALE|KONSONANTEN|DIGITS
+
+RBRACE               ::=  '}'
+RBRACKET             ::=  ']'
+RPAREN               ::=  ')'
+PLUS_PLUS            ::=  '++'
+MINUS_MINUS          ::=  '--'
+
+LBRACE               ::=  '{'
+LBRACKET               ::=  '['
+LPAREN               ::=  '('
+DOUBLE_COLON         ::=  '::'
+COLON                ::=  ':'
+SEMICOLON            ::=  ';'
+COMMA                ::=  ','
+MULTI_ARGS           ::=  '...'
+CLASS_ATTR_START     ::=  '</'
+CLASS_ATTR_END       ::=  '/>'
+SHIFT_LEFT           ::=  '<<'
+SHIFT_RIGHT          ::=  '>>'
+UNSIGNED_SHIFT_RIGHT ::=  '>>>'
+CMP                  ::=  '<=>'
+EQ_EQ                ::=  '=='
+NOT_EQ               ::=  '!='
+LESS_OR_EQ           ::=  '<='
+GREATER_OR_EQ        ::=  '>='
+SEND_CHANNEL         ::=  '<-'
+PLUS_EQ              ::=  '+='
+MINUS_EQ             ::=  '-='
+MUL_EQ               ::=  '*='
+DIV_EQ               ::=  '/='
+REMAINDER_EQ         ::=  '%='
+OR_OR                ::=  '||'
+AND_AND              ::=  '&&'
+EQ                   ::=  '='
+NOT                  ::=  '!'
+BIT_NOT              ::=  '~'
+BIT_OR               ::=  '|'
+BIT_XOR              ::=  '^'
+BIT_AND              ::=  '&'
+LESS                 ::=  '<'
+GREATER              ::=  '>'
+PLUS                 ::=  '+'
+MINUS                ::=  '-'
+MUL                  ::=  '*'
+DIV                  ::=  '/'
+REMAINDER            ::=  '%'
+QUESTION             ::=  '?'
+AT                   ::=  '@'
+DOT                  ::= '.'
+
+//VOKALE ::= 'a'|'e'|'i'|'o'|'u'
+//KONSONANTEN ::= 'b'|'c'|'d'|'f'|'g'|'h'|'j'|'k'|'l'|'m'|'n'|'p'|'q'|'r'|'s'|'t'|'v'|'w'|'x'|'y'|'z'
+
+//DIGITS ::= '1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'|'0'
