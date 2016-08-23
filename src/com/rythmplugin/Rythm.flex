@@ -46,7 +46,9 @@ J_SCRIPT = "<script".*?>|"</script>"//|[[:lower:]]*
 
 
 //RYTHM = "@".*[^\s]*[^<|>]|"*".*[^\s]*[^<|>]|{RYTHM_ELSE}|"*".*[^\s]*[^[|]]|{RYTHM_IF}|"@*".*[^\s]*[^<|>]
-RYTHM =@.*?\{|@.*\)|@.*?[::lower::]* // @.*?\)|"@".*{TEST}[^<|>]|{RYTHM_ELSE}|"*".*[^[|]]|{RYTHM_IF}|{RYTHM_SECTION}|{RYTHM_ARGS}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}
+RYTHM = @[^<>]*|else|}|\{|> \d.*|< \d.*
+//@[^<>]*|else|}|\{|> \d.*|< \d.*
+//@.*?\{|@.*\)|@.*?[::lower::]* // @.*?\)|"@".*{TEST}[^<|>]|{RYTHM_ELSE}|"*".*[^[|]]|{RYTHM_IF}|{RYTHM_SECTION}|{RYTHM_ARGS}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}
 
 /*@.*{TEST}[^<][^>]|[^#]*/
 
