@@ -39,6 +39,9 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
     public static final TextAttributesKey RYTHM = createTextAttributesKey("RYTHM", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_METHOD = createTextAttributesKey("RYTHM_METHOD", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_SYN = createTextAttributesKey("RYTHM_SYN", HighlighterColors.TEXT);
+    public static final TextAttributesKey RYTHM_BLOCK = createTextAttributesKey("RYTHM_BLOCK", HighlighterColors.TEXT);
+    public static final TextAttributesKey RYTHM_PART = createTextAttributesKey("RYTHM_PART", HighlighterColors.TEXT);
+    public static final TextAttributesKey RYTHM_KEY = createTextAttributesKey("RYTHM_KEY", HighlighterColors.TEXT);
 
     public static final TextAttributesKey HTML_PART = createTextAttributesKey("RYTHM_HTML_PART", HighlighterColors.TEXT);
     public static final TextAttributesKey JS_PART = createTextAttributesKey("RYTHM_JS_PART", HighlighterColors.TEXT);
@@ -67,6 +70,10 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
     private static final TextAttributesKey[] RYTHM_KEYS = new TextAttributesKey[]{RYTHM};
     private static final TextAttributesKey[] RYTHM_METHOD_KEYS = new TextAttributesKey[]{RYTHM_METHOD};
     private static final TextAttributesKey[] RYTHM_SYN_KEYS = new TextAttributesKey[]{RYTHM_SYN};
+    private static final TextAttributesKey[] RYTHM_BLOCK_KEYS = new TextAttributesKey[]{RYTHM_BLOCK};
+    private static final TextAttributesKey[] RYTHM_PART_KEYS = new TextAttributesKey[]{RYTHM_PART};
+    private static final TextAttributesKey[] RYTHM_KEY_KEYS = new TextAttributesKey[]{RYTHM_KEY};
+
  //   private static final TextAttributesKey[] HTML_PART_KEYS = new TextAttributesKey[]{HTML_PART};
    // private static final TextAttributesKey[] JS_PART_KEYS = new TextAttributesKey[]{JS_PART};
 
@@ -124,6 +131,12 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
             return RYTHM_METHOD_KEYS;
         }else if (tokenType.equals(RYTHM_SYN)){
             return RYTHM_SYN_KEYS;
+        }else if (tokenType.equals(RythmTypes.RYTHM_BLOCK)){
+            return RYTHM_BLOCK_KEYS;
+        }else if (tokenType.equals(RythmTypes.RYTHM_PART)){
+            return RYTHM_PART_KEYS;
+        }else if (tokenType.equals(RythmTypes.RYTHM_KEY)){
+            return RYTHM_KEY_KEYS;
         }
             /*if (tokenType.equals(RythmTypes.HTML_PART)){
             return HTML_PART_KEYS;

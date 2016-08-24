@@ -60,6 +60,10 @@ J_SCRIPT = "<script".*?>|"</script>"//|[[:lower:]]*
 
 //RYTHM = @.[a-zA-Z]*\.*[a-zA-Z]*.\)|@.[a-zA-Z]*.*?\)
 //RYTHM_SYN = @[a-zA-Z]*
+
+RYTHM_KEY = @[(?!for|invoke|render|if|i18n|prefix|args|import)][a-zA-Z0-9]*
+//@[a-zA-Z0-9]+|@(?!for|invoke|render)[a-zA-Z0-9]
+
 RYTHM_ARGS = @args.*|@args
 RYTHM_SECTION = @section.*?\)|@section
 RYTHM_EXTENDS = @extends.*\)|@extends
@@ -69,6 +73,9 @@ RYTHM_INVOKE = @invoke.*?\)|@invoke
 
 //RYTHM_METHOD = @.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*)\(\)|@.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*).\([a-zA-Z]*\.[a-zA-Z]*.*\)|@[a-zA-Z]*\.[a-zA-Z]*\(\)
 RYTHM_METHOD = @[a-zA-Z]*\..*?\)
+
+RYTHM_BLOCK = @.*,\n*.*\n*[a-zA-Z]*\n[a-zA-Z]*.[^@><]*
+//RYTHM_PART = @(?!for|invoke|render)[a-zA-Z]*\(.*\).*
 
 RYTHM_ELSE = else.*\{
 RYTHM_IF = @if.*\{.[a-zA-Z]*.*}|@if.*?\{
@@ -91,7 +98,13 @@ RYTHM_NAVBOX = @navbox
 
 //<YYINITIAL> {RYTHM_SYN}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_SYN;}
 
+<YYINITIAL> {RYTHM_KEY}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_KEY;}
+
+//<YYINITIAL> {RYTHM_PART}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_PART;}
+
 <YYINITIAL> {RYTHM_METHOD}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
+
+<YYINITIAL> {RYTHM_BLOCK}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_BLOCK;}
 
 <YYINITIAL> {RYTHM_ARGS}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ARGS;}
 
