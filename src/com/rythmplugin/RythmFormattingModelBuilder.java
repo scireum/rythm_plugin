@@ -13,7 +13,7 @@ import com.sun.istack.internal.Nullable;
 /**
  * Created by mpl on 04.08.2016.
  */
-public class RythmFormattingBuilder implements FormattingModelBuilder {
+public class RythmFormattingModelBuilder implements FormattingModelBuilder {
     @NotNull
     @Override
     public FormattingModel createModel(PsiElement element, CodeStyleSettings settings) {
@@ -25,9 +25,7 @@ public class RythmFormattingBuilder implements FormattingModelBuilder {
 
     private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
         return new SpacingBuilder(settings, RythmLanguage.INSTANCE)
-               // .around(RythmTypes.RYTHM).spaceIf(settings.WRAP_LONG_LINES)
-                .around(RythmTypes.SEPARATOR)
-                .spaceIf(settings.GENERATE_FINAL_PARAMETERS/*SPACE_AROUND_ASSIGNMENT_OPERATORS*/)
+               // .around(RythmTypes.RYTHM).spaceIf(settings.SPACE_WITHIN_BRACES)
                 .before(RythmTypes.PROPERTY).none();
     }
 

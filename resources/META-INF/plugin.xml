@@ -1,17 +1,14 @@
 <idea-plugin version="2">
-  <id>com.your.company.unique.plugin.id</id>
+  <id>com.scireum.rythmengine.detector</id>
   <name>Rythm Engine Detector</name>
   <version>1.0</version>
-  <vendor email="support@scireum.de" url="http://www.scireum.de">scireum GmbH</vendor>
+  <vendor email="support@scireum.de" url="http://www.scireum.net">scireum GmbH</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Plugin for detecting rythm engine parts in your project
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
     ]]>
   </change-notes>
 
@@ -23,12 +20,14 @@
   <!-- uncomment to enable plugin in all products
   <depends>com.intellij.modules.lang</depends>
   -->
-
+  <extensions defaultExtensionNs="org.intellij.intelliLang">
+  </extensions>
   <extensions defaultExtensionNs="com.intellij">
+
     <!-- Add your extensions here -->
     <fileTypeFactory implementation="com.rythmplugin.RythmFileTypeFactory"/>
     <lang.parserDefinition language="Rythm" implementationClass="com.rythmplugin.RythmParserDefinition"/>
-    <lang.formatter language="Rythm" implementationClass="com.rythmplugin.RythmFormattingBuilder"/>
+    <lang.formatter language="Rythm" implementationClass="com.rythmplugin.RythmFormattingModelBuilder"/>
     <lang.syntaxHighlighterFactory key="Rythm" implementationClass="com.rythmplugin.highlighter.RythmSyntaxHighlighterFactory"/>
     <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
     <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>

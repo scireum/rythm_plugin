@@ -46,48 +46,38 @@ J_SCRIPT = "<script".*?>|"</script>"//|[[:lower:]]*
 
 
 //RYTHM = "@".*[^\s]*[^<|>]|"*".*[^\s]*[^<|>]|{RYTHM_ELSE}|"*".*[^\s]*[^[|]]|{RYTHM_IF}|"@*".*[^\s]*[^<|>]
-RYTHM = @[^<>]*|else|}|\{|> \d.*|< \d.*
+
+
+//RYTHM = 24.08.16 - 09:20 Uhr @[^<>]*|else|}|\{|> \d.*|< \d.*
+
+
 //@[^<>]*|else|}|\{|> \d.*|< \d.*
 //@.*?\{|@.*\)|@.*?[::lower::]* // @.*?\)|"@".*{TEST}[^<|>]|{RYTHM_ELSE}|"*".*[^[|]]|{RYTHM_IF}|{RYTHM_SECTION}|{RYTHM_ARGS}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}
 
 /*@.*{TEST}[^<][^>]|[^#]*/
 
-TEST = (.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*)*|(.*{WHITE_SPACE}|[^<][^>])*
+//TEST = (.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*{CRLF}*.*)*|(.*{WHITE_SPACE}|[^<][^>])*
 
-RYTHM_ARGS = "@args".*[^<|>]
-RYTHM_SECTION = "@section".*[^<|>]
-RYTHM_EXTENDS = "@extends".*[^<|>]
-RYTHM_IMPORT = "@import".*[^<|>]
+//RYTHM = @.[a-zA-Z]*\.*[a-zA-Z]*.\)|@.[a-zA-Z]*.*?\)
+//RYTHM_SYN = @[a-zA-Z]*
+RYTHM_ARGS = @args.*|@args
+RYTHM_SECTION = @section.*?\)|@section
+RYTHM_EXTENDS = @extends.*\)|@extends
+RYTHM_IMPORT = @import.*|@import
+RYTHM_RENDER = @render.*?\)|@render
+RYTHM_INVOKE = @invoke.*?\)|@invoke
 
-RYTHM_ELSE = "else {"|"}else {"|"}"{WHITE_SPACE}"else {"
-RYTHM_IF = "@if".*[^<|>].*|@if
+//RYTHM_METHOD = @.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*)\(\)|@.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*).\([a-zA-Z]*\.[a-zA-Z]*.*\)|@[a-zA-Z]*\.[a-zA-Z]*\(\)
+RYTHM_METHOD = @[a-zA-Z]*\..*?\)
 
-//ALL_BUT_WS = [^\s*](.*)\s*
+RYTHM_ELSE = else.*\{
+RYTHM_IF = @if.*\{.[a-zA-Z]*.*}|@if.*?\{
+//@if.*?\{|@if
+RYTHM_FOR = @for.*\{|@for
+RYTHM_I18N = @i18n|@i18n.*\"\)*
+RYTHM_PREFIX = @prefix
+RYTHM_NAVBOX = @navbox
 
-//[^<]*|[^>]*|[^"<li>"]*
-
-
-
-DQ = "\""
-ANYCHAREXAN =[^[A-Za-z0-9]]*
-/*
-HTML = {HTML_TAG_OPEN}|{HTML_TAG_CLOSE}
-HTML_TAG_OPEN = "<"{SL}{AFTER_AT}">"|"<".*["@"]
-HTML_TAG_CLOSE = "<"{BSL}{AFTER_AT}">"
-*/
-
-SL = "/"
-BSL = "\\"
-ANYCHAR = .*
-
-ALPHA_NUMERIC = [A-Za-z0-9]
-LETTER = [A-Za-z]
-
-LEFT_BRACE = "{"
-RIGHT_BRACE = "}"
-LP = "("
-RP = ")"
-DOT = "."
 
 
 %state WAITING_VALUE
@@ -97,7 +87,35 @@ DOT = "."
 
 //<YYINITIAL> {HTML_PART}                                      {yybegin (YYINITIAL); return RythmTypes.HTML_PART;}
 
-<YYINITIAL> {RYTHM}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM;}
+//<YYINITIAL> {RYTHM}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM;}
+
+//<YYINITIAL> {RYTHM_SYN}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_SYN;}
+
+<YYINITIAL> {RYTHM_METHOD}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
+
+<YYINITIAL> {RYTHM_ARGS}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ARGS;}
+
+<YYINITIAL> {RYTHM_SECTION}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_SECTION;}
+
+<YYINITIAL> {RYTHM_RENDER}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_RENDER;}
+
+<YYINITIAL> {RYTHM_EXTENDS}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_EXTENDS;}
+
+<YYINITIAL> {RYTHM_IMPORT}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IMPORT;}
+
+<YYINITIAL> {RYTHM_INVOKE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_INVOKE;}
+
+<YYINITIAL> {RYTHM_ELSE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
+
+<YYINITIAL> {RYTHM_IF}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
+
+<YYINITIAL> {RYTHM_FOR}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;}
+
+<YYINITIAL> {RYTHM_I18N}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_I18N;}
+
+<YYINITIAL> {RYTHM_PREFIX}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_PREFIX;}
+
+<YYINITIAL> {RYTHM_NAVBOX}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_NAVBOX;}
 
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return RythmTypes.COMMENT; }
 
