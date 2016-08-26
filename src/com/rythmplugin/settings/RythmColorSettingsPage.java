@@ -74,6 +74,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "@if\n" +
                         "@for\n" +
                         "@args\n" +
+                        "<div class='block-element'title='@abcd.getAnotherMethod()'>@rythm.getMethod()</div>\n"+
                         "@i18n\n" +
                         "else {\n";
     }

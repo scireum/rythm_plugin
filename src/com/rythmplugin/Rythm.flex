@@ -5,6 +5,7 @@ import com.intellij.psi.tree.IElementType;
 import com.rythmplugin.psi.RythmTypes;
 import com.intellij.psi.TokenType;
 
+
 %%
 
 %class RythmLexer
@@ -73,7 +74,7 @@ RYTHM_KEY = @.[(?!for|invoke|render|if|i18n|prefix|args|import)][a-zA-Z0-9]*|@[A
 //RYTHM_INVOKE = @invoke.*?\)|@invoke
 
 
-RYTHM_METHOD = \.[a-zA-Z]+\(\)|\([a-zA-Z]+\s*(=)*\s*[a-zA-Z]*.*\)
+RYTHM_METHOD = \.*[a-zA-Z]*\(*\!*\(*[a-zA-Z]*\(*\.[a-zA-Z]+\(\)*?\)\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*|\.*[a-zA-Z]*\([a-zA-Z]+\s*(=)*\s*[a-zA-Z]*.?\)
 //RYTHM_METHOD = @.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*)\(\)|@.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*).\([a-zA-Z]*\.[a-zA-Z]*.*\)|@[a-zA-Z]*\.[a-zA-Z]*\(\)
 //RYTHM_METHOD = \.[a-zA-Z]*\(\)*[a-zA-Z]*.*?\)
 //@[a-zA-Z]*\..*?\)
@@ -81,7 +82,7 @@ RYTHM_METHOD = \.[a-zA-Z]+\(\)|\([a-zA-Z]+\s*(=)*\s*[a-zA-Z]*.*\)
 //RYTHM_BLOCK = @.*,\n*.*\n*[a-zA-Z]*\n[a-zA-Z]*.[^@><]*
 //RYTHM_PART = @(?!for|invoke|render)[a-zA-Z]*\(.*\).*
 
-//RYTHM_ELSE = else.*\{
+RYTHM_ELSE = else\s?\{
 //RYTHM_IF = @if.*\{.[a-zA-Z]*.*}|@if.*?\{
 //@if.*?\{|@if
 //RYTHM_FOR = @for.*\{|@for
@@ -122,7 +123,7 @@ RYTHM_METHOD = \.[a-zA-Z]+\(\)|\([a-zA-Z]+\s*(=)*\s*[a-zA-Z]*.*\)
 
 //<YYINITIAL> {RYTHM_INVOKE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_INVOKE;}
 
-//<YYINITIAL> {RYTHM_ELSE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
+<YYINITIAL> {RYTHM_ELSE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
 
 //<YYINITIAL> {RYTHM_IF}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
 
