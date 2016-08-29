@@ -45,6 +45,7 @@ public class RythmCodeStyleSettingsProvider extends CodeStyleSettingsProvider {
     private static class RythmCodeStyleMainPanel extends TabbedLanguageCodeStylePanel {
         public RythmCodeStyleMainPanel(CodeStyleSettings currentSettings, CodeStyleSettings settings){
             super(RythmLanguage.INSTANCE, currentSettings, settings);
+
         }
     }
 }

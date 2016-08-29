@@ -1,6 +1,7 @@
 package com.rythmplugin;
 
 import com.intellij.lexer.FlexAdapter;
+import com.rythmplugin.RythmLexer;
 
 import java.io.Reader;
 

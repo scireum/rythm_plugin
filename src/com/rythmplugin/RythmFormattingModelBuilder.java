@@ -26,7 +26,12 @@ public class RythmFormattingModelBuilder implements FormattingModelBuilder {
     private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
         return new SpacingBuilder(settings, RythmLanguage.INSTANCE)
                // .around(RythmTypes.RYTHM).spaceIf(settings.SPACE_WITHIN_BRACES)
+               // .around(RythmTypes.RYTHM_KEY).lineBreakInCodeIf(settings.AUTODETECT_INDENTS)
+              //  .before(RythmTypes.PROPERTY).none()
                 .before(RythmTypes.PROPERTY).none();
+
+
+
     }
 
     @Nullable

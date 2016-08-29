@@ -1,4 +1,4 @@
-package com.rythmplugin.psi;
+package com.rythmplugin.lexer;
 
 import com.intellij.psi.tree.IElementType;
 import com.rythmplugin.RythmLanguage;
@@ -12,4 +12,8 @@ public class RythmElementType extends IElementType {
     public RythmElementType(@NotNull @NonNls String debugName){
         super(debugName, RythmLanguage.INSTANCE);
     }
+
+  public String toString(){
+      return "[Rythm]" + super.toString();
+  }
 }

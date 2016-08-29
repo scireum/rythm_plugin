@@ -62,7 +62,7 @@ J_SCRIPT = "<script".*?>|"</script>"//|[[:lower:]]*
 //RYTHM = @.[a-zA-Z]*\.*[a-zA-Z]*.\)|@.[a-zA-Z]*.*?\)
 //RYTHM_SYN = @[a-zA-Z]*
 
-RYTHM_KEY = @.[(?!for|invoke|render|if|i18n|prefix|args|import)][a-zA-Z0-9]*|@[A-Z]+
+RYTHM_KEY = @.[(?!for|invoke|render|if|i18n|prefix|args|import)][a-zA-Z0-9]*|@[A-Z]+|@[a-zA-Z]*
 //@[a-zA-Z0-9]+|@(?!for|invoke|render)[a-zA-Z0-9]
 
 
@@ -74,7 +74,12 @@ RYTHM_KEY = @.[(?!for|invoke|render|if|i18n|prefix|args|import)][a-zA-Z0-9]*|@[A
 //RYTHM_INVOKE = @invoke.*?\)|@invoke
 
 
-RYTHM_METHOD = \.*[a-zA-Z]*\(*\!*\(*[a-zA-Z]*\(*\.[a-zA-Z]+\(\)*?\)\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*|\.*[a-zA-Z]*\([a-zA-Z]+\s*(=)*\s*[a-zA-Z]*.?\)
+RYTHM_METHOD = \.[a-zA-Z]+\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*
+//URSPRUENGLICH 29.08.16 15:24 Uhr \.*[a-zA-Z]*\(*\!*\(*[a-zA-Z]*\(*\.[a-zA-Z]+\(\)*?\)\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*.*?\&+|\.*[a-zA-Z]*\(*\!*\(*[a-zA-Z]*\(*\.[a-zA-Z]+\(\)*?\)\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*|\.*[a-zA-Z]*\([a-zA-Z]+\s*(=)*\s*[a-zA-Z]*.?\)
+
+
+
+
 //RYTHM_METHOD = @.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*)\(\)|@.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*).\([a-zA-Z]*\.[a-zA-Z]*.*\)|@[a-zA-Z]*\.[a-zA-Z]*\(\)
 //RYTHM_METHOD = \.[a-zA-Z]*\(\)*[a-zA-Z]*.*?\)
 //@[a-zA-Z]*\..*?\)
@@ -83,10 +88,11 @@ RYTHM_METHOD = \.*[a-zA-Z]*\(*\!*\(*[a-zA-Z]*\(*\.[a-zA-Z]+\(\)*?\)\.*[a-zA-Z]*\
 //RYTHM_PART = @(?!for|invoke|render)[a-zA-Z]*\(.*\).*
 
 RYTHM_ELSE = else\s?\{
-//RYTHM_IF = @if.*\{.[a-zA-Z]*.*}|@if.*?\{
+RYTHM_IF = @if
+//.*\{.[a-zA-Z]*.*}*|@if.*?\{
 //@if.*?\{|@if
-//RYTHM_FOR = @for.*\{|@for
-//RYTHM_I18N = @i18n|@i18n.*\"\)*
+RYTHM_FOR = @for.*\{|@for
+RYTHM_I18N = @i18n|@i18n.*\"\)*
 //RYTHM_PREFIX = @prefix
 //RYTHM_NAVBOX = @navbox
 
@@ -125,11 +131,11 @@ RYTHM_ELSE = else\s?\{
 
 <YYINITIAL> {RYTHM_ELSE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
 
-//<YYINITIAL> {RYTHM_IF}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
+<YYINITIAL> {RYTHM_IF}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
 
-//<YYINITIAL> {RYTHM_FOR}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;}
+<YYINITIAL> {RYTHM_FOR}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;}
 
-//<YYINITIAL> {RYTHM_I18N}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_I18N;}
+<YYINITIAL> {RYTHM_I18N}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_I18N;}
 
 //<YYINITIAL> {RYTHM_PREFIX}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_PREFIX;}
 

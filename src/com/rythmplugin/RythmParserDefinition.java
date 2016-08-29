@@ -12,7 +12,10 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
+//<<<<<<< Updated upstream:src/com/rythmplugin/RythmParserDefinition.java
 import com.rythmplugin.parser.RythmParser;
+//=======
+//>>>>>>> Stashed changes:src/com/rythmplugin/parser/RythmParserDefinition.java
 import com.rythmplugin.psi.RythmFile;
 import com.rythmplugin.psi.RythmTypes;
 import com.sun.istack.internal.NotNull;

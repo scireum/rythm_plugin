@@ -9,7 +9,7 @@
   psiImplPackage="com.rythmplugin.psi.impl"
 
   elementTypeHolderClass="com.rythmplugin.psi.RythmTypes"
-  elementTypeClass="com.rythmplugin.psi.RythmElementType"
+  elementTypeClass="com.rythmplugin.lexer.RythmElementType"
   tokenTypeClass="com.rythmplugin.psi.RythmTokenType"
 }
 
@@ -28,6 +28,11 @@ COLON|SEMICOLON|COMMA|MULTI_ARGS|CLASS_ATTR_END|CLASS_ATTR_START|SHIFT_LEFT|SHIF
 MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AND|
 LESS|GREATER|PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|DOT|VOKALE|KONSONANTEN|DIGITS|QM|AS|HASHTAG
 
+
+//Test
+RYTHM_KEY ::= RYTHM_KEY
+RYTHM_METHOD ::= RYTHM_METHOD
+
 RBRACE               ::=  '}'
 RBRACKET             ::=  ']'
 RPAREN               ::=  ')'
@@ -35,7 +40,7 @@ PLUS_PLUS            ::=  '++'
 MINUS_MINUS          ::=  '--'
 
 LBRACE               ::=  '{'
-LBRACKET               ::=  '['
+LBRACKET             ::=  '['
 LPAREN               ::=  '('
 DOUBLE_COLON         ::=  '::'
 COLON                ::=  ':'

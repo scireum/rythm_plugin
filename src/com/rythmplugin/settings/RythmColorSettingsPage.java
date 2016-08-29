@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class RythmColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-            new AttributesDescriptor("Key", RythmSyntaxHighlighter.KEY),
+        //    new AttributesDescriptor("Key", RythmSyntaxHighlighter.KEY),
             new AttributesDescriptor("Separator", RythmSyntaxHighlighter.SEPARATOR),
             new AttributesDescriptor("Value", RythmSyntaxHighlighter.VALUE),
             new AttributesDescriptor("RYTHM_ARGS", RythmSyntaxHighlighter.RYTHM_ARGS),
@@ -41,8 +41,8 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("RYTHM_PART", RythmSyntaxHighlighter.RYTHM_PART),
             new AttributesDescriptor("RYTHM_KEY", RythmSyntaxHighlighter.RYTHM_KEY),
 
-            new AttributesDescriptor("HTML", RythmSyntaxHighlighter.HTML_PART),
-            new AttributesDescriptor("JS", RythmSyntaxHighlighter.JS_PART),
+          //  new AttributesDescriptor("HTML", RythmSyntaxHighlighter.HTML_PART),
+          //  new AttributesDescriptor("JS", RythmSyntaxHighlighter.JS_PART),
     };
 
     @Nullable
@@ -70,7 +70,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "@render\n" +
                         "@navbox\n" +
                         "@import\n" +
-                        "@extends\n" +
+                        "@extends @if (a>b) {}\n" +
                         "@if\n" +
                         "@for\n" +
                         "@args\n" +
