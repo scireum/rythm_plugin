@@ -48,6 +48,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
     public static final TextAttributesKey RYTHM_BLOCK = createTextAttributesKey("RYTHM_BLOCK", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_PART = createTextAttributesKey("RYTHM_PART", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_KEY = createTextAttributesKey("RYTHM_KEY", HighlighterColors.TEXT);
+    public static final TextAttributesKey RYTHM_LOST = createTextAttributesKey("RYTHM_LOST", HighlighterColors.TEXT);
+    public static final TextAttributesKey SCRIPT = createTextAttributesKey("SCRIPT", HighlighterColors.TEXT);
 
   //  public static final TextAttributesKey HTML_PART = createTextAttributesKey("RYTHM_HTML_PART", HighlighterColors.TEXT);
  //   public static final TextAttributesKey JS_PART = createTextAttributesKey("RYTHM_JS_PART", HighlighterColors.TEXT);
@@ -79,6 +81,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
     private static final TextAttributesKey[] RYTHM_BLOCK_KEYS = new TextAttributesKey[]{RYTHM_BLOCK};
     private static final TextAttributesKey[] RYTHM_PART_KEYS = new TextAttributesKey[]{RYTHM_PART};
     private static final TextAttributesKey[] RYTHM_KEY_KEYS = new TextAttributesKey[]{RYTHM_KEY};
+    private static final TextAttributesKey[] RYTHM_LOST_KEYS = new TextAttributesKey[]{RYTHM_LOST};
+    private static final TextAttributesKey[] SCRIPT_KEYS = new TextAttributesKey[]{SCRIPT};
 
  //   private static final TextAttributesKey[] HTML_PART_KEYS = new TextAttributesKey[]{HTML_PART};
    // private static final TextAttributesKey[] JS_PART_KEYS = new TextAttributesKey[]{JS_PART};
@@ -104,7 +108,11 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase{
             return VALUE_KEYS;
         }else */if (tokenType.equals(RythmTypes.COMMENT)){
             return COMMENT_KEYS;
-        }else /*if (tokenType.equals(TokenType.BAD_CHARACTER)){
+        }else if(tokenType.equals(RythmTypes.SCRIPT)){
+            return SCRIPT_KEYS;
+        }else/*if(tokenType.equals(RythmTypes.RYTHM_LOST)){
+            return RYTHM_LOST_KEYS;
+        }else/*if (tokenType.equals(TokenType.BAD_CHARACTER)){
             return BAD_CHAR_KEYS;
 
         }else*/ if(tokenType.equals(RythmTypes.RYTHM)){

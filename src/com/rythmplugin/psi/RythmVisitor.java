@@ -195,11 +195,7 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitRythmBlock(@NotNull RythmRythmBlock o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRythmKey(@NotNull RythmRythmKey o) {
+  public void visitScript(@NotNull RythmScript o) {
     visitPsiElement(o);
   }
 

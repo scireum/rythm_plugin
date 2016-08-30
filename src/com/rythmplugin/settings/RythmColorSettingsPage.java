@@ -40,7 +40,8 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("RYTHM_BLOCK", RythmSyntaxHighlighter.RYTHM_BLOCK),
             new AttributesDescriptor("RYTHM_PART", RythmSyntaxHighlighter.RYTHM_PART),
             new AttributesDescriptor("RYTHM_KEY", RythmSyntaxHighlighter.RYTHM_KEY),
-
+            new AttributesDescriptor("RYTHM_LOST", RythmSyntaxHighlighter.RYTHM_LOST),
+            new AttributesDescriptor("SCRIPT", RythmSyntaxHighlighter.SCRIPT),
           //  new AttributesDescriptor("HTML", RythmSyntaxHighlighter.HTML_PART),
           //  new AttributesDescriptor("JS", RythmSyntaxHighlighter.JS_PART),
     };
@@ -67,6 +68,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "@prefix\n" +
                         "@invoke\n" +
                         "@section\n" +
+                        "<script src=\'/abc/def/ghi.js\' type=\'text/javascript\'></script>\n" +
                         "@render\n" +
                         "@navbox\n" +
                         "@import\n" +

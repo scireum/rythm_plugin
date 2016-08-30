@@ -11,14 +11,14 @@ import static com.rythmplugin.psi.RythmTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.rythmplugin.psi.*;
 
-public class RythmRythmKeyImpl extends ASTWrapperPsiElement implements RythmRythmKey {
+public class RythmScriptImpl extends ASTWrapperPsiElement implements RythmScript {
 
-  public RythmRythmKeyImpl(ASTNode node) {
+  public RythmScriptImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RythmVisitor visitor) {
-    visitor.visitRythmKey(this);
+    visitor.visitScript(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {

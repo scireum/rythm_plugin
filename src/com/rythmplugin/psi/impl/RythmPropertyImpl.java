@@ -26,16 +26,4 @@ public class RythmPropertyImpl extends ASTWrapperPsiElement implements RythmProp
     else super.accept(visitor);
   }
 
-  @Override
-  @Nullable
-  public RythmRythmBlock getRythmBlock() {
-    return findChildByClass(RythmRythmBlock.class);
-  }
-
-  @Override
-  @Nullable
-  public RythmRythmKey getRythmKey() {
-    return findChildByClass(RythmRythmKey.class);
-  }
-
 }

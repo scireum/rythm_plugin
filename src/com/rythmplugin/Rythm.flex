@@ -45,7 +45,7 @@ J_SCRIPT = "<script".*?>|"</script>"//|[[:lower:]]*
 */
 
 
-
+SCRIPT = <script.*?>.*?>
 //RYTHM = "@".*[^\s]*[^<|>]|"*".*[^\s]*[^<|>]|{RYTHM_ELSE}|"*".*[^\s]*[^[|]]|{RYTHM_IF}|"@*".*[^\s]*[^<|>]
 
 
@@ -75,17 +75,22 @@ RYTHM_KEY = @.[(?!for|invoke|render|if|i18n|prefix|args|import)][a-zA-Z0-9]*|@[A
 //RYTHM_INVOKE = @invoke.*?\)|@invoke
 
 
-//RYTHM_METHOD = \.[a-zA-Z]+\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*
+RYTHM_METHOD = \.[a-zA-Z]\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*\(*\)|\.equals|\.get[a-zA-Z]+\(\)|\.get[a-zA-Z]+\(*[a-zA-Z]*\)*
+//\.[a-zA-Z]\(+[a-zA-Z]*\)|\.(?!pdf|js|html)+[a-zA-Z]+\_*[A-Z]*\(*\)|\.equals\(*
+//\.[a-zA-Z]+\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*(?!)|\.[a-z]+[A-Z]+[a-z]+\.*[a-zA-Z]*|\.(equals)
+//\.[a-zA-Z]+\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*
 //URSPRUENGLICH 29.08.16 15:24 Uhr \.*[a-zA-Z]*\(*\!*\(*[a-zA-Z]*\(*\.[a-zA-Z]+\(\)*?\)\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*.*?\&+|\.*[a-zA-Z]*\(*\!*\(*[a-zA-Z]*\(*\.[a-zA-Z]+\(\)*?\)\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*|\.*[a-zA-Z]*\([a-zA-Z]+\s*(=)*\s*[a-zA-Z]*.?\)
 
 
-
+RYTHM_LOST = [a-zA-Z]+\=\"[a-zA-Z]+.+\li>|[a-zA-Z]+.*[a-zA-Z]+[a-zA-Z]+\=\"[a-zA-Z]+.+li>
 
 //RYTHM_METHOD = @.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*)\(\)|@.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*).\([a-zA-Z]*\.[a-zA-Z]*.*\)|@[a-zA-Z]*\.[a-zA-Z]*\(\)
 //RYTHM_METHOD = \.[a-zA-Z]*\(\)*[a-zA-Z]*.*?\)
 //@[a-zA-Z]*\..*?\)
 
-RYTHM_BLOCK = .\,\n[a-zA-Z]+\:*[a-zA-Z]+\.*[a-zA-Z]*\(*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*\)*\,*\n.*?\,\n.*|@*[a-zA-Z]*\(*[a-zA-Z]+:.*?\,.*
+RYTHM_BLOCK = [a-zA-Z]+\:\s*[a-zA-Z]*\.[a-zA-Z]+\(\)\,|[a-zA-Z]+\:\s*\"[a-zA-Z]+\.[a-zA-Z]+\"\,|[a-zA-Z]+:\s\"[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+\"\)*\,*|[a-zA-Z]+\:[a-zA-Z]+\.[a-zA-Z]+\([a-zA-Z]+\.[a-zA-Z]+\(\)\)\,|[a-zA-Z]+:\"[a-zA-Z]+\.[a-zA-Z]+\"\)|[a-zA-Z]+:\"[a-zA-Z]+\"*,*\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)*,*
+// 14:49 Uhr .\,\n[a-zA-Z]+\:*[a-zA-Z]+\.*[a-zA-Z]*\(*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*\)*\,*\n.*?\,\n.*|\(*[a-zA-Z]+:.*?\,\n|[a-zA-Z]+\:\"[a-zA-Z]*\.[a-zA-Z]+\.[a-zA-Z]+\"*\)
+//13:35 Uhr .\,\n[a-zA-Z]+\:*[a-zA-Z]+\.*[a-zA-Z]*\(*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*\)*\,*\n.*?\,\n.*|@*[a-zA-Z]*\(*[a-zA-Z]+:.*?\,.*
 //@.*,\n*.*\n*[a-zA-Z]*\n[a-zA-Z]*.[^@><]*
 //RYTHM_PART = @(?!for|invoke|render)[a-zA-Z]*\(.*\).*
 
@@ -103,6 +108,8 @@ RYTHM_BLOCK = .\,\n[a-zA-Z]+\:*[a-zA-Z]+\.*[a-zA-Z]*\(*[a-zA-Z]*\)*\.*[a-zA-Z]*\
 //%state WAITING_VALUE
 
 %%
+//<YYINITIAL> {RYTHM_LOST}                                 {yybegin(YYINITIAL); return RythmTypes.RYTHM_LOST;}
+
 //<YYINITIAL> {JS_PART}                                      {yybegin (YYINITIAL); return RythmTypes.JS_PART;}
 
 //<YYINITIAL> {HTML_PART}                                      {yybegin (YYINITIAL); return RythmTypes.HTML_PART;}
@@ -111,11 +118,13 @@ RYTHM_BLOCK = .\,\n[a-zA-Z]+\:*[a-zA-Z]+\.*[a-zA-Z]*\(*[a-zA-Z]*\)*\.*[a-zA-Z]*\
 
 //<YYINITIAL> {RYTHM_SYN}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_SYN;}
 
+<YYINITIAL> {SCRIPT}                                                {yybegin(YYINITIAL); return RythmTypes.SCRIPT;}
+
 <YYINITIAL> {RYTHM_KEY}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_KEY;}
 
 //<YYINITIAL> {RYTHM_PART}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_PART;}
 
-//<YYINITIAL> {RYTHM_METHOD}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
+<YYINITIAL> {RYTHM_METHOD}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
 
 <YYINITIAL> {RYTHM_BLOCK}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_BLOCK;}
 

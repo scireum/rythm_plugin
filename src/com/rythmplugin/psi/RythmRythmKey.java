@@ -7,4 +7,16 @@ import com.intellij.psi.PsiElement;
 
 public interface RythmRythmKey extends PsiElement {
 
+  @Nullable
+  RythmDigits getDigits();
+
+  @Nullable
+  RythmKonsonanten getKonsonanten();
+
+  @Nullable
+  RythmVokale getVokale();
+
+  @Nullable
+  RythmTokens getTokens();
+
 }
