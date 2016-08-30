@@ -57,8 +57,8 @@ public interface RythmTypes {
   IElementType REMAINDER = new RythmElementType("REMAINDER");
   IElementType REMAINDER_EQ = new RythmElementType("REMAINDER_EQ");
   IElementType RPAREN = new RythmElementType("RPAREN");
+  IElementType RYTHM_BLOCK = new RythmElementType("RYTHM_BLOCK");
   IElementType RYTHM_KEY = new RythmElementType("RYTHM_KEY");
-  IElementType RYTHM_METHOD = new RythmElementType("RYTHM_METHOD");
   IElementType SEMICOLON = new RythmElementType("SEMICOLON");
   IElementType SEND_CHANNEL = new RythmElementType("SEND_CHANNEL");
   IElementType SHIFT_LEFT = new RythmElementType("SHIFT_LEFT");
@@ -71,7 +71,6 @@ public interface RythmTypes {
   IElementType CRLF = new RythmTokenType("CRLF");
   IElementType RYTHM = new RythmTokenType("RYTHM");
   IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
-  IElementType RYTHM_BLOCK = new RythmTokenType("RYTHM_BLOCK");
   IElementType RYTHM_ELSE = new RythmTokenType("RYTHM_ELSE");
   IElementType RYTHM_EXTENDS = new RythmTokenType("RYTHM_EXTENDS");
   IElementType RYTHM_FOR = new RythmTokenType("RYTHM_FOR");
@@ -79,6 +78,7 @@ public interface RythmTypes {
   IElementType RYTHM_IF = new RythmTokenType("RYTHM_IF");
   IElementType RYTHM_IMPORT = new RythmTokenType("RYTHM_IMPORT");
   IElementType RYTHM_INVOKE = new RythmTokenType("RYTHM_INVOKE");
+  IElementType RYTHM_METHOD = new RythmTokenType("RYTHM_METHOD");
   IElementType RYTHM_NAVBOX = new RythmTokenType("RYTHM_NAVBOX");
   IElementType RYTHM_PART = new RythmTokenType("RYTHM_PART");
   IElementType RYTHM_PREFIX = new RythmTokenType("RYTHM_PREFIX");
@@ -234,11 +234,11 @@ public interface RythmTypes {
       else if (type == RPAREN) {
         return new RythmRparenImpl(node);
       }
+      else if (type == RYTHM_BLOCK) {
+        return new RythmRythmBlockImpl(node);
+      }
       else if (type == RYTHM_KEY) {
         return new RythmRythmKeyImpl(node);
-      }
-      else if (type == RYTHM_METHOD) {
-        return new RythmRythmMethodImpl(node);
       }
       else if (type == SEMICOLON) {
         return new RythmSemicolonImpl(node);

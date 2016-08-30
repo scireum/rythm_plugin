@@ -25,10 +25,14 @@ public class RythmFormattingModelBuilder implements FormattingModelBuilder {
 
     private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
         return new SpacingBuilder(settings, RythmLanguage.INSTANCE)
+        .around(RythmTypes.RYTHM_BLOCK).none();
+             //   .before(RythmTypes.RYTHM_I_18_N).lineBreakInCodeIf(false);
                // .around(RythmTypes.RYTHM).spaceIf(settings.SPACE_WITHIN_BRACES)
+               // .before(RythmTypes.RYTHM_KEY).parentDependentLFSpacing(1,5,false,2);
                // .around(RythmTypes.RYTHM_KEY).lineBreakInCodeIf(settings.AUTODETECT_INDENTS)
               //  .before(RythmTypes.PROPERTY).none()
-                .before(RythmTypes.PROPERTY).none();
+              // .around(RythmTypes.RYTHM_METHOD).lineBreakInCodeIf(settings.AUTODETECT_INDENTS)
+              //  .before(RythmTypes.PROPERTY).none();
 
 
 

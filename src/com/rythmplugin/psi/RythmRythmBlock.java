@@ -5,12 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RythmProperty extends PsiElement {
-
-  @Nullable
-  RythmRythmBlock getRythmBlock();
-
-  @Nullable
-  RythmRythmKey getRythmKey();
+public interface RythmRythmBlock extends PsiElement {
 
 }

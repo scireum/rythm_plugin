@@ -27,7 +27,7 @@ public class RythmFileType extends LanguageFileType {
     public static final RythmFileType INSTANCE = new RythmFileType();
 
 
-public static final String DEFAULT_EXTENSION = "rythm";
+    public static final String DEFAULT_EXTENSION = "rythm";
 
     public static final String[] extensions = {DEFAULT_EXTENSION};
 
@@ -35,13 +35,14 @@ public static final String DEFAULT_EXTENSION = "rythm";
         super(RythmLanguage.INSTANCE);
 
 
-   FileTypeEditorHighlighterProviders.INSTANCE.addExplicitExtension(this, new EditorHighlighterProvider() {
-        public EditorHighlighter getEditorHighlighter (@Nullable Project project, FileType
-        fileType, @Nullable VirtualFile virtualFile, EditorColorsScheme editorColorsScheme){
-            return new RythmTemplateHighlighter(project, virtualFile, editorColorsScheme);
+        FileTypeEditorHighlighterProviders.INSTANCE.addExplicitExtension(this, new EditorHighlighterProvider() {
+            public EditorHighlighter getEditorHighlighter(@Nullable Project project, FileType
+                    fileType, @Nullable VirtualFile virtualFile, EditorColorsScheme editorColorsScheme) {
+                return new RythmTemplateHighlighter(project, virtualFile, editorColorsScheme);
 
-        }
-    });}
+            }
+        });
+    }
 
     @NotNull
     @Override
@@ -66,8 +67,6 @@ public static final String DEFAULT_EXTENSION = "rythm";
     public Icon getIcon() {
         return RythmIcons.FILE;
     }
-
-
 
 
     @Override

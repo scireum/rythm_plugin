@@ -37,28 +37,27 @@ class RythmLexer implements FlexLexer {
 
   /** 
    * Translates characters to character classes
-   * Chosen bits are [7, 7, 7]
-   * Total runtime size is 1928 bytes
+   * Chosen bits are [9, 6, 6]
+   * Total runtime size is 1568 bytes
    */
   public static int ZZ_CMAP(int ch) {
-    return ZZ_CMAP_A[(ZZ_CMAP_Y[ZZ_CMAP_Z[ch>>14]|((ch>>7)&0x7f)]<<7)|(ch&0x7f)];
+    return ZZ_CMAP_A[(ZZ_CMAP_Y[ZZ_CMAP_Z[ch>>12]|((ch>>6)&0x3f)]<<6)|(ch&0x3f)];
   }
 
-  /* The ZZ_CMAP_Z table has 68 entries */
+  /* The ZZ_CMAP_Z table has 272 entries */
   static final char ZZ_CMAP_Z[] = zzUnpackCMap(
-    "\1\0\103\200");
+    "\1\0\1\100\1\200\u010d\100");
 
-  /* The ZZ_CMAP_Y table has 256 entries */
+  /* The ZZ_CMAP_Y table has 192 entries */
   static final char ZZ_CMAP_Y[] = zzUnpackCMap(
-    "\1\0\1\1\53\2\1\3\22\2\1\4\37\2\1\3\237\2");
+    "\1\0\1\1\1\2\175\3\1\4\77\3");
 
-  /* The ZZ_CMAP_A table has 640 entries */
+  /* The ZZ_CMAP_A table has 320 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\2\1\1\1\4\2\1\22\0\1\2\1\5\1\32\5\0\1\14\1\15\4\0\1\13\1\0\1\6\1\30"+
-    "\6\6\1\7\1\6\5\0\1\5\1\3\32\10\4\0\1\16\1\0\1\12\2\11\1\12\1\17\1\25\1\12"+
-    "\1\11\1\24\1\11\1\12\1\20\1\12\1\31\1\26\1\12\1\11\1\27\1\21\1\12\1\11\1\12"+
-    "\1\11\1\12\2\11\1\23\1\5\10\0\1\4\32\0\1\22\337\0\1\22\177\0\13\22\35\0\2"+
-    "\4\5\0\1\22\57\0\1\22\40\0");
+    "\11\0\1\3\1\1\1\5\2\2\22\0\1\3\1\6\6\0\1\16\1\17\2\0\1\13\1\0\1\15\1\0\1\7"+
+    "\1\10\6\7\1\10\1\7\1\14\4\0\1\6\1\4\32\11\6\0\1\12\2\11\4\12\1\11\1\12\1\11"+
+    "\1\12\1\11\4\12\1\11\3\12\1\11\1\12\1\11\1\12\2\11\1\0\1\6\10\0\1\5\242\0"+
+    "\2\5\26\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -66,12 +65,11 @@ class RythmLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\2\1\1\0\3\3\1\4"+
-    "\1\0\4\3\1\0\1\4\1\0\2\3\1\0\2\4"+
-    "\1\0\1\3\1\0\1\5\1\0\1\6\1\0\1\7";
+    "\1\0\1\1\2\2\1\3\2\1\3\0\1\3\7\0"+
+    "\1\3\1\0\4\3\1\4\20\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[32];
+    int [] result = new int[41];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -96,13 +94,15 @@ class RythmLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\33\0\66\0\121\0\154\0\207\0\242\0\275"+
-    "\0\330\0\363\0\u010e\0\u0129\0\u0144\0\u015f\0\u017a\0\u0195"+
-    "\0\u01b0\0\u01cb\0\u01e6\0\u0201\0\u021c\0\u0237\0\33\0\u0252"+
-    "\0\u026d\0\u0288\0\u02a3\0\u02a3\0\u02be\0\33\0\u02d9\0\u02f4";
+    "\0\0\0\20\0\40\0\60\0\100\0\120\0\140\0\160"+
+    "\0\200\0\220\0\240\0\260\0\300\0\320\0\340\0\360"+
+    "\0\u0100\0\u0110\0\u0120\0\u0130\0\u0140\0\u0150\0\u0160\0\u0170"+
+    "\0\u0180\0\u0190\0\u01a0\0\u01b0\0\u01c0\0\u01d0\0\u01e0\0\u01f0"+
+    "\0\u0200\0\u0210\0\u0220\0\u0230\0\u0240\0\u0250\0\u0260\0\u0270"+
+    "\0\u0280";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[32];
+    int [] result = new int[41];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -125,38 +125,44 @@ class RythmLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\2\3\1\4\1\0\6\2\1\5\3\2\1\6"+
-    "\13\2\34\0\2\3\30\0\1\7\1\0\2\7\1\0"+
-    "\3\7\3\10\4\7\3\10\2\7\1\11\1\12\2\10"+
-    "\1\7\1\10\1\7\10\0\3\13\4\0\3\13\2\0"+
-    "\4\13\1\0\1\13\21\0\1\14\17\0\1\15\1\0"+
-    "\1\15\2\0\1\15\1\0\2\15\1\0\1\15\1\0"+
-    "\1\15\2\0\6\15\6\0\1\15\1\0\1\15\2\16"+
-    "\1\15\1\0\2\15\1\0\1\15\1\16\1\15\2\0"+
-    "\6\15\6\0\1\15\1\0\1\15\2\16\1\15\1\0"+
-    "\2\15\1\0\1\15\1\16\1\15\2\0\4\15\1\17"+
-    "\1\15\6\0\1\15\1\0\1\15\2\16\1\15\1\0"+
-    "\2\15\1\0\1\15\1\16\1\15\2\0\2\15\1\20"+
-    "\3\15\11\0\3\13\1\0\1\21\1\0\1\22\3\13"+
-    "\2\0\4\13\1\0\1\13\22\0\1\23\17\0\5\15"+
-    "\4\0\3\15\2\0\6\15\11\0\3\16\4\0\3\16"+
-    "\2\0\4\16\1\0\1\16\7\0\1\15\1\24\3\15"+
-    "\4\0\3\15\2\0\6\15\7\0\5\15\4\0\3\15"+
-    "\2\0\3\15\1\25\2\15\11\0\3\26\1\0\1\21"+
-    "\1\27\1\0\3\26\2\0\4\26\1\0\1\26\11\0"+
-    "\1\30\5\0\1\22\33\0\1\31\21\0\5\15\4\0"+
-    "\3\15\2\0\5\15\1\32\1\0\1\33\1\0\2\33"+
-    "\1\0\1\33\5\25\4\33\3\25\1\33\1\34\6\25"+
-    "\1\33\10\0\3\26\2\0\1\27\1\0\3\26\2\0"+
-    "\4\26\1\0\1\26\11\0\1\30\23\0\2\35\1\0"+
-    "\1\35\15\0\1\35\1\36\7\0\1\37\1\0\2\37"+
-    "\1\0\1\37\5\32\4\37\3\32\2\37\6\32\1\40"+
-    "\1\33\1\0\2\33\1\0\16\33\1\34\7\33\23\0"+
-    "\1\36\7\0\1\37\1\0\2\37\1\0\25\37\1\40"+
-    "\1\37\1\0\2\37\1\0\10\37\1\40\14\37\1\40";
+    "\1\2\2\3\1\4\1\5\1\0\3\2\2\6\3\2"+
+    "\1\7\1\2\13\0\1\10\5\0\3\3\15\0\3\3"+
+    "\7\0\1\10\4\0\1\11\2\0\1\11\1\12\1\0"+
+    "\3\11\2\13\1\14\2\11\1\15\1\11\11\0\2\16"+
+    "\1\10\1\17\1\0\1\20\12\0\2\21\1\10\2\0"+
+    "\1\20\2\0\1\22\24\0\1\23\1\0\1\23\1\0"+
+    "\1\23\3\0\2\23\4\0\1\24\1\0\1\23\1\0"+
+    "\1\23\1\16\1\25\3\0\1\26\1\23\6\0\1\23"+
+    "\1\0\1\23\1\27\1\25\1\0\1\17\1\0\1\26"+
+    "\1\23\1\0\1\22\4\0\1\23\1\0\1\23\1\0"+
+    "\1\23\3\0\2\23\6\0\1\23\1\0\1\23\1\21"+
+    "\1\30\3\0\1\26\1\23\11\0\2\16\1\0\1\17"+
+    "\1\0\1\20\1\0\1\17\2\0\2\17\1\0\5\17"+
+    "\1\31\4\17\11\0\2\21\3\0\1\20\12\0\2\21"+
+    "\1\0\1\17\14\0\2\32\14\0\4\23\11\0\1\24"+
+    "\4\0\2\16\3\0\1\20\10\0\2\23\2\25\1\0"+
+    "\1\17\1\0\1\20\10\0\2\23\2\30\3\0\1\20"+
+    "\12\0\2\27\1\0\1\17\1\0\1\20\10\0\2\23"+
+    "\2\30\1\0\1\17\3\0\1\31\2\0\2\31\1\0"+
+    "\12\31\11\0\2\33\1\0\1\34\4\0\1\35\7\0"+
+    "\2\33\1\36\1\34\1\37\1\40\1\41\11\0\2\42"+
+    "\1\0\1\34\3\0\1\35\2\0\2\35\1\0\5\35"+
+    "\1\43\4\35\1\0\1\35\11\0\1\36\5\0\1\35"+
+    "\7\0\2\44\1\36\1\0\1\37\1\40\1\41\1\0"+
+    "\1\35\7\0\2\45\1\36\1\0\1\46\1\40\1\41"+
+    "\1\0\1\35\7\0\2\47\1\36\1\0\1\46\1\50"+
+    "\1\41\1\0\1\35\7\0\2\42\1\36\1\0\1\37"+
+    "\1\40\1\41\1\35\1\31\1\0\2\35\1\0\5\35"+
+    "\1\43\4\35\1\0\1\35\7\0\2\44\1\36\1\0"+
+    "\1\46\1\40\1\41\1\0\1\35\7\0\2\45\1\36"+
+    "\1\0\1\46\1\50\1\41\1\0\1\35\7\0\2\47"+
+    "\1\36\1\0\1\46\1\50\1\51\1\0\1\35\7\0"+
+    "\2\47\1\36\2\0\1\50\1\51\1\0\1\35\11\0"+
+    "\1\36\2\0\1\50\1\51\1\0\1\35\11\0\1\36"+
+    "\3\0\1\51";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[783];
+    int [] result = new int[656];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -194,12 +200,11 @@ class RythmLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\4\1\1\0\4\1\1\0\4\1\1\0"+
-    "\1\1\1\0\2\1\1\0\1\11\1\1\1\0\1\1"+
-    "\1\0\1\1\1\0\1\11\1\0\1\1";
+    "\1\0\6\1\3\0\1\1\7\0\1\1\1\0\5\1"+
+    "\20\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[32];
+    int [] result = new int[41];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -515,31 +520,19 @@ class RythmLexer implements FlexLexer {
           case 1: 
             { return TokenType.BAD_CHARACTER;
             }
-          case 8: break;
+          case 5: break;
           case 2: 
             { yybegin(YYINITIAL); return TokenType.WHITE_SPACE;
             }
-          case 9: break;
+          case 6: break;
           case 3: 
             { yybegin(YYINITIAL); return RythmTypes.RYTHM_KEY;
             }
-          case 10: break;
+          case 7: break;
           case 4: 
-            { yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;
+            { yybegin(YYINITIAL); return RythmTypes.RYTHM_BLOCK;
             }
-          case 11: break;
-          case 5: 
-            { yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;
-            }
-          case 12: break;
-          case 6: 
-            { yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;
-            }
-          case 13: break;
-          case 7: 
-            { yybegin(YYINITIAL); return RythmTypes.RYTHM_I18N;
-            }
-          case 14: break;
+          case 8: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }
