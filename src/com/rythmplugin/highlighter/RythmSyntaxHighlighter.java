@@ -1,10 +1,5 @@
 package com.rythmplugin.highlighter;
 
-//<<<<<<< Updated upstream
-//import com.intellij.lang.html.HTMLParser;
-//=======
-//>>>>>>> Stashed changes
-
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;
@@ -31,6 +26,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey VALUE = createTextAttributesKey("RYTHM_VALUE", DefaultLanguageHighlighterColors.STRING);
     public static final TextAttributesKey COMMENT = createTextAttributesKey("RYTHM", DefaultLanguageHighlighterColors.LINE_COMMENT);
     // public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("RYTHM_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
+
     public static final TextAttributesKey RYTHM_ARGS = createTextAttributesKey("RYTHM_ARGS", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_SECTION = createTextAttributesKey("RYTHM_SECTION", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_EXTENDS = createTextAttributesKey("RYTHM_EXTENDS", HighlighterColors.TEXT);
@@ -73,7 +69,6 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] RYTHM_ELSE_KEYS = new TextAttributesKey[]{RYTHM_ELSE};
     private static final TextAttributesKey[] RYTHM_IF_KEYS = new TextAttributesKey[]{RYTHM_IF};
     private static final TextAttributesKey[] RYTHM_FOR_KEYS = new TextAttributesKey[]{RYTHM_FOR};
-    private static final TextAttributesKey[] RYTHM_I18N_KEYS = new TextAttributesKey[]{RYTHM_I18N};
     private static final TextAttributesKey[] RYTHM_PREFIX_KEYS = new TextAttributesKey[]{RYTHM_PREFIX};
     private static final TextAttributesKey[] RYTHM_NABOX_KEYS = new TextAttributesKey[]{RYTHM_NAVBOX};
     private static final TextAttributesKey[] RYTHM_INVOKE_KEYS = new TextAttributesKey[]{RYTHM_INVOKE};
@@ -83,14 +78,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] RYTHM_BLOCK_KEYS = new TextAttributesKey[]{RYTHM_BLOCK};
     private static final TextAttributesKey[] RYTHM_PART_KEYS = new TextAttributesKey[]{RYTHM_PART};
     private static final TextAttributesKey[] RYTHM_KEY_KEYS = new TextAttributesKey[]{RYTHM_KEY};
-    private static final TextAttributesKey[] RYTHM_LOST_KEYS = new TextAttributesKey[]{RYTHM_LOST};
     private static final TextAttributesKey[] SCRIPT_KEYS = new TextAttributesKey[]{SCRIPT};
     private static final TextAttributesKey[] RYTHM_I_18_N_KEYS = new TextAttributesKey[]{RYTHM_I_18_N};
-
-
-    //   private static final TextAttributesKey[] HTML_PART_KEYS = new TextAttributesKey[]{HTML_PART};
-    // private static final TextAttributesKey[] JS_PART_KEYS = new TextAttributesKey[]{JS_PART};
-
 
     @NotNull
     @Override
@@ -102,23 +91,10 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-       /* if(tokenType.equals(RythmTypes.SEPARATOR)){
-            return SEPARATOR_KEYS;
-        }else if (tokenType.equals(RythmTypes.KEY)){
-            return KEYS_KEYS;
-        }else if (tokenType.equals(RythmTypes.VALUE)){
-            return VALUE_KEYS;
-        }else */
+
         if (tokenType.equals(RythmTypes.COMMENT)) {
             return COMMENT_KEYS;
-        } else /*if(tokenType.equals(RythmTypes.SCRIPT)){
-            return SCRIPT_KEYS;
-        }else/*if(tokenType.equals(RythmTypes.RYTHM_LOST)){
-            return RYTHM_LOST_KEYS;
-        }else/*if (tokenType.equals(TokenType.BAD_CHARACTER)){
-            return BAD_CHAR_KEYS;
-
-        }else*/ if (tokenType.equals(RythmTypes.RYTHM)) {
+        } else if (tokenType.equals(RythmTypes.RYTHM)) {
             return RYTHM_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_ARGS)) {
             return RYTHM_ARGS_KEYS;
@@ -148,22 +124,12 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_METHOD_KEYS;
         } else if (tokenType.equals(RYTHM_SYN)) {
             return RYTHM_SYN_KEYS;
-        } else /*if (tokenType.equals(RythmTypes.RYTHM_BLOCK)){
-            return RYTHM_BLOCK_KEYS;
-        }else */if (tokenType.equals(RythmTypes.RYTHM_PART)) {
+        } else if (tokenType.equals(RythmTypes.RYTHM_PART)) {
             return RYTHM_PART_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_KEY)) {
             return RYTHM_KEY_KEYS;
-        }
-            /*if (tokenType.equals(RythmTypes.HTML_PART)){
-            return HTML_PART_KEYS;
-        }else if (tokenType.equals(RythmTypes.JS_PART)){
-            return JS_PART_KEYS;
-        }*/
-        {
+        } else {
             return EMPTY_KEYS;
         }
     }
-
-
 }

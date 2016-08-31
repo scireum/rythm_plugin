@@ -17,18 +17,19 @@ import com.sun.istack.internal.Nullable;
 public class RythmCodeStyleSettingsProvider extends CodeStyleSettingsProvider {
 
     @Override
-    public CustomCodeStyleSettings createCustomSettings(CodeStyleSettings settings){
-       return new RythmCodeStyleSettings(settings);
+    public CustomCodeStyleSettings createCustomSettings(CodeStyleSettings settings) {
+        return new RythmCodeStyleSettings(settings);
     }
 
     @Nullable
     @Override
-    public String getConfigurableDisplayName(){
+    public String getConfigurableDisplayName() {
         return "Rythm";
     }
+
     @NotNull
     @Override
-    public Configurable createSettingsPage(CodeStyleSettings settings, CodeStyleSettings originalSettings){
+    public Configurable createSettingsPage(CodeStyleSettings settings, CodeStyleSettings originalSettings) {
         return new CodeStyleAbstractConfigurable(settings, originalSettings, "Rythm") {
             @Override
             protected CodeStyleAbstractPanel createPanel(CodeStyleSettings settings) {
@@ -42,8 +43,9 @@ public class RythmCodeStyleSettingsProvider extends CodeStyleSettingsProvider {
             }
         };
     }
+
     private static class RythmCodeStyleMainPanel extends TabbedLanguageCodeStylePanel {
-        public RythmCodeStyleMainPanel(CodeStyleSettings currentSettings, CodeStyleSettings settings){
+        public RythmCodeStyleMainPanel(CodeStyleSettings currentSettings, CodeStyleSettings settings) {
             super(RythmLanguage.INSTANCE, currentSettings, settings);
 
         }

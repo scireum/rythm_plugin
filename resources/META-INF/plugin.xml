@@ -1,41 +1,40 @@
 <idea-plugin version="2">
-  <id>com.scireum.rythmengine.detector</id>
-  <name>Rythm Engine Detector</name>
-  <version>1.0</version>
-  <vendor email="support@scireum.de" url="http://www.scireum.net">scireum GmbH</vendor>
+    <id>com.scireum.rythmengine.detector</id>
+    <name>Rythm Engine Detector</name>
+    <version>1.0</version>
+    <vendor email="support@scireum.net" url="http://www.scireum.de">scireum GmbH</vendor>
 
-  <description><![CDATA[
+    <description><![CDATA[
       Plugin for detecting rythm engine parts in your project
     ]]></description>
 
-  <change-notes><![CDATA[
+    <change-notes><![CDATA[
     ]]>
-  </change-notes>
+    </change-notes>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="141.0"/>
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="141.0"/>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-       on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-  -->
-  <extensions defaultExtensionNs="org.intellij.intelliLang">
-  </extensions>
-  <extensions defaultExtensionNs="com.intellij">
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+    <extensions defaultExtensionNs="org.intellij.intelliLang"></extensions>
+    <extensions defaultExtensionNs="com.intellij">
 
-    <!-- Add your extensions here -->
-    <fileTypeFactory implementation="com.rythmplugin.RythmFileTypeFactory"/>
-    <lang.parserDefinition language="Rythm" implementationClass="com.rythmplugin.RythmParserDefinition"/>
-    <lang.formatter language="Rythm" implementationClass="com.rythmplugin.RythmFormattingModelBuilder"/>
-    <lang.syntaxHighlighterFactory key="Rythm" implementationClass="com.rythmplugin.highlighter.RythmSyntaxHighlighterFactory"/>
-    <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
-    <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>
-    <langCodeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>
-  </extensions>
+        <!-- Add your extensions here -->
+        <fileTypeFactory implementation="com.rythmplugin.RythmFileTypeFactory"/>
+        <lang.parserDefinition language="Rythm" implementationClass="com.rythmplugin.RythmParserDefinition"/>
+        <lang.formatter language="Rythm" implementationClass="com.rythmplugin.RythmFormattingModelBuilder"/>
+        <lang.syntaxHighlighterFactory key="Rythm" implementationClass="com.rythmplugin.highlighter.RythmSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
+        <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>
+        <langCodeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>
+    </extensions>
 
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
 
 </idea-plugin>

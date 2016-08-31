@@ -16,27 +16,28 @@ public class RythmFileType extends LanguageFileType {
     private RythmFileType() {
         super(RythmLanguage.INSTANCE);
     }
-  @NotNull
-    @Override
-    public String getName(){
-      return "Rythm file";
-  }
 
     @NotNull
     @Override
-    public String getDescription(){
+    public String getName() {
+        return "Rythm file";
+    }
+
+    @NotNull
+    @Override
+    public String getDescription() {
         return "Rythm language file";
     }
 
     @NotNull
     @Override
-    public String getDefaultExtension(){
+    public String getDefaultExtension() {
         return "rythm";
     }
 
     @Nullable
     @Override
-    public Icon getIcon(){
+    public Icon getIcon() {
         return RythmIcons.FILE;
     }
 

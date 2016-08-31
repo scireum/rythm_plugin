@@ -1,24 +1,13 @@
 package com.rythmplugin.file;
 
 
-import com.intellij.openapi.editor.colors.EditorColorsScheme;
-import com.intellij.openapi.editor.highlighter.EditorHighlighter;
-import com.intellij.openapi.fileTypes.EditorHighlighterProvider;
-import com.intellij.openapi.fileTypes.FileType;
-import com.intellij.openapi.fileTypes.FileTypeEditorHighlighterProviders;
 import com.intellij.openapi.fileTypes.LanguageFileType;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.rythmplugin.RythmIcons;
 import com.rythmplugin.RythmLanguage;
-import com.rythmplugin.highlighter.RythmSyntaxHighlighter;
-import com.rythmplugin.highlighter.RythmTemplateHighlighter;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
 
 import javax.swing.*;
-
-import static com.intellij.ide.highlighter.ProjectFileType.DEFAULT_EXTENSION;
 
 /**
  * Created by mpl on 04.08.2016.
@@ -34,14 +23,6 @@ public class RythmFileType extends LanguageFileType {
     private RythmFileType() {
         super(RythmLanguage.INSTANCE);
 
-
-        FileTypeEditorHighlighterProviders.INSTANCE.addExplicitExtension(this, new EditorHighlighterProvider() {
-            public EditorHighlighter getEditorHighlighter(@Nullable Project project, FileType
-                    fileType, @Nullable VirtualFile virtualFile, EditorColorsScheme editorColorsScheme) {
-                return new RythmTemplateHighlighter(project, virtualFile, editorColorsScheme);
-
-            }
-        });
     }
 
     @NotNull
@@ -68,9 +49,4 @@ public class RythmFileType extends LanguageFileType {
         return RythmIcons.FILE;
     }
 
-
-    @Override
-    public boolean isJVMDebuggingSupported() {
-        return false;
-    }
 }

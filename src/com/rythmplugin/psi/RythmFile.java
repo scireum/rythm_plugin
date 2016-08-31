@@ -25,12 +25,12 @@ public class RythmFile extends PsiFileBase {
     }
 
     @Override
-    public String toString(){
-        return  "Rythm File";
+    public String toString() {
+        return "Rythm File";
     }
 
     @Override
-    public Icon getIcon(int flags){
+    public Icon getIcon(int flags) {
         return super.getIcon(flags);
     }
 

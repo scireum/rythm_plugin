@@ -9,11 +9,11 @@ import org.jetbrains.annotations.NonNls;
  * Created by mpl on 04.08.2016.
  */
 public class RythmElementType extends IElementType {
-    public RythmElementType(@NotNull @NonNls String debugName){
+    public RythmElementType(@NotNull @NonNls String debugName) {
         super(debugName, RythmLanguage.INSTANCE);
     }
 
-  public String toString(){
-      return "[Rythm]" + super.toString();
-  }
+    public String toString() {
+        return "[Rythm]" + super.toString();
+    }
 }

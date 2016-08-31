@@ -48,8 +48,9 @@ public class RythmBlock extends AbstractBlock {
     public Spacing getSpacing(@Nullable Block child1, @NotNull Block child2) {
         return spacingBuilder.getSpacing(this, child1, child2);
     }
+
     @Override
-    public boolean isLeaf(){
+    public boolean isLeaf() {
         return myNode.getFirstChildNode() == null;
     }
 }

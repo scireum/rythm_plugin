@@ -12,7 +12,7 @@ import com.sun.istack.internal.NotNull;
 public class RythmSyntaxHighlighterFactory extends SyntaxHighlighterFactory {
     @NotNull
     @Override
-    public SyntaxHighlighter getSyntaxHighlighter(Project project, VirtualFile virtualFile){
+    public SyntaxHighlighter getSyntaxHighlighter(Project project, VirtualFile virtualFile) {
         return new RythmSyntaxHighlighter();
     }
 }
