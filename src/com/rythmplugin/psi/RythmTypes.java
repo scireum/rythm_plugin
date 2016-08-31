@@ -57,7 +57,6 @@ public interface RythmTypes {
   IElementType REMAINDER = new RythmElementType("REMAINDER");
   IElementType REMAINDER_EQ = new RythmElementType("REMAINDER_EQ");
   IElementType RPAREN = new RythmElementType("RPAREN");
-  IElementType SCRIPT = new RythmElementType("SCRIPT");
   IElementType SEMICOLON = new RythmElementType("SEMICOLON");
   IElementType SEND_CHANNEL = new RythmElementType("SEND_CHANNEL");
   IElementType SHIFT_LEFT = new RythmElementType("SHIFT_LEFT");
@@ -70,14 +69,13 @@ public interface RythmTypes {
   IElementType CRLF = new RythmTokenType("CRLF");
   IElementType RYTHM = new RythmTokenType("RYTHM");
   IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
-  IElementType RYTHM_BLOCK = new RythmTokenType("RYTHM_BLOCK");
   IElementType RYTHM_ELSE = new RythmTokenType("RYTHM_ELSE");
   IElementType RYTHM_EXTENDS = new RythmTokenType("RYTHM_EXTENDS");
   IElementType RYTHM_FOR = new RythmTokenType("RYTHM_FOR");
-  IElementType RYTHM_I18N = new RythmTokenType("RYTHM_I18N");
   IElementType RYTHM_IF = new RythmTokenType("RYTHM_IF");
   IElementType RYTHM_IMPORT = new RythmTokenType("RYTHM_IMPORT");
   IElementType RYTHM_INVOKE = new RythmTokenType("RYTHM_INVOKE");
+  IElementType RYTHM_I_18_N = new RythmTokenType("RYTHM_I_18_N");
   IElementType RYTHM_KEY = new RythmTokenType("RYTHM_KEY");
   IElementType RYTHM_METHOD = new RythmTokenType("RYTHM_METHOD");
   IElementType RYTHM_NAVBOX = new RythmTokenType("RYTHM_NAVBOX");
@@ -86,6 +84,7 @@ public interface RythmTypes {
   IElementType RYTHM_RENDER = new RythmTokenType("RYTHM_RENDER");
   IElementType RYTHM_SECTION = new RythmTokenType("RYTHM_SECTION");
   IElementType RYTHM_SYN = new RythmTokenType("RYTHM_SYN");
+  IElementType SCRIPT = new RythmTokenType("SCRIPT");
   IElementType SEPARATOR = new RythmTokenType("SEPARATOR");
 
   class Factory {
@@ -234,9 +233,6 @@ public interface RythmTypes {
       }
       else if (type == RPAREN) {
         return new RythmRparenImpl(node);
-      }
-      else if (type == SCRIPT) {
-        return new RythmScriptImpl(node);
       }
       else if (type == SEMICOLON) {
         return new RythmSemicolonImpl(node);

@@ -164,9 +164,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == RPAREN) {
       r = RPAREN(b, 0);
     }
-    else if (t == SCRIPT) {
-      r = SCRIPT(b, 0);
-    }
     else if (t == SEMICOLON) {
       r = SEMICOLON(b, 0);
     }
@@ -748,17 +745,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // SCRIPT
-  public static boolean SCRIPT(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "SCRIPT")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _COLLAPSE_, SCRIPT, "<script>");
-    r = SCRIPT(b, l + 1);
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  /* ********************************************************** */
   // ';'
   public static boolean SEMICOLON(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SEMICOLON")) return false;
@@ -829,7 +815,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // property|COMMENT|CRLF|tokens/*|HTML_PART|JS_PART*/|RYTHM_KEY|RYTHM_BLOCK|RYTHM_METHOD|SCRIPT
+  // property|COMMENT|CRLF|tokens/*|HTML_PART|JS_PART*/|RYTHM_KEY|RYTHM_I_18_N|SCRIPT|RYTHM_METHOD
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
@@ -839,16 +825,16 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, CRLF);
     if (!r) r = tokens(b, l + 1);
     if (!r) r = consumeToken(b, RYTHM_KEY);
-    if (!r) r = consumeToken(b, RYTHM_BLOCK);
+    if (!r) r = consumeToken(b, RYTHM_I_18_N);
+    if (!r) r = consumeToken(b, SCRIPT);
     if (!r) r = consumeToken(b, RYTHM_METHOD);
-    if (!r) r = SCRIPT(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
   // RYTHM_ARGS| SEPARATOR|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|RYTHM_INVOKE|RYTHM_ELSE|RYTHM_IF
-  // |RYTHM_FOR|RYTHM_I18N|RYTHM_PREFIX|RYTHM_NAVBOX|RYTHM|RYTHM_METHOD| RYTHM_SYN|RYTHM_PART
+  // |RYTHM_FOR|RYTHM_PREFIX|RYTHM_NAVBOX|RYTHM| RYTHM_SYN|RYTHM_PART
   public static boolean property(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property")) return false;
     boolean r;
@@ -863,11 +849,9 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, RYTHM_ELSE);
     if (!r) r = consumeToken(b, RYTHM_IF);
     if (!r) r = consumeToken(b, RYTHM_FOR);
-    if (!r) r = consumeToken(b, RYTHM_I18N);
     if (!r) r = consumeToken(b, RYTHM_PREFIX);
     if (!r) r = consumeToken(b, RYTHM_NAVBOX);
     if (!r) r = consumeToken(b, RYTHM);
-    if (!r) r = consumeToken(b, RYTHM_METHOD);
     if (!r) r = consumeToken(b, RYTHM_SYN);
     if (!r) r = consumeToken(b, RYTHM_PART);
     exit_section_(b, l, m, r, false, null);

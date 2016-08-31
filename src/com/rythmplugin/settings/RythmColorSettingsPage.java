@@ -19,31 +19,32 @@ import java.util.Map;
  */
 public class RythmColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-        //    new AttributesDescriptor("Key", RythmSyntaxHighlighter.KEY),
-            new AttributesDescriptor("Separator", RythmSyntaxHighlighter.SEPARATOR),
-            new AttributesDescriptor("Value", RythmSyntaxHighlighter.VALUE),
+            //    new AttributesDescriptor("Key", RythmSyntaxHighlighter.KEY),
+            //   new AttributesDescriptor("Separator", RythmSyntaxHighlighter.SEPARATOR),
+            //   new AttributesDescriptor("Value", RythmSyntaxHighlighter.VALUE),
             new AttributesDescriptor("RYTHM_ARGS", RythmSyntaxHighlighter.RYTHM_ARGS),
             new AttributesDescriptor("RYTHM_ELSE", RythmSyntaxHighlighter.RYTHM_ELSE),
             new AttributesDescriptor("RYTHM_EXTENDS", RythmSyntaxHighlighter.RYTHM_EXTENDS),
             new AttributesDescriptor("RYTHM_FOR", RythmSyntaxHighlighter.RYTHM_FOR),
-            new AttributesDescriptor("RYTHM_I18N", RythmSyntaxHighlighter.RYTHM_I18N),
+            //     new AttributesDescriptor("RYTHM_I18N", RythmSyntaxHighlighter.RYTHM_I18N),
             new AttributesDescriptor("RYTHM_IF", RythmSyntaxHighlighter.RYTHM_IF),
             new AttributesDescriptor("RYTHM_IMPORT", RythmSyntaxHighlighter.RYTHM_IMPORT),
             new AttributesDescriptor("RYTHM_INVOKE", RythmSyntaxHighlighter.RYTHM_INVOKE),
-            new AttributesDescriptor("RYTHM_NAVBOX", RythmSyntaxHighlighter.RYTHM_NAVBOX),
+            //       new AttributesDescriptor("RYTHM_NAVBOX", RythmSyntaxHighlighter.RYTHM_NAVBOX),
             new AttributesDescriptor("RYTHM_PREFIX", RythmSyntaxHighlighter.RYTHM_PREFIX),
             new AttributesDescriptor("RYTHM_RENDER", RythmSyntaxHighlighter.RYTHM_RENDER),
             new AttributesDescriptor("RYTHM_SECTION", RythmSyntaxHighlighter.RYTHM_SECTION),
-            new AttributesDescriptor("RYTHM", RythmSyntaxHighlighter.RYTHM),
+            //   new AttributesDescriptor("RYTHM", RythmSyntaxHighlighter.RYTHM),
             new AttributesDescriptor("RYTHM_METHOD", RythmSyntaxHighlighter.RYTHM_METHOD),
-            new AttributesDescriptor("RYTHM_SYN", RythmSyntaxHighlighter.RYTHM_SYN),
-            new AttributesDescriptor("RYTHM_BLOCK", RythmSyntaxHighlighter.RYTHM_BLOCK),
-            new AttributesDescriptor("RYTHM_PART", RythmSyntaxHighlighter.RYTHM_PART),
+            //    new AttributesDescriptor("RYTHM_SYN", RythmSyntaxHighlighter.RYTHM_SYN),
+            //   new AttributesDescriptor("RYTHM_BLOCK", RythmSyntaxHighlighter.RYTHM_BLOCK),
+            //  new AttributesDescriptor("RYTHM_PART", RythmSyntaxHighlighter.RYTHM_PART),
             new AttributesDescriptor("RYTHM_KEY", RythmSyntaxHighlighter.RYTHM_KEY),
-            new AttributesDescriptor("RYTHM_LOST", RythmSyntaxHighlighter.RYTHM_LOST),
-            new AttributesDescriptor("SCRIPT", RythmSyntaxHighlighter.SCRIPT),
-          //  new AttributesDescriptor("HTML", RythmSyntaxHighlighter.HTML_PART),
-          //  new AttributesDescriptor("JS", RythmSyntaxHighlighter.JS_PART),
+            //   new AttributesDescriptor("RYTHM_LOST", RythmSyntaxHighlighter.RYTHM_LOST),
+            //     new AttributesDescriptor("SCRIPT", RythmSyntaxHighlighter.SCRIPT),
+            new AttributesDescriptor("RYTHM_I_18_N", RythmSyntaxHighlighter.RYTHM_I_18_N),
+            //  new AttributesDescriptor("HTML", RythmSyntaxHighlighter.HTML_PART),
+            //  new AttributesDescriptor("JS", RythmSyntaxHighlighter.JS_PART),
     };
 
     @Nullable
@@ -76,7 +77,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "@if\n" +
                         "@for\n" +
                         "@args\n" +
-                        "<div class='block-element'title='@abcd.getAnotherMethod()'>@rythm.getMethod()</div>\n"+
+                        "<div class='block-element'title='@abcd.getAnotherMethod()'>@rythm.getMethod()</div>\n" +
                         "@i18n\n" +
                         "else {\n";
     }

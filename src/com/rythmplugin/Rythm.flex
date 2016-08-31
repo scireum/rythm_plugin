@@ -62,18 +62,21 @@ SCRIPT = <script.*?>.*?>
 //RYTHM = @.[a-zA-Z]*\.*[a-zA-Z]*.\)|@.[a-zA-Z]*.*?\)
 //RYTHM_SYN = @[a-zA-Z]*
 
-RYTHM_KEY = @.[(?!for|invoke|render|if|i18n|prefix|args|import)][a-zA-Z0-9]*|@[A-Z]+|@[a-zA-Z]*
+
+
+
+RYTHM_ARGS = @args.*|@args
+RYTHM_SECTION = @section.*?\)|@section
+RYTHM_EXTENDS = @extends.*\)|@extends
+RYTHM_IMPORT = @import.*|@import
+RYTHM_RENDER = @render.*?\)|@render
+RYTHM_INVOKE = @invoke.*?\)|@invoke
+
+
+RYTHM_KEY = @[a-zA-Z]+|@[a-z]+[A-Z]+[a-z]+
+//@.[(?!for|invoke|render|if|i18n|prefix|args|import)][a-zA-Z0-9]*|@[A-Z]+|@[a-zA-Z]*
 //@[a-zA-Z0-9]+|@(?!for|invoke|render)[a-zA-Z0-9]
 //@(?!scireum\.de)+.
-
-
-//RYTHM_ARGS = @args.*|@args
-//RYTHM_SECTION = @section.*?\)|@section
-//RYTHM_EXTENDS = @extends.*\)|@extends
-//RYTHM_IMPORT = @import.*|@import
-//RYTHM_RENDER = @render.*?\)|@render
-//RYTHM_INVOKE = @invoke.*?\)|@invoke
-
 
 RYTHM_METHOD = \.[a-zA-Z]\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*\(*\)|\.equals|\.get[a-zA-Z]+\(\)|\.get[a-zA-Z]+\(*[a-zA-Z]*\)*
 //\.[a-zA-Z]\(+[a-zA-Z]*\)|\.(?!pdf|js|html)+[a-zA-Z]+\_*[A-Z]*\(*\)|\.equals\(*
@@ -82,7 +85,7 @@ RYTHM_METHOD = \.[a-zA-Z]\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*\(*\)|\.equals|\.get
 //URSPRUENGLICH 29.08.16 15:24 Uhr \.*[a-zA-Z]*\(*\!*\(*[a-zA-Z]*\(*\.[a-zA-Z]+\(\)*?\)\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*.*?\&+|\.*[a-zA-Z]*\(*\!*\(*[a-zA-Z]*\(*\.[a-zA-Z]+\(\)*?\)\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*|\.*[a-zA-Z]*\([a-zA-Z]+\s*(=)*\s*[a-zA-Z]*.?\)
 
 
-RYTHM_LOST = [a-zA-Z]+\=\"[a-zA-Z]+.+\li>|[a-zA-Z]+.*[a-zA-Z]+[a-zA-Z]+\=\"[a-zA-Z]+.+li>
+//RYTHM_LOST = [a-zA-Z]+\=\"[a-zA-Z]+.+\li>|[a-zA-Z]+.*[a-zA-Z]+[a-zA-Z]+\=\"[a-zA-Z]+.+li>
 
 //RYTHM_METHOD = @.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*)\(\)|@.[a-zA-Z]*\.*[a-zA-Z]*\(\)\.*[a-zA-Z]*([a-zA-Z]*).\([a-zA-Z]*\.[a-zA-Z]*.*\)|@[a-zA-Z]*\.[a-zA-Z]*\(\)
 //RYTHM_METHOD = \.[a-zA-Z]*\(\)*[a-zA-Z]*.*?\)
@@ -94,13 +97,14 @@ RYTHM_BLOCK = [a-zA-Z]+\:\s*[a-zA-Z]*\.[a-zA-Z]+\(\)\,|[a-zA-Z]+\:\s*\"[a-zA-Z]+
 //@.*,\n*.*\n*[a-zA-Z]*\n[a-zA-Z]*.[^@><]*
 //RYTHM_PART = @(?!for|invoke|render)[a-zA-Z]*\(.*\).*
 
-//RYTHM_ELSE = else\s?\{
-//RYTHM_IF = @if
+RYTHM_ELSE = else\s?\{
+RYTHM_IF = @if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\)*\)*?\)*\.*[a-zA-Z]*\(*\)?\)\=*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\s*\&&*\s*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*.*\)\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*[a-zA-Z]*\(*\)*\s*\!*\=*\s*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(?\)*\.*[a-zA-Z]*\_*[a-zA-Z]*\(*\)*\>*\<*[a-zA-Z0-9]*\)*.*?\)\)*\.*[a-zA-Z]*\(*\)*.*\)
 //.*\{.[a-zA-Z]*.*}*|@if.*?\{
 //@if.*?\{|@if
-//RYTHM_FOR = @for.*\{|@for
-//RYTHM_I_18_N = @(i18n)+.*?\<\/a><*\/*l*i*\>*
-//RYTHM_PREFIX = @prefix
+RYTHM_FOR = @for.*\)|@for
+RYTHM_I_18_N = @i18n\(\"[a-zA-Z]+\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)+|@i18n
+//\s\s@(i18n)+.*?\<\/a><*\/*l*i*\>*
+RYTHM_PREFIX = @prefix
 //RYTHM_NAVBOX = @navbox
 
 
@@ -120,39 +124,39 @@ RYTHM_BLOCK = [a-zA-Z]+\:\s*[a-zA-Z]*\.[a-zA-Z]+\(\)\,|[a-zA-Z]+\:\s*\"[a-zA-Z]+
 
 <YYINITIAL> {SCRIPT}                                                {yybegin(YYINITIAL); return RythmTypes.SCRIPT;}
 
-<YYINITIAL> {RYTHM_KEY}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_KEY;}
 
 //<YYINITIAL> {RYTHM_PART}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_PART;}
 
 <YYINITIAL> {RYTHM_METHOD}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
 
-<YYINITIAL> {RYTHM_BLOCK}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_BLOCK;}
+//<YYINITIAL> {RYTHM_BLOCK}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_BLOCK;}
 
-//<YYINITIAL> {RYTHM_ARGS}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ARGS;}
+<YYINITIAL> {RYTHM_ARGS}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ARGS;}
 
-//<YYINITIAL> {RYTHM_SECTION}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_SECTION;}
+<YYINITIAL> {RYTHM_SECTION}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_SECTION;}
 
-//<YYINITIAL> {RYTHM_RENDER}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_RENDER;}
+<YYINITIAL> {RYTHM_RENDER}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_RENDER;}
 
-//<YYINITIAL> {RYTHM_EXTENDS}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_EXTENDS;}
+<YYINITIAL> {RYTHM_EXTENDS}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_EXTENDS;}
 
-//<YYINITIAL> {RYTHM_IMPORT}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IMPORT;}
+<YYINITIAL> {RYTHM_IMPORT}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IMPORT;}
 
-//<YYINITIAL> {RYTHM_INVOKE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_INVOKE;}
+<YYINITIAL> {RYTHM_INVOKE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_INVOKE;}
 
-//<YYINITIAL> {RYTHM_ELSE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
+<YYINITIAL> {RYTHM_ELSE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
 
-//<YYINITIAL> {RYTHM_IF}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
+<YYINITIAL> {RYTHM_IF}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
 
-//<YYINITIAL> {RYTHM_FOR}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;}
+<YYINITIAL> {RYTHM_FOR}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;}
 
-//<YYINITIAL> {RYTHM_I_18_N}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_I_18_N;}
+<YYINITIAL> {RYTHM_I_18_N}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_I_18_N;}
 
-//<YYINITIAL> {RYTHM_PREFIX}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_PREFIX;}
+<YYINITIAL> {RYTHM_PREFIX}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_PREFIX;}
 
 //<YYINITIAL> {RYTHM_NAVBOX}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_NAVBOX;}
 
 //<YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return RythmTypes.COMMENT; }
+<YYINITIAL> {RYTHM_KEY}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_KEY;}
 
 //<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return RythmTypes.KEY; }
 

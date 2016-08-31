@@ -6,6 +6,8 @@ import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
+import com.intellij.psi.tree.TokenSet;
+import com.rythmplugin.psi.RythmHashtag;
 import com.rythmplugin.psi.RythmTypes;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
@@ -27,20 +29,27 @@ public class RythmFormattingModelBuilder implements FormattingModelBuilder {
         return new SpacingBuilder(settings, RythmLanguage.INSTANCE)
 
 
-             //   .before(RythmTypes.RYTHM_LOST).blankLines(10);
-             //   .after(RythmTypes.RYTHM_KEY).none()
-           //  .around(RythmTypes.RYTHM_BLOCK).parentDependentLFSpacing(1,6,true,1);
-               // .around(RythmTypes.RYTHM_METHOD).parentDependentLFSpacing(3,6,true,1);
-.before(RythmTypes.SCRIPT).spaces(4);
-//.around(RythmTypes.RYTHM_BLOCK).spaces(4)
-             //   .before(RythmTypes.RYTHM_I_18_N).lineBreakInCodeIf(false);
-               // .around(RythmTypes.RYTHM).spaceIf(settings.SPACE_WITHIN_BRACES)
-               // .before(RythmTypes.RYTHM_KEY).parentDependentLFSpacing(1,5,false,2);
-               // .around(RythmTypes.RYTHM_KEY).lineBreakInCodeIf(settings.AUTODETECT_INDENTS)
-              //  .before(RythmTypes.PROPERTY).none()
-              // .around(RythmTypes.RYTHM_METHOD).lineBreakInCodeIf(settings.AUTODETECT_INDENTS)
-                //.before(RythmTypes.PROPERTY).none();
+                //   .before(RythmTypes.RYTHM_LOST).blankLines(10);
+                //   .after(RythmTypes.RYTHM_KEY).none()
+                //  .around(RythmTypes.RYTHM_BLOCK).parentDependentLFSpacing(1,6,true,1);
+                // .around(RythmTypes.RYTHM_METHOD).parentDependentLFSpacing(3,6,true,1);
+                // .before(RythmTypes.SCRIPT).spaces(4)
+                //     .around( RythmTypes.RYTHM_I_18_N).lineBreakInCodeIf(false)
 
+        //  .before(RythmTypes.SCRIPT).spaces(4);
+
+
+         .before(RythmTypes.RYTHM_KEY).spaces(5);
+
+
+        //.around(RythmTypes.RYTHM_BLOCK).spaces(4)
+        //   .before(RythmTypes.RYTHM_I_18_N).lineBreakInCodeIf(false);
+        // .around(RythmTypes.RYTHM).spaceIf(settings.SPACE_WITHIN_BRACES)
+        // .before(RythmTypes.RYTHM_KEY).parentDependentLFSpacing(1,5,false,2);
+        // .around(RythmTypes.RYTHM_KEY).lineBreakInCodeIf(settings.AUTODETECT_INDENTS)
+        //  .before(RythmTypes.PROPERTY).none()
+        // .around(RythmTypes.RYTHM_METHOD).lineBreakInCodeIf(settings.AUTODETECT_INDENTS)
+        // .before(RythmTypes.PROPERTY).none();
 
 
     }
