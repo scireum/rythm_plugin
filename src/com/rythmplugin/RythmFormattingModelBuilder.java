@@ -6,8 +6,6 @@ import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
-import com.intellij.psi.tree.TokenSet;
-import com.rythmplugin.psi.RythmHashtag;
 import com.rythmplugin.psi.RythmTypes;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;

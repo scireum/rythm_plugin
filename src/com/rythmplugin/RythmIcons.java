@@ -1,7 +1,6 @@
 package com.rythmplugin;
 
 import com.intellij.openapi.util.IconLoader;
-
 import javax.swing.*;
 
 /**

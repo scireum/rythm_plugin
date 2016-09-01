@@ -19,32 +19,21 @@ import java.util.Map;
  */
 public class RythmColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-            //    new AttributesDescriptor("Key", RythmSyntaxHighlighter.KEY),
-            //   new AttributesDescriptor("Separator", RythmSyntaxHighlighter.SEPARATOR),
-            //   new AttributesDescriptor("Value", RythmSyntaxHighlighter.VALUE),
-            new AttributesDescriptor("RYTHM_ARGS", RythmSyntaxHighlighter.RYTHM_ARGS),
-            new AttributesDescriptor("RYTHM_ELSE", RythmSyntaxHighlighter.RYTHM_ELSE),
-            new AttributesDescriptor("RYTHM_EXTENDS", RythmSyntaxHighlighter.RYTHM_EXTENDS),
-            new AttributesDescriptor("RYTHM_FOR", RythmSyntaxHighlighter.RYTHM_FOR),
-            //     new AttributesDescriptor("RYTHM_I18N", RythmSyntaxHighlighter.RYTHM_I18N),
-            new AttributesDescriptor("RYTHM_IF", RythmSyntaxHighlighter.RYTHM_IF),
-            new AttributesDescriptor("RYTHM_IMPORT", RythmSyntaxHighlighter.RYTHM_IMPORT),
-            new AttributesDescriptor("RYTHM_INVOKE", RythmSyntaxHighlighter.RYTHM_INVOKE),
-            //       new AttributesDescriptor("RYTHM_NAVBOX", RythmSyntaxHighlighter.RYTHM_NAVBOX),
-            new AttributesDescriptor("RYTHM_PREFIX", RythmSyntaxHighlighter.RYTHM_PREFIX),
-            new AttributesDescriptor("RYTHM_RENDER", RythmSyntaxHighlighter.RYTHM_RENDER),
-            new AttributesDescriptor("RYTHM_SECTION", RythmSyntaxHighlighter.RYTHM_SECTION),
-            //   new AttributesDescriptor("RYTHM", RythmSyntaxHighlighter.RYTHM),
-            new AttributesDescriptor("RYTHM_METHOD", RythmSyntaxHighlighter.RYTHM_METHOD),
-            //    new AttributesDescriptor("RYTHM_SYN", RythmSyntaxHighlighter.RYTHM_SYN),
-            //   new AttributesDescriptor("RYTHM_BLOCK", RythmSyntaxHighlighter.RYTHM_BLOCK),
-            //  new AttributesDescriptor("RYTHM_PART", RythmSyntaxHighlighter.RYTHM_PART),
-            new AttributesDescriptor("RYTHM_KEY", RythmSyntaxHighlighter.RYTHM_KEY),
-            //   new AttributesDescriptor("RYTHM_LOST", RythmSyntaxHighlighter.RYTHM_LOST),
-            //     new AttributesDescriptor("SCRIPT", RythmSyntaxHighlighter.SCRIPT),
-            new AttributesDescriptor("RYTHM_I_18_N", RythmSyntaxHighlighter.RYTHM_I_18_N),
-            //  new AttributesDescriptor("HTML", RythmSyntaxHighlighter.HTML_PART),
-            //  new AttributesDescriptor("JS", RythmSyntaxHighlighter.JS_PART),
+            new AttributesDescriptor("Args", RythmSyntaxHighlighter.RYTHM_ARGS),
+            new AttributesDescriptor("Else", RythmSyntaxHighlighter.RYTHM_ELSE),
+            new AttributesDescriptor("Extends", RythmSyntaxHighlighter.RYTHM_EXTENDS),
+            new AttributesDescriptor("For", RythmSyntaxHighlighter.RYTHM_FOR),
+            new AttributesDescriptor("If", RythmSyntaxHighlighter.RYTHM_IF),
+            new AttributesDescriptor("Import", RythmSyntaxHighlighter.RYTHM_IMPORT),
+            new AttributesDescriptor("Invoke", RythmSyntaxHighlighter.RYTHM_INVOKE),
+            new AttributesDescriptor("Prefix", RythmSyntaxHighlighter.RYTHM_PREFIX),
+            new AttributesDescriptor("Render", RythmSyntaxHighlighter.RYTHM_RENDER),
+            new AttributesDescriptor("Section", RythmSyntaxHighlighter.RYTHM_SECTION),
+            new AttributesDescriptor("Method", RythmSyntaxHighlighter.RYTHM_METHOD),
+            //new AttributesDescriptor("RYTHM_BLOCK", RythmSyntaxHighlighter.RYTHM_BLOCK),
+            new AttributesDescriptor("Key", RythmSyntaxHighlighter.RYTHM_KEY),
+            //new AttributesDescriptor("SCRIPT", RythmSyntaxHighlighter.SCRIPT),
+            new AttributesDescriptor("i18n", RythmSyntaxHighlighter.RYTHM_I_18_N),
     };
 
     @Nullable
@@ -65,15 +54,14 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
         return
 
                 "# You are reading the \"example\" entry for a rythm file\n" +
-                        "@hello\n" +
+                        "@rythm\n" +
                         "@prefix\n" +
                         "@invoke\n" +
                         "@section\n" +
                         "<script src=\'/abc/def/ghi.js\' type=\'text/javascript\'></script>\n" +
                         "@render\n" +
-                        "@navbox\n" +
                         "@import\n" +
-                        "@extends @if (a>b) {}\n" +
+                        "@extends\n" +
                         "@if\n" +
                         "@for\n" +
                         "@args\n" +
