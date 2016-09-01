@@ -24,8 +24,9 @@ public class RythmFormattingModelBuilder implements FormattingModelBuilder {
     }
 
     private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
-        return new SpacingBuilder(settings, RythmLanguage.INSTANCE)
-                .before(RythmTypes.RYTHM_KEY).spaces(5);
+        return new SpacingBuilder(settings, RythmLanguage.INSTANCE);
+
+
     }
 
     @Nullable

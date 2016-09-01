@@ -15,21 +15,33 @@
 
 rythmFile ::= item_*
 
-private item_ ::= property|COMMENT|CRLF|tokens/*|HTML_PART|JS_PART*/|RYTHM_KEY|RYTHM_I_18_N|SCRIPT|RYTHM_METHOD
+private item_ ::= property|COMMENT|CRLF|RYTHM_KEY|RYTHM_I_18_N|SCRIPT|RYTHM_METHOD|HTML|tokens|LETTER
 
 property ::= RYTHM_ARGS| SEPARATOR|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|RYTHM_INVOKE|RYTHM_ELSE|RYTHM_IF
-|RYTHM_FOR|RYTHM_PREFIX|RYTHM_NAVBOX|RYTHM| RYTHM_SYN|RYTHM_PART
+|RYTHM_FOR|RYTHM_PREFIX
 
+COMMENT::= '@' tokens |MUL tokens+  |MUL '@'
+
+/*
+ARGS ::= '@' tokens+
+EXTENDS ::= '@' tokens+
+//IF ::= '@if' WS* '(' tokens+ ')'
+*/
+
+HTML ::= LESS tokens tokens GREATER|LESS tokens+ GREATER|LESS tokens+ RYTHM_KEY RYTHM_METHOD tokens+ GREATER|LESS tokens+ DIGITS tokens* GREATER|
+LESS tokens+ RYTHM_IF tokens+ GREATER
 
 
 tokens ::= RBRACE|RBRACKET|RPAREN|PLUS_PLUS|MINUS_MINUS|LBRACE|LBRACKET|LPAREN|DOUBLE_COLON|
 COLON|SEMICOLON|COMMA|MULTI_ARGS|CLASS_ATTR_END|CLASS_ATTR_START|SHIFT_LEFT|SHIFT_RIGHT
 |UNSIGNED_SHIFT_RIGHT|CMP|EQ_EQ|NOT_EQ|LESS_OR_EQ|GREATER_OR_EQ|SEND_CHANNEL|PLUS_EQ|
 MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AND|
-LESS|GREATER|PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|DOT|VOKALE|KONSONANTEN|DIGITS|QM|AS|HASHTAG
+PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|DOT|LETTER|DIGITS|QM|AS|HASHTAG|WS
 
 
 //Test ::= 'regexp:#(.*)[\n\r]'
+
+
 
 RBRACE               ::=  '}'
 RBRACKET             ::=  ']'
@@ -82,9 +94,7 @@ DOT                  ::= '.'
 QM                   ::= '"'
 AS                   ::= "'"
 HASHTAG              ::= "#"
+WS ::= ' '
 
-
-
-VOKALE ::= 'a'|'e'|'i'|'o'|'u'
-KONSONANTEN ::= 'b'|'c'|'d'|'f'|'g'|'h'|'j'|'k'|'l'|'m'|'n'|'p'|'q'|'r'|'s'|'t'|'v'|'w'|'x'|'y'|'z'
-DIGITS ::= '1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'|'0'
+LETTER ::= 'A'|'B'|'C'|'D'|'E'|'F'|'G'|'H'|'I'|'J'|'K'|'L'|'M'|'N'|'O'|'P'|'Q'|'R'|'S'|'T'|'U'|'V'|'W'|'X'|'Y'|'Z'|'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'
+DIGITS ::= '1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'|'9'|'0'

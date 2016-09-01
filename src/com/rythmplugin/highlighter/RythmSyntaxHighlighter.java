@@ -27,7 +27,6 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey RYTHM_IF = createTextAttributesKey("RYTHM_IF", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_FOR = createTextAttributesKey("RYTHM_FOR", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_PREFIX = createTextAttributesKey("RYTHM_PREFIX", HighlighterColors.TEXT);
-    public static final TextAttributesKey RYTHM_NAVBOX = createTextAttributesKey("RYTHM_NAVBOX", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_INVOKE = createTextAttributesKey("RYTHM_INVOKE", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_METHOD = createTextAttributesKey("RYTHM_METHOD", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_BLOCK = createTextAttributesKey("RYTHM_BLOCK", HighlighterColors.TEXT);
@@ -47,7 +46,6 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] RYTHM_IF_KEYS = new TextAttributesKey[]{RYTHM_IF};
     private static final TextAttributesKey[] RYTHM_FOR_KEYS = new TextAttributesKey[]{RYTHM_FOR};
     private static final TextAttributesKey[] RYTHM_PREFIX_KEYS = new TextAttributesKey[]{RYTHM_PREFIX};
-    private static final TextAttributesKey[] RYTHM_NABOX_KEYS = new TextAttributesKey[]{RYTHM_NAVBOX};
     private static final TextAttributesKey[] RYTHM_INVOKE_KEYS = new TextAttributesKey[]{RYTHM_INVOKE};
     private static final TextAttributesKey[] RYTHM_METHOD_KEYS = new TextAttributesKey[]{RYTHM_METHOD};
     private static final TextAttributesKey[] RYTHM_BLOCK_KEYS = new TextAttributesKey[]{RYTHM_BLOCK};
@@ -88,8 +86,6 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_I_18_N_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_PREFIX)) {
             return RYTHM_PREFIX_KEYS;
-        } else if (tokenType.equals(RythmTypes.RYTHM_NAVBOX)) {
-            return RYTHM_NABOX_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_METHOD)) {
             return RYTHM_METHOD_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_KEY)) {

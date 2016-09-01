@@ -62,16 +62,10 @@ public interface RythmTokens extends PsiElement {
   RythmEqEq getEqEq();
 
   @Nullable
-  RythmGreater getGreater();
-
-  @Nullable
   RythmGreaterOrEq getGreaterOrEq();
 
   @Nullable
   RythmHashtag getHashtag();
-
-  @Nullable
-  RythmKonsonanten getKonsonanten();
 
   @Nullable
   RythmLbrace getLbrace();
@@ -80,10 +74,10 @@ public interface RythmTokens extends PsiElement {
   RythmLbracket getLbracket();
 
   @Nullable
-  RythmLess getLess();
+  RythmLessOrEq getLessOrEq();
 
   @Nullable
-  RythmLessOrEq getLessOrEq();
+  RythmLetter getLetter();
 
   @Nullable
   RythmLparen getLparen();
@@ -161,6 +155,6 @@ public interface RythmTokens extends PsiElement {
   RythmUnsignedShiftRight getUnsignedShiftRight();
 
   @Nullable
-  RythmVokale getVokale();
+  RythmWs getWs();
 
 }

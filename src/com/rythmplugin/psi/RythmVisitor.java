@@ -55,6 +55,10 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitComment(@NotNull RythmComment o) {
+    visitPsiElement(o);
+  }
+
   public void visitDigits(@NotNull RythmDigits o) {
     visitPsiElement(o);
   }
@@ -95,7 +99,7 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitKonsonanten(@NotNull RythmKonsonanten o) {
+  public void visitHtml(@NotNull RythmHtml o) {
     visitPsiElement(o);
   }
 
@@ -112,6 +116,10 @@ public class RythmVisitor extends PsiElementVisitor {
   }
 
   public void visitLessOrEq(@NotNull RythmLessOrEq o) {
+    visitPsiElement(o);
+  }
+
+  public void visitLetter(@NotNull RythmLetter o) {
     visitPsiElement(o);
   }
 
@@ -215,7 +223,7 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitVokale(@NotNull RythmVokale o) {
+  public void visitWs(@NotNull RythmWs o) {
     visitPsiElement(o);
   }
 

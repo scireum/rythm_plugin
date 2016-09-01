@@ -136,12 +136,6 @@ public class RythmTokensImpl extends ASTWrapperPsiElement implements RythmTokens
 
   @Override
   @Nullable
-  public RythmGreater getGreater() {
-    return findChildByClass(RythmGreater.class);
-  }
-
-  @Override
-  @Nullable
   public RythmGreaterOrEq getGreaterOrEq() {
     return findChildByClass(RythmGreaterOrEq.class);
   }
@@ -150,12 +144,6 @@ public class RythmTokensImpl extends ASTWrapperPsiElement implements RythmTokens
   @Nullable
   public RythmHashtag getHashtag() {
     return findChildByClass(RythmHashtag.class);
-  }
-
-  @Override
-  @Nullable
-  public RythmKonsonanten getKonsonanten() {
-    return findChildByClass(RythmKonsonanten.class);
   }
 
   @Override
@@ -172,14 +160,14 @@ public class RythmTokensImpl extends ASTWrapperPsiElement implements RythmTokens
 
   @Override
   @Nullable
-  public RythmLess getLess() {
-    return findChildByClass(RythmLess.class);
+  public RythmLessOrEq getLessOrEq() {
+    return findChildByClass(RythmLessOrEq.class);
   }
 
   @Override
   @Nullable
-  public RythmLessOrEq getLessOrEq() {
-    return findChildByClass(RythmLessOrEq.class);
+  public RythmLetter getLetter() {
+    return findChildByClass(RythmLetter.class);
   }
 
   @Override
@@ -334,8 +322,8 @@ public class RythmTokensImpl extends ASTWrapperPsiElement implements RythmTokens
 
   @Override
   @Nullable
-  public RythmVokale getVokale() {
-    return findChildByClass(RythmVokale.class);
+  public RythmWs getWs() {
+    return findChildByClass(RythmWs.class);
   }
 
 }

@@ -21,6 +21,7 @@ public interface RythmTypes {
   IElementType CMP = new RythmElementType("CMP");
   IElementType COLON = new RythmElementType("COLON");
   IElementType COMMA = new RythmElementType("COMMA");
+  IElementType COMMENT = new RythmElementType("COMMENT");
   IElementType DIGITS = new RythmElementType("DIGITS");
   IElementType DIV = new RythmElementType("DIV");
   IElementType DIV_EQ = new RythmElementType("DIV_EQ");
@@ -31,11 +32,12 @@ public interface RythmTypes {
   IElementType GREATER = new RythmElementType("GREATER");
   IElementType GREATER_OR_EQ = new RythmElementType("GREATER_OR_EQ");
   IElementType HASHTAG = new RythmElementType("HASHTAG");
-  IElementType KONSONANTEN = new RythmElementType("KONSONANTEN");
+  IElementType HTML = new RythmElementType("HTML");
   IElementType LBRACE = new RythmElementType("LBRACE");
   IElementType LBRACKET = new RythmElementType("LBRACKET");
   IElementType LESS = new RythmElementType("LESS");
   IElementType LESS_OR_EQ = new RythmElementType("LESS_OR_EQ");
+  IElementType LETTER = new RythmElementType("LETTER");
   IElementType LPAREN = new RythmElementType("LPAREN");
   IElementType MINUS = new RythmElementType("MINUS");
   IElementType MINUS_EQ = new RythmElementType("MINUS_EQ");
@@ -63,11 +65,9 @@ public interface RythmTypes {
   IElementType SHIFT_RIGHT = new RythmElementType("SHIFT_RIGHT");
   IElementType TOKENS = new RythmElementType("TOKENS");
   IElementType UNSIGNED_SHIFT_RIGHT = new RythmElementType("UNSIGNED_SHIFT_RIGHT");
-  IElementType VOKALE = new RythmElementType("VOKALE");
+  IElementType WS = new RythmElementType("WS");
 
-  IElementType COMMENT = new RythmTokenType("COMMENT");
   IElementType CRLF = new RythmTokenType("CRLF");
-  IElementType RYTHM = new RythmTokenType("RYTHM");
   IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
   IElementType RYTHM_ELSE = new RythmTokenType("RYTHM_ELSE");
   IElementType RYTHM_EXTENDS = new RythmTokenType("RYTHM_EXTENDS");
@@ -78,12 +78,9 @@ public interface RythmTypes {
   IElementType RYTHM_I_18_N = new RythmTokenType("RYTHM_I_18_N");
   IElementType RYTHM_KEY = new RythmTokenType("RYTHM_KEY");
   IElementType RYTHM_METHOD = new RythmTokenType("RYTHM_METHOD");
-  IElementType RYTHM_NAVBOX = new RythmTokenType("RYTHM_NAVBOX");
-  IElementType RYTHM_PART = new RythmTokenType("RYTHM_PART");
   IElementType RYTHM_PREFIX = new RythmTokenType("RYTHM_PREFIX");
   IElementType RYTHM_RENDER = new RythmTokenType("RYTHM_RENDER");
   IElementType RYTHM_SECTION = new RythmTokenType("RYTHM_SECTION");
-  IElementType RYTHM_SYN = new RythmTokenType("RYTHM_SYN");
   IElementType SCRIPT = new RythmTokenType("SCRIPT");
   IElementType SEPARATOR = new RythmTokenType("SEPARATOR");
 
@@ -126,6 +123,9 @@ public interface RythmTypes {
       else if (type == COMMA) {
         return new RythmCommaImpl(node);
       }
+      else if (type == COMMENT) {
+        return new RythmCommentImpl(node);
+      }
       else if (type == DIGITS) {
         return new RythmDigitsImpl(node);
       }
@@ -156,8 +156,8 @@ public interface RythmTypes {
       else if (type == HASHTAG) {
         return new RythmHashtagImpl(node);
       }
-      else if (type == KONSONANTEN) {
-        return new RythmKonsonantenImpl(node);
+      else if (type == HTML) {
+        return new RythmHtmlImpl(node);
       }
       else if (type == LBRACE) {
         return new RythmLbraceImpl(node);
@@ -170,6 +170,9 @@ public interface RythmTypes {
       }
       else if (type == LESS_OR_EQ) {
         return new RythmLessOrEqImpl(node);
+      }
+      else if (type == LETTER) {
+        return new RythmLetterImpl(node);
       }
       else if (type == LPAREN) {
         return new RythmLparenImpl(node);
@@ -252,8 +255,8 @@ public interface RythmTypes {
       else if (type == UNSIGNED_SHIFT_RIGHT) {
         return new RythmUnsignedShiftRightImpl(node);
       }
-      else if (type == VOKALE) {
-        return new RythmVokaleImpl(node);
+      else if (type == WS) {
+        return new RythmWsImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }
