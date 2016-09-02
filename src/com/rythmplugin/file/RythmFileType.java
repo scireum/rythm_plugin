@@ -15,14 +15,8 @@ import javax.swing.*;
 public class RythmFileType extends LanguageFileType {
     public static final RythmFileType INSTANCE = new RythmFileType();
 
-
-    public static final String DEFAULT_EXTENSION = "rythm";
-
-    public static final String[] extensions = {DEFAULT_EXTENSION};
-
     private RythmFileType() {
         super(RythmLanguage.INSTANCE);
-
     }
 
     @NotNull

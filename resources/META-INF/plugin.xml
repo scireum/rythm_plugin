@@ -24,7 +24,7 @@
     <extensions defaultExtensionNs="com.intellij">
 
         <!-- Add your extensions here -->
-        <fileTypeFactory implementation="com.rythmplugin.RythmFileTypeFactory"/>
+        <fileTypeFactory implementation="com.rythmplugin.file.RythmFileTypeFactory"/>
         <lang.parserDefinition language="Rythm" implementationClass="com.rythmplugin.RythmParserDefinition"/>
         <lang.formatter language="Rythm" implementationClass="com.rythmplugin.RythmFormattingModelBuilder"/>
         <lang.syntaxHighlighterFactory key="Rythm" implementationClass="com.rythmplugin.highlighter.RythmSyntaxHighlighterFactory"/>

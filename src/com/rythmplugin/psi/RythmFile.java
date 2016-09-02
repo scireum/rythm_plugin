@@ -2,7 +2,7 @@ package com.rythmplugin.psi;
 
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.psi.FileViewProvider;
-import com.rythmplugin.RythmFileType;
+import com.rythmplugin.file.RythmFileType;
 import com.rythmplugin.RythmLanguage;
 import com.sun.istack.internal.NotNull;
 

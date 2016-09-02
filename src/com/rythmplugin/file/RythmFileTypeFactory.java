@@ -1,4 +1,4 @@
-package com.rythmplugin;
+package com.rythmplugin.file;
 
 
 import com.intellij.openapi.fileTypes.*;
