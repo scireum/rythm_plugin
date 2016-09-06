@@ -19,6 +19,14 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitAdditiveExpr(@NotNull RythmAdditiveExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitAndExpr(@NotNull RythmAndExpr o) {
+    visitPsiElement(o);
+  }
+
   public void visitBitAnd(@NotNull RythmBitAnd o) {
     visitPsiElement(o);
   }
@@ -59,6 +67,14 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitCallExpr(@NotNull RythmCallExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitConditionalExpr(@NotNull RythmConditionalExpr o) {
+    visitPsiElement(o);
+  }
+
   public void visitDigits(@NotNull RythmDigits o) {
     visitPsiElement(o);
   }
@@ -87,6 +103,38 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitElseIfStatement(@NotNull RythmElseIfStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitElseStatement(@NotNull RythmElseStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitEndStatement(@NotNull RythmEndStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitExpression(@NotNull RythmExpression o) {
+    visitPsiElement(o);
+  }
+
+  public void visitExtendsStatement(@NotNull RythmExtendsStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFieldChain(@NotNull RythmFieldChain o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFieldChainExpr(@NotNull RythmFieldChainExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFieldExpr(@NotNull RythmFieldExpr o) {
+    visitPsiElement(o);
+  }
+
   public void visitGreater(@NotNull RythmGreater o) {
     visitPsiElement(o);
   }
@@ -99,7 +147,23 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitHtml(@NotNull RythmHtml o) {
+  public void visitIdentifierExpr(@NotNull RythmIdentifierExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitIfStatement(@NotNull RythmIfStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitImportStatement(@NotNull RythmImportStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitIndexExpr(@NotNull RythmIndexExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitIssetExpr(@NotNull RythmIssetExpr o) {
     visitPsiElement(o);
   }
 
@@ -151,6 +215,10 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitMultiplicativeExpr(@NotNull RythmMultiplicativeExpr o) {
+    visitPsiElement(o);
+  }
+
   public void visitNot(@NotNull RythmNot o) {
     visitPsiElement(o);
   }
@@ -159,7 +227,19 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitNotExpr(@NotNull RythmNotExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNumberExpr(@NotNull RythmNumberExpr o) {
+    visitPsiElement(o);
+  }
+
   public void visitOrOr(@NotNull RythmOrOr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitOrExpr(@NotNull RythmOrExpr o) {
     visitPsiElement(o);
   }
 
@@ -172,6 +252,18 @@ public class RythmVisitor extends PsiElementVisitor {
   }
 
   public void visitPlusPlus(@NotNull RythmPlusPlus o) {
+    visitPsiElement(o);
+  }
+
+  public void visitParenthesesExpr(@NotNull RythmParenthesesExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitPipe(@NotNull RythmPipe o) {
+    visitPsiElement(o);
+  }
+
+  public void visitPipeline(@NotNull RythmPipeline o) {
     visitPsiElement(o);
   }
 
@@ -216,6 +308,30 @@ public class RythmVisitor extends PsiElementVisitor {
   }
 
   public void visitShiftRight(@NotNull RythmShiftRight o) {
+    visitPsiElement(o);
+  }
+
+  public void visitSliceExpr(@NotNull RythmSliceExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStatement(@NotNull RythmStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStatementList(@NotNull RythmStatementList o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStatements(@NotNull RythmStatements o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStringExpr(@NotNull RythmStringExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitTernaryExpr(@NotNull RythmTernaryExpr o) {
     visitPsiElement(o);
   }
 

@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface RythmProperty extends PsiElement {
 
+  @Nullable
+  RythmStatements getStatements();
+
 }

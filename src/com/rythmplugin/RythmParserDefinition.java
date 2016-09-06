@@ -1,7 +1,6 @@
 package com.rythmplugin;
 
 import com.intellij.lang.ASTNode;
-import com.intellij.lang.Language;
 import com.intellij.lang.ParserDefinition;
 import com.intellij.lang.PsiParser;
 import com.intellij.lexer.Lexer;
@@ -12,6 +11,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
+import com.rythmplugin.file.RythmFileElementType;
 import com.rythmplugin.parser.RythmParser;
 import com.rythmplugin.psi.RythmFile;
 import com.rythmplugin.psi.RythmTypes;
@@ -25,8 +25,12 @@ public class RythmParserDefinition implements ParserDefinition {
     public static final TokenSet COMMENTS = TokenSet.create(RythmTypes.COMMENT);
 
 
-    public static final IFileElementType FILE = new IFileElementType(Language.<RythmLanguage>findInstance(RythmLanguage.class));
+  //  public static final IFileElementType FILE = new IFileElementType(Language.<RythmLanguage>findInstance(RythmLanguage.class));
 
+    @Override
+    public IFileElementType getFileNodeType(){
+        return RythmFileElementType.INSTANCE;
+    }
     @NotNull
     @Override
     public Lexer createLexer(Project project) {
@@ -53,10 +57,10 @@ public class RythmParserDefinition implements ParserDefinition {
         return new RythmParser();
     }
 
-    @Override
+   /* @Override
     public IFileElementType getFileNodeType() {
         return FILE;
-    }
+    }*/
 
     public PsiFile createFile(FileViewProvider viewProvider) {
         return new RythmFile(viewProvider);

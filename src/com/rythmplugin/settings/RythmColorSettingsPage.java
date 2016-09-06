@@ -7,7 +7,7 @@ import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
 import com.rythmplugin.RythmIcons;
-import com.rythmplugin.highlighter.RythmSyntaxHighlighter;
+import com.rythmplugin.ide.highlighter.RythmSyntaxHighlighter;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
 

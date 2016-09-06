@@ -14,5 +14,6 @@ public class RythmFileTypeFactory extends FileTypeFactory {
     public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
 
         fileTypeConsumer.consume(RythmFileType.INSTANCE, "rythm");
+        fileTypeConsumer.consume(RythmFileType.INSTANCE, new WildcardFileNameMatcher("*.rythm.html"));
     }
 }

@@ -26,4 +26,10 @@ public class RythmPropertyImpl extends ASTWrapperPsiElement implements RythmProp
     else super.accept(visitor);
   }
 
+  @Override
+  @Nullable
+  public RythmStatements getStatements() {
+    return findChildByClass(RythmStatements.class);
+  }
+
 }

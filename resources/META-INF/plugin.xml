@@ -24,10 +24,21 @@
     <extensions defaultExtensionNs="com.intellij">
 
         <!-- Add your extensions here -->
+        <lang.substitutor language="HTML" implementationClass="com.rythmplugin.ide.RythmSubstitutor"/>
+        <lang.fileViewProviderFactory language="RythmTemplateLanguage"
+                                      implementationClass="com.rythmplugin.file.RythmFileViewProviderFactory"/>
+
+        <editorHighlighterProvider filetype="Rythm"
+                                   implementationClass="com.rythmplugin.ide.highlighter.RythmEditorHighlighterFactory"/>
+
+        <defaultLiveTemplatesProvider implementation="com.rythmplugin.ide.templates.RythmProvider"/>
+        <liveTemplateContext implementation="com.rythmplugin.ide.templates.RythmContext"/>
+
+
         <fileTypeFactory implementation="com.rythmplugin.file.RythmFileTypeFactory"/>
-        <lang.parserDefinition language="Rythm" implementationClass="com.rythmplugin.RythmParserDefinition"/>
-        <lang.formatter language="Rythm" implementationClass="com.rythmplugin.RythmFormattingModelBuilder"/>
-        <lang.syntaxHighlighterFactory key="Rythm" implementationClass="com.rythmplugin.highlighter.RythmSyntaxHighlighterFactory"/>
+        <lang.parserDefinition language="RythmTemplateLanguage" implementationClass="com.rythmplugin.RythmParserDefinition"/>
+        <lang.formatter language="RythmTemplateLanguage" implementationClass="com.rythmplugin.RythmFormattingModelBuilder"/>
+        <lang.syntaxHighlighterFactory language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.highlighter.RythmSyntaxHighlighterFactory"/>
         <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
         <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>
         <langCodeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>

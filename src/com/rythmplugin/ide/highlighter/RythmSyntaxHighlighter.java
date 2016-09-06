@@ -1,4 +1,4 @@
-package com.rythmplugin.highlighter;
+package com.rythmplugin.ide.highlighter;
 
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.HighlighterColors;
