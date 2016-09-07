@@ -8,8 +8,9 @@ import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
 import com.rythmplugin.RythmIcons;
 import com.rythmplugin.ide.highlighter.RythmSyntaxHighlighter;
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 
 import javax.swing.*;
 import java.util.Map;
@@ -30,9 +31,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Render", RythmSyntaxHighlighter.RYTHM_RENDER),
             new AttributesDescriptor("Section", RythmSyntaxHighlighter.RYTHM_SECTION),
             new AttributesDescriptor("Method", RythmSyntaxHighlighter.RYTHM_METHOD),
-            //new AttributesDescriptor("RYTHM_BLOCK", RythmSyntaxHighlighter.RYTHM_BLOCK),
             new AttributesDescriptor("Key", RythmSyntaxHighlighter.RYTHM_KEY),
-            //new AttributesDescriptor("SCRIPT", RythmSyntaxHighlighter.SCRIPT),
             new AttributesDescriptor("i18n", RythmSyntaxHighlighter.RYTHM_I_18_N),
             new AttributesDescriptor("Comment", RythmSyntaxHighlighter.RYTHM_COMMENT),
     };

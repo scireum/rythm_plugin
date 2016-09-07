@@ -2,8 +2,8 @@ package com.rythmplugin.lexer;
 
 import com.intellij.psi.tree.IElementType;
 import com.rythmplugin.RythmLanguage;
-import com.sun.istack.internal.NotNull;
 import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by mpl on 04.08.2016.

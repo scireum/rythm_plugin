@@ -4,7 +4,8 @@ import com.intellij.lang.Language;
 import com.intellij.psi.codeStyle.CodeStyleSettingsCustomizable;
 import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider;
 import com.rythmplugin.RythmLanguage;
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by mpl on 10.08.2016.

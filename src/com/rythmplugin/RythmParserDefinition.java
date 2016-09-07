@@ -15,7 +15,8 @@ import com.rythmplugin.file.RythmFileElementType;
 import com.rythmplugin.parser.RythmParser;
 import com.rythmplugin.psi.RythmFile;
 import com.rythmplugin.psi.RythmTypes;
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Created by mpl on 04.08.2016.
@@ -24,13 +25,11 @@ public class RythmParserDefinition implements ParserDefinition {
     public static final TokenSet WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE);
     public static final TokenSet COMMENTS = TokenSet.create(RythmTypes.COMMENT);
 
-
-  //  public static final IFileElementType FILE = new IFileElementType(Language.<RythmLanguage>findInstance(RythmLanguage.class));
-
     @Override
-    public IFileElementType getFileNodeType(){
+    public IFileElementType getFileNodeType() {
         return RythmFileElementType.INSTANCE;
     }
+
     @NotNull
     @Override
     public Lexer createLexer(Project project) {
@@ -57,10 +56,6 @@ public class RythmParserDefinition implements ParserDefinition {
         return new RythmParser();
     }
 
-   /* @Override
-    public IFileElementType getFileNodeType() {
-        return FILE;
-    }*/
 
     public PsiFile createFile(FileViewProvider viewProvider) {
         return new RythmFile(viewProvider);

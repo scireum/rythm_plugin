@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Created by mpl on 04.08.2016.
  */
-public class RythmLanguage extends Language implements TemplateLanguage{
+public class RythmLanguage extends Language implements TemplateLanguage {
 
     public static final RythmLanguage INSTANCE = new RythmLanguage();
 
@@ -20,22 +20,24 @@ public class RythmLanguage extends Language implements TemplateLanguage{
 
     }
 
-    public static LanguageFileType getDefaultTemplateLang(){
+    public static LanguageFileType getDefaultTemplateLang() {
         return StdFileTypes.HTML;
     }
+
     @NotNull
     @Override
-    public String getDisplayName(){
+    public String getDisplayName() {
         return "Rythm template engine";
     }
 
     @Nullable
     @Override
-    public LanguageFileType getAssociatedFileType(){
+    public LanguageFileType getAssociatedFileType() {
         return RythmFileType.INSTANCE;
     }
+
     @Override
-    public boolean isCaseSensitive(){
+    public boolean isCaseSensitive() {
         return true;
     }
 }

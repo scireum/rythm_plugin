@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Created by mpl on 06.09.2016.
  */
-public class RythmEditorHighlighterFactory implements EditorHighlighterProvider{
+public class RythmEditorHighlighterFactory implements EditorHighlighterProvider {
     @Override
     public EditorHighlighter getEditorHighlighter(@Nullable Project project,
                                                   @NotNull FileType type,

@@ -13,13 +13,12 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.templateLanguages.TemplateDataLanguageMappings;
 import com.rythmplugin.RythmLanguage;
 
-import static com.rythmplugin.psi.RythmTypes.RYTHM_KEY;
 import static com.rythmplugin.psi.RythmTypes.TEXT;
 
 /**
  * Created by mpl on 06.09.2016.
  */
-public class RythmLayeredSyntaxHighlighter  extends LayeredLexerEditorHighlighter{
+public class RythmLayeredSyntaxHighlighter extends LayeredLexerEditorHighlighter {
     public RythmLayeredSyntaxHighlighter(Project project, EditorColorsScheme scheme, FileType ptype, VirtualFile virtualFile) {
         super(new RythmSyntaxHighlighter(), scheme);
 

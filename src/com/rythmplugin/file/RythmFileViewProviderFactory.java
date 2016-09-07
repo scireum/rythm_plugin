@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Created by mpl on 06.09.2016.
  */
-public class RythmFileViewProviderFactory implements FileViewProviderFactory{
+public class RythmFileViewProviderFactory implements FileViewProviderFactory {
     @NotNull
     @Override
     public FileViewProvider createFileViewProvider(@NotNull VirtualFile file, Language language, @NotNull PsiManager manager, boolean b) {

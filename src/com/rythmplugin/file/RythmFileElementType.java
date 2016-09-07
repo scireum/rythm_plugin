@@ -1,6 +1,5 @@
 package com.rythmplugin.file;
 
-import com.intellij.psi.stubs.IStubElementType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.IStubFileElementType;
 import com.rythmplugin.RythmLanguage;

@@ -21,7 +21,7 @@ import java.nio.charset.Charset;
 /**
  * Created by mpl on 04.08.2016.
  */
-public class RythmFileType extends LanguageFileType implements TemplateLanguageFileType{
+public class RythmFileType extends LanguageFileType implements TemplateLanguageFileType {
 
     public static final RythmFileType INSTANCE = new RythmFileType();
 
