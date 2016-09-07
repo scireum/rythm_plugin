@@ -38,8 +38,8 @@
 
 
         <fileTypeFactory implementation="com.rythmplugin.file.RythmFileTypeFactory"/>
-        <lang.parserDefinition language="RythmTemplateLanguage" implementationClass="com.rythmplugin.RythmParserDefinition"/>
-        <lang.formatter language="RythmTemplateLanguage" implementationClass="com.rythmplugin.RythmFormattingModelBuilder"/>
+        <lang.parserDefinition language="RythmTemplateLanguage" implementationClass="com.rythmplugin.parser.RythmParserDefinition"/>
+        <lang.formatter language="RythmTemplateLanguage" implementationClass="com.rythmplugin.formatter.RythmFormattingModelBuilder"/>
         <lang.syntaxHighlighterFactory language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.highlighter.RythmSyntaxHighlighterFactory"/>
         <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
         <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>

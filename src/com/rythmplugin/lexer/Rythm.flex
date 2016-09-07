@@ -1,4 +1,4 @@
-package com.rythmplugin;
+package com.rythmplugin.lexer;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;

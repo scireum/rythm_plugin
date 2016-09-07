@@ -9,7 +9,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.CharsetToolkit;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.templateLanguages.TemplateDataLanguageMappings;
-import com.rythmplugin.RythmIcons;
+import com.rythmplugin.icons.RythmIcons;
 import com.rythmplugin.RythmLanguage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

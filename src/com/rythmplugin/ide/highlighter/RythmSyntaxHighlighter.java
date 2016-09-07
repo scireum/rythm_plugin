@@ -5,7 +5,7 @@ import com.intellij.openapi.editor.HighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
-import com.rythmplugin.RythmLexerAdapter;
+import com.rythmplugin.lexer.RythmLexerAdapter;
 import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 

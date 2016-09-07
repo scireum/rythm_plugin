@@ -6,7 +6,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
-import com.rythmplugin.RythmIcons;
+import com.rythmplugin.icons.RythmIcons;
 import com.rythmplugin.ide.highlighter.RythmSyntaxHighlighter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

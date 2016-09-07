@@ -1,4 +1,4 @@
-package com.rythmplugin;
+package com.rythmplugin.icons;
 
 import com.intellij.openapi.util.IconLoader;
 import javax.swing.*;
