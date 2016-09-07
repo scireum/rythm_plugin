@@ -62,7 +62,6 @@ public interface RythmTypes {
   IElementType SEND_CHANNEL = new RythmElementType("SEND_CHANNEL");
   IElementType SHIFT_LEFT = new RythmElementType("SHIFT_LEFT");
   IElementType SHIFT_RIGHT = new RythmElementType("SHIFT_RIGHT");
-  IElementType TAG = new RythmElementType("TAG");
   IElementType TOKENS = new RythmElementType("TOKENS");
   IElementType UNSIGNED_SHIFT_RIGHT = new RythmElementType("UNSIGNED_SHIFT_RIGHT");
   IElementType WS = new RythmElementType("WS");
@@ -70,6 +69,7 @@ public interface RythmTypes {
   IElementType CRLF = new RythmTokenType("CRLF");
   IElementType NUMBER = new RythmTokenType("NUMBER");
   IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
+  IElementType RYTHM_COMMENT = new RythmTokenType("RYTHM_COMMENT");
   IElementType RYTHM_ELSE = new RythmTokenType("RYTHM_ELSE");
   IElementType RYTHM_EXTENDS = new RythmTokenType("RYTHM_EXTENDS");
   IElementType RYTHM_FOR = new RythmTokenType("RYTHM_FOR");
@@ -83,7 +83,9 @@ public interface RythmTypes {
   IElementType RYTHM_RENDER = new RythmTokenType("RYTHM_RENDER");
   IElementType RYTHM_SECTION = new RythmTokenType("RYTHM_SECTION");
   IElementType SEPARATOR = new RythmTokenType("SEPARATOR");
+  IElementType TAG = new RythmTokenType("TAG");
   IElementType TEXT = new RythmTokenType("TEXT");
+  IElementType TOKENS_49_0 = new RythmTokenType("tokens_49_0");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
@@ -246,9 +248,6 @@ public interface RythmTypes {
       }
       else if (type == SHIFT_RIGHT) {
         return new RythmShiftRightImpl(node);
-      }
-      else if (type == TAG) {
-        return new RythmTagImpl(node);
       }
       else if (type == TOKENS) {
         return new RythmTokensImpl(node);

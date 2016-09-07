@@ -34,6 +34,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Key", RythmSyntaxHighlighter.RYTHM_KEY),
             //new AttributesDescriptor("SCRIPT", RythmSyntaxHighlighter.SCRIPT),
             new AttributesDescriptor("i18n", RythmSyntaxHighlighter.RYTHM_I_18_N),
+            new AttributesDescriptor("Comment", RythmSyntaxHighlighter.RYTHM_COMMENT),
     };
 
     @Nullable
@@ -56,6 +57,9 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                 "# You are reading the \"example\" entry for a rythm file\n" +
                         "@rythm\n" +
                         "@prefix\n" +
+                        "@*\n" +
+                        "*demo\n" +
+                        "*@\n" +
                         "@invoke\n" +
                         "@section\n" +
                         "<script src=\'/abc/def/ghi.js\' type=\'text/javascript\'></script>\n" +

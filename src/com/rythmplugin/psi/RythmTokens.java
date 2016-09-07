@@ -154,7 +154,4 @@ public interface RythmTokens extends PsiElement {
   @Nullable
   RythmUnsignedShiftRight getUnsignedShiftRight();
 
-  @Nullable
-  RythmWs getWs();
-
 }

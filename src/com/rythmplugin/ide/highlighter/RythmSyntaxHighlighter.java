@@ -35,6 +35,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey RYTHM_I_18_N = createTextAttributesKey("RYTHM_I_18_N", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_COMMENT = createTextAttributesKey("RYTHM_COMMENT", HighlighterColors.TEXT);
 
+
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
     private static final TextAttributesKey[] RYTHM_ARGS_KEYS = new TextAttributesKey[]{RYTHM_ARGS};
@@ -91,6 +92,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_METHOD_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_KEY)) {
             return RYTHM_KEY_KEYS;
+        } else if (tokenType.equals(RythmTypes.RYTHM_COMMENT)) {
+            return RYTHM_COMMENT_KEYS;
         } else {
             return EMPTY_KEYS;
         }

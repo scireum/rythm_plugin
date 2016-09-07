@@ -215,10 +215,6 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitTag(@NotNull RythmTag o) {
-    visitPsiElement(o);
-  }
-
   public void visitUnsignedShiftRight(@NotNull RythmUnsignedShiftRight o) {
     visitPsiElement(o);
   }

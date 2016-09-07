@@ -320,10 +320,4 @@ public class RythmTokensImpl extends ASTWrapperPsiElement implements RythmTokens
     return findChildByClass(RythmUnsignedShiftRight.class);
   }
 
-  @Override
-  @Nullable
-  public RythmWs getWs() {
-    return findChildByClass(RythmWs.class);
-  }
-
 }
