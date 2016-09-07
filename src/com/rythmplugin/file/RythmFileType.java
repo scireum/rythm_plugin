@@ -11,8 +11,9 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.templateLanguages.TemplateDataLanguageMappings;
 import com.rythmplugin.RythmIcons;
 import com.rythmplugin.RythmLanguage;
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 
 import javax.swing.*;
 import java.nio.charset.Charset;

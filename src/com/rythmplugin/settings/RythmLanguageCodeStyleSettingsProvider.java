@@ -13,21 +13,23 @@ public class RythmLanguageCodeStyleSettingsProvider extends LanguageCodeStyleSet
 
     @NotNull
     @Override
-    public Language getLanguage(){
+    public Language getLanguage() {
         return RythmLanguage.INSTANCE;
     }
 
     @Override
-    public void customizeSettings(@NotNull CodeStyleSettingsCustomizable consumer, @NotNull SettingsType settingsType){
-        if (settingsType == SettingsType.SPACING_SETTINGS){
+    public void customizeSettings(@NotNull CodeStyleSettingsCustomizable consumer, @NotNull SettingsType settingsType) {
+        if (settingsType == SettingsType.SPACING_SETTINGS) {
             consumer.showStandardOptions("SPACE_AROUND_ASSIGNMENT_OPERATORS");
             consumer.renameStandardOption("SPACE_AROUND_ASSIGNMENT_OPERATORS", "Separator");
-        } else if (settingsType == SettingsType.BLANK_LINES_SETTINGS){
+        } else if (settingsType == SettingsType.BLANK_LINES_SETTINGS) {
             consumer.showStandardOptions("KEEP_BLANK_LINES_IN_CODE");
+
         }
     }
+
     @Override
-    public String getCodeSample(@NotNull SettingsType settingsType){
+    public String getCodeSample(@NotNull SettingsType settingsType) {
         return "# You are reading the \".properties\" entry.\n" +
                 "@if (...) {} else {}\n" +
                 "! The exclamation mark can also mark text as comments.\n" +

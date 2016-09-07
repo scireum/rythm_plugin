@@ -15,22 +15,13 @@
 
 rythmFile ::= item_*
 
-private item_ ::= property|COMMENT|CRLF|RYTHM_KEY|RYTHM_I_18_N|SCRIPT|RYTHM_METHOD|HTML|tokens|LETTER
+private item_ ::= property|COMMENT|CRLF|RYTHM_KEY|RYTHM_I_18_N|RYTHM_METHOD|tokens|LETTER|TEXT|NUMBER|RYTHM_ARGS|
+SEPARATOR|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|RYTHM_INVOKE|RYTHM_ELSE|RYTHM_IF|RYTHM_FOR|
+RYTHM_PREFIX|RYTHM_KEY|TAG
 
-property ::= RYTHM_ARGS| SEPARATOR|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|RYTHM_INVOKE|RYTHM_ELSE|RYTHM_IF
-|RYTHM_FOR|RYTHM_PREFIX|RYTHM_KEY|Statements|RYTHM
+property ::= tokens
 
 COMMENT::= '@' tokens |MUL tokens+  |MUL '@'
-
-/*
-ARGS ::= '@' tokens+
-EXTENDS ::= '@' tokens+
-//IF ::= '@if' WS* '(' tokens+ ')'
-*/
-
-//HTML ::= LESS tokens tokens GREATER|LESS tokens+ GREATER|LESS tokens+ RYTHM_KEY RYTHM_METHOD tokens+ GREATER|LESS tokens+ DIGITS tokens* GREATER|
-//LESS tokens+ RYTHM_IF tokens+ GREATER
-
 
 tokens ::= RBRACE|RBRACKET|RPAREN|PLUS_PLUS|MINUS_MINUS|LBRACE|LBRACKET|LPAREN|DOUBLE_COLON|
 COLON|SEMICOLON|COMMA|MULTI_ARGS|CLASS_ATTR_END|CLASS_ATTR_START|SHIFT_LEFT|SHIFT_RIGHT
@@ -38,10 +29,7 @@ COLON|SEMICOLON|COMMA|MULTI_ARGS|CLASS_ATTR_END|CLASS_ATTR_START|SHIFT_LEFT|SHIF
 MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AND|
 PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|DOT|LETTER|DIGITS|QM|AS|HASHTAG|WS
 
-
-//Test ::= 'regexp:#(.*)[\n\r]'
-
-
+TAG ::= LESS LETTER* tokens* GREATER | LESS tokens* LETTER GREATER
 
 RBRACE               ::=  '}'
 RBRACKET             ::=  ']'
@@ -98,85 +86,3 @@ WS ::= ' '
 
 LETTER ::= 'A'|'B'|'C'|'D'|'E'|'F'|'G'|'H'|'I'|'J'|'K'|'L'|'M'|'N'|'O'|'P'|'Q'|'R'|'S'|'T'|'U'|'V'|'W'|'X'|'Y'|'Z'|'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'
 DIGITS ::= '1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'|'9'|'0'
-
-
-
-
-
-Statements ::= ExtendsStatement? ImportStatement*  StatementList
-
-ExtendsStatement ::=  RYTHM_EXTENDS
-ImportStatement  ::=  RYTHM_IMPORT
-
-StatementList    ::= ( TEXT+ | IfStatement)*
-
-fake Statement ::=
-
-FieldChain      ::= '.' IDENT FieldChain?
-FieldExpr       ::= FieldChain
-FieldChainExpr  ::= Expression FieldChain
-
-Expression ::=        OrExpr
-                    | AndExpr
-                    | ConditionalExpr
-                    | MultiplicativeExpr
-                    | AdditiveExpr
-                    | CallExpr
-                    | SliceExpr
-                    | IndexExpr
-                    | NotExpr
-                    | TernaryExpr
-                    | IssetExpr
-                    | FieldGroup
-                    | PrimaryGroup
-
-
-SliceExpr ::= Expression '[' Expression? ':' Expression? ']' {pin=1}
-IndexExpr ::= Expression '[' Expression ']' { pin=1}
-
-
-private FieldGroup ::=   FieldExpr   | FieldChainExpr
-private PrimaryGroup ::= NumberExpr  | IdentifierExpr | StringExpr | ParenthesesExpr
-
-
-IssetExpr ::= 'isset' '(' expression_list ')' { pin=1}
-TernaryExpr ::= Expression '?' (Expression) ':' Expression { pin=1 }
-CallExpr ::= Expression '(' expression_list')' {pin=2}
-
-
-private rel_op  ::= '==' | '!=' | '<' | '<=' | '>' | '>='
-private add_op  ::= '+' | '-'
-private mul_op  ::= '*' | '%' | '/'
-
-
-NotExpr         ::= '!' Expression { pin=1 }
-OrExpr          ::= Expression '||' Expression
-AndExpr         ::= Expression '&&' Expression
-ConditionalExpr ::= Expression rel_op Expression
-MultiplicativeExpr ::= Expression mul_op Expression
-AdditiveExpr    ::= Expression add_op Expression
-
-
-
-StringExpr     ::= RAW_STRING|STRING
-IdentifierExpr ::= IDENT | '.'
-NumberExpr     ::= NUMBER
-ParenthesesExpr   ::= '(' Pipeline ')' {pin=1}
-
-
-Pipeline      ::= Expression (':' expression_list)?  Pipe? {pin=1}
-Pipe          ::= '|' Expression (':' expression_list)? Pipe? {pin=1}
-
-private expression_list ::= (Expression (',' Expression)*)?
-private assign_op ::= '=' | ':='
-
-private set_declaration ::= (fieldOrID (',' fieldOrID)*)  assign_op Pipeline (',' Pipeline)*
-IfStatement       ::=  'if' (set_declaration ';')? Pipeline  StatementList (EndStatement|ElseIfStatement|ElseStatement)
-ElseIfStatement   ::=  'else' 'if' (set_declaration ';')? Pipeline  StatementList (EndStatement|ElseIfStatement|ElseStatement) { pin=3}
-ElseStatement     ::=  'else'  StatementList EndStatement
-EndStatement      ::=  'end'
-
-private fieldOrID ::= FieldChainExpr|IdentifierExpr
-
-
-

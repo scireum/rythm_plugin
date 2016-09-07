@@ -34,6 +34,8 @@
         <defaultLiveTemplatesProvider implementation="com.rythmplugin.ide.templates.RythmProvider"/>
         <liveTemplateContext implementation="com.rythmplugin.ide.templates.RythmContext"/>
 
+        <lang.braceMatcher language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.RythmBraceMatcher"/>
+
 
         <fileTypeFactory implementation="com.rythmplugin.file.RythmFileTypeFactory"/>
         <lang.parserDefinition language="RythmTemplateLanguage" implementationClass="com.rythmplugin.RythmParserDefinition"/>

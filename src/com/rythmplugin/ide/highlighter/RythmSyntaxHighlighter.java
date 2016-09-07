@@ -33,7 +33,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey RYTHM_KEY = createTextAttributesKey("RYTHM_KEY", HighlighterColors.TEXT);
     public static final TextAttributesKey SCRIPT = createTextAttributesKey("SCRIPT", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_I_18_N = createTextAttributesKey("RYTHM_I_18_N", HighlighterColors.TEXT);
-
+    public static final TextAttributesKey RYTHM_COMMENT = createTextAttributesKey("RYTHM_COMMENT", HighlighterColors.TEXT);
 
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
@@ -52,6 +52,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] RYTHM_KEY_KEYS = new TextAttributesKey[]{RYTHM_KEY};
     private static final TextAttributesKey[] SCRIPT_KEYS = new TextAttributesKey[]{SCRIPT};
     private static final TextAttributesKey[] RYTHM_I_18_N_KEYS = new TextAttributesKey[]{RYTHM_I_18_N};
+    private static final TextAttributesKey[] RYTHM_COMMENT_KEYS = new TextAttributesKey[]{RYTHM_COMMENT};
 
     @NotNull
     @Override

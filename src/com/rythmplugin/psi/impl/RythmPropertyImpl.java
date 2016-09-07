@@ -27,9 +27,9 @@ public class RythmPropertyImpl extends ASTWrapperPsiElement implements RythmProp
   }
 
   @Override
-  @Nullable
-  public RythmStatements getStatements() {
-    return findChildByClass(RythmStatements.class);
+  @NotNull
+  public RythmTokens getTokens() {
+    return findNotNullChildByClass(RythmTokens.class);
   }
 
 }
