@@ -52,16 +52,6 @@ TEXT = [^@\.\{\}\(\)\*]*
 //STR =      "\""
 TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
 
-HEX_DIGIT = [0-9A-Fa-f]
-INT_DIGIT = [0-9]
-OCT_DIGIT = [0-7]
-
-
-NUM_INT = "0" | ([1-9] {INT_DIGIT}*)
-NUM_HEX = ("0x" | "0X") {HEX_DIGIT}+
-NUM_OCT = "0" {OCT_DIGIT}+
-
-
 %state ST_ACTION
 %%
 <YYINITIAL>          {TEXT}                          {yybegin (YYINITIAL);return RythmTypes.TEXT; }
@@ -104,9 +94,6 @@ NUM_OCT = "0" {OCT_DIGIT}+
 <YYINITIAL> {RYTHM_KEY}                                           {yybegin(YYINITIAL); return RythmTypes.RYTHM_KEY;}
 
 
-  {NUM_OCT}                                {  return RythmTypes.NUMBER; }
-  {NUM_HEX}                                {  return RythmTypes.NUMBER; }
-  {NUM_INT}                                {  return RythmTypes.NUMBER; }
 }
 <YYINITIAL, ST_ACTION>{
 ({CRLF}|{WHITE_SPACE})+                                           {yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
