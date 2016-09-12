@@ -14,7 +14,9 @@ import java.util.List;
 
 /**
  * Created by mpl on 04.08.2016.
+ * Klasse wird nicht mehr benötigt.
  */
+/*
 public class RythmBlock extends AbstractBlock {
     private SpacingBuilder spacingBuilder;
 
@@ -56,3 +58,4 @@ public class RythmBlock extends AbstractBlock {
     }
 }
 
+*/
