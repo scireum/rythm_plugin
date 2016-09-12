@@ -32,7 +32,6 @@ public class RythmLanguageCodeStyleSettingsProvider extends LanguageCodeStyleSet
     @Override
     public String getCodeSample(@NotNull SettingsType settingsType) {
         return "# You are reading the \".properties\" entry.\n" +
-                "@if (...) {} else {}\n" +
                 "! The exclamation mark can also mark text as comments.\n" +
                 "website = http://en.wikipedia.org/\n" +
                 "\n" +
