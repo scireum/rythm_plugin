@@ -9,30 +9,35 @@ import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.formatter.DocumentBasedFormattingModel;
+import com.intellij.psi.formatter.FormattingDocumentModelImpl;
+import com.intellij.psi.formatter.xml.HtmlPolicy;
 import com.intellij.psi.formatter.xml.SyntheticBlock;
+import com.intellij.psi.formatter.xml.XmlBlock;
+import com.intellij.psi.formatter.xml.XmlTagBlock;
 import com.intellij.psi.templateLanguages.SimpleTemplateLanguageFormattingModelBuilder;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.xml.XmlTag;
 import com.rythmplugin.psi.RythmPsiUtil;
+import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 import static com.rythmplugin.file.RythmFileViewProvider.RYTHM_FRAGMENT;
+import static com.rythmplugin.file.RythmFileViewProvider.TEMPLATE_DATA;
 import static com.rythmplugin.psi.RythmTypes.TEXT;
 
 
 /**
  * Created by mpl on 04.08.2016.
  */
-public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModelBuilder {
-    @Override
-    public TemplateLanguageBlock createTemplateLanguageBlock(@NotNull ASTNode node,
-                                                             @Nullable Wrap wrap,
-                                                             @Nullable Alignment alignment,
-                                                             @Nullable List<DataLanguageBlockWrapper> foreignChildren,
-                                                             @NotNull CodeStyleSettings codeStyleSettings) {
 
+public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModelBuilder {
+
+
+    @Override
+    public TemplateLanguageBlock createTemplateLanguageBlock(@NotNull ASTNode node, @Nullable Wrap wrap, @Nullable Alignment alignment, @Nullable List<DataLanguageBlockWrapper> foreignChildren, @NotNull CodeStyleSettings codeStyleSettings) {
 
         return new RythmBlock(this, codeStyleSettings, node, foreignChildren);
     }
@@ -50,6 +55,7 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
         }
         return new DocumentBasedFormattingModel(rootBlock, element.getProject(), settings, file.getFileType(), file);
     }
+
 
     @Override
     public boolean dontFormatMyModel() {
@@ -87,6 +93,32 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
             return null;
         }
 
+
+        //NEU
+        @Nullable
+        @Override
+        public Spacing getSpacing(@Nullable Block child1, Block child2) {
+            if (child1 instanceof RythmBlock && child2 instanceof XmlTagBlock) {
+                return Spacing.createSpacing(4, 4, 0, true, 1);
+            }
+            if (child1 instanceof RythmBlock && child2 instanceof RythmBlock) {
+
+                RythmBlock firstBlock = (RythmBlock) child1;
+                RythmBlock secondBlock = (RythmBlock) child2;
+                // XmlBlock thirdBlock = (XmlBlock) child3;
+
+
+                if (firstBlock.getNode().getElementType() == RythmTypes.RYTHM) {
+                    return null;//Spacing.createSpacing(12, 12, 0, true, 1);
+
+                    //if(thirdBlock.getNode().getTreePrev() == firstBlock){
+                    //return Spacing.createSpacing(15,15,1,true,1);
+                }
+            }
+            return null;
+        }
+
+
         @Override
         protected IElementType getTemplateTextElementType() {
             return TEXT;
@@ -100,7 +132,9 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
         @NotNull
         @Override
         public ChildAttributes getChildAttributes(int newChildIndex) {
-            if (myNode.getElementType() == RYTHM_FRAGMENT || (getParent() instanceof DataLanguageBlockWrapper && (myNode.getElementType() != RYTHM_FRAGMENT || myNode.getTreeNext() instanceof PsiErrorElement))) {
+            if (myNode.getElementType() == RYTHM_FRAGMENT || (getParent() instanceof DataLanguageBlockWrapper
+                    && (myNode.getElementType() != RYTHM_FRAGMENT || myNode.getTreeNext()
+                    instanceof PsiErrorElement))) {
                 return new ChildAttributes(Indent.getNormalIndent(), null);
             } else {
                 return new ChildAttributes(Indent.getNoneIndent(), null);
