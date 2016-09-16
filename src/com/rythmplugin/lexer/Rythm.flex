@@ -52,6 +52,9 @@ TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
 LBRACE = \{
 RBRACE = \}
 
+LPAREN = \(
+RPAREN = \)
+
 %state ST_ACTION
 %%
 <YYINITIAL>          {TEXT}                          {yybegin (YYINITIAL);return RythmTypes.TEXT; }
@@ -61,6 +64,9 @@ RBRACE = \}
 
 <YYINITIAL>{LBRACE}                                        {yybegin(YYINITIAL); return RythmTypes.LBRACE;}
 <YYINITIAL>{RBRACE}                                        {yybegin(YYINITIAL); return RythmTypes.RBRACE;}
+
+<YYINITIAL>{LPAREN}                                        {yybegin(YYINITIAL); return RythmTypes.LPAREN;}
+<YYINITIAL>{RPAREN}                                        {yybegin(YYINITIAL); return RythmTypes.RPAREN;}
 
 <YYINITIAL> {TAG}                                                 {yybegin(YYINITIAL); return RythmTypes.TAG;}
 
