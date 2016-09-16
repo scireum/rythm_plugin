@@ -199,6 +199,10 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRythm(@NotNull RythmRythm o) {
+    visitPsiElement(o);
+  }
+
   public void visitSemicolon(@NotNull RythmSemicolon o) {
     visitPsiElement(o);
   }

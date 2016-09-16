@@ -61,7 +61,6 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "*@\n" +
                         "@invoke\n" +
                         "@section\n" +
-                        "<script src=\'/abc/def/ghi.js\' type=\'text/javascript\'></script>\n" +
                         "@render\n" +
                         "@import\n" +
                         "@extends\n" +

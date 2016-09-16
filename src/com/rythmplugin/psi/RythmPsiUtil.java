@@ -7,7 +7,6 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.TokenSet;
 import com.intellij.psi.util.PsiTreeUtil;
 
-
 /**
  * Created by mpl on 07.09.2016.
  */
@@ -27,6 +26,10 @@ public class RythmPsiUtil {
             RythmTypes.RYTHM_PREFIX,
             RythmTypes.RYTHM_RENDER,
             RythmTypes.RYTHM_SECTION
+
+    );
+    private static TokenSet TEXT = TokenSet.create(
+            RythmTypes.TEXT
     );
 
     public static PsiElement findRythmElement(PsiElement element) {
@@ -38,14 +41,11 @@ public class RythmPsiUtil {
         });
     }
 
-    public static boolean isNonRootStatementsElement(PsiElement element) {
-        PsiElement statementsParent = PsiTreeUtil.findFirstParent(element, true, new Condition<PsiElement>() {
-            @Override
-            public boolean value(PsiElement element) {
-                return element != null && element.getNode() != null && element.getNode().getElementType() == RythmTypes.RYTHM_KEY;
-            }
-        });
+   public static boolean isNonRootStatementsElement(PsiElement element) {
+       PsiElement statementsParent = PsiTreeUtil.findFirstParent(element, true, element1 -> element1 != null
+               && element1 instanceof RythmTypes);
 
-        return element.getNode().getElementType() == RythmTypes.RYTHM_KEY && statementsParent != null;
-    }
+       return element instanceof RythmTypes
+               && statementsParent != null;
+   }
 }

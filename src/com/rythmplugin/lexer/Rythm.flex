@@ -18,7 +18,6 @@ import com.intellij.psi.TokenType;
 CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
 
-//SCRIPT = <script.*?>.*?>
 
 RYTHM_ARGS = @args.*|@args
 RYTHM_SECTION = @section.*?\)|@section
@@ -48,22 +47,15 @@ RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_E
 
 TEXT = [^@\.\{\}\(\)\*]*
 
-//ESCAPES = [abfnrtv]
-//STR =      "\""
 TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
 
 %state ST_ACTION
 %%
 <YYINITIAL>          {TEXT}                          {yybegin (YYINITIAL);return RythmTypes.TEXT; }
 
-//<YYINITIAL> {SCRIPT}                                              {yybegin(YYINITIAL); return RythmTypes.SCRIPT;}
 <ST_ACTION>{
 <YYINITIAL>{RYTHM_METHOD}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
-//  "`" [^`]* "`"?                                                              { return RythmTypes.RAW_STRING; }
-//  {STR} ( [^\"\\\n\r] | "\\" ("\\" | {STR} | {ESCAPES} | [0-8xuU] ) )* {STR}? { return RythmTypes.STRING; }
 
-
-//<YYINITIAL> {RYTHM_BLOCK}                                       {yybegin(YYINITIAL); return RythmTypes.RYTHM_BLOCK;}
 
 <YYINITIAL> {TAG}                                                 {yybegin(YYINITIAL); return RythmTypes.TAG;}
 

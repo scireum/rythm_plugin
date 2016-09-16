@@ -5,6 +5,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.FileViewProviderFactory;
 import com.intellij.psi.PsiManager;
+import com.rythmplugin.RythmLanguage;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -13,7 +14,11 @@ import org.jetbrains.annotations.NotNull;
 public class RythmFileViewProviderFactory implements FileViewProviderFactory {
     @NotNull
     @Override
-    public FileViewProvider createFileViewProvider(@NotNull VirtualFile file, Language language, @NotNull PsiManager manager, boolean b) {
-        return new RythmFileViewProvider(manager, file, b);
+    public FileViewProvider createFileViewProvider(@NotNull VirtualFile virtualFile,
+                                                   Language language,
+                                                   @NotNull PsiManager psiManager,
+                                                   boolean eventSystemEnabled){
+      assert language.isKindOf(RythmLanguage.INSTANCE);
+        return new RythmFileViewProvider(psiManager, virtualFile, eventSystemEnabled, language);
     }
 }

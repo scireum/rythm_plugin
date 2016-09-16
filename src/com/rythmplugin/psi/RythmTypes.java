@@ -58,6 +58,7 @@ public interface RythmTypes {
   IElementType REMAINDER = new RythmElementType("REMAINDER");
   IElementType REMAINDER_EQ = new RythmElementType("REMAINDER_EQ");
   IElementType RPAREN = new RythmElementType("RPAREN");
+  IElementType RYTHM = new RythmElementType("RYTHM");
   IElementType SEMICOLON = new RythmElementType("SEMICOLON");
   IElementType SEND_CHANNEL = new RythmElementType("SEND_CHANNEL");
   IElementType SHIFT_LEFT = new RythmElementType("SHIFT_LEFT");
@@ -236,6 +237,9 @@ public interface RythmTypes {
       }
       else if (type == RPAREN) {
         return new RythmRparenImpl(node);
+      }
+      else if (type == RYTHM) {
+        return new RythmRythmImpl(node);
       }
       else if (type == SEMICOLON) {
         return new RythmSemicolonImpl(node);

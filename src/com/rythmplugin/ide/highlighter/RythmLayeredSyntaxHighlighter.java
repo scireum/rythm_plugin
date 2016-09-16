@@ -22,7 +22,6 @@ public class RythmLayeredSyntaxHighlighter extends LayeredLexerEditorHighlighter
     public RythmLayeredSyntaxHighlighter(Project project, EditorColorsScheme scheme, FileType ptype, VirtualFile virtualFile) {
         super(new RythmSyntaxHighlighter(), scheme);
 
-        // highlighter for outer ide
         FileType type = null;
         if (project == null || virtualFile == null) {
             type = StdFileTypes.PLAIN_TEXT;
