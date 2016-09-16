@@ -49,6 +49,9 @@ TEXT = [^@\.\{\}\(\)\*]*
 
 TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
 
+LBRACE = \{
+RBRACE = \}
+
 %state ST_ACTION
 %%
 <YYINITIAL>          {TEXT}                          {yybegin (YYINITIAL);return RythmTypes.TEXT; }
@@ -56,6 +59,8 @@ TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
 <ST_ACTION>{
 <YYINITIAL>{RYTHM_METHOD}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
 
+<YYINITIAL>{LBRACE}                                        {yybegin(YYINITIAL); return RythmTypes.LBRACE;}
+<YYINITIAL>{RBRACE}                                        {yybegin(YYINITIAL); return RythmTypes.RBRACE;}
 
 <YYINITIAL> {TAG}                                                 {yybegin(YYINITIAL); return RythmTypes.TAG;}
 
