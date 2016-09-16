@@ -29,12 +29,12 @@ RYTHM_INVOKE = @invoke.*?\)|@invoke
 RYTHM_I_18_N = @i18n\(\"[a-zA-Z]+\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)+|@i18n
 RYTHM_PREFIX = @prefix
 
-RYTHM_KEY = @[a-zA-Z]+|@[a-z]+[A-Z]+[a-z]+
+RYTHM_KEY = @[a-zA-Z]+|@[a-z]+[A-Z]+[a-z]+|@[a-z]+[A-Z]+[a-z]
 
 RYTHM_METHOD = \.[a-zA-Z]\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*\(*\)+|\.equals|\.get[a-zA-Z]+\(\)|\.get[a-zA-Z]+\(*[a-zA-Z]*\)*|\.get
 //\.[a-zA-Z]\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*\(*\)|\.equals|\.get[a-zA-Z]+\(\)|\.get[a-zA-Z]+\(*[a-zA-Z]*\)*|\.get
 
-RYTHM_BLOCK = [a-zA-Z]+\:\s*[a-zA-Z]*\.[a-zA-Z]+\(\)\,|[a-zA-Z]+\:\s*\"[a-zA-Z]+\.[a-zA-Z]+\"\,|[a-zA-Z]+:\s\"[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+\"\)*\,*|[a-zA-Z]+\:[a-zA-Z]+\.[a-zA-Z]+\([a-zA-Z]+\.[a-zA-Z]+\(\)\)\,|[a-zA-Z]+:\"[a-zA-Z]+\.[a-zA-Z]+\"\)|[a-zA-Z]+:\"[a-zA-Z]+\"*,*\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)*,*
+//RYTHM_BLOCK = [a-zA-Z]+\:\s*[a-zA-Z]*\.[a-zA-Z]+\(\)\,|[a-zA-Z]+\:\s*\"[a-zA-Z]+\.[a-zA-Z]+\"\,|[a-zA-Z]+:\s\"[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+\"\)*\,*|[a-zA-Z]+\:[a-zA-Z]+\.[a-zA-Z]+\([a-zA-Z]+\.[a-zA-Z]+\(\)\)\,|[a-zA-Z]+:\"[a-zA-Z]+\.[a-zA-Z]+\"\)|[a-zA-Z]+:\"[a-zA-Z]+\"*,*\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)*,*
 
 RYTHM_ELSE = else\s?\{
 
@@ -43,7 +43,7 @@ RYTHM_IF = @if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\)*\)*?\)*\.*[a-zA
 //@if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\).*\)*?\)*\.*[a-zA-Z]*\(*\)?\)\=*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\s*\&&*\s*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\)\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*[a-zA-Z]*\(*\)*\s*\!*\=*\s*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(?\)*\.*[a-zA-Z]*\_*[a-zA-Z]*\(*\)*\>*\<*[a-zA-Z0-9]*\)*?\)\)*\.*[a-zA-Z]*\(*\)*\)
 RYTHM_COMMENT = @\*|\*.*
 
-RYTHM_FOR = @for.*\)|@for
+RYTHM_FOR = @for \s+.*\)|@for
 RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}|{RYTHM_RENDER}|{RYTHM_INVOKE}|{RYTHM_I_18_N}|{RYTHM_PREFIX}|{RYTHM_KEY}
 
 TEXT = [^@\.\{\}\(\)\*]*
