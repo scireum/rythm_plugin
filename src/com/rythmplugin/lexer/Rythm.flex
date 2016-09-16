@@ -43,7 +43,7 @@ RYTHM_IF = @if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\)*\)*?\)*\.*[a-zA
 //@if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\).*\)*?\)*\.*[a-zA-Z]*\(*\)?\)\=*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\s*\&&*\s*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\)\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*[a-zA-Z]*\(*\)*\s*\!*\=*\s*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(?\)*\.*[a-zA-Z]*\_*[a-zA-Z]*\(*\)*\>*\<*[a-zA-Z0-9]*\)*?\)\)*\.*[a-zA-Z]*\(*\)*\)
 RYTHM_COMMENT = @\*|\*.*
 
-RYTHM_FOR = @for \s+.*\)|@for
+RYTHM_FOR = @for \s*\(+.*\)|@for
 RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}|{RYTHM_RENDER}|{RYTHM_INVOKE}|{RYTHM_I_18_N}|{RYTHM_PREFIX}|{RYTHM_KEY}
 
 TEXT = [^@\.\{\}\(\)\*]*
