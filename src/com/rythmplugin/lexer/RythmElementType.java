@@ -1,7 +1,6 @@
 package com.rythmplugin.lexer;
 
 import com.intellij.psi.tree.IElementType;
-import com.rythmplugin.RythmBundle;
 import com.rythmplugin.RythmLanguage;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
