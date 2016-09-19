@@ -1,5 +1,5 @@
  
-## Rythm Engine Detector R.E.D adds support for [Rythm](http://rythmengine.org/) templates
+# Rythm Engine Detector R.E.D adds support for [Rythm](http://rythmengine.org/) templates
   
 - Parser
 - Lexer
@@ -7,11 +7,14 @@
 - Brace matcher
 - HTML formatting
 
-Do not forget to change the file type of your .html files.
+### Installation: ![settings](https://github.com/scireum-incubator/rythm_plugin/blob/master/Screenshot3.PNG)
+
+
+#### Do not forget to change the file type of your .html files.
 ![settings](https://github.com/scireum-incubator/rythm_plugin/blob/master/Screenshot.PNG)
 
-Color settings:
+#### Color settings:
 ![color settings](https://github.com/scireum-incubator/rythm_plugin/blob/master/Screenshot2.PNG)
 
-Sample:
+#### Sample:
 ![sample](https://github.com/scireum-incubator/rythm_plugin/blob/master/Screenshot1.PNG)
