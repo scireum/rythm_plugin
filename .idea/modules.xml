@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/rythm_testplugin.iml" filepath="$PROJECT_DIR$/rythm_testplugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rythm_plugin.iml" filepath="$PROJECT_DIR$/rythm_plugin.iml" />
     </modules>
   </component>
 </project>
