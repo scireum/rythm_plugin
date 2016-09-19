@@ -18,6 +18,8 @@ import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.rythmplugin.formatter.RythmFormatUtil.hasElementType;
+
 import java.util.List;
 
 
@@ -86,6 +88,15 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
             return Indent.getNoneIndent();
         }
 
+        @NotNull
+        @Override
+        public ChildAttributes getChildAttributes(int newChildIndex) {
+            if (hasElementType(myNode, RythmTypes.LBRACE )){
+                return new ChildAttributes(Indent.getSpaceIndent(4), null);
+            }
+            return new ChildAttributes(null,null);
+        }
+
 
         @Override
         public Alignment getAlignment() {
@@ -124,7 +135,7 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
             return false;
         }
 
-
+/*
         @NotNull
         @Override
         public ChildAttributes getChildAttributes(int newChildIndex) {
@@ -139,7 +150,7 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
             }
         }
 
-
+*/
         private boolean hasOnlyRythmLanguageParents() {
             BlockWithParent parent = getParent();
             boolean hasOnlyRythmLanguageParents = true;

@@ -35,9 +35,7 @@
         <lang.parserDefinition language="RythmTemplateLanguage" implementationClass="com.rythmplugin.parser.RythmParserDefinition"/>
         <lang.formatter language="RythmTemplateLanguage" implementationClass="com.rythmplugin.formatter.RythmFormattingModelBuilder"/>
         <lang.syntaxHighlighterFactory language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.highlighter.RythmSyntaxHighlighterFactory"/>
-
         <lang.braceMatcher language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.RythmBraceMatcher"/>
-
         <langCodeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>
         <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
         <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>
