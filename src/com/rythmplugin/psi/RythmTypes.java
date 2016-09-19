@@ -71,7 +71,6 @@ public interface RythmTypes {
   IElementType NUMBER = new RythmTokenType("NUMBER");
   IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
   IElementType RYTHM_COMMENT = new RythmTokenType("RYTHM_COMMENT");
-  IElementType RYTHM_ELSE = new RythmTokenType("RYTHM_ELSE");
   IElementType RYTHM_EXTENDS = new RythmTokenType("RYTHM_EXTENDS");
   IElementType RYTHM_FOR = new RythmTokenType("RYTHM_FOR");
   IElementType RYTHM_IF = new RythmTokenType("RYTHM_IF");

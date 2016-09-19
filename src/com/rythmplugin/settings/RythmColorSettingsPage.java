@@ -21,7 +21,6 @@ import java.util.Map;
 public class RythmColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Args", RythmSyntaxHighlighter.RYTHM_ARGS),
-            new AttributesDescriptor("Else", RythmSyntaxHighlighter.RYTHM_ELSE),
             new AttributesDescriptor("Extends", RythmSyntaxHighlighter.RYTHM_EXTENDS),
             new AttributesDescriptor("For", RythmSyntaxHighlighter.RYTHM_FOR),
             new AttributesDescriptor("If", RythmSyntaxHighlighter.RYTHM_IF),
@@ -68,8 +67,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "@for\n" +
                         "@args\n" +
                         "<div class='block-element'title='@abcd.getAnotherMethod()'>@rythm.getMethod()</div>\n" +
-                        "@i18n\n" +
-                        "else {\n";
+                        "@i18n\n";
     }
 
     @Nullable

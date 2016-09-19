@@ -846,7 +846,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // RYTHM_KEY|RYTHM_I_18_N|RYTHM_METHOD|RYTHM_ARGS|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|
-  // RYTHM_INVOKE|RYTHM_ELSE|RYTHM_IF|RYTHM_FOR|RYTHM_PREFIX|RYTHM_KEY|RYTHM_COMMENT
+  // RYTHM_INVOKE|RYTHM_IF|RYTHM_FOR|RYTHM_PREFIX|RYTHM_KEY|RYTHM_COMMENT
   public static boolean RYTHM(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM")) return false;
     boolean r;
@@ -860,7 +860,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, RYTHM_IMPORT);
     if (!r) r = consumeToken(b, RYTHM_RENDER);
     if (!r) r = consumeToken(b, RYTHM_INVOKE);
-    if (!r) r = consumeToken(b, RYTHM_ELSE);
     if (!r) r = consumeToken(b, RYTHM_IF);
     if (!r) r = consumeToken(b, RYTHM_FOR);
     if (!r) r = consumeToken(b, RYTHM_PREFIX);

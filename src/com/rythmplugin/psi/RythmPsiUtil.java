@@ -15,7 +15,6 @@ public class RythmPsiUtil {
     private static TokenSet RYTHM = TokenSet.create(
             RythmTypes.RYTHM_KEY,
             RythmTypes.RYTHM_ARGS,
-            RythmTypes.RYTHM_ELSE,
             RythmTypes.RYTHM_EXTENDS,
             RythmTypes.RYTHM_FOR,
             RythmTypes.RYTHM_I_18_N,

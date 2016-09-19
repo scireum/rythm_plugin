@@ -23,7 +23,6 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey RYTHM_EXTENDS = createTextAttributesKey("RYTHM_EXTENDS", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_IMPORT = createTextAttributesKey("RYTHM_IMPORT", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_RENDER = createTextAttributesKey("RYTHM_RENDER", HighlighterColors.TEXT);
-    public static final TextAttributesKey RYTHM_ELSE = createTextAttributesKey("RYTHM_ELSE", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_IF = createTextAttributesKey("RYTHM_IF", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_FOR = createTextAttributesKey("RYTHM_FOR", HighlighterColors.TEXT);
     public static final TextAttributesKey RYTHM_PREFIX = createTextAttributesKey("RYTHM_PREFIX", HighlighterColors.TEXT);
@@ -43,15 +42,12 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] RYTHM_EXTENDS_KEYS = new TextAttributesKey[]{RYTHM_EXTENDS};
     private static final TextAttributesKey[] RYTHM_IMPORT_KEYS = new TextAttributesKey[]{RYTHM_IMPORT};
     private static final TextAttributesKey[] RYTHM_RENDER_KEYS = new TextAttributesKey[]{RYTHM_RENDER};
-    private static final TextAttributesKey[] RYTHM_ELSE_KEYS = new TextAttributesKey[]{RYTHM_ELSE};
     private static final TextAttributesKey[] RYTHM_IF_KEYS = new TextAttributesKey[]{RYTHM_IF};
     private static final TextAttributesKey[] RYTHM_FOR_KEYS = new TextAttributesKey[]{RYTHM_FOR};
     private static final TextAttributesKey[] RYTHM_PREFIX_KEYS = new TextAttributesKey[]{RYTHM_PREFIX};
     private static final TextAttributesKey[] RYTHM_INVOKE_KEYS = new TextAttributesKey[]{RYTHM_INVOKE};
     private static final TextAttributesKey[] RYTHM_METHOD_KEYS = new TextAttributesKey[]{RYTHM_METHOD};
-    private static final TextAttributesKey[] RYTHM_BLOCK_KEYS = new TextAttributesKey[]{RYTHM_BLOCK};
     private static final TextAttributesKey[] RYTHM_KEY_KEYS = new TextAttributesKey[]{RYTHM_KEY};
-    private static final TextAttributesKey[] SCRIPT_KEYS = new TextAttributesKey[]{SCRIPT};
     private static final TextAttributesKey[] RYTHM_I_18_N_KEYS = new TextAttributesKey[]{RYTHM_I_18_N};
     private static final TextAttributesKey[] RYTHM_COMMENT_KEYS = new TextAttributesKey[]{RYTHM_COMMENT};
 
@@ -78,8 +74,6 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_INVOKE_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_RENDER)) {
             return RYTHM_RENDER_KEYS;
-        } else if (tokenType.equals(RythmTypes.RYTHM_ELSE)) {
-            return RYTHM_ELSE_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_IF)) {
             return RYTHM_IF_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_FOR)) {
