@@ -58,16 +58,16 @@ RPAREN = \)
 
 %state ST_ACTION
 %%
-<YYINITIAL>          {TEXT}                          {yybegin (YYINITIAL);return RythmTypes.TEXT; }
+<YYINITIAL>          {TEXT}                                       {yybegin (YYINITIAL);return RythmTypes.TEXT; }
 
 <ST_ACTION>{
-<YYINITIAL>{RYTHM_METHOD}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
+<YYINITIAL>{RYTHM_METHOD}                                         {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
 
-<YYINITIAL>{LBRACE}                                        {yybegin(YYINITIAL); return RythmTypes.LBRACE;}
-<YYINITIAL>{RBRACE}                                        {yybegin(YYINITIAL); return RythmTypes.RBRACE;}
+<YYINITIAL>{LBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.LBRACE;}
+<YYINITIAL>{RBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.RBRACE;}
 
-<YYINITIAL>{LPAREN}                                        {yybegin(YYINITIAL); return RythmTypes.LPAREN;}
-<YYINITIAL>{RPAREN}                                        {yybegin(YYINITIAL); return RythmTypes.RPAREN;}
+<YYINITIAL>{LPAREN}                                               {yybegin(YYINITIAL); return RythmTypes.LPAREN;}
+<YYINITIAL>{RPAREN}                                               {yybegin(YYINITIAL); return RythmTypes.RPAREN;}
 
 <YYINITIAL> {TAG}                                                 {yybegin(YYINITIAL); return RythmTypes.TAG;}
 
@@ -83,11 +83,11 @@ RPAREN = \)
 
 <YYINITIAL> {RYTHM_INVOKE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_INVOKE;}
 
-<YYINITIAL>{RYTHM_ELSE}                                          {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
+<YYINITIAL>{RYTHM_ELSE}                                           {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
 
-<YYINITIAL>{RYTHM_IF}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
+<YYINITIAL>{RYTHM_IF}                                             {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
 
-<YYINITIAL>{RYTHM_FOR}                                           {yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;}
+<YYINITIAL>{RYTHM_FOR}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;}
 
 <YYINITIAL> {RYTHM_I_18_N}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_I_18_N;}
 

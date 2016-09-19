@@ -24,6 +24,11 @@ public class RythmLanguage extends Language implements TemplateLanguage {
         return StdFileTypes.HTML;
     }
 
+    //Test for Java implementation
+    /* public static LanguageFileType getLanguage() {
+        return StdFileTypes.JAVA;
+    }
+    */
     @NotNull
     @Override
     public String getDisplayName() {

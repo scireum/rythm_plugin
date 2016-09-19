@@ -28,6 +28,9 @@ public class RythmPsiUtil {
             RythmTypes.RYTHM_SECTION
 
     );
+    private static TokenSet BRACES = TokenSet.create(RythmTypes.LBRACE,
+            RythmTypes.RBRACE);
+
     private static TokenSet TEXT = TokenSet.create(
             RythmTypes.TEXT
     );

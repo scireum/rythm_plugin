@@ -23,16 +23,33 @@ public class RythmLayeredSyntaxHighlighter extends LayeredLexerEditorHighlighter
         super(new RythmSyntaxHighlighter(), scheme);
 
         FileType type = null;
+
+        //Test for Java implementation
+        FileType type1 = null;
+
         if (project == null || virtualFile == null) {
             type = StdFileTypes.PLAIN_TEXT;
         } else {
             Language language = TemplateDataLanguageMappings.getInstance(project).getMapping(virtualFile);
             if (language != null) type = language.getAssociatedFileType();
-            if (type == null) type = RythmLanguage.getDefaultTemplateLang();
+            if (type == null) {
+                type = RythmLanguage.getDefaultTemplateLang();
+
+                //Test for Java implementation
+                //type1 = RythmLanguage.getLanguage();
+            }
+
         }
 
         SyntaxHighlighter outerHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(type, project, virtualFile);
         registerLayer(TEXT, new LayerDescriptor(outerHighlighter, ""));
+
+
+        //Test for Java implementation
+       /* SyntaxHighlighter middleHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(type1, project, virtualFile);
+        registerLayer(TEXT, new LayerDescriptor(middleHighlighter, ""));
+       */
+
     }
 
 }

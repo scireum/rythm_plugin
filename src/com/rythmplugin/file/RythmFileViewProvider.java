@@ -3,8 +3,6 @@ package com.rythmplugin.file;
 import com.intellij.lang.Language;
 import com.intellij.lang.LanguageParserDefinitions;
 import com.intellij.lang.ParserDefinition;
-import com.intellij.openapi.fileTypes.PlainTextLanguage;
-import com.intellij.openapi.fileTypes.StdFileTypes;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.LanguageSubstitutors;
 import com.intellij.psi.MultiplePsiFilesPerDocumentFileViewProvider;
@@ -12,13 +10,10 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.impl.source.PsiFileImpl;
 import com.intellij.psi.templateLanguages.*;
-import com.intellij.psi.tree.IElementType;
 import com.intellij.util.containers.ContainerUtil;
 import com.rythmplugin.RythmLanguage;
-import com.rythmplugin.psi.RythmTypes;
 import gnu.trove.THashSet;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -68,6 +63,12 @@ public class RythmFileViewProvider extends MultiplePsiFilesPerDocumentFileViewPr
         }
         Language substituteLang = LanguageSubstitutors.INSTANCE.substituteLanguage(dataLang, file, manager.getProject());
 
+        //Test for Java implementation
+    /* if (dataLang == null) {
+            dataLang = RythmLanguage.getLanguage().getLanguage();
+        }
+        Language substituteLang = LanguageSubstitutors.INSTANCE.substituteLanguage(dataLang, file, manager.getProject());
+    */
 
         if (TemplateDataLanguageMappings.getTemplateableLanguages().contains(substituteLang)) {
             dataLang = substituteLang;
