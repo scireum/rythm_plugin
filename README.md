@@ -1,5 +1,5 @@
  
-# **Rythm Engine Detector R.E.D adds support for [Rythm](http://rythmengine.org/) templates**
+## **Rythm Engine Detector R.E.D adds support for [Rythm](http://rythmengine.org/) templates**
 ***
 
 - **Parser**
