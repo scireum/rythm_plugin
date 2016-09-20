@@ -22,5 +22,3 @@
 
 #### Sample:
 ![sample](https://github.com/scireum-incubator/rythm_plugin/blob/master/resources/screenshots/Screenshot1.PNG)
-
-
