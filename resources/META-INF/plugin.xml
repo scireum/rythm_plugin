@@ -3,11 +3,11 @@
     <name>Rythm Engine Detector - R.E.D</name>
     <version>1.0</version>
     <vendor email="support@scireum.net" url="http://www.scireum.de">scireum GmbH</vendor>
-
     <description><![CDATA[
-      Rythm Engine Detector - R.E.D
 
-      Plugin for Rythm template engine support
+    --  Plugin for Rythm template engine support --
+
+   https://github.com/scireum-incubator/rythm_plugin
 
 
     ]]></description>
@@ -29,17 +29,25 @@
 
         <!-- Add your extensions here -->
         <lang.substitutor language="HTML" implementationClass="com.rythmplugin.ide.RythmSubstitutor"/>
-        <lang.fileViewProviderFactory language="RythmTemplateLanguage" implementationClass="com.rythmplugin.file.RythmFileViewProviderFactory"/>
-        <editorHighlighterProvider filetype="Rythm" implementationClass="com.rythmplugin.ide.highlighter.RythmEditorHighlighterFactory"/>
+        <lang.fileViewProviderFactory language="RythmTemplateLanguage"
+                                      implementationClass="com.rythmplugin.file.RythmFileViewProviderFactory"/>
+        <editorHighlighterProvider filetype="Rythm"
+                                   implementationClass="com.rythmplugin.ide.highlighter.RythmEditorHighlighterFactory"/>
         <fileTypeFactory implementation="com.rythmplugin.file.RythmFileTypeFactory"/>
-        <lang.parserDefinition language="RythmTemplateLanguage" implementationClass="com.rythmplugin.parser.RythmParserDefinition"/>
-        <lang.formatter language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.formatter.RythmFormattingModelBuilder"/>
-        <lang.syntaxHighlighterFactory language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.highlighter.RythmSyntaxHighlighterFactory"/>
-        <lang.braceMatcher language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.RythmBraceMatcher"/>
-        <langCodeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>
+        <lang.parserDefinition language="RythmTemplateLanguage"
+                               implementationClass="com.rythmplugin.parser.RythmParserDefinition"/>
+        <lang.formatter language="RythmTemplateLanguage"
+                        implementationClass="com.rythmplugin.ide.formatter.RythmFormattingModelBuilder"/>
+        <lang.syntaxHighlighterFactory language="RythmTemplateLanguage"
+                                       implementationClass="com.rythmplugin.ide.highlighter.RythmSyntaxHighlighterFactory"/>
+        <lang.braceMatcher language="RythmTemplateLanguage"
+                           implementationClass="com.rythmplugin.ide.RythmBraceMatcher"/>
+        <langCodeStyleSettingsProvider
+                implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>
         <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
         <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>
-        <completion.contributor language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.completion.RythmCompletionContributor"/>
+        <completion.contributor language="RythmTemplateLanguage"
+                                implementationClass="com.rythmplugin.ide.completion.RythmCompletionContributor"/>
     </extensions>
 
     <actions>
