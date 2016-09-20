@@ -1,11 +1,10 @@
-package com.rythmplugin.formatter;
+package com.rythmplugin.ide.formatter;
 
 import com.intellij.formatting.*;
 import com.intellij.formatting.templateLanguages.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.formatter.DocumentBasedFormattingModel;
@@ -18,7 +17,7 @@ import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static com.rythmplugin.formatter.RythmFormatUtil.hasElementType;
+import static com.rythmplugin.ide.formatter.RythmFormatUtil.hasElementType;
 
 import java.util.List;
 

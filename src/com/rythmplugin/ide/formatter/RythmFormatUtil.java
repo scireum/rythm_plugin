@@ -1,4 +1,4 @@
-package com.rythmplugin.formatter;
+package com.rythmplugin.ide.formatter;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.tree.IElementType;

@@ -33,7 +33,7 @@
         <editorHighlighterProvider filetype="Rythm" implementationClass="com.rythmplugin.ide.highlighter.RythmEditorHighlighterFactory"/>
         <fileTypeFactory implementation="com.rythmplugin.file.RythmFileTypeFactory"/>
         <lang.parserDefinition language="RythmTemplateLanguage" implementationClass="com.rythmplugin.parser.RythmParserDefinition"/>
-        <lang.formatter language="RythmTemplateLanguage" implementationClass="com.rythmplugin.formatter.RythmFormattingModelBuilder"/>
+        <lang.formatter language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.formatter.RythmFormattingModelBuilder"/>
         <lang.syntaxHighlighterFactory language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.highlighter.RythmSyntaxHighlighterFactory"/>
         <lang.braceMatcher language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.RythmBraceMatcher"/>
         <langCodeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>
