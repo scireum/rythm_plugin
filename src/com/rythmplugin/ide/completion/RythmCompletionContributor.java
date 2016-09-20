@@ -22,8 +22,8 @@ public class RythmCompletionContributor extends CompletionContributor {
                                                   @NotNull CompletionResultSet resultSet)
 
                     {
-                        resultSet.addElement(LookupElementBuilder.create("if ("));
-                        resultSet.addElement(LookupElementBuilder.create("for ("));
+                        resultSet.addElement(LookupElementBuilder.create("if"));
+                        resultSet.addElement(LookupElementBuilder.create("for"));
                         resultSet.addElement(LookupElementBuilder.create("prefix"));
                         resultSet.addElement(LookupElementBuilder.create("args"));
                         resultSet.addElement(LookupElementBuilder.create("section"));
@@ -53,7 +53,7 @@ public class RythmCompletionContributor extends CompletionContributor {
                         resultSet.addElement(LookupElementBuilder.create("renderBody"));
                         resultSet.addElement(LookupElementBuilder.create("renderInherited"));
                         resultSet.addElement(LookupElementBuilder.create("return"));
-                        resultSet.addElement(LookupElementBuilder.create("returnIf("));
+                        resultSet.addElement(LookupElementBuilder.create("returnIf"));
                         resultSet.addElement(LookupElementBuilder.create("ts"));
                         resultSet.addElement(LookupElementBuilder.create("verbatim"));
 
