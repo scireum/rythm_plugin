@@ -39,7 +39,7 @@
         <langCodeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>
         <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
         <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>
-
+        <completion.contributor language="RythmTemplateLanguage" implementationClass="com.rythmplugin.ide.completion.RythmCompletionContributor"/>
     </extensions>
 
     <actions>
