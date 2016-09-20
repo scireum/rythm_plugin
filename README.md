@@ -5,6 +5,7 @@
 - Lexer
 - Syntax highlighter
 - Brace matcher
+- Code completion for some rythm keywords
 - HTML formatting
 
 ### Installation: ![settings](https://github.com/scireum-incubator/rythm_plugin/blob/master/resources/screenshots/Screenshot3.PNG)
