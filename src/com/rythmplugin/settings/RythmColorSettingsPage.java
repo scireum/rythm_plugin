@@ -29,10 +29,12 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Prefix", RythmSyntaxHighlighter.RYTHM_PREFIX),
             new AttributesDescriptor("Render", RythmSyntaxHighlighter.RYTHM_RENDER),
             new AttributesDescriptor("Section", RythmSyntaxHighlighter.RYTHM_SECTION),
+            new AttributesDescriptor("Section Param", RythmSyntaxHighlighter.RYTHM_SECTION_PARAM),
             // new AttributesDescriptor("Method", RythmSyntaxHighlighter.RYTHM_METHOD),
             new AttributesDescriptor("Key", RythmSyntaxHighlighter.RYTHM_KEY),
             new AttributesDescriptor("i18n", RythmSyntaxHighlighter.RYTHM_I_18_N),
             new AttributesDescriptor("Comment", RythmSyntaxHighlighter.RYTHM_COMMENT),
+
     };
 
     @Nullable
@@ -59,7 +61,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "*demo\n" +
                         "*@\n" +
                         "@invoke\n" +
-                        "@section\n" +
+                        "@section(param)\n" +
                         "@render\n" +
                         "@import\n" +
                         "@extends\n" +
