@@ -1,4 +1,4 @@
-package com.rythmplugin.psi;
+package com.rythmplugin.parser;
 
 import com.intellij.psi.tree.IElementType;
 import com.rythmplugin.RythmLanguage;

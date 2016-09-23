@@ -1,4 +1,4 @@
-package com.rythmplugin.psi;
+package com.rythmplugin.file;
 
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.psi.FileViewProvider;
