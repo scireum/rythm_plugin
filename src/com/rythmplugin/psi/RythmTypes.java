@@ -5,6 +5,7 @@ import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.PsiElement;
 import com.intellij.lang.ASTNode;
 import com.rythmplugin.lexer.RythmElementType;
+import com.rythmplugin.parser.RythmTokenType;
 import com.rythmplugin.psi.impl.*;
 
 public interface RythmTypes {

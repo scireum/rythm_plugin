@@ -5,7 +5,7 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.patterns.PlatformPatterns;
 import com.intellij.patterns.StandardPatterns;
 import com.intellij.util.ProcessingContext;
-import com.rythmplugin.psi.RythmFile;
+import com.rythmplugin.file.RythmFile;
 import org.jetbrains.annotations.NotNull;
 
 /**

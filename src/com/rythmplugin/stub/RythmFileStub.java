@@ -1,7 +1,7 @@
 package com.rythmplugin.stub;
 
 import com.intellij.psi.stubs.PsiFileStubImpl;
-import com.rythmplugin.psi.RythmFile;
+import com.rythmplugin.file.RythmFile;
 
 /**
  * Created by mpl on 06.09.2016.

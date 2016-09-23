@@ -12,7 +12,7 @@ import com.intellij.psi.formatter.xml.SyntheticBlock;
 import com.intellij.psi.formatter.xml.XmlTagBlock;
 import com.intellij.psi.templateLanguages.SimpleTemplateLanguageFormattingModelBuilder;
 import com.intellij.psi.tree.IElementType;
-import com.rythmplugin.psi.RythmPsiUtil;
+import com.rythmplugin.parser.RythmPsiUtil;
 import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

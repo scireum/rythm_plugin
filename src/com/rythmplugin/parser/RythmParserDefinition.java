@@ -13,8 +13,7 @@ import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
 import com.rythmplugin.file.RythmFileElementType;
 import com.rythmplugin.lexer.RythmLexerAdapter;
-import com.rythmplugin.parser.RythmParser;
-import com.rythmplugin.psi.RythmFile;
+import com.rythmplugin.file.RythmFile;
 import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 

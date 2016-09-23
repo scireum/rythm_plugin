@@ -10,7 +10,7 @@
 
   elementTypeHolderClass="com.rythmplugin.psi.RythmTypes"
   elementTypeClass="com.rythmplugin.lexer.RythmElementType"
-  tokenTypeClass="com.rythmplugin.psi.RythmTokenType"
+  tokenTypeClass="com.rythmplugin.parser.RythmTokenType"
 }
 
 rythmFile ::= item_*
