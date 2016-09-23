@@ -48,6 +48,7 @@
         <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>
         <completion.contributor language="RythmTemplateLanguage"
                                 implementationClass="com.rythmplugin.ide.completion.RythmCompletionContributor"/>
+        <psi.referenceContributor implementation="com.rythmplugin.ide.reference.RythmReferenceContributor"/>
     </extensions>
 
     <actions>
