@@ -1,4 +1,4 @@
-package com.rythmplugin.settings;
+package com.rythmplugin.ide.settings;
 
 import com.intellij.lang.Language;
 import com.intellij.psi.codeStyle.CodeStyleSettingsCustomizable;

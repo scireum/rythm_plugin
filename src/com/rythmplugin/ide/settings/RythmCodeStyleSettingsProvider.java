@@ -1,4 +1,4 @@
-package com.rythmplugin.settings;
+package com.rythmplugin.ide.settings;
 
 import com.intellij.application.options.CodeStyleAbstractConfigurable;
 import com.intellij.application.options.CodeStyleAbstractPanel;
