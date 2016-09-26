@@ -52,10 +52,10 @@ public class RythmReference extends PsiReferenceBase<PsiElement> implements PsiP
         List<RythmRythm> rythms = RythmUtil.findRythms(project);
         List<LookupElement> variants = new ArrayList<LookupElement>();
         for (final RythmRythm rythm : rythms) {
-            if (rythm.getKey() != null && rythm.getKey().length() > 0) {
+          //  if (rythm.getKey() != null && rythm.getKey().length() > 0) {
                 variants.add(LookupElementBuilder.create(rythm).withIcon(RythmIcons.FILE).withTypeText(rythm.getContainingFile().getName()));
             }
-        }
+       // }
         return variants.toArray();
     }
 
