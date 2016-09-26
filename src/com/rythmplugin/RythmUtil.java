@@ -31,7 +31,7 @@ public class RythmUtil {
                 RythmRythm[] rythms = PsiTreeUtil.getChildrenOfType(rythmFile, RythmRythm.class);
                 if (rythms != null) {
                     for (RythmRythm rythm : rythms) {
-                        if (key.equals(rythm.getKey())) {
+                       // if (key.equals(rythm.getKey())) {
                             if (result == null) {
                                 result = new ArrayList<RythmRythm>();
                             }
@@ -40,7 +40,7 @@ public class RythmUtil {
                     }
                 }
             }
-        }
+       // }
         return result != null ? result : Collections.<RythmRythm>emptyList();
     }
 
