@@ -936,7 +936,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // property|COMMENT|CRLF|tokens|LETTER|TEXT|NUMBER|
-  // SEPARATOR|TAG|WS|RYTHM
+  // SEPARATOR|TAG|WS|RYTHM|PARAM
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
@@ -952,6 +952,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, TAG);
     if (!r) r = WS(b, l + 1);
     if (!r) r = RYTHM(b, l + 1);
+    if (!r) r = consumeToken(b, PARAM);
     exit_section_(b, m, null, r);
     return r;
   }

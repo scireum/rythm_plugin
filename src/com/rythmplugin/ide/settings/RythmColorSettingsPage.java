@@ -34,6 +34,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Key", RythmSyntaxHighlighter.RYTHM_KEY),
             new AttributesDescriptor("i18n", RythmSyntaxHighlighter.RYTHM_I_18_N),
             new AttributesDescriptor("Comment", RythmSyntaxHighlighter.RYTHM_COMMENT),
+            new AttributesDescriptor("Param", RythmSyntaxHighlighter.RYTHM_PARAM),
 
     };
 
