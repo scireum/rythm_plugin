@@ -203,6 +203,10 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRythmIf(@NotNull RythmRythmIf o) {
+    visitPsiElement(o);
+  }
+
   public void visitSemicolon(@NotNull RythmSemicolon o) {
     visitPsiElement(o);
   }
