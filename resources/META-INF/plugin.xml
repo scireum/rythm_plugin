@@ -43,9 +43,9 @@
         <lang.braceMatcher language="RythmTemplateLanguage"
                            implementationClass="com.rythmplugin.ide.RythmBraceMatcher"/>
         <langCodeStyleSettingsProvider
-                implementation="com.rythmplugin.settings.RythmLanguageCodeStyleSettingsProvider"/>
-        <colorSettingsPage implementation="com.rythmplugin.settings.RythmColorSettingsPage"/>
-        <codeStyleSettingsProvider implementation="com.rythmplugin.settings.RythmCodeStyleSettingsProvider"/>
+                implementation="com.rythmplugin.ide.settings.RythmLanguageCodeStyleSettingsProvider"/>
+        <colorSettingsPage implementation="com.rythmplugin.ide.settings.RythmColorSettingsPage"/>
+        <codeStyleSettingsProvider implementation="com.rythmplugin.ide.settings.RythmCodeStyleSettingsProvider"/>
         <completion.contributor language="RythmTemplateLanguage"
                                 implementationClass="com.rythmplugin.ide.completion.RythmCompletionContributor"/>
         <psi.referenceContributor implementation="com.rythmplugin.ide.reference.RythmReferenceContributor"/>

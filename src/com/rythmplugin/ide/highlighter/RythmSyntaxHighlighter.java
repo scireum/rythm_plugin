@@ -1,5 +1,6 @@
 package com.rythmplugin.ide.highlighter;
 
+import com.intellij.ide.highlighter.JavaHighlightingColors;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;
@@ -19,21 +20,20 @@ import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAtt
 public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
 
 
-    public static final TextAttributesKey RYTHM_ARGS = createTextAttributesKey("RYTHM_ARGS", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_SECTION = createTextAttributesKey("RYTHM_SECTION", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_EXTENDS = createTextAttributesKey("RYTHM_EXTENDS", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_IMPORT = createTextAttributesKey("RYTHM_IMPORT", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_RENDER = createTextAttributesKey("RYTHM_RENDER", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_IF = createTextAttributesKey("RYTHM_IF", DefaultLanguageHighlighterColors.METADATA);
-    public static final TextAttributesKey RYTHM_FOR = createTextAttributesKey("RYTHM_FOR", DefaultLanguageHighlighterColors.METADATA);
-    public static final TextAttributesKey RYTHM_PREFIX = createTextAttributesKey("RYTHM_PREFIX", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_INVOKE = createTextAttributesKey("RYTHM_INVOKE", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_ARGS = createTextAttributesKey("RYTHM_ARGS", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_SECTION = createTextAttributesKey("RYTHM_SECTION", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_EXTENDS = createTextAttributesKey("RYTHM_EXTENDS", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_IMPORT = createTextAttributesKey("RYTHM_IMPORT", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_RENDER = createTextAttributesKey("RYTHM_RENDER", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_IF = createTextAttributesKey("RYTHM_IF", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_FOR = createTextAttributesKey("RYTHM_FOR", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_PREFIX = createTextAttributesKey("RYTHM_PREFIX", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_INVOKE = createTextAttributesKey("RYTHM_INVOKE", JavaHighlightingColors.KEYWORD);
     //public static final TextAttributesKey RYTHM_METHOD = createTextAttributesKey("RYTHM_METHOD", HighlighterColors.TEXT);
-    public static final TextAttributesKey RYTHM_KEY = createTextAttributesKey("RYTHM_KEY", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_I_18_N = createTextAttributesKey("RYTHM_I_18_N", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_COMMENT = createTextAttributesKey("RYTHM_COMMENT", HighlighterColors.TEXT);
+    public static final TextAttributesKey RYTHM_KEY = createTextAttributesKey("RYTHM_KEY", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_I_18_N = createTextAttributesKey("RYTHM_I_18_N", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_COMMENT = createTextAttributesKey("RYTHM_COMMENT", JavaHighlightingColors.JAVA_BLOCK_COMMENT);
     //public static final TextAttributesKey RYTHM_SECTION_PARAM = createTextAttributesKey("RYTHM_SECTION_PARAM", DefaultLanguageHighlighterColors.KEYWORD);
-
 
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
     private static final TextAttributesKey[] RYTHM_ARGS_KEYS = new TextAttributesKey[]{RYTHM_ARGS};
