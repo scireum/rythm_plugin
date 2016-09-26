@@ -20,11 +20,11 @@ WHITE_SPACE=[\ \t\f]
 
 
 RYTHM_ARGS = @args.*|@args
-RYTHM_SECTION = @section.*?\)|@section
-RYTHM_EXTENDS = @extends.*\)|@extends
+RYTHM_SECTION = @section
+RYTHM_EXTENDS = @extends
 RYTHM_IMPORT = @import.*|@import
-RYTHM_RENDER = @render.*?\)|@render
-RYTHM_INVOKE = @invoke.*?\)|@invoke
+RYTHM_RENDER = @render
+RYTHM_INVOKE = @invoke
 RYTHM_I_18_N = @i18n
 //@i18n\(\"[a-zA-Z]+\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)+|@i18n
 RYTHM_PREFIX = @prefix
