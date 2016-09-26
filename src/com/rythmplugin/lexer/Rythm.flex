@@ -19,10 +19,10 @@ CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
 
 
-RYTHM_ARGS = @args.*|@args
+RYTHM_ARGS = @args
 RYTHM_SECTION = @section
 RYTHM_EXTENDS = @extends
-RYTHM_IMPORT = @import.*|@import
+RYTHM_IMPORT = @import
 RYTHM_RENDER = @render
 RYTHM_INVOKE = @invoke
 RYTHM_I_18_N = @i18n
