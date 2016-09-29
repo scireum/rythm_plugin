@@ -49,6 +49,10 @@
         <completion.contributor language="RythmTemplateLanguage"
                                 implementationClass="com.rythmplugin.ide.completion.RythmCompletionContributor"/>
         <psi.referenceContributor implementation="com.rythmplugin.ide.reference.RythmReferenceContributor"/>
+
+        <languageInjector implementation="com.rythmplugin.injector.RythmLanguageInjector"/>
+
+
     </extensions>
 
     <actions>

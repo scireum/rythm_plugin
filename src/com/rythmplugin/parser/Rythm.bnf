@@ -34,6 +34,12 @@ MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AN
 PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|DOT|LETTER|DIGITS|QM|AS|HASHTAG|
 
 
+java_code               ::= '{:' JAVA* ':}' {implements= "com.intellij.psi.PsiLanguageInjectionHost"
+                                             mixin = "com.rythmplugin.psi.impl.RythmJavaImpl"}
+
+
+
+
 //RYTHM_IF ::= ('@if' WS* LPAREN+ (LETTER+ tokens* LETTER+)* tokens* RPAREN+)
 
 RBRACE               ::=  '}'

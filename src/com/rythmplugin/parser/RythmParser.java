@@ -188,6 +188,9 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == WS) {
       r = WS(b, 0);
     }
+    else if (t == JAVA_CODE) {
+      r = java_code(b, 0);
+    }
     else if (t == PROPERTY) {
       r = property(b, 0);
     }
@@ -958,6 +961,31 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // '{:' JAVA* ':}'
+  public static boolean java_code(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_code")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, JAVA_CODE, "<java code>");
+    r = consumeToken(b, "{:");
+    r = r && java_code_1(b, l + 1);
+    r = r && consumeToken(b, ":}");
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // JAVA*
+  private static boolean java_code_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_code_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, JAVA)) break;
+      if (!empty_element_parsed_guard_(b, "java_code_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
   // tokens
   public static boolean property(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property")) return false;
@@ -987,7 +1015,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
   // |UNSIGNED_SHIFT_RIGHT|CMP|EQ_EQ|NOT_EQ|LESS_OR_EQ|GREATER_OR_EQ|SEND_CHANNEL|PLUS_EQ|
   // MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AND|
   // PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|DOT|LETTER|DIGITS|QM|AS|HASHTAG|
-  // //RYTHM_IF ::= ('@if' WS* LPAREN+ (LETTER+ tokens* LETTER+)* tokens* RPAREN+)
   public static boolean tokens(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "tokens")) return false;
     boolean r;

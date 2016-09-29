@@ -4,6 +4,7 @@ package com.rythmplugin.psi;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiLanguageInjectionHost;
 
 public class RythmVisitor extends PsiElementVisitor {
 
@@ -227,12 +228,20 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitJavaCode(@NotNull RythmJavaCode o) {
+    visitPsiLanguageInjectionHost(o);
+  }
+
   public void visitProperty(@NotNull RythmProperty o) {
     visitPsiElement(o);
   }
 
   public void visitTokens(@NotNull RythmTokens o) {
     visitPsiElement(o);
+  }
+
+  public void visitPsiLanguageInjectionHost(@NotNull PsiLanguageInjectionHost o) {
+    visitElement(o);
   }
 
   public void visitPsiElement(@NotNull PsiElement o) {
