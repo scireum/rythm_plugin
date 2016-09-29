@@ -53,7 +53,7 @@ RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_E
 
 TEXT = [^@\*]+
 
-TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
+//TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
 
 LBRACE = \{
 RBRACE = \}
@@ -75,7 +75,7 @@ RPAREN = \)
 <YYINITIAL>{LPAREN}                                               {yybegin(YYINITIAL); return RythmTypes.LPAREN;}
 <YYINITIAL>{RPAREN}                                               {yybegin(YYINITIAL); return RythmTypes.RPAREN;}
 
-<YYINITIAL> {TAG}                                                 {yybegin(YYINITIAL); return RythmTypes.TAG;}
+//<YYINITIAL> {TAG}                                                 {yybegin(YYINITIAL); return RythmTypes.TAG;}
 
 <YYINITIAL> {RYTHM_ARGS}                                          {yybegin(YYINITIAL); return RythmTypes.RYTHM_ARGS;}
 
