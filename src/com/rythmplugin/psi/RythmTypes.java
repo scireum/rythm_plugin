@@ -33,7 +33,6 @@ public interface RythmTypes {
   IElementType GREATER = new RythmElementType("GREATER");
   IElementType GREATER_OR_EQ = new RythmElementType("GREATER_OR_EQ");
   IElementType HASHTAG = new RythmElementType("HASHTAG");
-  IElementType JAVA_CODE = new RythmElementType("JAVA_CODE");
   IElementType LBRACE = new RythmElementType("LBRACE");
   IElementType LBRACKET = new RythmElementType("LBRACKET");
   IElementType LESS = new RythmElementType("LESS");
@@ -70,7 +69,6 @@ public interface RythmTypes {
   IElementType WS = new RythmElementType("WS");
 
   IElementType CRLF = new RythmTokenType("CRLF");
-  IElementType JAVA = new RythmTokenType("JAVA");
   IElementType NUMBER = new RythmTokenType("NUMBER");
   IElementType PARAM = new RythmTokenType("PARAM");
   IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
@@ -162,9 +160,6 @@ public interface RythmTypes {
       }
       else if (type == HASHTAG) {
         return new RythmHashtagImpl(node);
-      }
-      else if (type == JAVA_CODE) {
-        return new RythmJavaCodeImpl(node);
       }
       else if (type == LBRACE) {
         return new RythmLbraceImpl(node);

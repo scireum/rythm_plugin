@@ -14,6 +14,7 @@ import com.intellij.util.IncorrectOperationException;
 import com.intellij.xml.XmlElementDescriptor;
 import com.rythmplugin.file.RythmFileTypeFactory;
 import com.rythmplugin.parser.RythmPsiUtil;
+import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,13 +29,18 @@ public class RythmJavReferenceContributor extends PsiReferenceContributor {
 
     @Override
     public void registerReferenceProviders(@NotNull PsiReferenceRegistrar registrar) {
-        final XmlAttributeValuePattern attributeValuePattern = XmlPatterns.xmlAttributeValue().inVirtualFile(
-                virtualFile().withExtension(RythmFileTypeFactory.RYTHM_EXTENSION));
-        registrar.registerReferenceProvider(XmlPatterns.xmlAttributeValue().withParent(XmlPatterns.xmlAttribute().withName(RythmConstants.FX_CONTROLLER))
-                .and(attributeValuePattern), CLASS_REFERENCE_PROVIDER);
-        registrar.registerReferenceProvider(XmlPatterns.xmlAttributeValue().withParent(XmlPatterns.xmlAttribute().withName("type")
-                .withParent(XmlPatterns.xmlTag().withName(RythmConstants.FX_ROOT)))
-                .and(attributeValuePattern), new MyJavaClassReferenceProvider());
+
+       // final XmlAttributeValuePattern attributeValuePattern = XmlPatterns.xmlAttributeValue().inVirtualFile(
+           //     virtualFile().withExtension(RythmFileTypeFactory.RYTHM_EXTENSION));
+
+
+        //registrar.registerReferenceProvider(XmlPatterns.xmlAttributeValue().withParent(XmlPatterns.xmlAttribute().withName(RythmConstants.FX_CONTROLLER))
+           //     .and(attributeValuePattern), CLASS_REFERENCE_PROVIDER);
+
+
+        //IMPORTANT
+        registrar.registerReferenceProvider(XmlPatterns.xmlTag().inVirtualFile(virtualFile().withExtension(RythmFileTypeFactory.RYTHM_EXTENSION)),
+                new MyJavaClassReferenceProvider());
 
         registrar.registerReferenceProvider(PlatformPatterns.psiElement(XmlProcessingInstruction.class).inVirtualFile(virtualFile().withExtension(RythmFileTypeFactory.RYTHM_EXTENSION)),
                 new ImportReferenceProvider());
@@ -53,10 +59,14 @@ public class RythmJavReferenceContributor extends PsiReferenceContributor {
         @Override
         public PsiReference[] getReferencesByString(String str, @NotNull final PsiElement position, int offsetInPosition) {
             if (str.length() == 0) return PsiReference.EMPTY_ARRAY;
+
             final PsiReference[] references = super.getReferencesByString(str, position, offsetInPosition);
             final int offset = position instanceof XmlTag ? 1 : 0;
+
             if (references.length <= offset) return PsiReference.EMPTY_ARRAY;
+
             final PsiReference[] results = new PsiReference[references.length - offset];
+
             for (int i = 0; i < results.length; i++) {
                 results[i] = new JavaClassReferenceWrapper(references[i], position);
             }

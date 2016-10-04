@@ -23,7 +23,7 @@ public class RythmReferenceContributor extends PsiReferenceContributor {
                         PsiLiteralExpression literalExpression = (PsiLiteralExpression) element;
                         String value = literalExpression.getValue() instanceof String ?
                                 (String) literalExpression.getValue() : null;
-                        if (value != null && value.startsWith("@import")) {
+                        if (value != null && value.startsWith("import")) {
                             return new PsiReference[]{
                                     new RythmReference(element, new TextRange(8, value.length() + 1))};
 
