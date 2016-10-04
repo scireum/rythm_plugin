@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * Created by mpl on 04.08.2016.
  */
 public class RythmFileTypeFactory extends FileTypeFactory {
-
+public static final String RYTHM_EXTENSION = "rythm";
     @Override
     public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
 
