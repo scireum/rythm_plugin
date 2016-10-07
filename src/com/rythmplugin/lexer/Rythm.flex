@@ -15,9 +15,18 @@ import com.intellij.psi.TokenType;
 %eof{  return;
 %eof}
 
+
+/*
+JavaScript Keywords
+ */
+FUNCTION = function
+
+
+
+
 CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
-
+WS = \s
 //PARAM = \(([a-zA-Z])+\)
 RYTHM_ARGS = @args
 RYTHM_SECTION = @section
@@ -63,7 +72,13 @@ RPAREN = \)
 
 %state ST_ACTION
 %%
+
+<YYINITIAL> {FUNCTION}                                          {yybegin(YYINITIAL); return RythmTypes.FUNCTION;}
+
+<YYINITIAL>          {WS}                                       {yybegin (YYINITIAL);return RythmTypes.WS; }
+
 <YYINITIAL>          {TEXT}                                       {yybegin (YYINITIAL);return RythmTypes.TEXT; }
+
 //<YYINITIAL>          {PARAM}                                       {yybegin (YYINITIAL);return RythmTypes.PARAM; }
 
 <ST_ACTION>{

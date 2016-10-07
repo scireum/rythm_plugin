@@ -66,9 +66,9 @@ public interface RythmTypes {
   IElementType SHIFT_RIGHT = new RythmElementType("SHIFT_RIGHT");
   IElementType TOKENS = new RythmElementType("TOKENS");
   IElementType UNSIGNED_SHIFT_RIGHT = new RythmElementType("UNSIGNED_SHIFT_RIGHT");
-  IElementType WS = new RythmElementType("WS");
 
   IElementType CRLF = new RythmTokenType("CRLF");
+  IElementType FUNCTION = new RythmTokenType("FUNCTION");
   IElementType NUMBER = new RythmTokenType("NUMBER");
   IElementType PARAM = new RythmTokenType("PARAM");
   IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
@@ -88,6 +88,7 @@ public interface RythmTypes {
   IElementType TAG = new RythmTokenType("TAG");
   IElementType TEXT = new RythmTokenType("TEXT");
   IElementType TOKENS_49_0 = new RythmTokenType("tokens_49_0");
+  IElementType WS = new RythmTokenType("WS");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
@@ -259,9 +260,6 @@ public interface RythmTypes {
       }
       else if (type == UNSIGNED_SHIFT_RIGHT) {
         return new RythmUnsignedShiftRightImpl(node);
-      }
-      else if (type == WS) {
-        return new RythmWsImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

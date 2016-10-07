@@ -28,6 +28,10 @@
     <extensions defaultExtensionNs="com.intellij">
 
         <!-- Add your extensions here -->
+
+		<psi.referenceContributor implementation="com.rythmplugin.ide.reference.RythmJavReferenceContributor"/>
+        <lang.importOptimizer language="RythmTemplateLanguage" implementationClass="com.rythmplugin.imports.RythmJavImportsOptimizer"/>
+
         <lang.substitutor language="HTML" implementationClass="com.rythmplugin.ide.RythmSubstitutor"/>
         <lang.fileViewProviderFactory language="RythmTemplateLanguage"
                                       implementationClass="com.rythmplugin.file.RythmFileViewProviderFactory"/>

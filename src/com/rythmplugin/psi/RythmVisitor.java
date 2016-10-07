@@ -223,10 +223,6 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitWs(@NotNull RythmWs o) {
-    visitPsiElement(o);
-  }
-
   public void visitProperty(@NotNull RythmProperty o) {
     visitPsiElement(o);
   }

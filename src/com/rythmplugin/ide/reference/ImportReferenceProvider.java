@@ -6,9 +6,8 @@ import com.intellij.psi.PsiReference;
 import com.intellij.psi.PsiReferenceProvider;
 import com.intellij.psi.xml.XmlProcessingInstruction;
 import com.intellij.psi.xml.XmlTokenType;
-import com.intellij.util.ArrayUtil;
 import com.intellij.util.ProcessingContext;
-import com.rythmplugin.parser.RythmPsiUtil;
+import com.rythmplugin.imports.RythmJavPsiUtil;
 import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,7 +24,7 @@ public class ImportReferenceProvider extends PsiReferenceProvider {
         final ASTNode importNode = element.getNode().findChildByType(RythmTypes.TEXT/*XmlTokenType.XML_TAG_CHARACTERS*/);
         if (importNode != null) {
             final PsiElement importInstr = importNode.getPsi();
-            final String instructionTarget = RythmPsiUtil.getInstructionTarget("import", (XmlProcessingInstruction) element);
+            final String instructionTarget = RythmJavPsiUtil.getInstructionTarget("import", (XmlProcessingInstruction) element);
             if (instructionTarget != null && instructionTarget.equals(importInstr.getText())) {
 
 
@@ -34,9 +33,7 @@ public class ImportReferenceProvider extends PsiReferenceProvider {
                         (instructionTarget, element, importInstr.getStartOffsetInParent());
 
 
-                if (instructionTarget.endsWith(".*")) {
-                    return ArrayUtil.remove(references, references.length - 1);
-                } else {
+                {
                     return references;
                 }
             }

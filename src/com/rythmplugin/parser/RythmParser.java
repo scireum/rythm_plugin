@@ -185,9 +185,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == UNSIGNED_SHIFT_RIGHT) {
       r = UNSIGNED_SHIFT_RIGHT(b, 0);
     }
-    else if (t == WS) {
-      r = WS(b, 0);
-    }
     else if (t == PROPERTY) {
       r = property(b, 0);
     }
@@ -846,7 +843,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // RYTHM_KEY|RYTHM_I_18_N|RYTHM_METHOD|RYTHM_ARGS|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|
-  // RYTHM_INVOKE|RYTHM_IF|RYTHM_FOR|RYTHM_PREFIX|RYTHM_COMMENT
+  // RYTHM_INVOKE|RYTHM_IF|RYTHM_FOR|RYTHM_PREFIX|RYTHM_COMMENT|FUNCTION
   public static boolean RYTHM(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM")) return false;
     boolean r;
@@ -864,6 +861,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, RYTHM_FOR);
     if (!r) r = consumeToken(b, RYTHM_PREFIX);
     if (!r) r = consumeToken(b, RYTHM_COMMENT);
+    if (!r) r = consumeToken(b, FUNCTION);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -924,17 +922,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ' '
-  public static boolean WS(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "WS")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, WS, "<ws>");
-    r = consumeToken(b, " ");
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  /* ********************************************************** */
   // property|COMMENT|CRLF|tokens|LETTER|TEXT|NUMBER|
   // SEPARATOR|TAG|WS|RYTHM|PARAM
   static boolean item_(PsiBuilder b, int l) {
@@ -950,7 +937,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, NUMBER);
     if (!r) r = consumeToken(b, SEPARATOR);
     if (!r) r = consumeToken(b, TAG);
-    if (!r) r = WS(b, l + 1);
+    if (!r) r = consumeToken(b, WS);
     if (!r) r = RYTHM(b, l + 1);
     if (!r) r = consumeToken(b, PARAM);
     exit_section_(b, m, null, r);
