@@ -35,6 +35,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("i18n", RythmSyntaxHighlighter.RYTHM_I_18_N),
             new AttributesDescriptor("Comment", RythmSyntaxHighlighter.RYTHM_COMMENT),
             //new AttributesDescriptor("Param", RythmSyntaxHighlighter.RYTHM_PARAM),
+            new AttributesDescriptor("function", RythmSyntaxHighlighter.FUNCTION),
 
     };
 
@@ -64,6 +65,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "@invoke\n" +
                         "@section\n" +
                         "@render\n" +
+                        "function()\n\n\n"+
                         "@import\n" +
                         "@extends\n" +
                         "@if\n" +

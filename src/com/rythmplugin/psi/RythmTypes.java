@@ -69,6 +69,8 @@ public interface RythmTypes {
   IElementType WS = new RythmElementType("WS");
 
   IElementType CRLF = new RythmTokenType("CRLF");
+  IElementType FUNCTION = new RythmTokenType("FUNCTION");
+  IElementType IDENTIFIER = new RythmTokenType("IDENTIFIER");
   IElementType NUMBER = new RythmTokenType("NUMBER");
   IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
   IElementType RYTHM_COMMENT = new RythmTokenType("RYTHM_COMMENT");
