@@ -70,7 +70,6 @@ public interface RythmTypes {
 
   IElementType CRLF = new RythmTokenType("CRLF");
   IElementType NUMBER = new RythmTokenType("NUMBER");
-  IElementType PARAM = new RythmTokenType("PARAM");
   IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
   IElementType RYTHM_COMMENT = new RythmTokenType("RYTHM_COMMENT");
   IElementType RYTHM_EXTENDS = new RythmTokenType("RYTHM_EXTENDS");

@@ -18,7 +18,7 @@ import com.intellij.psi.TokenType;
 CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
 
-PARAM = \(([a-zA-Z])+\)
+//PARAM = \(([a-zA-Z])+\)
 RYTHM_ARGS = @args
 RYTHM_SECTION = @section
 RYTHM_EXTENDS = @extends
@@ -64,7 +64,7 @@ RPAREN = \)
 %state ST_ACTION
 %%
 <YYINITIAL>          {TEXT}                                       {yybegin (YYINITIAL);return RythmTypes.TEXT; }
-<YYINITIAL>          {PARAM}                                       {yybegin (YYINITIAL);return RythmTypes.PARAM; }
+//<YYINITIAL>          {PARAM}                                       {yybegin (YYINITIAL);return RythmTypes.PARAM; }
 
 <ST_ACTION>{
 //<YYINITIAL>{RYTHM_METHOD}                                         {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
