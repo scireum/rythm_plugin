@@ -65,12 +65,12 @@ RPAREN = \)
 
 %state ST_ACTION
 %%
-<YYINITIAL> {FUNCTION}                                             {yybegin (YYINITIAL); return RythmTypes.FUNCTION;}
-<YYINITIAL>          {TEXT}                                       {yybegin (YYINITIAL);return RythmTypes.TEXT; }
-//<YYINITIAL>          {PARAM}                                       {yybegin (YYINITIAL);return RythmTypes.PARAM; }
+<YYINITIAL> {FUNCTION}                                            {yybegin (YYINITIAL); return RythmTypes.FUNCTION;}
+<YYINITIAL> {TEXT}                                                {yybegin (YYINITIAL);return RythmTypes.TEXT; }
+//<YYINITIAL>          {PARAM}                                    {yybegin (YYINITIAL);return RythmTypes.PARAM; }
 
 <ST_ACTION>{
-//<YYINITIAL>{RYTHM_METHOD}                                         {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
+//<YYINITIAL>{RYTHM_METHOD}                                       {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
 
 <YYINITIAL>{LBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.LBRACE;}
 <YYINITIAL>{RBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.RBRACE;}
