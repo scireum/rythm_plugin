@@ -67,6 +67,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "\n\n\n\n}"+
                         "@section\n" +
                         "@render\n" +
+                        "function()\n\n\n"+
                         "@import\n" +
                         "@extends\n" +
                         "@if\n" +

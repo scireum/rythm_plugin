@@ -15,18 +15,11 @@ import com.intellij.psi.TokenType;
 %eof{  return;
 %eof}
 
-
-/*
-JavaScript Keywords
- */
-FUNCTION = function
-
-
-
-
 CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
-WS = \s
+
+FUNCTION = function
+
 //PARAM = \(([a-zA-Z])+\)
 RYTHM_ARGS = @args
 RYTHM_SECTION = @section
@@ -60,7 +53,7 @@ RYTHM_FOR = @for \s*
 
 RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}|{RYTHM_RENDER}|{RYTHM_INVOKE}|{RYTHM_I_18_N}|{RYTHM_PREFIX}|{RYTHM_KEY}
 
-TEXT = [^@\*\{\}\(\)]+
+TEXT = [^@\*\(\)\{\}]+
 
 //TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
 
@@ -72,13 +65,8 @@ RPAREN = \)
 
 %state ST_ACTION
 %%
-
-<YYINITIAL> {FUNCTION}                                          {yybegin(YYINITIAL); return RythmTypes.FUNCTION;}
-
-<YYINITIAL>          {WS}                                       {yybegin (YYINITIAL);return RythmTypes.WS; }
-
+<YYINITIAL> {FUNCTION}                                             {yybegin (YYINITIAL); return RythmTypes.FUNCTION;}
 <YYINITIAL>          {TEXT}                                       {yybegin (YYINITIAL);return RythmTypes.TEXT; }
-
 //<YYINITIAL>          {PARAM}                                       {yybegin (YYINITIAL);return RythmTypes.PARAM; }
 
 <ST_ACTION>{

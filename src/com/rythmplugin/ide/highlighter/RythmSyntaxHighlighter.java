@@ -56,7 +56,6 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     //private static final TextAttributesKey[] RYTHM_PARAM_KEYS = new TextAttributesKey[]{RYTHM_PARAM};
     private static final TextAttributesKey[] FUNCTION_KEYS = new TextAttributesKey[]{FUNCTION};
 
-
     @NotNull
     @Override
 
@@ -94,11 +93,11 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_KEY_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_COMMENT)) {
             return RYTHM_COMMENT_KEYS;
-        } else if( tokenType.equals(RythmTypes.FUNCTION)){
+        } else if(tokenType.equals(RythmTypes.FUNCTION)){
             return FUNCTION_KEYS;
-        }/*if (tokenType.equals(RythmTypes.PARAM)) {
+        } /*if (tokenType.equals(RythmTypes.PARAM)) {
             return RYTHM_PARAM_KEYS;
-        } else */{
+        } */else  {
             return EMPTY_KEYS;
         }
     }
