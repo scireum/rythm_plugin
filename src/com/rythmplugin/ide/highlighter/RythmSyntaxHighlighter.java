@@ -12,6 +12,7 @@ import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
+import static com.rythmplugin.psi.RythmTypes.RYTHM_ELSE;
 
 
 /**
@@ -20,10 +21,10 @@ import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAtt
 public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
 
 
-    public static final TextAttributesKey RYTHM_ARGS = createTextAttributesKey("RYTHM_ARGS", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_ARGS = createTextAttributesKey("RYTHM_ARGS", JavaHighlightingColors.CLASS_NAME_ATTRIBUTES);
     public static final TextAttributesKey RYTHM_SECTION = createTextAttributesKey("RYTHM_SECTION", JavaHighlightingColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_EXTENDS = createTextAttributesKey("RYTHM_EXTENDS", JavaHighlightingColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_IMPORT = createTextAttributesKey("RYTHM_IMPORT", JavaHighlightingColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_EXTENDS = createTextAttributesKey("RYTHM_EXTENDS", JavaHighlightingColors.CLASS_NAME_ATTRIBUTES);
+    public static final TextAttributesKey RYTHM_IMPORT = createTextAttributesKey("RYTHM_IMPORT", JavaHighlightingColors.CLASS_NAME_ATTRIBUTES);
     public static final TextAttributesKey RYTHM_RENDER = createTextAttributesKey("RYTHM_RENDER", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey RYTHM_IF = createTextAttributesKey("RYTHM_IF", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey RYTHM_FOR = createTextAttributesKey("RYTHM_FOR", JavaHighlightingColors.KEYWORD);
@@ -36,6 +37,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     //public static final TextAttributesKey RYTHM_SECTION_PARAM = createTextAttributesKey("RYTHM_SECTION_PARAM", DefaultLanguageHighlighterColors.KEYWORD);
     //public static final TextAttributesKey RYTHM_PARAM = createTextAttributesKey("RYTHM_PARAM", JavaHighlightingColors.ANNOTATION_NAME_ATTRIBUTES);
     public static final TextAttributesKey FUNCTION = createTextAttributesKey("FUNCTION", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey RYTHM_ELSE = createTextAttributesKey("RYTHM_ELSE", DefaultLanguageHighlighterColors.KEYWORD);
+
 
 
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
@@ -55,6 +58,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     //private static final TextAttributesKey[] RYTHM_SECTION_PARAM_KEYS = new TextAttributesKey[]{RYTHM_SECTION_PARAM};
     //private static final TextAttributesKey[] RYTHM_PARAM_KEYS = new TextAttributesKey[]{RYTHM_PARAM};
     private static final TextAttributesKey[] FUNCTION_KEYS = new TextAttributesKey[]{FUNCTION};
+    private static final TextAttributesKey[] RYTHM_ELSE_KEYS = new TextAttributesKey[]{RYTHM_ELSE};
+
 
     @NotNull
     @Override
@@ -97,7 +102,9 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return FUNCTION_KEYS;
         } /*if (tokenType.equals(RythmTypes.PARAM)) {
             return RYTHM_PARAM_KEYS;
-        } */else  {
+        } */else if (tokenType.equals(RythmTypes.RYTHM_ELSE)){
+            return RYTHM_ELSE_KEYS;
+        } else {
             return EMPTY_KEYS;
         }
     }

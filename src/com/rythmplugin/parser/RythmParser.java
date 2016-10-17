@@ -170,6 +170,9 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == RYTHM) {
       r = RYTHM(b, 0);
     }
+    else if (t == RYTHM_IMPORT) {
+      r = RYTHM_IMPORT(b, 0);
+    }
     else if (t == SEMICOLON) {
       r = SEMICOLON(b, 0);
     }
@@ -188,8 +191,11 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == WS) {
       r = WS(b, 0);
     }
-    else if (t == PROPERTY) {
-      r = property(b, 0);
+    else if (t == CLASSS) {
+      r = classs(b, 0);
+    }
+    else if (t == PACKAGEE) {
+      r = packagee(b, 0);
     }
     else if (t == TOKENS) {
       r = tokens(b, 0);
@@ -846,7 +852,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // RYTHM_KEY|RYTHM_I_18_N|RYTHM_METHOD|RYTHM_ARGS|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|
-  // RYTHM_INVOKE|RYTHM_IF|RYTHM_FOR|RYTHM_PREFIX|RYTHM_COMMENT
+  // RYTHM_INVOKE|RYTHM_IF|RYTHM_FOR|RYTHM_PREFIX|RYTHM_COMMENT|RYTHM_ELSE
   public static boolean RYTHM(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM")) return false;
     boolean r;
@@ -857,13 +863,26 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, RYTHM_ARGS);
     if (!r) r = consumeToken(b, RYTHM_SECTION);
     if (!r) r = consumeToken(b, RYTHM_EXTENDS);
-    if (!r) r = consumeToken(b, RYTHM_IMPORT);
+    if (!r) r = RYTHM_IMPORT(b, l + 1);
     if (!r) r = consumeToken(b, RYTHM_RENDER);
     if (!r) r = consumeToken(b, RYTHM_INVOKE);
     if (!r) r = consumeToken(b, RYTHM_IF);
     if (!r) r = consumeToken(b, RYTHM_FOR);
     if (!r) r = consumeToken(b, RYTHM_PREFIX);
     if (!r) r = consumeToken(b, RYTHM_COMMENT);
+    if (!r) r = consumeToken(b, RYTHM_ELSE);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // '@import' TEXT
+  public static boolean RYTHM_IMPORT(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IMPORT")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, RYTHM_IMPORT, "<rythm import>");
+    r = consumeToken(b, "@import");
+    r = r && consumeToken(b, TEXT);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -935,13 +954,25 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // IDENTIFIER
+  public static boolean classs(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "classs")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IDENTIFIER);
+    exit_section_(b, m, CLASSS, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // property|COMMENT|CRLF|tokens|LETTER|TEXT|NUMBER|
-  // SEPARATOR|TAG|WS|RYTHM|FUNCTION
+  // SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = property(b, l + 1);
+    r = consumeToken(b, PROPERTY);
     if (!r) r = COMMENT(b, l + 1);
     if (!r) r = consumeToken(b, CRLF);
     if (!r) r = tokens(b, l + 1);
@@ -953,18 +984,20 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = WS(b, l + 1);
     if (!r) r = RYTHM(b, l + 1);
     if (!r) r = consumeToken(b, FUNCTION);
+    if (!r) r = consumeToken(b, IDENTIFIER);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // tokens
-  public static boolean property(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "property")) return false;
+  // IDENTIFIER
+  public static boolean packagee(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "packagee")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, PROPERTY, "<property>");
-    r = tokens(b, l + 1);
-    exit_section_(b, l, m, r, false, null);
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IDENTIFIER);
+    exit_section_(b, m, PACKAGEE, r);
     return r;
   }
 

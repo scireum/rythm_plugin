@@ -23,7 +23,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Args", RythmSyntaxHighlighter.RYTHM_ARGS),
             new AttributesDescriptor("Extends", RythmSyntaxHighlighter.RYTHM_EXTENDS),
             new AttributesDescriptor("For", RythmSyntaxHighlighter.RYTHM_FOR),
-            new AttributesDescriptor("If", RythmSyntaxHighlighter.RYTHM_IF),
+            new AttributesDescriptor("If_else", RythmSyntaxHighlighter.RYTHM_IF),
             new AttributesDescriptor("Import", RythmSyntaxHighlighter.RYTHM_IMPORT),
             new AttributesDescriptor("Invoke", RythmSyntaxHighlighter.RYTHM_INVOKE),
             new AttributesDescriptor("Prefix", RythmSyntaxHighlighter.RYTHM_PREFIX),
@@ -35,7 +35,6 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("i18n", RythmSyntaxHighlighter.RYTHM_I_18_N),
             new AttributesDescriptor("Comment", RythmSyntaxHighlighter.RYTHM_COMMENT),
             //new AttributesDescriptor("Param", RythmSyntaxHighlighter.RYTHM_PARAM),
-            new AttributesDescriptor("function", RythmSyntaxHighlighter.FUNCTION),
 
     };
 
@@ -57,6 +56,9 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
         return
 
                 "# You are reading the \"example\" entry for a rythm file\n" +
+                        "@import\n" +
+                        "@extends\n" +
+                        "@args\n" +
                         "@rythm\n" +
                         "@prefix\n" +
                         "@*\n" +
@@ -65,14 +67,12 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "@invoke\n" +
                         "@section\n" +
                         "@render\n" +
-                        "function()\n\n\n"+
-                        "@import\n" +
-                        "@extends\n" +
-                        "@if\n" +
+                        "@i18n\n"+
+                        "@if(xxx > yyy) {\n" +
+                        "}\n"+
                         "@for\n" +
-                        "@args\n" +
-                        "<div class='block-element'title='@abcd.getAnotherMethod()'>@rythm.getMethod()</div>\n" +
-                        "@i18n\n";
+                        "<div class='block-element'title='@abcd.getAnotherMethod()'>@rythm.getMethod()</div>\n";
+
     }
 
     @Nullable
