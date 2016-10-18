@@ -30,7 +30,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey RYTHM_FOR = createTextAttributesKey("RYTHM_FOR", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey RYTHM_PREFIX = createTextAttributesKey("RYTHM_PREFIX", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey RYTHM_INVOKE = createTextAttributesKey("RYTHM_INVOKE", JavaHighlightingColors.KEYWORD);
-    //public static final TextAttributesKey RYTHM_METHOD = createTextAttributesKey("RYTHM_METHOD", HighlighterColors.TEXT);
+    public static final TextAttributesKey RYTHM_METHOD = createTextAttributesKey("RYTHM_METHOD", JavaHighlightingColors.METHOD_CALL_ATTRIBUTES);
     public static final TextAttributesKey RYTHM_KEY = createTextAttributesKey("RYTHM_KEY", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey RYTHM_I_18_N = createTextAttributesKey("RYTHM_I_18_N", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey RYTHM_COMMENT = createTextAttributesKey("RYTHM_COMMENT", JavaHighlightingColors.JAVA_BLOCK_COMMENT);
@@ -51,7 +51,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] RYTHM_FOR_KEYS = new TextAttributesKey[]{RYTHM_FOR};
     private static final TextAttributesKey[] RYTHM_PREFIX_KEYS = new TextAttributesKey[]{RYTHM_PREFIX};
     private static final TextAttributesKey[] RYTHM_INVOKE_KEYS = new TextAttributesKey[]{RYTHM_INVOKE};
-    //private static final TextAttributesKey[] RYTHM_METHOD_KEYS = new TextAttributesKey[]{RYTHM_METHOD};
+    private static final TextAttributesKey[] RYTHM_METHOD_KEYS = new TextAttributesKey[]{RYTHM_METHOD};
     private static final TextAttributesKey[] RYTHM_KEY_KEYS = new TextAttributesKey[]{RYTHM_KEY};
     private static final TextAttributesKey[] RYTHM_I_18_N_KEYS = new TextAttributesKey[]{RYTHM_I_18_N};
     private static final TextAttributesKey[] RYTHM_COMMENT_KEYS = new TextAttributesKey[]{RYTHM_COMMENT};
@@ -92,9 +92,9 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_I_18_N_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_PREFIX)) {
             return RYTHM_PREFIX_KEYS;
-        } else /*if (tokenType.equals(RythmTypes.RYTHM_METHOD)) {
+        } else if (tokenType.equals(RythmTypes.RYTHM_METHOD)) {
             return RYTHM_METHOD_KEYS;
-        } else */if (tokenType.equals(RythmTypes.RYTHM_KEY)) {
+        } else if (tokenType.equals(RythmTypes.RYTHM_KEY)) {
             return RYTHM_KEY_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_COMMENT)) {
             return RYTHM_COMMENT_KEYS;

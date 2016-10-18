@@ -23,7 +23,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Args", RythmSyntaxHighlighter.RYTHM_ARGS),
             new AttributesDescriptor("Extends", RythmSyntaxHighlighter.RYTHM_EXTENDS),
             new AttributesDescriptor("For", RythmSyntaxHighlighter.RYTHM_FOR),
-            new AttributesDescriptor("If_else", RythmSyntaxHighlighter.RYTHM_IF),
+            new AttributesDescriptor("If", RythmSyntaxHighlighter.RYTHM_IF),
             new AttributesDescriptor("Import", RythmSyntaxHighlighter.RYTHM_IMPORT),
             new AttributesDescriptor("Invoke", RythmSyntaxHighlighter.RYTHM_INVOKE),
             new AttributesDescriptor("Prefix", RythmSyntaxHighlighter.RYTHM_PREFIX),

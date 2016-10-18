@@ -28,6 +28,8 @@
     <extensions defaultExtensionNs="com.intellij">
 
         <!-- Add your extensions here -->
+        <multiHostInjector implementation="com.rythmplugin.JavaInjector"/>
+        <!--<languageInjector implementation="com.rythmplugin.JavaInjector"/>-->
         <lang.substitutor language="HTML" implementationClass="com.rythmplugin.ide.RythmSubstitutor"/>
         <lang.fileViewProviderFactory language="RythmTemplateLanguage"
                                       implementationClass="com.rythmplugin.file.RythmFileViewProviderFactory"/>

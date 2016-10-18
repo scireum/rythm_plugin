@@ -41,7 +41,9 @@ RYTHM_PREFIX = @prefix
 
 RYTHM_KEY = @[a-zA-Z]+|@[a-z]+[A-Z]+[a-z]+|@[a-z]+[A-Z]+[a-z]
 
-//RYTHM_METHOD = \.[a-zA-Z]+\(+[a-zA-Z]*?\)|\.get[a-zA-Z]+\(+[a-zA-Z]*
+RYTHM_METHOD = \.[a-zA-Z]*\([a-zA-Z]*\)
+//18.10.16       \.get[a-zA-Z]*
+// \.[a-zA-Z]+\(+[a-zA-Z]*?\)|\.get[a-zA-Z]+\(+[a-zA-Z]*
 //\.[a-zA-Z]\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*\(*\)+|\.equals|\.get[a-zA-Z]+\(\)|\.get[a-zA-Z]+\(*[a-zA-Z]*\)*|\.get
 //\.[a-zA-Z]\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*\(*\)|\.equals|\.get[a-zA-Z]+\(\)|\.get[a-zA-Z]+\(*[a-zA-Z]*\)*|\.get
 
@@ -49,7 +51,8 @@ RYTHM_KEY = @[a-zA-Z]+|@[a-z]+[A-Z]+[a-z]+|@[a-z]+[A-Z]+[a-z]
 
 RYTHM_ELSE = else
 
-RYTHM_IF = @if.*\)|@if.*\) &&.*\)// @if \s*
+RYTHM_IF = @if
+//.*\)|@if.*\) &&.*\)// @if \s*
 //@if|@if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\)*\)*?\)*\.*[a-zA-Z]*\(*\)?\)\=*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\s*\&&*\s*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*.*\)\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*[a-zA-Z]*\(*\)*\s*\!*\=*\s*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(?\)*\.*[a-zA-Z]*\_*[a-zA-Z]*\(*\)*\>*\<*[a-zA-Z0-9]*\)*.*?\)\)*\.*[a-zA-Z]*\(*\)*.*\)|@if.*\)
 
 //@if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\)+\)*?\)*\.*[a-zA-Z]*\(*\)?\)\=*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\s*\&&*\s*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\)\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*[a-zA-Z]*\(*\)*\s*\!*\=*\s*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(?\)*\.*[a-zA-Z]*\_*[a-zA-Z]*\(*\)*\>*\<*[a-zA-Z0-9]*\)*?\)\)*\.*[a-zA-Z]*\(*\)*\)
@@ -68,7 +71,7 @@ RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_E
 //Problem: Dadurch wird der eigentliche Code gesplitted, was dazu führt,
 //dass manche Stellen des Codes nicht mehr so erkannt werden, wie sie es eigentlich
 //sollten.
-TEXT = [^@\*\(\)\{\}]*
+TEXT = [^@\*\(\)\{\}\.]*
 
 
 /*
@@ -108,13 +111,12 @@ RPAREN = \)
 %%
 <YYINITIAL> {FUNCTION}                                            {yybegin (YYINITIAL); return RythmTypes.FUNCTION;}
 
-
-<YYINITIAL> {TEXT}                                                {yybegin (YYINITIAL);return RythmTypes.TEXT; }
-<YYINITIAL> {IDENTIFIER}                                                {yybegin (YYINITIAL);return RythmTypes.IDENTIFIER; }
+<YYINITIAL> {TEXT}                                                {yybegin(YYINITIAL); return RythmTypes.TEXT; }
+<YYINITIAL> {IDENTIFIER}                                          {yybegin (YYINITIAL);return RythmTypes.IDENTIFIER; }
 //<YYINITIAL>          {PARAM}                                    {yybegin (YYINITIAL);return RythmTypes.PARAM; }
 
 <ST_ACTION>{
-//<YYINITIAL>{RYTHM_METHOD}                                       {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
+<YYINITIAL>{RYTHM_METHOD}                                         {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
 
 <YYINITIAL>{LBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.LBRACE;}
 <YYINITIAL>{RBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.RBRACE;}
@@ -138,7 +140,7 @@ RPAREN = \)
 
 <YYINITIAL>{RYTHM_IF}                                             {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
 
-<YYINITIAL>{RYTHM_ELSE}                                             {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
+<YYINITIAL>{RYTHM_ELSE}                                           {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
 
 <YYINITIAL>{RYTHM_FOR}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;}
 
