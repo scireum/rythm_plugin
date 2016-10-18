@@ -2,8 +2,6 @@
 ## **Rythm Engine Detector R.E.D adds support for [Rythm](http://rythmengine.org/) templates**
 ***
 
-- **Parser**
-- **Lexer**
 - **Syntax highlighter**
 - **Brace matcher**
 - **Code completion for some rythm keywords**
