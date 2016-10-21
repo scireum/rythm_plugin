@@ -40,7 +40,7 @@ STATEMENT = \(+\!*\"*[a-zA-Z]+\.*[a-zA-Z]*\"*\(*\)*.*?\)+|\(\".*?\"*\)
 //DIGIT =  [:digit:]
 
 //PARAM = \(([a-zA-Z])+\)
-RYTHM_ARGS = @args.*
+RYTHM_ARGS = @args
 RYTHM_SECTION = @section
 RYTHM_EXTENDS = @extends
 RYTHM_IMPORT = @import
