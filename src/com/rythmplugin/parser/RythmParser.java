@@ -176,6 +176,9 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == RYTHM) {
       r = RYTHM(b, 0);
     }
+    else if (t == RYTHM_ARGS) {
+      r = RYTHM_ARGS(b, 0);
+    }
     else if (t == RYTHM_EXTENDS) {
       r = RYTHM_EXTENDS(b, 0);
     }
@@ -912,7 +915,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = RYTHM_KEYS(b, l + 1);
     if (!r) r = RYTHM_I_18_N(b, l + 1);
     if (!r) r = consumeToken(b, RYTHM_METHOD);
-    if (!r) r = consumeToken(b, RYTHM_ARGS);
+    if (!r) r = RYTHM_ARGS(b, l + 1);
     if (!r) r = RYTHM_SECTION(b, l + 1);
     if (!r) r = RYTHM_EXTENDS(b, l + 1);
     if (!r) r = RYTHM_IMPORT(b, l + 1);
@@ -924,6 +927,46 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, RYTHM_COMMENT);
     if (!r) r = consumeToken(b, RYTHM_ELSE);
     exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // '@args' (TEXT DOT TEXT)+
+  public static boolean RYTHM_ARGS(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_ARGS")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, RYTHM_ARGS, "<rythm args>");
+    r = consumeToken(b, "@args");
+    r = r && RYTHM_ARGS_1(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // (TEXT DOT TEXT)+
+  private static boolean RYTHM_ARGS_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_ARGS_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = RYTHM_ARGS_1_0(b, l + 1);
+    int c = current_position_(b);
+    while (r) {
+      if (!RYTHM_ARGS_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_ARGS_1", c)) break;
+      c = current_position_(b);
+    }
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // TEXT DOT TEXT
+  private static boolean RYTHM_ARGS_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_ARGS_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, TEXT);
+    r = r && DOT(b, l + 1);
+    r = r && consumeToken(b, TEXT);
+    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1385,7 +1428,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
   // |UNSIGNED_SHIFT_RIGHT|CMP|EQ_EQ|NOT_EQ|LESS_OR_EQ|GREATER_OR_EQ|SEND_CHANNEL|PLUS_EQ|
   // MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AND|
   // PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|LETTER|DIGITS|QM|AS|HASHTAG|
-  // //RYTHM_IF ::= ('@if' WS* LPAREN+ (LETTER+ tokens* LETTER+)* tokens* RPAREN+)
   public static boolean tokens(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "tokens")) return false;
     boolean r;
