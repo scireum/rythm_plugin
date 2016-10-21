@@ -50,9 +50,6 @@ public interface RythmTokens extends PsiElement {
   RythmDivEq getDivEq();
 
   @Nullable
-  RythmDot getDot();
-
-  @Nullable
   RythmDoubleColon getDoubleColon();
 
   @Nullable

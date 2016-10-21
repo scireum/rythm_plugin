@@ -19,11 +19,22 @@ CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
 
 IDENTIFIER = {LETTER}|{DIGIT}
- LETTER = [:letter:]
- DIGIT = [:digit:]
+LETTER = [:letter:]
+DIGIT = [:digit:]
+DOT = \.
 
 
+DOLLAR = \$
 FUNCTION = function
+STATEMENT = \(+\!*\"*[a-zA-Z]+\.*[a-zA-Z]*\"*\(*\)*.*?\)+|\(\".*?\"*\)
+
+//ORIGINAL
+//\(.[a-zA-Z]+.*?\)\)*|\(\".*?\)
+
+
+//\(.[a-zA-Z]+[^@]*\)\)*|\(\".*?\)
+//\([a-zA-Z]+.*?\)\)*
+
 //IDENTIFIER = {LETTER} ({LETTER} | {DIGIT} )*
 //LETTER = [:letter:] | "_"
 //DIGIT =  [:digit:]
@@ -35,7 +46,7 @@ RYTHM_EXTENDS = @extends
 RYTHM_IMPORT = @import
 RYTHM_RENDER = @render
 RYTHM_INVOKE = @invoke
-RYTHM_I_18_N = @i18n.*\)|@i18n
+RYTHM_I_18_N = @i18n//.*\)|@i18n
 //@i18n\(\"[a-zA-Z]+\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)+|@i18n
 RYTHM_PREFIX = @prefix
 
@@ -49,7 +60,7 @@ RYTHM_METHOD = \.[a-zA-Z]*\([a-zA-Z]*\)
 
 //RYTHM_BLOCK = [a-zA-Z]+\:\s*[a-zA-Z]*\.[a-zA-Z]+\(\)\,|[a-zA-Z]+\:\s*\"[a-zA-Z]+\.[a-zA-Z]+\"\,|[a-zA-Z]+:\s\"[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+\"\)*\,*|[a-zA-Z]+\:[a-zA-Z]+\.[a-zA-Z]+\([a-zA-Z]+\.[a-zA-Z]+\(\)\)\,|[a-zA-Z]+:\"[a-zA-Z]+\.[a-zA-Z]+\"\)|[a-zA-Z]+:\"[a-zA-Z]+\"*,*\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)*,*
 
-RYTHM_ELSE = else
+RYTHM_ELSE = \s*else
 
 RYTHM_IF = @if
 //.*\)|@if.*\) &&.*\)// @if \s*
@@ -59,7 +70,7 @@ RYTHM_IF = @if
 //@if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\).*\)*?\)*\.*[a-zA-Z]*\(*\)?\)\=*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\s*\&&*\s*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\)\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*[a-zA-Z]*\(*\)*\s*\!*\=*\s*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(?\)*\.*[a-zA-Z]*\_*[a-zA-Z]*\(*\)*\>*\<*[a-zA-Z0-9]*\)*?\)\)*\.*[a-zA-Z]*\(*\)*\)
 RYTHM_COMMENT = @\*|\*.*|@@.\w+\.\w+
 
-RYTHM_FOR = @for \s*
+RYTHM_FOR = @for
 //\(+.*\)|@for
 
 RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}|{RYTHM_RENDER}|{RYTHM_INVOKE}|{RYTHM_I_18_N}|{RYTHM_PREFIX}|{RYTHM_KEY}
@@ -71,7 +82,7 @@ RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_E
 //Problem: Dadurch wird der eigentliche Code gesplitted, was dazu führt,
 //dass manche Stellen des Codes nicht mehr so erkannt werden, wie sie es eigentlich
 //sollten.
-TEXT = [^@\*\(\)\{\}\.]*
+TEXT = [^@\*\(\)\{\}\$\.]*//|\{|\}
 
 
 /*
@@ -108,23 +119,31 @@ LPAREN = \(
 RPAREN = \)
 
 %state ST_ACTION
+
 %%
-<YYINITIAL> {FUNCTION}                                            {yybegin (YYINITIAL); return RythmTypes.FUNCTION;}
-
-<YYINITIAL> {TEXT}                                                {yybegin(YYINITIAL); return RythmTypes.TEXT; }
-<YYINITIAL> {IDENTIFIER}                                          {yybegin (YYINITIAL);return RythmTypes.IDENTIFIER; }
-//<YYINITIAL>          {PARAM}                                    {yybegin (YYINITIAL);return RythmTypes.PARAM; }
-
-<ST_ACTION>{
-<YYINITIAL>{RYTHM_METHOD}                                         {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
-
 <YYINITIAL>{LBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.LBRACE;}
 <YYINITIAL>{RBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.RBRACE;}
 
 <YYINITIAL>{LPAREN}                                               {yybegin(YYINITIAL); return RythmTypes.LPAREN;}
 <YYINITIAL>{RPAREN}                                               {yybegin(YYINITIAL); return RythmTypes.RPAREN;}
 
-//<YYINITIAL> {TAG}                                                 {yybegin(YYINITIAL); return RythmTypes.TAG;}
+<YYINITIAL> {FUNCTION}                                            {yybegin (YYINITIAL); return RythmTypes.FUNCTION;}
+
+<YYINITIAL> {DOLLAR}                                              {yybegin (YYINITIAL); return RythmTypes.DOLLAR;}
+
+<YYINITIAL> {STATEMENT}                                           {yybegin (YYINITIAL); return RythmTypes.STATEMENT;}
+<YYINITIAL> {IDENTIFIER}                                          {yybegin (YYINITIAL);return RythmTypes.IDENTIFIER; }
+<YYINITIAL> {DOT}                                                 {yybegin (YYINITIAL); return RythmTypes.DOT;}
+<YYINITIAL> {TEXT}                                                {yybegin(YYINITIAL); return RythmTypes.TEXT; }
+
+//<YYINITIAL>          {PARAM}                                    {yybegin (YYINITIAL);return RythmTypes.PARAM; }
+
+<ST_ACTION>{
+<YYINITIAL>{RYTHM_METHOD}                                         {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
+
+
+
+//<YYINITIAL> {TAG}                                               {yybegin(YYINITIAL); return RythmTypes.TAG;}
 
 <YYINITIAL> {RYTHM_ARGS}                                          {yybegin(YYINITIAL); return RythmTypes.RYTHM_ARGS;}
 

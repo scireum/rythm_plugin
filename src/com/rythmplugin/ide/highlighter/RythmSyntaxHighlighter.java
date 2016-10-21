@@ -38,7 +38,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     //public static final TextAttributesKey RYTHM_PARAM = createTextAttributesKey("RYTHM_PARAM", JavaHighlightingColors.ANNOTATION_NAME_ATTRIBUTES);
     public static final TextAttributesKey FUNCTION = createTextAttributesKey("FUNCTION", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey RYTHM_ELSE = createTextAttributesKey("RYTHM_ELSE", DefaultLanguageHighlighterColors.KEYWORD);
-
+    public static final TextAttributesKey STATEMENT = createTextAttributesKey("STATEMENT", JavaHighlightingColors.CLASS_NAME_ATTRIBUTES);
 
 
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
@@ -59,7 +59,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     //private static final TextAttributesKey[] RYTHM_PARAM_KEYS = new TextAttributesKey[]{RYTHM_PARAM};
     private static final TextAttributesKey[] FUNCTION_KEYS = new TextAttributesKey[]{FUNCTION};
     private static final TextAttributesKey[] RYTHM_ELSE_KEYS = new TextAttributesKey[]{RYTHM_ELSE};
-
+    private static final TextAttributesKey[] STATEMENT_KEYS = new TextAttributesKey[]{STATEMENT};
 
     @NotNull
     @Override
@@ -104,7 +104,9 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_PARAM_KEYS;
         } */else if (tokenType.equals(RythmTypes.RYTHM_ELSE)){
             return RYTHM_ELSE_KEYS;
-        } else {
+        } else if (tokenType.equals(RythmTypes.STATEMENT)){
+            return STATEMENT_KEYS;
+        }else  {
             return EMPTY_KEYS;
         }
     }

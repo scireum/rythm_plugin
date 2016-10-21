@@ -16,33 +16,44 @@
 rythmFile ::= item_*
 
 private item_ ::= property|COMMENT|CRLF|tokens|LETTER|NUMBER|
-SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER|TEXT
+SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER|TEXT|STATEMENT|DOT|TEST|JS_SNIP|EXPRESSION|DOLLAR
 
+TEST ::= '<a onclick=' TEXT LPAREN* tokens* RYTHM* tokens* RYTHM tokens* TEXT
 
-RYTHM ::= RYTHM_KEY|RYTHM_I_18_N|RYTHM_METHOD|RYTHM_ARGS|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|
+RYTHM ::= RYTHM_KEYS|RYTHM_I_18_N|RYTHM_METHOD|RYTHM_ARGS|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|
 RYTHM_INVOKE|RYTHM_IF|RYTHM_FOR|RYTHM_PREFIX|RYTHM_COMMENT|RYTHM_ELSE
 
-//RYTHM_EXTENDS ::= '@extends' (LPAREN TEXT)* RPAREN TEXT LPAREN RPAREN+
+JS_SNIP ::= '$'STATEMENT
+EXPRESSION ::= '{' TEXT '}'
+
+RYTHM_IF::= '@if' TEXT* STATEMENT|'@if' TEXT* LPAREN TEXT RYTHM_METHOD* TEXT RPAREN|'@if' TEXT* RYTHM_METHOD* TEXT*
+RYTHM_IMPORT ::= '@import' TEXT DOT TEXT DOT TEXT
+RYTHM_EXTENDS ::= '@extends' STATEMENT
+RYTHM_SECTION ::= '@section' STATEMENT*
+RYTHM_I_18_N ::= '@i18n' STATEMENT
+RYTHM_KEYS ::= RYTHM_KEY STATEMENT*
+RYTHM_FOR ::= '@for' TEXT* STATEMENT
+
 
 packagee ::= IDENTIFIER
 classs ::= IDENTIFIER
 
 COMMENT::= '@' tokens |MUL tokens+  |MUL '@'
+//RYTHM_EXTENDS ::= '@extends' (LPAREN TEXT)* RPAREN TEXT LPAREN RPAREN+
+//RYTHM_IF ::= ('@if' WS* LPAREN+ (LETTER+ tokens* LETTER+)* tokens* RPAREN+)
 
 tokens ::= RBRACE|RBRACKET|RPAREN|PLUS_PLUS|MINUS_MINUS|LBRACE|LBRACKET|LPAREN|DOUBLE_COLON|
 COLON|SEMICOLON|COMMA|MULTI_ARGS|CLASS_ATTR_END|CLASS_ATTR_START|SHIFT_LEFT|SHIFT_RIGHT
 |UNSIGNED_SHIFT_RIGHT|CMP|EQ_EQ|NOT_EQ|LESS_OR_EQ|GREATER_OR_EQ|SEND_CHANNEL|PLUS_EQ|
 MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AND|
-PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|DOT|LETTER|DIGITS|QM|AS|HASHTAG|
+PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|LETTER|DIGITS|QM|AS|HASHTAG|
 
-//RYTHM_IF ::= ('@if' WS* LPAREN+ (LETTER+ tokens* LETTER+)* tokens* RPAREN+)
 
 RBRACE               ::=  '}'
 RBRACKET             ::=  ']'
 RPAREN               ::=  ')'
 PLUS_PLUS            ::=  '++'
 MINUS_MINUS          ::=  '--'
-
 LBRACE               ::=  '{'
 LBRACKET             ::=  '['
 LPAREN               ::=  '('
@@ -84,13 +95,13 @@ DIV                  ::=  '/'
 REMAINDER            ::=  '%'
 QUESTION             ::=  '?'
 AT                   ::=  '@'
-DOT                  ::= '.'
+
 QM                   ::= '"'
 AS                   ::= "'"
 HASHTAG              ::= "#"
 
 
 WS ::= ' '
-
+DOT                  ::= '.'
 LETTER ::= 'A'|'B'|'C'|'D'|'E'|'F'|'G'|'H'|'I'|'J'|'K'|'L'|'M'|'N'|'O'|'P'|'Q'|'R'|'S'|'T'|'U'|'V'|'W'|'X'|'Y'|'Z'|'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'
 DIGITS ::= '1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'|'9'|'0'

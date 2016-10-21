@@ -87,6 +87,10 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitExpression(@NotNull RythmExpression o) {
+    visitPsiElement(o);
+  }
+
   public void visitGreater(@NotNull RythmGreater o) {
     visitPsiElement(o);
   }
@@ -96,6 +100,10 @@ public class RythmVisitor extends PsiElementVisitor {
   }
 
   public void visitHashtag(@NotNull RythmHashtag o) {
+    visitPsiElement(o);
+  }
+
+  public void visitJsSnip(@NotNull RythmJsSnip o) {
     visitPsiElement(o);
   }
 
@@ -203,6 +211,34 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRythmExtends(@NotNull RythmRythmExtends o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmFor(@NotNull RythmRythmFor o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmIf(@NotNull RythmRythmIf o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmImport(@NotNull RythmRythmImport o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmI18N(@NotNull RythmRythmI18N o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmKeys(@NotNull RythmRythmKeys o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmSection(@NotNull RythmRythmSection o) {
+    visitPsiElement(o);
+  }
+
   public void visitSemicolon(@NotNull RythmSemicolon o) {
     visitPsiElement(o);
   }
@@ -216,6 +252,10 @@ public class RythmVisitor extends PsiElementVisitor {
   }
 
   public void visitShiftRight(@NotNull RythmShiftRight o) {
+    visitPsiElement(o);
+  }
+
+  public void visitTest(@NotNull RythmTest o) {
     visitPsiElement(o);
   }
 

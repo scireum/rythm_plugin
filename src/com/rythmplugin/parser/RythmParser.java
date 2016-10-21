@@ -83,6 +83,9 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == EQ_EQ) {
       r = EQ_EQ(b, 0);
     }
+    else if (t == EXPRESSION) {
+      r = EXPRESSION(b, 0);
+    }
     else if (t == GREATER) {
       r = GREATER(b, 0);
     }
@@ -91,6 +94,9 @@ public class RythmParser implements PsiParser, LightPsiParser {
     }
     else if (t == HASHTAG) {
       r = HASHTAG(b, 0);
+    }
+    else if (t == JS_SNIP) {
+      r = JS_SNIP(b, 0);
     }
     else if (t == LBRACE) {
       r = LBRACE(b, 0);
@@ -170,6 +176,27 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == RYTHM) {
       r = RYTHM(b, 0);
     }
+    else if (t == RYTHM_EXTENDS) {
+      r = RYTHM_EXTENDS(b, 0);
+    }
+    else if (t == RYTHM_FOR) {
+      r = RYTHM_FOR(b, 0);
+    }
+    else if (t == RYTHM_IF) {
+      r = RYTHM_IF(b, 0);
+    }
+    else if (t == RYTHM_IMPORT) {
+      r = RYTHM_IMPORT(b, 0);
+    }
+    else if (t == RYTHM_I_18_N) {
+      r = RYTHM_I_18_N(b, 0);
+    }
+    else if (t == RYTHM_KEYS) {
+      r = RYTHM_KEYS(b, 0);
+    }
+    else if (t == RYTHM_SECTION) {
+      r = RYTHM_SECTION(b, 0);
+    }
     else if (t == SEMICOLON) {
       r = SEMICOLON(b, 0);
     }
@@ -181,6 +208,9 @@ public class RythmParser implements PsiParser, LightPsiParser {
     }
     else if (t == SHIFT_RIGHT) {
       r = SHIFT_RIGHT(b, 0);
+    }
+    else if (t == TEST) {
+      r = TEST(b, 0);
     }
     else if (t == UNSIGNED_SHIFT_RIGHT) {
       r = UNSIGNED_SHIFT_RIGHT(b, 0);
@@ -489,6 +519,19 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // '{' TEXT '}'
+  public static boolean EXPRESSION(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "EXPRESSION")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, EXPRESSION, "<expression>");
+    r = consumeToken(b, "{");
+    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, "}");
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
   // '>'
   public static boolean GREATER(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "GREATER")) return false;
@@ -517,6 +560,18 @@ public class RythmParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, HASHTAG, "<hashtag>");
     r = consumeToken(b, "#");
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // '$'STATEMENT
+  public static boolean JS_SNIP(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "JS_SNIP")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, JS_SNIP, "<js snip>");
+    r = consumeToken(b, "$");
+    r = r && consumeToken(b, STATEMENT);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -848,28 +903,268 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // RYTHM_KEY|RYTHM_I_18_N|RYTHM_METHOD|RYTHM_ARGS|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|
+  // RYTHM_KEYS|RYTHM_I_18_N|RYTHM_METHOD|RYTHM_ARGS|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|
   // RYTHM_INVOKE|RYTHM_IF|RYTHM_FOR|RYTHM_PREFIX|RYTHM_COMMENT|RYTHM_ELSE
   public static boolean RYTHM(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, RYTHM, "<rythm>");
-    r = consumeToken(b, RYTHM_KEY);
-    if (!r) r = consumeToken(b, RYTHM_I_18_N);
+    r = RYTHM_KEYS(b, l + 1);
+    if (!r) r = RYTHM_I_18_N(b, l + 1);
     if (!r) r = consumeToken(b, RYTHM_METHOD);
     if (!r) r = consumeToken(b, RYTHM_ARGS);
-    if (!r) r = consumeToken(b, RYTHM_SECTION);
-    if (!r) r = consumeToken(b, RYTHM_EXTENDS);
-    if (!r) r = consumeToken(b, RYTHM_IMPORT);
+    if (!r) r = RYTHM_SECTION(b, l + 1);
+    if (!r) r = RYTHM_EXTENDS(b, l + 1);
+    if (!r) r = RYTHM_IMPORT(b, l + 1);
     if (!r) r = consumeToken(b, RYTHM_RENDER);
     if (!r) r = consumeToken(b, RYTHM_INVOKE);
-    if (!r) r = consumeToken(b, RYTHM_IF);
-    if (!r) r = consumeToken(b, RYTHM_FOR);
+    if (!r) r = RYTHM_IF(b, l + 1);
+    if (!r) r = RYTHM_FOR(b, l + 1);
     if (!r) r = consumeToken(b, RYTHM_PREFIX);
     if (!r) r = consumeToken(b, RYTHM_COMMENT);
     if (!r) r = consumeToken(b, RYTHM_ELSE);
     exit_section_(b, l, m, r, false, null);
     return r;
+  }
+
+  /* ********************************************************** */
+  // '@extends' STATEMENT
+  public static boolean RYTHM_EXTENDS(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_EXTENDS")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, RYTHM_EXTENDS, "<rythm extends>");
+    r = consumeToken(b, "@extends");
+    r = r && consumeToken(b, STATEMENT);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // '@for' TEXT* STATEMENT
+  public static boolean RYTHM_FOR(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_FOR")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, RYTHM_FOR, "<rythm for>");
+    r = consumeToken(b, "@for");
+    r = r && RYTHM_FOR_1(b, l + 1);
+    r = r && consumeToken(b, STATEMENT);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // TEXT*
+  private static boolean RYTHM_FOR_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_FOR_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, TEXT)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_FOR_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // '@if' TEXT* STATEMENT|'@if' TEXT* LPAREN TEXT RYTHM_METHOD* TEXT RPAREN|'@if' TEXT* RYTHM_METHOD* TEXT*
+  public static boolean RYTHM_IF(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, RYTHM_IF, "<rythm if>");
+    r = RYTHM_IF_0(b, l + 1);
+    if (!r) r = RYTHM_IF_1(b, l + 1);
+    if (!r) r = RYTHM_IF_2(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // '@if' TEXT* STATEMENT
+  private static boolean RYTHM_IF_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, "@if");
+    r = r && RYTHM_IF_0_1(b, l + 1);
+    r = r && consumeToken(b, STATEMENT);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // TEXT*
+  private static boolean RYTHM_IF_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF_0_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, TEXT)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_IF_0_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // '@if' TEXT* LPAREN TEXT RYTHM_METHOD* TEXT RPAREN
+  private static boolean RYTHM_IF_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, "@if");
+    r = r && RYTHM_IF_1_1(b, l + 1);
+    r = r && LPAREN(b, l + 1);
+    r = r && consumeToken(b, TEXT);
+    r = r && RYTHM_IF_1_4(b, l + 1);
+    r = r && consumeToken(b, TEXT);
+    r = r && RPAREN(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // TEXT*
+  private static boolean RYTHM_IF_1_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF_1_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, TEXT)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_IF_1_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // RYTHM_METHOD*
+  private static boolean RYTHM_IF_1_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF_1_4")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, RYTHM_METHOD)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_IF_1_4", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // '@if' TEXT* RYTHM_METHOD* TEXT*
+  private static boolean RYTHM_IF_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF_2")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, "@if");
+    r = r && RYTHM_IF_2_1(b, l + 1);
+    r = r && RYTHM_IF_2_2(b, l + 1);
+    r = r && RYTHM_IF_2_3(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // TEXT*
+  private static boolean RYTHM_IF_2_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF_2_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, TEXT)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_IF_2_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // RYTHM_METHOD*
+  private static boolean RYTHM_IF_2_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF_2_2")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, RYTHM_METHOD)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_IF_2_2", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // TEXT*
+  private static boolean RYTHM_IF_2_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IF_2_3")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, TEXT)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_IF_2_3", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // '@import' TEXT DOT TEXT DOT TEXT
+  public static boolean RYTHM_IMPORT(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_IMPORT")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, RYTHM_IMPORT, "<rythm import>");
+    r = consumeToken(b, "@import");
+    r = r && consumeToken(b, TEXT);
+    r = r && DOT(b, l + 1);
+    r = r && consumeToken(b, TEXT);
+    r = r && DOT(b, l + 1);
+    r = r && consumeToken(b, TEXT);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // '@i18n' STATEMENT
+  public static boolean RYTHM_I_18_N(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_I_18_N")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, RYTHM_I_18_N, "<rythm i 18 n>");
+    r = consumeToken(b, "@i18n");
+    r = r && consumeToken(b, STATEMENT);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // RYTHM_KEY STATEMENT*
+  public static boolean RYTHM_KEYS(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_KEYS")) return false;
+    if (!nextTokenIs(b, RYTHM_KEY)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, RYTHM_KEY);
+    r = r && RYTHM_KEYS_1(b, l + 1);
+    exit_section_(b, m, RYTHM_KEYS, r);
+    return r;
+  }
+
+  // STATEMENT*
+  private static boolean RYTHM_KEYS_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_KEYS_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, STATEMENT)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_KEYS_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // '@section' STATEMENT*
+  public static boolean RYTHM_SECTION(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_SECTION")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, RYTHM_SECTION, "<rythm section>");
+    r = consumeToken(b, "@section");
+    r = r && RYTHM_SECTION_1(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // STATEMENT*
+  private static boolean RYTHM_SECTION_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RYTHM_SECTION_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, STATEMENT)) break;
+      if (!empty_element_parsed_guard_(b, "RYTHM_SECTION_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
   }
 
   /* ********************************************************** */
@@ -917,6 +1212,85 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // '<a onclick=' TEXT LPAREN* tokens* RYTHM* tokens* RYTHM tokens* TEXT
+  public static boolean TEST(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TEST")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, TEST, "<test>");
+    r = consumeToken(b, "<a onclick=");
+    r = r && consumeToken(b, TEXT);
+    r = r && TEST_2(b, l + 1);
+    r = r && TEST_3(b, l + 1);
+    r = r && TEST_4(b, l + 1);
+    r = r && TEST_5(b, l + 1);
+    r = r && RYTHM(b, l + 1);
+    r = r && TEST_7(b, l + 1);
+    r = r && consumeToken(b, TEXT);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // LPAREN*
+  private static boolean TEST_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TEST_2")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!LPAREN(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "TEST_2", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // tokens*
+  private static boolean TEST_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TEST_3")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!tokens(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "TEST_3", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // RYTHM*
+  private static boolean TEST_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TEST_4")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!RYTHM(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "TEST_4", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // tokens*
+  private static boolean TEST_5(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TEST_5")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!tokens(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "TEST_5", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // tokens*
+  private static boolean TEST_7(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TEST_7")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!tokens(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "TEST_7", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
   // '>>>'
   public static boolean UNSIGNED_SHIFT_RIGHT(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "UNSIGNED_SHIFT_RIGHT")) return false;
@@ -952,7 +1326,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // property|COMMENT|CRLF|tokens|LETTER|NUMBER|
-  // SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER|TEXT
+  // SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER|TEXT|STATEMENT|DOT|TEST|JS_SNIP|EXPRESSION|DOLLAR
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
@@ -970,6 +1344,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, FUNCTION);
     if (!r) r = consumeToken(b, IDENTIFIER);
     if (!r) r = consumeToken(b, TEXT);
+    if (!r) r = consumeToken(b, STATEMENT);
+    if (!r) r = DOT(b, l + 1);
+    if (!r) r = TEST(b, l + 1);
+    if (!r) r = JS_SNIP(b, l + 1);
+    if (!r) r = EXPRESSION(b, l + 1);
+    if (!r) r = consumeToken(b, DOLLAR);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1004,7 +1384,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   // COLON|SEMICOLON|COMMA|MULTI_ARGS|CLASS_ATTR_END|CLASS_ATTR_START|SHIFT_LEFT|SHIFT_RIGHT
   // |UNSIGNED_SHIFT_RIGHT|CMP|EQ_EQ|NOT_EQ|LESS_OR_EQ|GREATER_OR_EQ|SEND_CHANNEL|PLUS_EQ|
   // MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AND|
-  // PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|DOT|LETTER|DIGITS|QM|AS|HASHTAG|
+  // PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|LETTER|DIGITS|QM|AS|HASHTAG|
   // //RYTHM_IF ::= ('@if' WS* LPAREN+ (LETTER+ tokens* LETTER+)* tokens* RPAREN+)
   public static boolean tokens(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "tokens")) return false;
@@ -1053,13 +1433,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = REMAINDER(b, l + 1);
     if (!r) r = QUESTION(b, l + 1);
     if (!r) r = AT(b, l + 1);
-    if (!r) r = DOT(b, l + 1);
     if (!r) r = LETTER(b, l + 1);
     if (!r) r = DIGITS(b, l + 1);
     if (!r) r = QM(b, l + 1);
     if (!r) r = AS(b, l + 1);
     if (!r) r = HASHTAG(b, l + 1);
-    if (!r) r = consumeToken(b, TOKENS_49_0);
+    if (!r) r = consumeToken(b, TOKENS_48_0);
     exit_section_(b, l, m, r, false, null);
     return r;
   }

@@ -112,12 +112,6 @@ public class RythmTokensImpl extends ASTWrapperPsiElement implements RythmTokens
 
   @Override
   @Nullable
-  public RythmDot getDot() {
-    return findChildByClass(RythmDot.class);
-  }
-
-  @Override
-  @Nullable
   public RythmDoubleColon getDoubleColon() {
     return findChildByClass(RythmDoubleColon.class);
   }
