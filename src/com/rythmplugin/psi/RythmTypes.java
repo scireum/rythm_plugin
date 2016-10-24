@@ -24,7 +24,6 @@ public interface RythmTypes {
   IElementType COLON = new RythmElementType("COLON");
   IElementType COMMA = new RythmElementType("COMMA");
   IElementType COMMENT = new RythmElementType("COMMENT");
-  IElementType DIGITS = new RythmElementType("DIGITS");
   IElementType DIV = new RythmElementType("DIV");
   IElementType DIV_EQ = new RythmElementType("DIV_EQ");
   IElementType DOT = new RythmElementType("DOT");
@@ -35,12 +34,12 @@ public interface RythmTypes {
   IElementType GREATER = new RythmElementType("GREATER");
   IElementType GREATER_OR_EQ = new RythmElementType("GREATER_OR_EQ");
   IElementType HASHTAG = new RythmElementType("HASHTAG");
+  IElementType JAVA_CODE = new RythmElementType("JAVA_CODE");
   IElementType JS_SNIP = new RythmElementType("JS_SNIP");
   IElementType LBRACE = new RythmElementType("LBRACE");
   IElementType LBRACKET = new RythmElementType("LBRACKET");
   IElementType LESS = new RythmElementType("LESS");
   IElementType LESS_OR_EQ = new RythmElementType("LESS_OR_EQ");
-  IElementType LETTER = new RythmElementType("LETTER");
   IElementType LPAREN = new RythmElementType("LPAREN");
   IElementType MINUS = new RythmElementType("MINUS");
   IElementType MINUS_EQ = new RythmElementType("MINUS_EQ");
@@ -63,6 +62,7 @@ public interface RythmTypes {
   IElementType REMAINDER_EQ = new RythmElementType("REMAINDER_EQ");
   IElementType RPAREN = new RythmElementType("RPAREN");
   IElementType RYTHM = new RythmElementType("RYTHM");
+  IElementType RYTHM_ARGS = new RythmElementType("RYTHM_ARGS");
   IElementType RYTHM_EXTENDS = new RythmElementType("RYTHM_EXTENDS");
   IElementType RYTHM_FOR = new RythmElementType("RYTHM_FOR");
   IElementType RYTHM_IF = new RythmElementType("RYTHM_IF");
@@ -79,13 +79,22 @@ public interface RythmTypes {
   IElementType UNSIGNED_SHIFT_RIGHT = new RythmElementType("UNSIGNED_SHIFT_RIGHT");
   IElementType WS = new RythmElementType("WS");
 
+  IElementType CLASS = new RythmTokenType("class");
   IElementType CRLF = new RythmTokenType("CRLF");
+  IElementType DIGITS = new RythmTokenType("DIGITS");
   IElementType DOLLAR = new RythmTokenType("DOLLAR");
+  IElementType EXTENDS = new RythmTokenType("extends");
   IElementType FUNCTION = new RythmTokenType("FUNCTION");
   IElementType IDENTIFIER = new RythmTokenType("IDENTIFIER");
+  IElementType IMPORT = new RythmTokenType("import");
+  IElementType JAVA = new RythmTokenType("JAVA");
+  IElementType LEFTBRACES = new RythmTokenType("{:");
+  IElementType LETTER = new RythmTokenType("LETTER");
   IElementType NUMBER = new RythmTokenType("NUMBER");
+  IElementType PACKAGE = new RythmTokenType("package");
   IElementType PROPERTY = new RythmTokenType("property");
-  IElementType RYTHM_ARGS = new RythmTokenType("RYTHM_ARGS");
+  IElementType RIGHTBRACES = new RythmTokenType(":}");
+  IElementType RYTHM_AARGS = new RythmTokenType("RYTHM_AARGS");
   IElementType RYTHM_COMMENT = new RythmTokenType("RYTHM_COMMENT");
   IElementType RYTHM_ELSE = new RythmTokenType("RYTHM_ELSE");
   IElementType RYTHM_INVOKE = new RythmTokenType("RYTHM_INVOKE");
@@ -95,6 +104,8 @@ public interface RythmTypes {
   IElementType RYTHM_RENDER = new RythmTokenType("RYTHM_RENDER");
   IElementType SEPARATOR = new RythmTokenType("SEPARATOR");
   IElementType STATEMENT = new RythmTokenType("STATEMENT");
+  IElementType STATIC = new RythmTokenType("static");
+  IElementType SUPER = new RythmTokenType("super");
   IElementType TAG = new RythmTokenType("TAG");
   IElementType TEXT = new RythmTokenType("TEXT");
   IElementType TOKENS_48_0 = new RythmTokenType("tokens_48_0");
@@ -144,9 +155,6 @@ public interface RythmTypes {
       else if (type == COMMENT) {
         return new RythmCommentImpl(node);
       }
-      else if (type == DIGITS) {
-        return new RythmDigitsImpl(node);
-      }
       else if (type == DIV) {
         return new RythmDivImpl(node);
       }
@@ -177,6 +185,9 @@ public interface RythmTypes {
       else if (type == HASHTAG) {
         return new RythmHashtagImpl(node);
       }
+      else if (type == JAVA_CODE) {
+        return new RythmJavaCodeImpl(node);
+      }
       else if (type == JS_SNIP) {
         return new RythmJsSnipImpl(node);
       }
@@ -191,9 +202,6 @@ public interface RythmTypes {
       }
       else if (type == LESS_OR_EQ) {
         return new RythmLessOrEqImpl(node);
-      }
-      else if (type == LETTER) {
-        return new RythmLetterImpl(node);
       }
       else if (type == LPAREN) {
         return new RythmLparenImpl(node);
@@ -260,6 +268,9 @@ public interface RythmTypes {
       }
       else if (type == RYTHM) {
         return new RythmRythmImpl(node);
+      }
+      else if (type == RYTHM_ARGS) {
+        return new RythmRythmArgsImpl(node);
       }
       else if (type == RYTHM_EXTENDS) {
         return new RythmRythmExtendsImpl(node);

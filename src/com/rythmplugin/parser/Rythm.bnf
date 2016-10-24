@@ -11,12 +11,27 @@
   elementTypeHolderClass="com.rythmplugin.psi.RythmTypes"
   elementTypeClass="com.rythmplugin.lexer.RythmElementType"
   tokenTypeClass="com.rythmplugin.parser.RythmTokenType"
+
+  tokens= [
+
+      LEFTBRACES = "{:"
+      RIGHTBRACES = ":}"
+
+          // Java keywords
+          CLASS = "class"
+          EXTENDS = "extends"
+          IMPORT = "import"
+          PACKAGE = "package"
+          STATIC = "static"
+          SUPER = "super"
+  ]
+
 }
 
 rythmFile ::= item_*
 
 private item_ ::= property|COMMENT|CRLF|tokens|LETTER|NUMBER|
-SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER|TEXT|STATEMENT|DOT|TEST|JS_SNIP|EXPRESSION|DOLLAR
+SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER|TEXT|STATEMENT|DOT|JS_SNIP|EXPRESSION|DOLLAR|java_code|TEST
 
 TEST ::= '<a onclick=' TEXT LPAREN* tokens* RYTHM* tokens* RYTHM tokens* TEXT
 
@@ -28,7 +43,9 @@ EXPRESSION ::= '{' TEXT '}'
 
 RYTHM_IF::= '@if' TEXT* STATEMENT|'@if' TEXT* LPAREN TEXT RYTHM_METHOD* TEXT RPAREN|'@if' TEXT* RYTHM_METHOD* TEXT*
 RYTHM_IMPORT ::= '@import' TEXT DOT TEXT DOT TEXT
-RYTHM_ARGS ::= '@args' (TEXT DOT TEXT)+
+
+RYTHM_ARGS ::= RYTHM_AARGS
+
 RYTHM_EXTENDS ::= '@extends' STATEMENT
 RYTHM_SECTION ::= '@section' STATEMENT*
 RYTHM_I_18_N ::= '@i18n' STATEMENT
@@ -101,8 +118,8 @@ QM                   ::= '"'
 AS                   ::= "'"
 HASHTAG              ::= "#"
 
-
-WS ::= ' '
+WS                   ::= ' '
 DOT                  ::= '.'
-LETTER ::= 'A'|'B'|'C'|'D'|'E'|'F'|'G'|'H'|'I'|'J'|'K'|'L'|'M'|'N'|'O'|'P'|'Q'|'R'|'S'|'T'|'U'|'V'|'W'|'X'|'Y'|'Z'|'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'
-DIGITS ::= '1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'|'9'|'0'
+
+java_code               ::= '{:' JAVA* ':}' {implements= "com.intellij.psi.PsiLanguageInjectionHost"
+                                             mixin = "com.rythmplugin.RythmJavaImpl"}

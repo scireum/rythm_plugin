@@ -62,9 +62,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == COMMENT) {
       r = COMMENT(b, 0);
     }
-    else if (t == DIGITS) {
-      r = DIGITS(b, 0);
-    }
     else if (t == DIV) {
       r = DIV(b, 0);
     }
@@ -109,9 +106,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
     }
     else if (t == LESS_OR_EQ) {
       r = LESS_OR_EQ(b, 0);
-    }
-    else if (t == LETTER) {
-      r = LETTER(b, 0);
     }
     else if (t == LPAREN) {
       r = LPAREN(b, 0);
@@ -223,6 +217,9 @@ public class RythmParser implements PsiParser, LightPsiParser {
     }
     else if (t == CLASSS) {
       r = classs(b, 0);
+    }
+    else if (t == JAVA_CODE) {
+      r = java_code(b, 0);
     }
     else if (t == PACKAGEE) {
       r = packagee(b, 0);
@@ -435,27 +432,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'|'9'|'0'
-  public static boolean DIGITS(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "DIGITS")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, DIGITS, "<digits>");
-    r = consumeToken(b, "1");
-    if (!r) r = consumeToken(b, "2");
-    if (!r) r = consumeToken(b, "3");
-    if (!r) r = consumeToken(b, "4");
-    if (!r) r = consumeToken(b, "5");
-    if (!r) r = consumeToken(b, "6");
-    if (!r) r = consumeToken(b, "7");
-    if (!r) r = consumeToken(b, "8");
-    if (!r) r = consumeToken(b, "9");
-    if (!r) r = consumeToken(b, "9");
-    if (!r) r = consumeToken(b, "0");
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  /* ********************************************************** */
   // '/'
   public static boolean DIV(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DIV")) return false;
@@ -619,68 +595,6 @@ public class RythmParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, LESS_OR_EQ, "<less or eq>");
     r = consumeToken(b, "<=");
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  /* ********************************************************** */
-  // 'A'|'B'|'C'|'D'|'E'|'F'|'G'|'H'|'I'|'J'|'K'|'L'|'M'|'N'|'O'|'P'|'Q'|'R'|'S'|'T'|'U'|'V'|'W'|'X'|'Y'|'Z'|'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'
-  public static boolean LETTER(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "LETTER")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, LETTER, "<letter>");
-    r = consumeToken(b, "A");
-    if (!r) r = consumeToken(b, "B");
-    if (!r) r = consumeToken(b, "C");
-    if (!r) r = consumeToken(b, "D");
-    if (!r) r = consumeToken(b, "E");
-    if (!r) r = consumeToken(b, "F");
-    if (!r) r = consumeToken(b, "G");
-    if (!r) r = consumeToken(b, "H");
-    if (!r) r = consumeToken(b, "I");
-    if (!r) r = consumeToken(b, "J");
-    if (!r) r = consumeToken(b, "K");
-    if (!r) r = consumeToken(b, "L");
-    if (!r) r = consumeToken(b, "M");
-    if (!r) r = consumeToken(b, "N");
-    if (!r) r = consumeToken(b, "O");
-    if (!r) r = consumeToken(b, "P");
-    if (!r) r = consumeToken(b, "Q");
-    if (!r) r = consumeToken(b, "R");
-    if (!r) r = consumeToken(b, "S");
-    if (!r) r = consumeToken(b, "T");
-    if (!r) r = consumeToken(b, "U");
-    if (!r) r = consumeToken(b, "V");
-    if (!r) r = consumeToken(b, "W");
-    if (!r) r = consumeToken(b, "X");
-    if (!r) r = consumeToken(b, "Y");
-    if (!r) r = consumeToken(b, "Z");
-    if (!r) r = consumeToken(b, "a");
-    if (!r) r = consumeToken(b, "b");
-    if (!r) r = consumeToken(b, "c");
-    if (!r) r = consumeToken(b, "d");
-    if (!r) r = consumeToken(b, "e");
-    if (!r) r = consumeToken(b, "f");
-    if (!r) r = consumeToken(b, "g");
-    if (!r) r = consumeToken(b, "h");
-    if (!r) r = consumeToken(b, "i");
-    if (!r) r = consumeToken(b, "j");
-    if (!r) r = consumeToken(b, "k");
-    if (!r) r = consumeToken(b, "l");
-    if (!r) r = consumeToken(b, "m");
-    if (!r) r = consumeToken(b, "n");
-    if (!r) r = consumeToken(b, "o");
-    if (!r) r = consumeToken(b, "p");
-    if (!r) r = consumeToken(b, "q");
-    if (!r) r = consumeToken(b, "r");
-    if (!r) r = consumeToken(b, "s");
-    if (!r) r = consumeToken(b, "t");
-    if (!r) r = consumeToken(b, "u");
-    if (!r) r = consumeToken(b, "v");
-    if (!r) r = consumeToken(b, "w");
-    if (!r) r = consumeToken(b, "x");
-    if (!r) r = consumeToken(b, "y");
-    if (!r) r = consumeToken(b, "z");
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -931,42 +845,14 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '@args' (TEXT DOT TEXT)+
+  // RYTHM_AARGS
   public static boolean RYTHM_ARGS(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_ARGS")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, RYTHM_ARGS, "<rythm args>");
-    r = consumeToken(b, "@args");
-    r = r && RYTHM_ARGS_1(b, l + 1);
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  // (TEXT DOT TEXT)+
-  private static boolean RYTHM_ARGS_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "RYTHM_ARGS_1")) return false;
+    if (!nextTokenIs(b, RYTHM_AARGS)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = RYTHM_ARGS_1_0(b, l + 1);
-    int c = current_position_(b);
-    while (r) {
-      if (!RYTHM_ARGS_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "RYTHM_ARGS_1", c)) break;
-      c = current_position_(b);
-    }
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // TEXT DOT TEXT
-  private static boolean RYTHM_ARGS_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "RYTHM_ARGS_1_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, TEXT);
-    r = r && DOT(b, l + 1);
-    r = r && consumeToken(b, TEXT);
-    exit_section_(b, m, null, r);
+    r = consumeToken(b, RYTHM_AARGS);
+    exit_section_(b, m, RYTHM_ARGS, r);
     return r;
   }
 
@@ -1369,7 +1255,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // property|COMMENT|CRLF|tokens|LETTER|NUMBER|
-  // SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER|TEXT|STATEMENT|DOT|TEST|JS_SNIP|EXPRESSION|DOLLAR
+  // SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER|TEXT|STATEMENT|DOT|JS_SNIP|EXPRESSION|DOLLAR|java_code|TEST
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
@@ -1378,7 +1264,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = COMMENT(b, l + 1);
     if (!r) r = consumeToken(b, CRLF);
     if (!r) r = tokens(b, l + 1);
-    if (!r) r = LETTER(b, l + 1);
+    if (!r) r = consumeToken(b, LETTER);
     if (!r) r = consumeToken(b, NUMBER);
     if (!r) r = consumeToken(b, SEPARATOR);
     if (!r) r = consumeToken(b, TAG);
@@ -1389,12 +1275,39 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, TEXT);
     if (!r) r = consumeToken(b, STATEMENT);
     if (!r) r = DOT(b, l + 1);
-    if (!r) r = TEST(b, l + 1);
     if (!r) r = JS_SNIP(b, l + 1);
     if (!r) r = EXPRESSION(b, l + 1);
     if (!r) r = consumeToken(b, DOLLAR);
+    if (!r) r = java_code(b, l + 1);
+    if (!r) r = TEST(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
+  }
+
+  /* ********************************************************** */
+  // '{:' JAVA* ':}'
+  public static boolean java_code(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_code")) return false;
+    if (!nextTokenIs(b, LEFTBRACES)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, LEFTBRACES);
+    r = r && java_code_1(b, l + 1);
+    r = r && consumeToken(b, RIGHTBRACES);
+    exit_section_(b, m, JAVA_CODE, r);
+    return r;
+  }
+
+  // JAVA*
+  private static boolean java_code_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_code_1")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!consumeToken(b, JAVA)) break;
+      if (!empty_element_parsed_guard_(b, "java_code_1", c)) break;
+      c = current_position_(b);
+    }
+    return true;
   }
 
   /* ********************************************************** */
@@ -1475,8 +1388,8 @@ public class RythmParser implements PsiParser, LightPsiParser {
     if (!r) r = REMAINDER(b, l + 1);
     if (!r) r = QUESTION(b, l + 1);
     if (!r) r = AT(b, l + 1);
-    if (!r) r = LETTER(b, l + 1);
-    if (!r) r = DIGITS(b, l + 1);
+    if (!r) r = consumeToken(b, LETTER);
+    if (!r) r = consumeToken(b, DIGITS);
     if (!r) r = QM(b, l + 1);
     if (!r) r = AS(b, l + 1);
     if (!r) r = HASHTAG(b, l + 1);

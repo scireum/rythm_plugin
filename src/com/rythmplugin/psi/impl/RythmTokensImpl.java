@@ -94,12 +94,6 @@ public class RythmTokensImpl extends ASTWrapperPsiElement implements RythmTokens
 
   @Override
   @Nullable
-  public RythmDigits getDigits() {
-    return findChildByClass(RythmDigits.class);
-  }
-
-  @Override
-  @Nullable
   public RythmDiv getDiv() {
     return findChildByClass(RythmDiv.class);
   }
@@ -156,12 +150,6 @@ public class RythmTokensImpl extends ASTWrapperPsiElement implements RythmTokens
   @Nullable
   public RythmLessOrEq getLessOrEq() {
     return findChildByClass(RythmLessOrEq.class);
-  }
-
-  @Override
-  @Nullable
-  public RythmLetter getLetter() {
-    return findChildByClass(RythmLetter.class);
   }
 
   @Override

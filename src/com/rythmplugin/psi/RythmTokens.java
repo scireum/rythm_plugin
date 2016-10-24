@@ -41,9 +41,6 @@ public interface RythmTokens extends PsiElement {
   RythmComma getComma();
 
   @Nullable
-  RythmDigits getDigits();
-
-  @Nullable
   RythmDiv getDiv();
 
   @Nullable
@@ -72,9 +69,6 @@ public interface RythmTokens extends PsiElement {
 
   @Nullable
   RythmLessOrEq getLessOrEq();
-
-  @Nullable
-  RythmLetter getLetter();
 
   @Nullable
   RythmLparen getLparen();

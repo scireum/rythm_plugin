@@ -15,6 +15,8 @@ import com.intellij.psi.TokenType;
 %eof{  return;
 %eof}
 
+%state OPT_JAVA_CODE
+
 CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
 
@@ -26,7 +28,7 @@ DOT = \.
 
 DOLLAR = \$
 FUNCTION = function
-STATEMENT = \(+\!*\"*[a-zA-Z]+\.*[a-zA-Z]*\"*\(*\)*.*?\)+|\(\".*?\"*\)
+STATEMENT = \(+\!*\"*[a-zA-Z]+\.*?[a-zA-Z]*\"*\(*\)*.*?\)+|\(\".*?\"*\)
 
 //ORIGINAL
 //\(.[a-zA-Z]+.*?\)\)*|\(\".*?\)
@@ -40,7 +42,7 @@ STATEMENT = \(+\!*\"*[a-zA-Z]+\.*[a-zA-Z]*\"*\(*\)*.*?\)+|\(\".*?\"*\)
 //DIGIT =  [:digit:]
 
 //PARAM = \(([a-zA-Z])+\)
-RYTHM_ARGS = @args
+RYTHM_AARGS = @args.*[a-z]+
 RYTHM_SECTION = @section
 RYTHM_EXTENDS = @extends
 RYTHM_IMPORT = @import
@@ -73,7 +75,7 @@ RYTHM_COMMENT = @\*|\*.*|@@.\w+\.\w+
 RYTHM_FOR = @for
 //\(+.*\)|@for
 
-RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}|{RYTHM_RENDER}|{RYTHM_INVOKE}|{RYTHM_I_18_N}|{RYTHM_PREFIX}|{RYTHM_KEY}
+RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_AARGS}|{RYTHM_SECTION}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}|{RYTHM_RENDER}|{RYTHM_INVOKE}|{RYTHM_I_18_N}|{RYTHM_PREFIX}|{RYTHM_KEY}|{STATEMENT}
 
 
 //Erkennt den kompletten Code als HTML bis auf
@@ -85,6 +87,11 @@ RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_ARGS}|{RYTHM_SECTION}|{RYTHM_E
 TEXT = [^@\*\(\)\{\}\$\.]*//|\{|\}
 
 
+
+//Versuch eine Alternative zu dem davor ausgewählten Ansatz zu finden, damit nicht alles als HTML erkannt wird.
+//Hier wurde versucht anhand von TAGS HTML Code zu ermitteln. Dies hat leider nicht den erwünschten Erfolg gebracht,
+//da zum Teil Klammern nicht richtig erkannt wurden oder Anführungsstriche falsch erkannt wurden, was zu einem Fehlverhalten
+//geführt hat.
 /*
 HTML = {HTML_START}|{HTML_HEAD}|{HTML_META}|{HTML_TITLE}|{HTML_LINK}|{HTML_SCRIPT}|
 {HTML_BODY}|{HTML_DIV}|{HTML_OL}|{HTML_LI}|{HTML_A}|{HTML_SPAN}|{HTML_DOCTYPE}|{HTML_I}|
@@ -112,15 +119,23 @@ HTML_OPTION = \<option.*\>|\<\/option\>
 
 //TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
 
+
+
+//Diese Klammern werden separat vom Lexer verarbeitet, damit der BraceMatcher funktioniert
 LBRACE = \{
 RBRACE = \}
 
 LPAREN = \(
 RPAREN = \)
 
+TEST= @[a-z]+
+
 %state ST_ACTION
 
 %%
+"{:"               { yybegin(OPT_JAVA_CODE); return  RythmTypes.LEFTBRACES; }
+":}"               { return RythmTypes.RIGHTBRACES; }
+
 <YYINITIAL>{LBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.LBRACE;}
 <YYINITIAL>{RBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.RBRACE;}
 
@@ -134,7 +149,8 @@ RPAREN = \)
 <YYINITIAL> {STATEMENT}                                           {yybegin (YYINITIAL); return RythmTypes.STATEMENT;}
 <YYINITIAL> {IDENTIFIER}                                          {yybegin (YYINITIAL);return RythmTypes.IDENTIFIER; }
 <YYINITIAL> {DOT}                                                 {yybegin (YYINITIAL); return RythmTypes.DOT;}
-<YYINITIAL> {TEXT}                                                {yybegin(YYINITIAL); return RythmTypes.TEXT; }
+
+<YYINITIAL> {TEXT}                                               {yybegin(YYINITIAL); return RythmTypes.TEXT;}
 
 //<YYINITIAL>          {PARAM}                                    {yybegin (YYINITIAL);return RythmTypes.PARAM; }
 
@@ -145,7 +161,7 @@ RPAREN = \)
 
 //<YYINITIAL> {TAG}                                               {yybegin(YYINITIAL); return RythmTypes.TAG;}
 
-<YYINITIAL> {RYTHM_ARGS}                                          {yybegin(YYINITIAL); return RythmTypes.RYTHM_ARGS;}
+<YYINITIAL> {RYTHM_AARGS}                                          {yybegin(YYINITIAL); return RythmTypes.RYTHM_AARGS;}
 
 <YYINITIAL> {RYTHM_SECTION}                                       {yybegin(YYINITIAL); return RythmTypes.RYTHM_SECTION;}
 
@@ -171,8 +187,14 @@ RPAREN = \)
 
 <YYINITIAL> {RYTHM_KEY}                                           {yybegin(YYINITIAL); return RythmTypes.RYTHM_KEY;}
 
-
 }
+
+<OPT_JAVA_CODE> {
+ ":}"                                                             { yybegin(YYINITIAL); yypushback(yylength()); }
+    [^]                                                           { yybegin(OPT_JAVA_CODE); return RythmTypes.JAVA; }
+}
+
+
 <YYINITIAL, ST_ACTION>{
 ({CRLF}|{WHITE_SPACE})+                                           {yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
