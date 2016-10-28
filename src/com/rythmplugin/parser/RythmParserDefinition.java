@@ -17,13 +17,15 @@ import com.rythmplugin.file.RythmFile;
 import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 
+import static com.rythmplugin.psi.RythmTypes.BLOCK_COMMENT;
+
 
 /**
  * Created by mpl on 04.08.2016.
  */
 public class RythmParserDefinition implements ParserDefinition {
     public static final TokenSet WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE);
-    public static final TokenSet COMMENTS = TokenSet.create(RythmTypes.COMMENT);
+    public static final TokenSet COMMENTS = TokenSet.create(BLOCK_COMMENT);
 
     @Override
     public IFileElementType getFileNodeType() {

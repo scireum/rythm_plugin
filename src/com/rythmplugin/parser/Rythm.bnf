@@ -1,125 +1,105 @@
 {
   parserClass="com.rythmplugin.parser.RythmParser"
-
+  //parserUtilClass="com.rythmplugin.parser.RythmParserUtil"
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
   psiClassPrefix="Rythm"
   psiImplClassSuffix="Impl"
   psiPackage="com.rythmplugin.psi"
   psiImplPackage="com.rythmplugin.psi.impl"
+  //psiImplUtilClass = "com.rythmplugin.parser.RythmPsiImplUtil"
 
   elementTypeHolderClass="com.rythmplugin.psi.RythmTypes"
   elementTypeClass="com.rythmplugin.lexer.RythmElementType"
   tokenTypeClass="com.rythmplugin.parser.RythmTokenType"
 
   tokens= [
+  AT = "@"
 
-      LEFTBRACES = "{:"
-      RIGHTBRACES = ":}"
+        BAR =           "|"
+        LEFTBRACES =    "{:"
+        RIGHTBRACES =   ":}"
+        COLON =         ":"
+        DOT =           "."
+        COMMA =         ","
+        MUL =           "*"
+        LBRACE =        "{"
+        RBRACE =        "}"
+        LPAREN =        "("
+        RPAREN =        ")"
 
-          // Java keywords
-          CLASS = "class"
-          EXTENDS = "extends"
-          IMPORT = "import"
-          PACKAGE = "package"
-          STATIC = "static"
-          SUPER = "super"
+        SEMICOLON =     ";"
+        AUSRF =         "!"
+        EQ =            "="
+        SLASH =         "/"
+        HSHTG =         "#"
+        BRCSL =         "["
+        BRCSR =         "]"
+        DOLLAR =        "$"
+
+        PLUS =          "+"
+        GF =            '"'
+
+        // Rythm Keywords
+        //RYTHM_IF =      "@if"
+        //RYTHM_EXTENDS = "@extends"
+        //RYTHM_FOR =     "@for"
+        //RYTHM_IMPORT =  "@import"
+        //RYTHM_ARGS =    "@args"
+        //RYTHM_SECTION = "@section"
+        //RYTHM_I18N =    "@i18n"
+        //RYTHM_PREFIX =  "@prefix"
+        //RYTHM_RENDER =  "@render"
+        //RYTHM_INVOKE =  "@invoke"
+
+        // Java keywords
+        CLASS =         "class"
+        EXTENDS =       "extends"
+        IMPORT =        "import"
+        PACKAGE =       "package"
+        STATIC =        "static"
+        SUPER =         "super"
+
+        // Regex
+        //identifier = "regexp:[a-zA-Z0-9_]"
+        //block_comment = 'regexp:\@\*|\*\@|\*(\s*\w+.*)+|\*\s'
+        //white_space ='regexp:[\ \t\f\s]'
+
+        //rythm_key = "regexp:\@\w+"
+        //text = "regexp:\<[^@}{,]+\>|\<[^@}{,]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>"
+
+
   ]
+
+pin(".*Code")=1
+pin(".*Declaration")=1
 
 }
 
-rythmFile ::= item_*
+rythmFile ::= (initialDeclaration)|(BLOCK_COMMENT)*|  (TEXT) | (RYTHM)| (GENERICS?)
 
-private item_ ::= property|COMMENT|CRLF|tokens|LETTER|NUMBER|
-SEPARATOR|TAG|WS|RYTHM|FUNCTION|IDENTIFIER|TEXT|STATEMENT|DOT|JS_SNIP|EXPRESSION|DOLLAR|java_code|TEST
-
-TEST ::= '<a onclick=' TEXT LPAREN* tokens* RYTHM* tokens* RYTHM tokens* TEXT
-
-RYTHM ::= RYTHM_KEYS|RYTHM_I_18_N|RYTHM_METHOD|RYTHM_ARGS|RYTHM_SECTION|RYTHM_EXTENDS|RYTHM_IMPORT|RYTHM_RENDER|
-RYTHM_INVOKE|RYTHM_IF|RYTHM_FOR|RYTHM_PREFIX|RYTHM_COMMENT|RYTHM_ELSE
-
-JS_SNIP ::= '$'STATEMENT
-EXPRESSION ::= '{' TEXT '}'
-
-RYTHM_IF::= '@if' TEXT* STATEMENT|'@if' TEXT* LPAREN TEXT RYTHM_METHOD* TEXT RPAREN|'@if' TEXT* RYTHM_METHOD* TEXT*
-RYTHM_IMPORT ::= '@import' TEXT DOT TEXT DOT TEXT
-
-RYTHM_ARGS ::= RYTHM_AARGS
-
-RYTHM_EXTENDS ::= '@extends' STATEMENT
-RYTHM_SECTION ::= '@section' STATEMENT*
-RYTHM_I_18_N ::= '@i18n' STATEMENT
-RYTHM_KEYS ::= RYTHM_KEY STATEMENT*
-RYTHM_FOR ::= '@for' TEXT* STATEMENT
+RYTHM ::= RYTHM_PREFIX|RYTHM_IF|RYTHM_I18N|RYTHM_EXTENDS|RYTHM_FOR|RYTHM_INVOKE|RYTHM_SECTION|RYTHM_RENDER|BLOCK_COMMENT
+//initialDeclaration ::= RYTHM_ARGS|RYTHM_IMPORT|RYTHM_EXTENDS
 
 
-packagee ::= IDENTIFIER
-classs ::= IDENTIFIER
+initialDeclaration ::= RYTHM_ARGS RYTHM_IMPORT RYTHM_EXTENDS
 
-COMMENT::= '@' tokens |MUL tokens+  |MUL '@'
-//RYTHM_EXTENDS ::= '@extends' (LPAREN TEXT)* RPAREN TEXT LPAREN RPAREN+
-//RYTHM_IF ::= ('@if' WS* LPAREN+ (LETTER+ tokens* LETTER+)* tokens* RPAREN+)
+RYTHM_ARGS ::= ('@args' qualifiedName)//(',' qualifiedName GENERICS)*// RYTHM_IMPORT* RYTHM_EXTENDS* TEXT*
 
-tokens ::= RBRACE|RBRACKET|RPAREN|PLUS_PLUS|MINUS_MINUS|LBRACE|LBRACKET|LPAREN|DOUBLE_COLON|
-COLON|SEMICOLON|COMMA|MULTI_ARGS|CLASS_ATTR_END|CLASS_ATTR_START|SHIFT_LEFT|SHIFT_RIGHT
-|UNSIGNED_SHIFT_RIGHT|CMP|EQ_EQ|NOT_EQ|LESS_OR_EQ|GREATER_OR_EQ|SEND_CHANNEL|PLUS_EQ|
-MINUS_EQ|MUL_EQ| DIV_EQ| REMAINDER_EQ|OR_OR|AND_AND|EQ|NOT|BIT_NOT|BIT_OR|BIT_AND|
-PLUS|MINUS|MUL|DIV|REMAINDER|QUESTION|AT|LETTER|DIGITS|QM|AS|HASHTAG|
+RYTHM_IMPORT ::= ('@import' qualifiedName) RYTHM_IMPORT // RYTHM_EXTENDS*
+
+RYTHM_EXTENDS ::= '@extends' '('qualifiedName'.'IDENTIFIER+',' 'title'':' '('IDENTIFIER+'.'IDENTIFIER+'('IDENTIFIER* '.'* IDENTIFIER*'('*')'')'*'+''"'':''"''+'IDENTIFIER+'.'IDENTIFIER*'('')'')'')' //RYTHM_SECTION*
 
 
-RBRACE               ::=  '}'
-RBRACKET             ::=  ']'
-RPAREN               ::=  ')'
-PLUS_PLUS            ::=  '++'
-MINUS_MINUS          ::=  '--'
-LBRACE               ::=  '{'
-LBRACKET             ::=  '['
-LPAREN               ::=  '('
-DOUBLE_COLON         ::=  '::'
-COLON                ::=  ':'
-SEMICOLON            ::=  ';'
-COMMA                ::=  ','
-MULTI_ARGS           ::=  '...'
-CLASS_ATTR_START     ::=  '</'
-CLASS_ATTR_END       ::=  '/>'
-SHIFT_LEFT           ::=  '<<'
-SHIFT_RIGHT          ::=  '>>'
-UNSIGNED_SHIFT_RIGHT ::=  '>>>'
-CMP                  ::=  '<=>'
-EQ_EQ                ::=  '=='
-NOT_EQ               ::=  '!='
-LESS_OR_EQ           ::=  '<='
-GREATER_OR_EQ        ::=  '>='
-SEND_CHANNEL         ::=  '<-'
-PLUS_EQ              ::=  '+='
-MINUS_EQ             ::=  '-='
-MUL_EQ               ::=  '*='
-DIV_EQ               ::=  '/='
-REMAINDER_EQ         ::=  '%='
-OR_OR                ::=  '||'
-AND_AND              ::=  '&&'
-EQ                   ::=  '='
-NOT                  ::=  '!'
-BIT_NOT              ::=  '~'
-BIT_OR               ::=  '|'
-BIT_XOR              ::=  '^'
-BIT_AND              ::=  '&'
-LESS                 ::=  '<'
-GREATER              ::=  '>'
-PLUS                 ::=  '+'
-MINUS                ::=  '-'
-MUL                  ::=  '*'
-DIV                  ::=  '/'
-REMAINDER            ::=  '%'
-QUESTION             ::=  '?'
-AT                   ::=  '@'
+RYTHM_SECTION ::= '@section' PARAM '{' TEXT* '}'//rythm_keyy*
 
-QM                   ::= '"'
-AS                   ::= "'"
-HASHTAG              ::= "#"
+PARAM ::= '('IDENTIFIER+ ')'
 
-WS                   ::= ' '
-DOT                  ::= '.'
+rythm_keyy ::= RYTHM_KEY'('')''{'*
 
+qualifiedName ::= IDENTIFIER+ ('.'* ','* IDENTIFIER+)* (GENERICS* IDENTIFIER* ','* IDENTIFIER* GENERICS)* IDENTIFIER*//BACKUP IDENTIFIER+ ('.' IDENTIFIER* '.' IDENTIFIER*)|IDENTIFIER+
+//BLOCK_COMMENT ::= AT '*'|'*'( IDENTIFIER* COMMA* IDENTIFIER*)+|'*' AT
+
+//For Java Language Injection
 java_code               ::= '{:' JAVA* ':}' {implements= "com.intellij.psi.PsiLanguageInjectionHost"
                                              mixin = "com.rythmplugin.RythmJavaImpl"}

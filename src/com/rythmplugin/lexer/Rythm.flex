@@ -19,186 +19,61 @@ import com.intellij.psi.TokenType;
 
 CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
+BLOCK_COMMENT = \@\*|\*\@|\*(\s*\w+.*)+|\*\s
 
 IDENTIFIER = {LETTER}|{DIGIT}
-LETTER = [:letter:]
+LETTER = [a-zA-Z_]
 DIGIT = [:digit:]
-DOT = \.
 
-
-DOLLAR = \$
-FUNCTION = function
-STATEMENT = \(+\!*\"*[a-zA-Z]+\.*?[a-zA-Z]*\"*\(*\)*.*?\)+|\(\".*?\"*\)
-
-//ORIGINAL
-//\(.[a-zA-Z]+.*?\)\)*|\(\".*?\)
-
-
-//\(.[a-zA-Z]+[^@]*\)\)*|\(\".*?\)
-//\([a-zA-Z]+.*?\)\)*
-
-//IDENTIFIER = {LETTER} ({LETTER} | {DIGIT} )*
-//LETTER = [:letter:] | "_"
-//DIGIT =  [:digit:]
-
-//PARAM = \(([a-zA-Z])+\)
-RYTHM_AARGS = @args.*[a-z]+
-RYTHM_SECTION = @section
-RYTHM_EXTENDS = @extends
-RYTHM_IMPORT = @import
-RYTHM_RENDER = @render
-RYTHM_INVOKE = @invoke
-RYTHM_I_18_N = @i18n//.*\)|@i18n
-//@i18n\(\"[a-zA-Z]+\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)+|@i18n
-RYTHM_PREFIX = @prefix
-
-RYTHM_KEY = @[a-zA-Z]+|@[a-z]+[A-Z]+[a-z]+|@[a-z]+[A-Z]+[a-z]
-
-RYTHM_METHOD = \.[a-zA-Z]*\([a-zA-Z]*\)
-//18.10.16       \.get[a-zA-Z]*
-// \.[a-zA-Z]+\(+[a-zA-Z]*?\)|\.get[a-zA-Z]+\(+[a-zA-Z]*
-//\.[a-zA-Z]\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*\(*\)+|\.equals|\.get[a-zA-Z]+\(\)|\.get[a-zA-Z]+\(*[a-zA-Z]*\)*|\.get
-//\.[a-zA-Z]\(+[a-zA-Z]*\)|\.[a-zA-Z]+\_*[A-Z]*\(*\)|\.equals|\.get[a-zA-Z]+\(\)|\.get[a-zA-Z]+\(*[a-zA-Z]*\)*|\.get
-
-//RYTHM_BLOCK = [a-zA-Z]+\:\s*[a-zA-Z]*\.[a-zA-Z]+\(\)\,|[a-zA-Z]+\:\s*\"[a-zA-Z]+\.[a-zA-Z]+\"\,|[a-zA-Z]+:\s\"[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+\"\)*\,*|[a-zA-Z]+\:[a-zA-Z]+\.[a-zA-Z]+\([a-zA-Z]+\.[a-zA-Z]+\(\)\)\,|[a-zA-Z]+:\"[a-zA-Z]+\.[a-zA-Z]+\"\)|[a-zA-Z]+:\"[a-zA-Z]+\"*,*\.*[a-zA-Z]*\.*[a-zA-Z]*\"\)*,*
-
-RYTHM_ELSE = \s*else
-
-RYTHM_IF = @if
-//.*\)|@if.*\) &&.*\)// @if \s*
-//@if|@if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\)*\)*?\)*\.*[a-zA-Z]*\(*\)?\)\=*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\s*\&&*\s*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*.*\)\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*[a-zA-Z]*\(*\)*\s*\!*\=*\s*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(?\)*\.*[a-zA-Z]*\_*[a-zA-Z]*\(*\)*\>*\<*[a-zA-Z0-9]*\)*.*?\)\)*\.*[a-zA-Z]*\(*\)*.*\)|@if.*\)
-
-//@if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\)+\)*?\)*\.*[a-zA-Z]*\(*\)?\)\=*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\s*\&&*\s*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\)\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*[a-zA-Z]*\(*\)*\s*\!*\=*\s*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(?\)*\.*[a-zA-Z]*\_*[a-zA-Z]*\(*\)*\>*\<*[a-zA-Z0-9]*\)*?\)\)*\.*[a-zA-Z]*\(*\)*\)
-//@if\s*\(*\!*[a-zA-Z]*\.*[a-zA-Z]*\(*\"*[a-zA-Z]*\"*\).*\)*?\)*\.*[a-zA-Z]*\(*\)?\)\=*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\s*\&&*\s*[a-zA-Z]*\.*[a-zA-Z]*\(*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\)*\)\.*[a-zA-Z]*\(*\)*|@if\s*\(*[a-zA-Z]*\.*[a-zA-Z]*\(*[a-zA-Z]*\(*\)*\s*\!*\=*\s*[a-zA-Z]*\)*\.*[a-zA-Z]*\(*[a-zA-Z]*\.*[a-zA-Z]*\(?\)*\.*[a-zA-Z]*\_*[a-zA-Z]*\(*\)*\>*\<*[a-zA-Z0-9]*\)*?\)\)*\.*[a-zA-Z]*\(*\)*\)
-RYTHM_COMMENT = @\*|\*.*|@@.\w+\.\w+
-
-RYTHM_FOR = @for
-//\(+.*\)|@for
-
-RYTHM = {RYTHM_FOR}|{RYTHM_IF}|{RYTHM_KEY}|{RYTHM_AARGS}|{RYTHM_SECTION}|{RYTHM_EXTENDS}|{RYTHM_IMPORT}|{RYTHM_RENDER}|{RYTHM_INVOKE}|{RYTHM_I_18_N}|{RYTHM_PREFIX}|{RYTHM_KEY}|{STATEMENT}
-
-
-//Erkennt den kompletten Code als HTML bis auf
-//@, *, (, ), {, }
-//das ist nötig, damit der Lexer die anderen Regexes matchen kann
-//Problem: Dadurch wird der eigentliche Code gesplitted, was dazu führt,
-//dass manche Stellen des Codes nicht mehr so erkannt werden, wie sie es eigentlich
-//sollten.
-TEXT = [^@\*\(\)\{\}\$\.]*//|\{|\}
-
-
-
-//Versuch eine Alternative zu dem davor ausgewählten Ansatz zu finden, damit nicht alles als HTML erkannt wird.
-//Hier wurde versucht anhand von TAGS HTML Code zu ermitteln. Dies hat leider nicht den erwünschten Erfolg gebracht,
-//da zum Teil Klammern nicht richtig erkannt wurden oder Anführungsstriche falsch erkannt wurden, was zu einem Fehlverhalten
-//geführt hat.
-/*
-HTML = {HTML_START}|{HTML_HEAD}|{HTML_META}|{HTML_TITLE}|{HTML_LINK}|{HTML_SCRIPT}|
-{HTML_BODY}|{HTML_DIV}|{HTML_OL}|{HTML_LI}|{HTML_A}|{HTML_SPAN}|{HTML_DOCTYPE}|{HTML_I}|
-{HTML_LABEL}|{HTML_SMALL}|{HTML_SELECT}|{HTML_OPTION}
-
-HTML_START = \<html.*\>|\<\/html\>
-HTML_HEAD = \<head\>|\<\/head\>
-HTML_META = \<meta.*\>
-HTML_TITLE = \<title.*\>
-HTML_LINK = \<link.*\>
-HTML_SCRIPT = \<script.*\>
-HTML_BODY = \<body\>|\<\/body\>
-HTML_DIV = \<div.*\>|\<\/div\>
-HTML_OL = \<ol.*\>|\<\/ol\>
-HTML_LI = \<li\>|\<\/li>
-HTML_A = \<a.*?\>|\<\/a>
-HTML_SPAN = \<span.*\>|\<\/span>
-HTML_DOCTYPE = \<\!DOCTYPE.*\>
-HTML_I = \<i.*?\>|\<\/i\>
-HTML_LABEL = \<label.*\>|\<\/label\>
-HTML_SMALL = \<small.*\>|\<\/small\>
-HTML_SELECT = \<select.*\>|\<\/select\>
-HTML_OPTION = \<option.*\>|\<\/option\>
-*/
-
-//TAG = \<[a-zA-Z]+\>|\<\/[a-zA-Z]+\>|<[a-z]+|>
-
-
-
-//Diese Klammern werden separat vom Lexer verarbeitet, damit der BraceMatcher funktioniert
-LBRACE = \{
-RBRACE = \}
-
-LPAREN = \(
-RPAREN = \)
-
-TEST= @[a-z]+
-
-%state ST_ACTION
+RYTHM_KEY = \@\w+
+GENERICS = \<[a-zA-Z]+\,.*?\>|\<([a-zA-Z]+\.[a-zA-Z]+)+\>
+TEXT = \<[^@}{,]+\>|\<[^@}{,]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>
 
 %%
-"{:"               { yybegin(OPT_JAVA_CODE); return  RythmTypes.LEFTBRACES; }
-":}"               { return RythmTypes.RIGHTBRACES; }
+<YYINITIAL>{
+"@"                             {return RythmTypes.AT;}
+"{:"                            {yybegin(OPT_JAVA_CODE); return  RythmTypes.LEFTBRACES; }
+":}"                            { return RythmTypes.RIGHTBRACES; }
+"."                             { return RythmTypes.DOT; }
+"{"                             {return RythmTypes.LBRACE;}
+"}"                             {return RythmTypes.RBRACE;}
+"("                             {return RythmTypes.LPAREN;}
+")"                             {return RythmTypes.RPAREN;}
+"*"                             {return RythmTypes.MUL;}
+":"                             { return RythmTypes.COLON; }
+","                             { return RythmTypes.COMMA; }
+"|"                             { return RythmTypes.BAR; }
+"@if"                           {return RythmTypes.RYTHM_IF;}
+"@for"                          {return RythmTypes.RYTHM_FOR;}
+"@extends"                      {return RythmTypes.RYTHM_EXTENDS;}
+"@import"                       {return RythmTypes.RYTHM_IMPORT;}
+"@args"                         {return RythmTypes.RYTHM_ARGS;}
+"@section"                      {return RythmTypes.RYTHM_SECTION;}
+"@i18n"                         {return RythmTypes.RYTHM_I18N;}
+"@prefix"                       {return RythmTypes.RYTHM_PREFIX;}
+"@render"                       {return RythmTypes.RYTHM_RENDER;}
+"@invoke"                       {return RythmTypes.RYTHM_INVOKE;}
+"JAVA_CODE"                     {return RythmTypes.JAVA_CODE; }
 
-<YYINITIAL>{LBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.LBRACE;}
-<YYINITIAL>{RBRACE}                                               {yybegin(YYINITIAL); return RythmTypes.RBRACE;}
-
-<YYINITIAL>{LPAREN}                                               {yybegin(YYINITIAL); return RythmTypes.LPAREN;}
-<YYINITIAL>{RPAREN}                                               {yybegin(YYINITIAL); return RythmTypes.RPAREN;}
-
-<YYINITIAL> {FUNCTION}                                            {yybegin (YYINITIAL); return RythmTypes.FUNCTION;}
-
-<YYINITIAL> {DOLLAR}                                              {yybegin (YYINITIAL); return RythmTypes.DOLLAR;}
-
-<YYINITIAL> {STATEMENT}                                           {yybegin (YYINITIAL); return RythmTypes.STATEMENT;}
-<YYINITIAL> {IDENTIFIER}                                          {yybegin (YYINITIAL);return RythmTypes.IDENTIFIER; }
-<YYINITIAL> {DOT}                                                 {yybegin (YYINITIAL); return RythmTypes.DOT;}
-
-<YYINITIAL> {TEXT}                                               {yybegin(YYINITIAL); return RythmTypes.TEXT;}
-
-//<YYINITIAL>          {PARAM}                                    {yybegin (YYINITIAL);return RythmTypes.PARAM; }
-
-<ST_ACTION>{
-<YYINITIAL>{RYTHM_METHOD}                                         {yybegin(YYINITIAL); return RythmTypes.RYTHM_METHOD;}
-
-
-
-//<YYINITIAL> {TAG}                                               {yybegin(YYINITIAL); return RythmTypes.TAG;}
-
-<YYINITIAL> {RYTHM_AARGS}                                          {yybegin(YYINITIAL); return RythmTypes.RYTHM_AARGS;}
-
-<YYINITIAL> {RYTHM_SECTION}                                       {yybegin(YYINITIAL); return RythmTypes.RYTHM_SECTION;}
-
-<YYINITIAL> {RYTHM_RENDER}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_RENDER;}
-
-<YYINITIAL> {RYTHM_EXTENDS}                                       {yybegin(YYINITIAL); return RythmTypes.RYTHM_EXTENDS;}
-
-<YYINITIAL> {RYTHM_IMPORT}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_IMPORT;}
-
-<YYINITIAL> {RYTHM_INVOKE}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_INVOKE;}
-
-<YYINITIAL>{RYTHM_IF}                                             {yybegin(YYINITIAL); return RythmTypes.RYTHM_IF;}
-
-<YYINITIAL>{RYTHM_ELSE}                                           {yybegin(YYINITIAL); return RythmTypes.RYTHM_ELSE;}
-
-<YYINITIAL>{RYTHM_FOR}                                            {yybegin(YYINITIAL); return RythmTypes.RYTHM_FOR;}
-
-<YYINITIAL> {RYTHM_I_18_N}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_I_18_N;}
-
-<YYINITIAL> {RYTHM_PREFIX}                                        {yybegin(YYINITIAL); return RythmTypes.RYTHM_PREFIX;}
-
-<YYINITIAL> {RYTHM_COMMENT}                                       {yybegin(YYINITIAL); return RythmTypes.RYTHM_COMMENT;}
-
-<YYINITIAL> {RYTHM_KEY}                                           {yybegin(YYINITIAL); return RythmTypes.RYTHM_KEY;}
-
+{RYTHM_KEY}                     {return RythmTypes.RYTHM_KEY;}
+{GENERICS}                      {return RythmTypes.GENERICS;}
+{IDENTIFIER}                    {yybegin (YYINITIAL);return RythmTypes.IDENTIFIER; }
+{BLOCK_COMMENT}                 {yybegin (YYINITIAL);return RythmTypes.BLOCK_COMMENT; }
+{TEXT}                          {yybegin (YYINITIAL);return RythmTypes.TEXT; }
 }
 
-<OPT_JAVA_CODE> {
- ":}"                                                             { yybegin(YYINITIAL); yypushback(yylength()); }
-    [^]                                                           { yybegin(OPT_JAVA_CODE); return RythmTypes.JAVA; }
+<OPT_JAVA_CODE>{
+":}"                            {yybegin(YYINITIAL); yypushback(yylength());}
+[^]                             {yybegin(OPT_JAVA_CODE); return RythmTypes.JAVA;}
 }
 
 
-<YYINITIAL, ST_ACTION>{
-({CRLF}|{WHITE_SPACE})+                                           {yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
+<YYINITIAL>{
+({CRLF}|{WHITE_SPACE})+         {yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
-{WHITE_SPACE}+                                                    {yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
+{WHITE_SPACE}+                  {yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 
-.                                                                 {return TokenType.BAD_CHARACTER; }
+
+
+.                               {return TokenType.BAD_CHARACTER; }
 }

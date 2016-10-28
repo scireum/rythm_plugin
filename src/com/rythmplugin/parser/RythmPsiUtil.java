@@ -14,15 +14,13 @@ import com.rythmplugin.psi.RythmTypes;
 public class RythmPsiUtil {
 
     private static TokenSet RYTHM = TokenSet.create(
-            RythmTypes.RYTHM_KEY,
             RythmTypes.RYTHM_ARGS,
             RythmTypes.RYTHM_EXTENDS,
             RythmTypes.RYTHM_FOR,
-            RythmTypes.RYTHM_I_18_N,
+            RythmTypes.RYTHM_I18N,
             RythmTypes.RYTHM_IF,
             RythmTypes.RYTHM_IMPORT,
             RythmTypes.RYTHM_INVOKE,
-            RythmTypes.RYTHM_METHOD,
             RythmTypes.RYTHM_PREFIX,
             RythmTypes.RYTHM_RENDER,
             RythmTypes.RYTHM_SECTION
