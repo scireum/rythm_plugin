@@ -14,8 +14,7 @@
   tokenTypeClass="com.rythmplugin.parser.RythmTokenType"
 
   tokens= [
-  AT = "@"
-
+        AT = "@"
         BAR =           "|"
         LEFTBRACES =    "{:"
         RIGHTBRACES =   ":}"
@@ -72,33 +71,72 @@
   ]
 
 pin(".*Code")=1
-pin(".*Declaration")=1
+//pin(".*Declaration")=1
 
 }
 
-rythmFile ::= (initialDeclaration)|(BLOCK_COMMENT)*|  (TEXT) | (RYTHM)| (GENERICS?)
+//FILE
 
-RYTHM ::= RYTHM_PREFIX|RYTHM_IF|RYTHM_I18N|RYTHM_EXTENDS|RYTHM_FOR|RYTHM_INVOKE|RYTHM_SECTION|RYTHM_RENDER|BLOCK_COMMENT
+rythmFile ::= BLOCK_COMMENT? (initialDeclaration) RYTHM_SECTION RYTHM_KeyBlock HTML_START_RYTHM_BLOCK*/*RYTHM_IF_Statment**/ |  (TEXT) | (RYTHM)| (GENERICS?)
+
+RYTHM ::= RYTHM_PREFIX|RYTHM_IF|RYTHM_I18N/*|RYTHM_EXTENDS*/|RYTHM_FOR|RYTHM_INVOKE/*|RYTHM_SECTION*/|RYTHM_RENDER
 //initialDeclaration ::= RYTHM_ARGS|RYTHM_IMPORT|RYTHM_EXTENDS
 
 
-initialDeclaration ::= RYTHM_ARGS RYTHM_IMPORT RYTHM_EXTENDS
 
-RYTHM_ARGS ::= ('@args' qualifiedName)//(',' qualifiedName GENERICS)*// RYTHM_IMPORT* RYTHM_EXTENDS* TEXT*
+// INITIAL DECLARATION
+initialDeclaration ::= (RYTHM_ARGS| RYTHM_IMPORT |RYTHM_EXTENDS)
 
-RYTHM_IMPORT ::= ('@import' qualifiedName) RYTHM_IMPORT // RYTHM_EXTENDS*
+RYTHM_ARGS ::= (('@args' qualifiedName)(','*qualifiedName)*) RYTHM_IMPORT* RYTHM_EXTENDS*//(',' qualifiedName GENERICS)*// RYTHM_IMPORT* RYTHM_EXTENDS* TEXT*
 
-RYTHM_EXTENDS ::= '@extends' '('qualifiedName'.'IDENTIFIER+',' 'title'':' '('IDENTIFIER+'.'IDENTIFIER+'('IDENTIFIER* '.'* IDENTIFIER*'('*')'')'*'+''"'':''"''+'IDENTIFIER+'.'IDENTIFIER*'('')'')'')' //RYTHM_SECTION*
+RYTHM_IMPORT ::= (('@import' qualifiedName)+) RYTHM_EXTENDS*  // RYTHM_EXTENDS*
+
+RYTHM_EXTENDS ::= ('@extends' '('qualifiedName',' 'title' ':' '(' IDENTIFIER '.' methodCallExpr '+' '"' ':' '"' '+' IDENTIFIER '.' methodCallExpr LPAREN*)// RYTHM_SECTION
+
+qualifiedName ::= (IDENTIFIER+ '.'*)+|IDENTIFIER+
 
 
-RYTHM_SECTION ::= '@section' PARAM '{' TEXT* '}'//rythm_keyy*
+// SECTION
 
-PARAM ::= '('IDENTIFIER+ ')'
+//RYTHM_SECTION ::= ('@section' PARAM '{' TEXT* '}'* RYTHM_I18N* (TEXT rythm_KeyMethod* '.'* methodCallExpr*)* ':'* rythm_KeyMethod'.'* methodCallExpr* '}')*// rythm_KeyMethod* //rythm_keyy*
 
-rythm_keyy ::= RYTHM_KEY'('')''{'*
+RYTHM_SECTION ::= (RYTHM_SECTION_WOR  RYTHM_SECTION_WR)
 
-qualifiedName ::= IDENTIFIER+ ('.'* ','* IDENTIFIER+)* (GENERICS* IDENTIFIER* ','* IDENTIFIER* GENERICS)* IDENTIFIER*//BACKUP IDENTIFIER+ ('.' IDENTIFIER* '.' IDENTIFIER*)|IDENTIFIER+
-//BLOCK_COMMENT ::= AT '*'|'*'( IDENTIFIER* COMMA* IDENTIFIER*)+|'*' AT
+RYTHM_SECTION_WOR ::= '@section' PARAM '{' TEXT '}'
+
+RYTHM_SECTION_WR ::= '@section' PARAM '{' TEXT RYTHM_I18N* TEXT rythm_Key_Ident '.' methodCallExpr TEXT*  rythm_Key_Ident '.' methodCallExpr ':' rythm_Key_Ident '.' methodCallExpr TEXT '}'
+
+// RYTHM PARTS
+
+rythm_Key_Ident ::= RYTHM_KEY
+
+RYTHM_I18N ::= '@i18n''(''"' (IDENTIFIER'.'*)* '"' ')'
+
+
+PARAM ::= '('IDENTIFIER* ')'
+
+RYTHM_KeyBlock ::= RYTHM_KEY '(' ')' '{' TEXT rythm_method ':' rythm_method TEXT* (RYTHM_IF_Statment HTML_WR*)*
+
+RYTHM_KeyBlock_EXP ::= RYTHM_KEY '(' '"' qualifiedName '"' ')'
+
+
+
+RYTHM_IF_Statment ::= '@if' '(' STATEMENT '&&'* IDENTIFIER* '.'* methodCallExpr* '>'* IDENTIFIER* ')'* '{' TEXT rythm_method* TEXT* rythm_method* rythm_Key_Ident* RYTHM_PREFIX* TEXT* rythm_method* TEXT* RYTHM_I18N TEXT rythm_method* TEXT* RYTHM_I18N* TEXT* '}'
+
+STATEMENT ::= EXCL* IDENTIFIER ('.' methodCallExpr+)*
+
+rythm_method ::= RYTHM_KEY '.' methodCallExpr
+
+methodCallExpr ::= (IDENTIFIER LPAREN+ RPAREN+) {pin = 2}
+
+methodCall ::= '.'IDENTIFIER LPAREN RPAREN
+
+
+//HTML-RYTHM-MIX
+
+HTML_START_RYTHM_BLOCK ::= TEXT rythm_Key_Ident '(' '"' qualifiedName '"' ')' '{' TEXT rythm_method TEXT RYTHM_PREFIX TEXT RYTHM_I18N TEXT rythm_method TEXT RYTHM_I18N TEXT RYTHM_IF_Statment
+
+HTML_WR ::= TEXT RYTHM_PREFIX TEXT rythm_method TEXT RYTHM_I18N TEXT* '}'*
 
 //For Java Language Injection
 java_code               ::= '{:' JAVA* ':}' {implements= "com.intellij.psi.PsiLanguageInjectionHost"

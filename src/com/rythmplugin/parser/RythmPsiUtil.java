@@ -17,7 +17,7 @@ public class RythmPsiUtil {
             RythmTypes.RYTHM_ARGS,
             RythmTypes.RYTHM_EXTENDS,
             RythmTypes.RYTHM_FOR,
-            RythmTypes.RYTHM_I18N,
+            RythmTypes.RYTHM_I_18_N,
             RythmTypes.RYTHM_IF,
             RythmTypes.RYTHM_IMPORT,
             RythmTypes.RYTHM_INVOKE,

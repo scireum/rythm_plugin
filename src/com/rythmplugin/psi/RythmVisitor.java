@@ -8,6 +8,14 @@ import com.intellij.psi.PsiLanguageInjectionHost;
 
 public class RythmVisitor extends PsiElementVisitor {
 
+  public void visitHtmlStartRythmBlock(@NotNull RythmHtmlStartRythmBlock o) {
+    visitPsiElement(o);
+  }
+
+  public void visitHtmlWr(@NotNull RythmHtmlWr o) {
+    visitPsiElement(o);
+  }
+
   public void visitParam(@NotNull RythmParam o) {
     visitPsiElement(o);
   }
@@ -24,11 +32,39 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRythmI18N(@NotNull RythmRythmI18N o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRYTHMIFStatment(@NotNull RythmRYTHMIFStatment o) {
+    visitPsiElement(o);
+  }
+
   public void visitRythmImport(@NotNull RythmRythmImport o) {
     visitPsiElement(o);
   }
 
+  public void visitRYTHMKeyBlock(@NotNull RythmRYTHMKeyBlock o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRYTHMKeyBlockEXP(@NotNull RythmRYTHMKeyBlockEXP o) {
+    visitPsiElement(o);
+  }
+
   public void visitRythmSection(@NotNull RythmRythmSection o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmSectionWor(@NotNull RythmRythmSectionWor o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmSectionWr(@NotNull RythmRythmSectionWr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStatement(@NotNull RythmStatement o) {
     visitPsiElement(o);
   }
 
@@ -40,11 +76,23 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiLanguageInjectionHost(o);
   }
 
+  public void visitMethodCall(@NotNull RythmMethodCall o) {
+    visitPsiElement(o);
+  }
+
+  public void visitMethodCallExpr(@NotNull RythmMethodCallExpr o) {
+    visitPsiElement(o);
+  }
+
   public void visitQualifiedName(@NotNull RythmQualifiedName o) {
     visitPsiElement(o);
   }
 
-  public void visitRythmKeyy(@NotNull RythmRythmKeyy o) {
+  public void visitRythmKeyIdent(@NotNull RythmRythmKeyIdent o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmMethod(@NotNull RythmRythmMethod o) {
     visitPsiElement(o);
   }
 

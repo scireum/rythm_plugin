@@ -89,7 +89,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_FOR_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_PREFIX)) {
             return RYTHM_PREFIX_KEYS;
-        } else if (tokenType.equals(RythmTypes.RYTHM_I18N)) {
+        } else if (tokenType.equals(RythmTypes.RYTHM_I_18_N)) {
             return RYTHM_I18N_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_KEY)){
             return RYTHM_KEY_KEYS;

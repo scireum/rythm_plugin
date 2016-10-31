@@ -21,35 +21,39 @@ CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
 BLOCK_COMMENT = \@\*|\*\@|\*(\s*\w+.*)+|\*\s
 
-IDENTIFIER = {LETTER}|{DIGIT}
+IDENTIFIER = {LETTER}+|{DIGIT}+
 LETTER = [a-zA-Z_]
 DIGIT = [:digit:]
+GF = \"
 
 RYTHM_KEY = \@\w+
 GENERICS = \<[a-zA-Z]+\,.*?\>|\<([a-zA-Z]+\.[a-zA-Z]+)+\>
-TEXT = \<[^@}{,]+\>|\<[^@}{,]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>
+TEXT = \<[^@}{,]+\>|\<[^@}{,]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>|\/\w+\/
 
 %%
 <YYINITIAL>{
 "@"                             {return RythmTypes.AT;}
 "{:"                            {yybegin(OPT_JAVA_CODE); return  RythmTypes.LEFTBRACES; }
-":}"                            { return RythmTypes.RIGHTBRACES; }
-"."                             { return RythmTypes.DOT; }
+":}"                            {return RythmTypes.RIGHTBRACES; }
+"."                             {return RythmTypes.DOT; }
 "{"                             {return RythmTypes.LBRACE;}
 "}"                             {return RythmTypes.RBRACE;}
 "("                             {return RythmTypes.LPAREN;}
 ")"                             {return RythmTypes.RPAREN;}
 "*"                             {return RythmTypes.MUL;}
-":"                             { return RythmTypes.COLON; }
-","                             { return RythmTypes.COMMA; }
-"|"                             { return RythmTypes.BAR; }
+":"                             {return RythmTypes.COLON; }
+","                             {return RythmTypes.COMMA; }
+"|"                             {return RythmTypes.BAR; }
+"+"                             {return RythmTypes.PLUS;}
+"!"                             {return RythmTypes.EXCL;}
+{GF}                            {return RythmTypes.GF;}
 "@if"                           {return RythmTypes.RYTHM_IF;}
 "@for"                          {return RythmTypes.RYTHM_FOR;}
 "@extends"                      {return RythmTypes.RYTHM_EXTENDS;}
 "@import"                       {return RythmTypes.RYTHM_IMPORT;}
 "@args"                         {return RythmTypes.RYTHM_ARGS;}
 "@section"                      {return RythmTypes.RYTHM_SECTION;}
-"@i18n"                         {return RythmTypes.RYTHM_I18N;}
+"@i18n"                         {return RythmTypes.RYTHM_I_18_N;}
 "@prefix"                       {return RythmTypes.RYTHM_PREFIX;}
 "@render"                       {return RythmTypes.RYTHM_RENDER;}
 "@invoke"                       {return RythmTypes.RYTHM_INVOKE;}
