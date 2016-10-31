@@ -32,7 +32,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey RYTHM_METHOD = createTextAttributesKey("RYTHM_METHOD", JavaHighlightingColors.METHOD_CALL_ATTRIBUTES);
     public static final TextAttributesKey RYTHM_KEY = createTextAttributesKey("RYTHM_KEY", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey RYTHM_I18N = createTextAttributesKey("RYTHM_I18N", JavaHighlightingColors.KEYWORD);
-    public static final TextAttributesKey RYTHM_COMMENT = createTextAttributesKey("RYTHM_COMMENT", JavaHighlightingColors.JAVA_BLOCK_COMMENT);
+    public static final TextAttributesKey BLOCK_COMMENT = createTextAttributesKey("BLOCK_COMMENT", JavaHighlightingColors.JAVA_BLOCK_COMMENT);
     //public static final TextAttributesKey RYTHM_SECTION_PARAM = createTextAttributesKey("RYTHM_SECTION_PARAM", DefaultLanguageHighlighterColors.KEYWORD);
     //public static final TextAttributesKey RYTHM_PARAM = createTextAttributesKey("RYTHM_PARAM", JavaHighlightingColors.ANNOTATION_NAME_ATTRIBUTES);
     public static final TextAttributesKey FUNCTION = createTextAttributesKey("FUNCTION", DefaultLanguageHighlighterColors.KEYWORD);
@@ -53,7 +53,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] RYTHM_METHOD_KEYS = new TextAttributesKey[]{RYTHM_METHOD};
     private static final TextAttributesKey[] RYTHM_KEY_KEYS = new TextAttributesKey[]{RYTHM_KEY};
     private static final TextAttributesKey[] RYTHM_I18N_KEYS = new TextAttributesKey[]{RYTHM_I18N};
-    private static final TextAttributesKey[] RYTHM_COMMENT_KEYS = new TextAttributesKey[]{RYTHM_COMMENT};
+    private static final TextAttributesKey[] BLOCK_COMMENT_KEYS = new TextAttributesKey[]{BLOCK_COMMENT};
     //private static final TextAttributesKey[] RYTHM_SECTION_PARAM_KEYS = new TextAttributesKey[]{RYTHM_SECTION_PARAM};
     //private static final TextAttributesKey[] RYTHM_PARAM_KEYS = new TextAttributesKey[]{RYTHM_PARAM};
     private static final TextAttributesKey[] FUNCTION_KEYS = new TextAttributesKey[]{FUNCTION};
@@ -91,8 +91,10 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_PREFIX_KEYS;
         } else if (tokenType.equals(RythmTypes.RYTHM_I_18_N)) {
             return RYTHM_I18N_KEYS;
-        } else if (tokenType.equals(RythmTypes.RYTHM_KEY)){
+        } else if (tokenType.equals(RythmTypes.RYTHM_KEY)) {
             return RYTHM_KEY_KEYS;
+        } else if (tokenType.equals(RythmTypes.BLOCK_COMMENT)) {
+            return BLOCK_COMMENT_KEYS;
         } else {
             return EMPTY_KEYS;
         }
