@@ -14,7 +14,7 @@
   tokenTypeClass="com.rythmplugin.parser.RythmTokenType"
 
   tokens= [
-        AT = "@"
+     AT = "@"
         BAR =           "|"
         LEFTBRACES =    "{:"
         RIGHTBRACES =   ":}"
@@ -35,21 +35,23 @@
         BRCSL =         "["
         BRCSR =         "]"
         DOLLAR =        "$"
+        //GREATER =       "<"
+        //SMALLER =       ">"
 
         PLUS =          "+"
         GF =            '"'
-
+ /*
         // Rythm Keywords
-        //RYTHM_IF =      "@if"
-        //RYTHM_EXTENDS = "@extends"
-        //RYTHM_FOR =     "@for"
-        //RYTHM_IMPORT =  "@import"
-        //RYTHM_ARGS =    "@args"
-        //RYTHM_SECTION = "@section"
-        //RYTHM_I18N =    "@i18n"
-        //RYTHM_PREFIX =  "@prefix"
-        //RYTHM_RENDER =  "@render"
-        //RYTHM_INVOKE =  "@invoke"
+        RYTHM_IF =      "@if"
+        RYTHM_EXTENDS = "@extends"
+        RYTHM_FOR =     "@for"
+        RYTHM_IMPORT =  "@import"
+        RYTHM_ARGS =    "@args"
+        RYTHM_SECTION = "@section"
+        RYTHM_I18N =    "@i18n"
+        RYTHM_PREFIX =  "@prefix"
+        RYTHM_RENDER =  "@render"
+        RYTHM_INVOKE =  "@invoke"
 
         // Java keywords
         CLASS =         "class"
@@ -60,13 +62,13 @@
         SUPER =         "super"
 
         // Regex
-        //identifier = "regexp:[a-zA-Z0-9_]"
-        //block_comment = 'regexp:\@\*|\*\@|\*(\s*\w+.*)+|\*\s'
-        //white_space ='regexp:[\ \t\f\s]'
+        IDENTIFIER = "regexp:[a-zA-Z_]+|[0-9]+"
+        block_comment = 'regexp:\@\*|\*\@|\*(\s*\w+.*)+|\*\s'
+        WHITE_SPACE ='regexp:[\ \t\f\s]'
 
-        //rythm_key = "regexp:\@\w+"
-        //text = "regexp:\<[^@}{,]+\>|\<[^@}{,]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>"
-
+        RYTHM_KEY = "regexp:\@\w+"
+        TEXT = "regexp:\<[^@}{,]+\>|\<.[^@}{,12346789]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\""
+*/
 
   ]
 
@@ -77,7 +79,7 @@ pin(".*Code")=1
 
 //FILE
 
-rythmFile ::= BLOCK_COMMENT? (initialDeclaration) RYTHM_SECTION RYTHM_KeyBlock HTML_START_RYTHM_BLOCK*/*RYTHM_IF_Statment**/ |  (TEXT) | (RYTHM)| (GENERICS?)
+rythmFile ::= BLOCK_COMMENT? (initialDeclaration) RYTHM_SECTION RYTHM_KeyBlock HTML_START_RYTHM_BLOCK* /*RYTHM_IF_Statment**/ |  (TEXT) | (RYTHM)| (GENERICS?)
 
 RYTHM ::= RYTHM_PREFIX|RYTHM_IF|RYTHM_I18N/*|RYTHM_EXTENDS*/|RYTHM_FOR|RYTHM_INVOKE/*|RYTHM_SECTION*/|RYTHM_RENDER
 //initialDeclaration ::= RYTHM_ARGS|RYTHM_IMPORT|RYTHM_EXTENDS
@@ -104,7 +106,7 @@ RYTHM_SECTION ::= (RYTHM_SECTION_WOR  RYTHM_SECTION_WR)
 
 RYTHM_SECTION_WOR ::= '@section' PARAM '{' TEXT '}'
 
-RYTHM_SECTION_WR ::= '@section' PARAM '{' TEXT RYTHM_I18N* TEXT rythm_Key_Ident '.' methodCallExpr TEXT*  rythm_Key_Ident '.' methodCallExpr ':' rythm_Key_Ident '.' methodCallExpr TEXT '}'
+RYTHM_SECTION_WR ::= '@section' PARAM '{' TEXT RYTHM_I18N TEXT rythm_Key_Ident '.' methodCallExpr TEXT*  rythm_Key_Ident '.' methodCallExpr ':' rythm_Key_Ident '.' methodCallExpr TEXT '}'
 
 // RYTHM PARTS
 
@@ -120,24 +122,43 @@ RYTHM_KeyBlock ::= RYTHM_KEY '(' ')' '{' TEXT rythm_method ':' rythm_method TEXT
 RYTHM_KeyBlock_EXP ::= RYTHM_KEY '(' '"' qualifiedName '"' ')'
 
 
+RYTHM_IF_Statment ::= '@if' '(' STATEMENT '&&'* '=='* GREATER* '"'* IDENTIFIER* '"'* '.'* methodCallExpr* '>'* IDENTIFIER* ')'* '||'* IDENTIFIER* methodCall* '!='*  IDENTIFIER* ')'* '{' TEXT* /**stern hinzgfgt 09:13*/ '}'* rythm_method* TEXT* rythm_method* rythm_Key_Ident* RYTHM_PREFIX* TEXT* rythm_method* METHOD* TEXT* rythm_method* methodCall* RYTHM_I18N* /**10:32 Uhr } **/'}'* TEXT RYTHM_FOR_Statement* rythm_method* TEXT* RYTHM_I18N* TEXT* /*IF STATEMENT hinzugefügt*/ RYTHM_IF_Statment* TEXT* RYTHM_I18N* TEXT* RYTHM_IF_Statment* TEXT*  '}' RYTHM_ELSE*
 
-RYTHM_IF_Statment ::= '@if' '(' STATEMENT '&&'* IDENTIFIER* '.'* methodCallExpr* '>'* IDENTIFIER* ')'* '{' TEXT rythm_method* TEXT* rythm_method* rythm_Key_Ident* RYTHM_PREFIX* TEXT* rythm_method* TEXT* RYTHM_I18N TEXT rythm_method* TEXT* RYTHM_I18N* TEXT* '}'
+RYTHM_ELSE ::= 'else' '{' RYTHM_KEY_BLOCKS* TEXT* RYTHM_I18N* (TEXT rythm_method*)*
 
-STATEMENT ::= EXCL* IDENTIFIER ('.' methodCallExpr+)*
+RYTHM_IF_Statment_Short ::= '@if' '('* IDENTIFIER '=='* IDENTIFIER* '.'* IDENTIFIER* '('* /**************/IDENTIFIER* '.'* IDENTIFIER* '('*/***********/')'*/*PUNKT und methodCallEXPR 14:15**/ '.'* IDENTIFIER* methodCallExpr* '{'* TEXT '}'
 
-rythm_method ::= RYTHM_KEY '.' methodCallExpr
+RYTHM_IF_Statement_OP ::= '@if' '(' '!'* /*!*/ IDENTIFIER '.' IDENTIFIER '(' /***13:31 UHR***/ IDENTIFIER* '.'* IDENTIFIER* '('* /**Stern wurde bei ) hinzugefügt 13:34**/')'* RYTHM_IF_Statement_OP_TEST* '{' TEXT* RYTHM_KEY_BLOCKS* '{'* RYTHM_FOR_Statement* '}'* TEXT*
 
-methodCallExpr ::= (IDENTIFIER LPAREN+ RPAREN+) {pin = 2}
+RYTHM_IF_Statement_OP_TEST ::= '<' IDENTIFIER ')'
 
-methodCall ::= '.'IDENTIFIER LPAREN RPAREN
+RYTHM_FOR_Statement ::= '@for' '(' IDENTIFIER+ ':'* IDENTIFIER* '.'* IDENTIFIER* /**qualifiedName**/ '.'* qualifiedName* ':'* IDENTIFIER* '('* ')'* '{' TEXT*  rythm_method TEXT RYTHM_IF_Statment_Short TEXT rythm_method TEXT '}'* //STERN WURDE HINZUGEFÜGT 16:39 Uhr
 
+STATEMENT ::='('* EXCL* IDENTIFIER ('.' methodCallExpr+)* ')'*
+
+RYTHM_IF_KEY_FOR_Statement ::= '@if' STATEMENT '{' RYTHM_KEY_BLOCKS* RYTHM_FOR_Statement*
+
+rythm_method ::= RYTHM_KEY '('* IDENTIFIER* ':'* '"'* IDENTIFIER* '"'* ','* RYTHM_BLOCK* TEXT* /**TEXT wurde hinzugefügt**/'.'* methodCallExpr*
+
+rythm_param ::= rythm_Key_Ident '(' IDENTIFIER* ')'
+
+methodCallExpr ::= LPAREN* '"'* IDENTIFIER '/'* '"'*  '+'* IDENTIFIER* methodCall* RPAREN* '{'* HTML_START_RYTHM_BLOCK*  LPAREN+ '"'* IDENTIFIER*'/'* '"'* RPAREN+ {pin = 12}
+
+methodCall ::= '.'IDENTIFIER LPAREN IDENTIFIER* '.'* IDENTIFIER*  '('* ')'* RPAREN*
+
+METHOD ::= '.' IDENTIFIER '('* /*'"'**/ ')'*
+
+RYTHM_KEY_BLOCKS ::= rythm_Key_Ident methodCall* /**13:43 UHR**/TEXT* '}'* TEXT* rythm_param* RYTHM_IF_Statment*  '(' (IDENTIFIER ':' '"'* IDENTIFIER '"'* '.'* ','* IDENTIFIER* '.'* ':'* '"'* IDENTIFIER*/**method muss hier rein methodCall**/'.'* '/'* IDENTIFIER* '"'* '('* ')'* /****03.11.16 - 17:41 Uhr LETZTER STAND ZEILE 205*****/ '{'* RYTHM_IF_Statment* '}'* /**10:01 Uhr**IF_KEY_FOR*****/ RYTHM_IF_KEY_FOR_Statement*  TEXT* RYTHM_KEY_BLOCKS* '"'* ','*)* '"'* ')'* '}'*
+
+RYTHM_BLOCK ::= (IDENTIFIER ':' '"'* IDENTIFIER METHOD* '"'* ')'*)* TEXT* RYTHM_IF_Statement_OP* '{'* /***10:59 Uhr  { hingfgt****/RYTHM_FOR_Statement* RYTHM_KEY_BLOCKS* RYTHM_FOR_Statement* /****04.11.16 - 11:12 Urh****/ ',' TEXT*
 
 //HTML-RYTHM-MIX
 
-HTML_START_RYTHM_BLOCK ::= TEXT rythm_Key_Ident '(' '"' qualifiedName '"' ')' '{' TEXT rythm_method TEXT RYTHM_PREFIX TEXT RYTHM_I18N TEXT rythm_method TEXT RYTHM_I18N TEXT RYTHM_IF_Statment
+HTML_START_RYTHM_BLOCK ::= TEXT rythm_Key_Ident*  methodCall* methodCallExpr* TEXT* RYTHM_IF_Statment* RYTHM_I18N* RYTHM_ELSE* '}'*  TEXT* RYTHM_I18N* TEXT* rythm_method* TEXT* RYTHM_I18N* TEXT* rythm_method* TEXT* RYTHM_IF_Statment* TEXT* RYTHM_KEY_BLOCKS*  TEXT* '(' /*wurde hinzugefügt*/ TEXT*   '"' qualifiedName '"' ')' '{' TEXT rythm_method* TEXT RYTHM_PREFIX TEXT RYTHM_I18N TEXT rythm_method* TEXT RYTHM_I18N TEXT RYTHM_IF_Statment  (TEXT* RYTHM_PREFIX TEXT rythm_method* TEXT RYTHM_I18N TEXT)* RYTHM_IF_Statment*  /***/ rythm_method* RYTHM_IF_Statment*/**HIER WIRD EIN STERN HINZUGEFÜGT - 17:29 Uhr AN DIESER SCHEIßE LAG DAS PROBLEM!!!*/'}'* RYTHM_ELSE* {pin=21};
 
 HTML_WR ::= TEXT RYTHM_PREFIX TEXT rythm_method TEXT RYTHM_I18N TEXT* '}'*
 
 //For Java Language Injection
+
 java_code               ::= '{:' JAVA* ':}' {implements= "com.intellij.psi.PsiLanguageInjectionHost"
                                              mixin = "com.rythmplugin.RythmJavaImpl"}

@@ -23,13 +23,12 @@ BLOCK_COMMENT = \@\*|\*\@|\*(\s*\w+.*)+|\*\s
 
 IDENTIFIER = {LETTER}+|{DIGIT}+
 LETTER = [a-zA-Z_]
-DIGIT = [:digit:]
+DIGIT = [0-9]
 GF = \"
 
 RYTHM_KEY = \@\w+
 GENERICS = \<[a-zA-Z]+\,.*?\>|\<([a-zA-Z]+\.[a-zA-Z]+)+\>
-TEXT = \<[^@}{,]+\>|\<[^@}{,]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>|\/\w+\/
-
+TEXT =\<[^@}{,]+\>|\<.[^@}{,12346789]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\"
 %%
 <YYINITIAL>{
 "@"                             {return RythmTypes.AT;}
@@ -46,7 +45,11 @@ TEXT = \<[^@}{,]+\>|\<[^@}{,]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+
 "|"                             {return RythmTypes.BAR; }
 "+"                             {return RythmTypes.PLUS;}
 "!"                             {return RythmTypes.EXCL;}
+"/"                             {return RythmTypes.SLASH;}
+"=="                            {return RythmTypes.EQ;}
+"<"                             {return RythmTypes.GREATER;}
 {GF}                            {return RythmTypes.GF;}
+"else"                          {return RythmTypes.RYTHM_ELSE;}
 "@if"                           {return RythmTypes.RYTHM_IF;}
 "@for"                          {return RythmTypes.RYTHM_FOR;}
 "@extends"                      {return RythmTypes.RYTHM_EXTENDS;}

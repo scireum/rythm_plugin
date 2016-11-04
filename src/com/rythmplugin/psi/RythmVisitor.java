@@ -16,6 +16,10 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitMethod(@NotNull RythmMethod o) {
+    visitPsiElement(o);
+  }
+
   public void visitParam(@NotNull RythmParam o) {
     visitPsiElement(o);
   }
@@ -28,7 +32,19 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRythmBlock(@NotNull RythmRythmBlock o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmElse(@NotNull RythmRythmElse o) {
+    visitPsiElement(o);
+  }
+
   public void visitRythmExtends(@NotNull RythmRythmExtends o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRYTHMFORStatement(@NotNull RythmRYTHMFORStatement o) {
     visitPsiElement(o);
   }
 
@@ -36,11 +52,31 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRYTHMIFKEYFORStatement(@NotNull RythmRYTHMIFKEYFORStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRYTHMIFStatementOP(@NotNull RythmRYTHMIFStatementOP o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRYTHMIFStatementOPTEST(@NotNull RythmRYTHMIFStatementOPTEST o) {
+    visitPsiElement(o);
+  }
+
   public void visitRYTHMIFStatment(@NotNull RythmRYTHMIFStatment o) {
     visitPsiElement(o);
   }
 
+  public void visitRYTHMIFStatmentShort(@NotNull RythmRYTHMIFStatmentShort o) {
+    visitPsiElement(o);
+  }
+
   public void visitRythmImport(@NotNull RythmRythmImport o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmKeyBlocks(@NotNull RythmRythmKeyBlocks o) {
     visitPsiElement(o);
   }
 
@@ -93,6 +129,10 @@ public class RythmVisitor extends PsiElementVisitor {
   }
 
   public void visitRythmMethod(@NotNull RythmRythmMethod o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmParam(@NotNull RythmRythmParam o) {
     visitPsiElement(o);
   }
 
