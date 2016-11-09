@@ -23,6 +23,7 @@ import java.util.List;
 
 
 import static com.rythmplugin.psi.RythmTypes.RYTHM;
+import static com.rythmplugin.psi.RythmTypes.RYTHM_IF;
 import static com.rythmplugin.psi.RythmTypes.TEXT;
 
 
@@ -71,6 +72,10 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
             if (myNode.getText().trim().length() == 0) {
                 return Indent.getNoneIndent();
             }
+            if (myNode.getElementType() == RYTHM_IF){
+                return Indent.getSpaceIndent(8);
+            }
+
             if (RythmPsiUtil.isNonRootStatementsElement(myNode.getPsi())) {
                 if (hasOnlyRythmLanguageParents()) {
                     return Indent.getNormalIndent();
