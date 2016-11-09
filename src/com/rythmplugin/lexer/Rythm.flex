@@ -25,10 +25,13 @@ IDENTIFIER = {LETTER}+|{DIGIT}+
 LETTER = [a-zA-Z_]
 DIGIT = [0-9]
 GF = \"
+STRING_LITERAL = \"[a-zA-Z0-9]+\.*\w*\"
 
 RYTHM_KEY = \@\w+
 GENERICS = \<[a-zA-Z]+\,.*?\>|\<([a-zA-Z]+\.[a-zA-Z]+)+\>
-TEXT =\<[^@}{,]+\>|\<.[^@}{,12346789]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\"
+TEXT = \<[^@}{,]+\>|\<.[^@}{,12346789]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\"
+//\<[^@}{,]+\>|\<.[^@}{,12346789()]+|\"\>|\/[^@}{]+\/.\>|\"[@]+\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>|\/\w+\/|\/\w+\"\s*class.\=|selected\=\"selected\"
+//
 %%
 <YYINITIAL>{
 "@"                             {return RythmTypes.AT;}
@@ -39,6 +42,8 @@ TEXT =\<[^@}{,]+\>|\<.[^@}{,12346789]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"
 "}"                             {return RythmTypes.RBRACE;}
 "("                             {return RythmTypes.LPAREN;}
 ")"                             {return RythmTypes.RPAREN;}
+"["                             {return RythmTypes.BRCSL;}
+"]"                             {return RythmTypes.BRCSR;}
 "*"                             {return RythmTypes.MUL;}
 ":"                             {return RythmTypes.COLON; }
 ","                             {return RythmTypes.COMMA; }
@@ -62,6 +67,7 @@ TEXT =\<[^@}{,]+\>|\<.[^@}{,12346789]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"
 "@invoke"                       {return RythmTypes.RYTHM_INVOKE;}
 "JAVA_CODE"                     {return RythmTypes.JAVA_CODE; }
 
+{STRING_LITERAL}                {return RythmTypes.STRING_LITERAL;}
 {RYTHM_KEY}                     {return RythmTypes.RYTHM_KEY;}
 {GENERICS}                      {return RythmTypes.GENERICS;}
 {IDENTIFIER}                    {yybegin (YYINITIAL);return RythmTypes.IDENTIFIER; }

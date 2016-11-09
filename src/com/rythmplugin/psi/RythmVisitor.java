@@ -8,11 +8,19 @@ import com.intellij.psi.PsiLanguageInjectionHost;
 
 public class RythmVisitor extends PsiElementVisitor {
 
+  public void visitAnotherHtmlWrBlock(@NotNull RythmAnotherHtmlWrBlock o) {
+    visitPsiElement(o);
+  }
+
   public void visitHtmlStartRythmBlock(@NotNull RythmHtmlStartRythmBlock o) {
     visitPsiElement(o);
   }
 
   public void visitHtmlWr(@NotNull RythmHtmlWr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitIf(@NotNull RythmIf o) {
     visitPsiElement(o);
   }
 
@@ -33,6 +41,10 @@ public class RythmVisitor extends PsiElementVisitor {
   }
 
   public void visitRythmBlock(@NotNull RythmRythmBlock o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRythmBlockEx(@NotNull RythmRythmBlockEx o) {
     visitPsiElement(o);
   }
 
@@ -101,6 +113,14 @@ public class RythmVisitor extends PsiElementVisitor {
   }
 
   public void visitStatement(@NotNull RythmStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStringLiteral(@NotNull RythmStringLiteral o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFix(@NotNull RythmFix o) {
     visitPsiElement(o);
   }
 

@@ -18,6 +18,7 @@
         BAR =           "|"
         LEFTBRACES =    "{:"
         RIGHTBRACES =   ":}"
+
         COLON =         ":"
         DOT =           "."
         COMMA =         ","
@@ -79,19 +80,22 @@ pin(".*Code")=1
 
 //FILE
 
-rythmFile ::= BLOCK_COMMENT? (initialDeclaration) RYTHM_SECTION RYTHM_KeyBlock HTML_START_RYTHM_BLOCK*|  (TEXT) | (RYTHM)| (GENERICS?)
+rythmFile ::= BLOCK_COMMENT? (initialDeclaration) RYTHM_SECTION IF //RYTHM_KeyBlock ANOTHER_HTML_WR_BLOCK HTML_START_RYTHM_BLOCK* |  (TEXT) | (RYTHM)| (GENERICS?)
 
 RYTHM ::= RYTHM_PREFIX|RYTHM_IF|RYTHM_I18NRYTHM_FOR|RYTHM_INVOKE|RYTHM_RENDER
 
 
 // INITIAL DECLARATION
-initialDeclaration ::= (RYTHM_ARGS| RYTHM_IMPORT |RYTHM_EXTENDS)
+initialDeclaration ::= (RYTHM_ARGS* RYTHM_IMPORT* RYTHM_EXTENDS*) {recoverWhile = "initialDec_recover"}
+private initialDec_recover ::= !('@args'| '@import'|'@extends')
 
-RYTHM_ARGS ::= (('@args' qualifiedName)(','*qualifiedName)*) RYTHM_IMPORT* RYTHM_EXTENDS*
+fix ::= GENERICS
 
-RYTHM_IMPORT ::= (('@import' qualifiedName)+) RYTHM_EXTENDS*
+RYTHM_ARGS ::= (('@args' qualifiedName)(','*qualifiedName)*) /*RYTHM_IMPORT* RYTHM_EXTENDS**/ {pin = 1}
 
-RYTHM_EXTENDS ::= ('@extends' '('qualifiedName',' 'title' ':' '(' IDENTIFIER '.' methodCallExpr '+' '"' ':' '"' '+' IDENTIFIER '.' methodCallExpr LPAREN*)
+RYTHM_IMPORT ::= (('@import' qualifiedName)+) /*RYTHM_EXTENDS**/ {pin = 1}
+
+RYTHM_EXTENDS ::= ('@extends' '('qualifiedName',' 'title' ':' '(' IDENTIFIER '.' methodCallExpr '+' '"' ':' '"' '+' IDENTIFIER '.' methodCallExpr LPAREN*) {pin = 1}
 
 qualifiedName ::= (IDENTIFIER+ '.'*)+|IDENTIFIER+
 
@@ -117,6 +121,7 @@ RYTHM_KeyBlock ::= RYTHM_KEY '(' ')' '{' TEXT rythm_method ':' rythm_method TEXT
 
 RYTHM_KeyBlock_EXP ::= RYTHM_KEY '(' '"' qualifiedName '"' ')'
 
+IF ::= RYTHM_IF_Statment* RYTHM_IF_Statement_OP* RYTHM_IF_Statment_Short*
 
 RYTHM_IF_Statment ::= '@if' '(' STATEMENT '&&'* '=='* GREATER* '"'* IDENTIFIER* '"'* '.'* methodCallExpr* '>'* IDENTIFIER* ')'* '||'* IDENTIFIER* methodCall* '!='*  IDENTIFIER* ')'* '{' TEXT* '}'* rythm_method* TEXT* rythm_method* rythm_Key_Ident* RYTHM_PREFIX* TEXT* rythm_method* METHOD* TEXT* rythm_method* methodCall* RYTHM_I18N* '}'* TEXT RYTHM_FOR_Statement* rythm_method* TEXT* RYTHM_I18N* TEXT* RYTHM_IF_Statment* TEXT* RYTHM_I18N* TEXT* RYTHM_IF_Statment* TEXT*  '}' RYTHM_ELSE*
 
@@ -128,7 +133,7 @@ RYTHM_IF_Statement_OP ::= '@if' '(' IDENTIFIER '.' IDENTIFIER '(' IDENTIFIER* '.
 
 RYTHM_IF_Statement_OP_TEST ::= '<' IDENTIFIER ')'
 
-RYTHM_FOR_Statement ::= '@for' '(' IDENTIFIER+ ':'* IDENTIFIER* '.'* IDENTIFIER* '.'* qualifiedName* ':'* IDENTIFIER* '('* ')'* '{' TEXT*  rythm_method TEXT RYTHM_IF_Statment_Short TEXT rythm_method TEXT '}'*
+RYTHM_FOR_Statement ::= RYTHM_FOR '(' IDENTIFIER+ ':'* IDENTIFIER* '.'* IDENTIFIER* '.'* qualifiedName* ':'* IDENTIFIER* '('* ')'* '{' TEXT*  rythm_method TEXT RYTHM_IF_Statment_Short TEXT rythm_method TEXT '}'*
 
 STATEMENT ::='('* EXCL* IDENTIFIER ('.' methodCallExpr+)* ')'*
 
@@ -143,6 +148,16 @@ methodCallExpr ::= LPAREN* '"'* IDENTIFIER '/'* '"'*  '+'* IDENTIFIER* methodCal
 methodCall ::= '.'IDENTIFIER LPAREN IDENTIFIER* '.'* IDENTIFIER*  '('* ')'* RPAREN*
 
 METHOD ::= '.' IDENTIFIER '('*  ')'*
+
+
+
+ANOTHER_HTML_WR_BLOCK ::= TEXT RYTHM_BLOCK_EX
+
+RYTHM_BLOCK_EX ::= RYTHM_KEY '(' '('* String_Literal ')'* '{'* '+'* IDENTIFIER '.' methodCallExpr ')'* ')' '{'
+
+String_Literal ::= '"' /*IDENTIFIER*/ qualifiedName '/'* '"'
+
+
 
 RYTHM_KEY_BLOCKS ::= rythm_Key_Ident methodCall* TEXT* '}'* TEXT* rythm_param* RYTHM_IF_Statment*  '(' (IDENTIFIER ':' '"'* IDENTIFIER '"'* '.'* ','* IDENTIFIER* '.'* ':'* '"'* IDENTIFIER*'.'* '/'* IDENTIFIER* '"'* '('* ')'*  '{'* RYTHM_IF_Statment* '}'* RYTHM_IF_KEY_FOR_Statement*  TEXT* RYTHM_KEY_BLOCKS* '"'* ','*)* '"'* ')'* '}'*
 

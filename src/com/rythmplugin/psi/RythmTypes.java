@@ -10,8 +10,11 @@ import com.rythmplugin.psi.impl.*;
 
 public interface RythmTypes {
 
+  IElementType ANOTHER_HTML_WR_BLOCK = new RythmElementType("ANOTHER_HTML_WR_BLOCK");
+  IElementType FIX = new RythmElementType("FIX");
   IElementType HTML_START_RYTHM_BLOCK = new RythmElementType("HTML_START_RYTHM_BLOCK");
   IElementType HTML_WR = new RythmElementType("HTML_WR");
+  IElementType IF = new RythmElementType("IF");
   IElementType INITIAL_DECLARATION = new RythmElementType("INITIAL_DECLARATION");
   IElementType JAVA_CODE = new RythmElementType("JAVA_CODE");
   IElementType METHOD = new RythmElementType("METHOD");
@@ -22,6 +25,7 @@ public interface RythmTypes {
   IElementType RYTHM = new RythmElementType("RYTHM");
   IElementType RYTHM_ARGS = new RythmElementType("RYTHM_ARGS");
   IElementType RYTHM_BLOCK = new RythmElementType("RYTHM_BLOCK");
+  IElementType RYTHM_BLOCK_EX = new RythmElementType("RYTHM_BLOCK_EX");
   IElementType RYTHM_ELSE = new RythmElementType("RYTHM_ELSE");
   IElementType RYTHM_EXTENDS = new RythmElementType("RYTHM_EXTENDS");
   IElementType RYTHM_FOR_STATEMENT = new RythmElementType("RYTHM_FOR_STATEMENT");
@@ -42,6 +46,7 @@ public interface RythmTypes {
   IElementType RYTHM_SECTION_WOR = new RythmElementType("RYTHM_SECTION_WOR");
   IElementType RYTHM_SECTION_WR = new RythmElementType("RYTHM_SECTION_WR");
   IElementType STATEMENT = new RythmElementType("STATEMENT");
+  IElementType STRING_LITERAL = new RythmElementType("STRING_LITERAL");
 
   IElementType AT = new RythmTokenType("@");
   IElementType AUSRF = new RythmTokenType("!");
@@ -70,6 +75,7 @@ public interface RythmTypes {
   IElementType RIGHTBRACES = new RythmTokenType(":}");
   IElementType RPAREN = new RythmTokenType(")");
   IElementType RYTHM_FOR = new RythmTokenType("RYTHM_FOR");
+  IElementType RYTHM_I18NRYTHM_FOR = new RythmTokenType("RYTHM_I18NRYTHM_FOR");
   IElementType RYTHM_IF = new RythmTokenType("RYTHM_IF");
   IElementType RYTHM_INVOKE = new RythmTokenType("RYTHM_INVOKE");
   IElementType RYTHM_KEY = new RythmTokenType("RYTHM_KEY");
@@ -82,11 +88,20 @@ public interface RythmTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-       if (type == HTML_START_RYTHM_BLOCK) {
+       if (type == ANOTHER_HTML_WR_BLOCK) {
+        return new RythmAnotherHtmlWrBlockImpl(node);
+      }
+      else if (type == FIX) {
+        return new RythmFixImpl(node);
+      }
+      else if (type == HTML_START_RYTHM_BLOCK) {
         return new RythmHtmlStartRythmBlockImpl(node);
       }
       else if (type == HTML_WR) {
         return new RythmHtmlWrImpl(node);
+      }
+      else if (type == IF) {
+        return new RythmIfImpl(node);
       }
       else if (type == INITIAL_DECLARATION) {
         return new RythmInitialDeclarationImpl(node);
@@ -117,6 +132,9 @@ public interface RythmTypes {
       }
       else if (type == RYTHM_BLOCK) {
         return new RythmRythmBlockImpl(node);
+      }
+      else if (type == RYTHM_BLOCK_EX) {
+        return new RythmRythmBlockExImpl(node);
       }
       else if (type == RYTHM_ELSE) {
         return new RythmRythmElseImpl(node);
@@ -177,6 +195,9 @@ public interface RythmTypes {
       }
       else if (type == STATEMENT) {
         return new RythmStatementImpl(node);
+      }
+      else if (type == STRING_LITERAL) {
+        return new RythmStringLiteralImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }
