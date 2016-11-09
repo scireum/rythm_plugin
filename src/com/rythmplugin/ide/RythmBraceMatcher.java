@@ -16,6 +16,7 @@ public class RythmBraceMatcher implements PairedBraceMatcher {
     private static final BracePair[] PAIRS = new BracePair[]{
             new BracePair(LBRACE, RBRACE, true),
             new BracePair(LPAREN, RPAREN, true),
+            new BracePair(BRCSL, BRCSR, true),
 
     };
 
