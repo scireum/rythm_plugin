@@ -74,6 +74,7 @@ public interface RythmTypes {
   IElementType RBRACE = new RythmTokenType("}");
   IElementType RIGHTBRACES = new RythmTokenType(":}");
   IElementType RPAREN = new RythmTokenType(")");
+  IElementType RYTHM_ESCAPED = new RythmTokenType("RYTHM_ESCAPED");
   IElementType RYTHM_FOR = new RythmTokenType("RYTHM_FOR");
   IElementType RYTHM_I18NRYTHM_FOR = new RythmTokenType("RYTHM_I18NRYTHM_FOR");
   IElementType RYTHM_IF = new RythmTokenType("RYTHM_IF");

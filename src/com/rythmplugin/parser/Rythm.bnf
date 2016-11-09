@@ -14,7 +14,7 @@
   tokenTypeClass="com.rythmplugin.parser.RythmTokenType"
 
   tokens= [
-     AT = "@"
+        AT = "@"
         BAR =           "|"
         LEFTBRACES =    "{:"
         RIGHTBRACES =   ":}"
@@ -41,7 +41,9 @@
 
         PLUS =          "+"
         GF =            '"'
+
  /*
+ commented for live preview of grammar-kit
         // Rythm Keywords
         RYTHM_IF =      "@if"
         RYTHM_EXTENDS = "@extends"
@@ -74,13 +76,11 @@
   ]
 
 pin(".*Code")=1
-//pin(".*Declaration")=1
-
 }
 
 //FILE
 
-rythmFile ::= BLOCK_COMMENT? (initialDeclaration) RYTHM_SECTION IF //RYTHM_KeyBlock ANOTHER_HTML_WR_BLOCK HTML_START_RYTHM_BLOCK* |  (TEXT) | (RYTHM)| (GENERICS?)
+rythmFile ::= BLOCK_COMMENT? (initialDeclaration) RYTHM_SECTION IF
 
 RYTHM ::= RYTHM_PREFIX|RYTHM_IF|RYTHM_I18NRYTHM_FOR|RYTHM_INVOKE|RYTHM_RENDER
 
@@ -89,11 +89,11 @@ RYTHM ::= RYTHM_PREFIX|RYTHM_IF|RYTHM_I18NRYTHM_FOR|RYTHM_INVOKE|RYTHM_RENDER
 initialDeclaration ::= (RYTHM_ARGS* RYTHM_IMPORT* RYTHM_EXTENDS*) {recoverWhile = "initialDec_recover"}
 private initialDec_recover ::= !('@args'| '@import'|'@extends')
 
-fix ::= GENERICS
+fix ::= GENERICS RYTHM_ESCAPED
 
-RYTHM_ARGS ::= (('@args' qualifiedName)(','*qualifiedName)*) /*RYTHM_IMPORT* RYTHM_EXTENDS**/ {pin = 1}
+RYTHM_ARGS ::= (('@args' qualifiedName)(','*qualifiedName)*) {pin = 1}
 
-RYTHM_IMPORT ::= (('@import' qualifiedName)+) /*RYTHM_EXTENDS**/ {pin = 1}
+RYTHM_IMPORT ::= (('@import' qualifiedName)+) {pin = 1}
 
 RYTHM_EXTENDS ::= ('@extends' '('qualifiedName',' 'title' ':' '(' IDENTIFIER '.' methodCallExpr '+' '"' ':' '"' '+' IDENTIFIER '.' methodCallExpr LPAREN*) {pin = 1}
 
@@ -155,7 +155,7 @@ ANOTHER_HTML_WR_BLOCK ::= TEXT RYTHM_BLOCK_EX
 
 RYTHM_BLOCK_EX ::= RYTHM_KEY '(' '('* String_Literal ')'* '{'* '+'* IDENTIFIER '.' methodCallExpr ')'* ')' '{'
 
-String_Literal ::= '"' /*IDENTIFIER*/ qualifiedName '/'* '"'
+String_Literal ::= '"'qualifiedName '/'* '"'
 
 
 

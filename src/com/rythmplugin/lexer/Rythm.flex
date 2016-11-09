@@ -26,6 +26,7 @@ LETTER = [a-zA-Z_]
 DIGIT = [0-9]
 GF = \"
 STRING_LITERAL = \"[a-zA-Z0-9]+\.*\w*\"
+RYTHM_ESCAPED = @@\w+
 
 RYTHM_KEY = \@\w+
 GENERICS = \<[a-zA-Z]+\,.*?\>|\<([a-zA-Z]+\.[a-zA-Z]+)+\>
@@ -67,6 +68,7 @@ TEXT = \<[^@}{,]+\>|\<.[^@}{,12346789]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\
 "@invoke"                       {return RythmTypes.RYTHM_INVOKE;}
 "JAVA_CODE"                     {return RythmTypes.JAVA_CODE; }
 
+{RYTHM_ESCAPED}                 {return RythmTypes.RYTHM_ESCAPED;}
 {STRING_LITERAL}                {return RythmTypes.STRING_LITERAL;}
 {RYTHM_KEY}                     {return RythmTypes.RYTHM_KEY;}
 {GENERICS}                      {return RythmTypes.GENERICS;}

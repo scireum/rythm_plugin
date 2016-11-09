@@ -29,12 +29,11 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Prefix", RythmSyntaxHighlighter.RYTHM_PREFIX),
             new AttributesDescriptor("Render", RythmSyntaxHighlighter.RYTHM_RENDER),
             new AttributesDescriptor("Section", RythmSyntaxHighlighter.RYTHM_SECTION),
-            //new AttributesDescriptor("Section Param", RythmSyntaxHighlighter.RYTHM_SECTION_PARAM),
-            // new AttributesDescriptor("Method", RythmSyntaxHighlighter.RYTHM_METHOD),
             new AttributesDescriptor("Key", RythmSyntaxHighlighter.RYTHM_KEY),
             new AttributesDescriptor("i18n", RythmSyntaxHighlighter.RYTHM_I18N),
             new AttributesDescriptor("Comment", RythmSyntaxHighlighter.BLOCK_COMMENT),
-            //new AttributesDescriptor("Param", RythmSyntaxHighlighter.RYTHM_PARAM),
+            new AttributesDescriptor("Escaped Rythm", RythmSyntaxHighlighter.RYTHM_ESCAPED),
+
 
     };
 
@@ -60,6 +59,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "@extends\n" +
                         "@args\n" +
                         "@rythm\n" +
+                        "@@thisIsEscapedRythm\n"+
                         "@prefix\n" +
                         "@*\n" +
                         "*demo\n" +

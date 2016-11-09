@@ -33,12 +33,10 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey RYTHM_KEY = createTextAttributesKey("RYTHM_KEY", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey RYTHM_I18N = createTextAttributesKey("RYTHM_I18N", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey BLOCK_COMMENT = createTextAttributesKey("BLOCK_COMMENT", JavaHighlightingColors.JAVA_BLOCK_COMMENT);
-    //public static final TextAttributesKey RYTHM_SECTION_PARAM = createTextAttributesKey("RYTHM_SECTION_PARAM", DefaultLanguageHighlighterColors.KEYWORD);
-    //public static final TextAttributesKey RYTHM_PARAM = createTextAttributesKey("RYTHM_PARAM", JavaHighlightingColors.ANNOTATION_NAME_ATTRIBUTES);
     public static final TextAttributesKey FUNCTION = createTextAttributesKey("FUNCTION", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey RYTHM_ELSE = createTextAttributesKey("RYTHM_ELSE", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey STATEMENT = createTextAttributesKey("STATEMENT", JavaHighlightingColors.CLASS_NAME_ATTRIBUTES);
-
+    public static final TextAttributesKey RYTHM_ESCAPED = createTextAttributesKey("RYTHM_ESCAPED", DefaultLanguageHighlighterColors.METADATA);
 
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
     private static final TextAttributesKey[] RYTHM_ARGS_KEYS = new TextAttributesKey[]{RYTHM_ARGS};
@@ -54,11 +52,10 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] RYTHM_KEY_KEYS = new TextAttributesKey[]{RYTHM_KEY};
     private static final TextAttributesKey[] RYTHM_I18N_KEYS = new TextAttributesKey[]{RYTHM_I18N};
     private static final TextAttributesKey[] BLOCK_COMMENT_KEYS = new TextAttributesKey[]{BLOCK_COMMENT};
-    //private static final TextAttributesKey[] RYTHM_SECTION_PARAM_KEYS = new TextAttributesKey[]{RYTHM_SECTION_PARAM};
-    //private static final TextAttributesKey[] RYTHM_PARAM_KEYS = new TextAttributesKey[]{RYTHM_PARAM};
     private static final TextAttributesKey[] FUNCTION_KEYS = new TextAttributesKey[]{FUNCTION};
     private static final TextAttributesKey[] RYTHM_ELSE_KEYS = new TextAttributesKey[]{RYTHM_ELSE};
     private static final TextAttributesKey[] STATEMENT_KEYS = new TextAttributesKey[]{STATEMENT};
+    private static final TextAttributesKey[] RYTHM_ESCAPED_KEYS = new TextAttributesKey[]{RYTHM_ESCAPED};
 
     @NotNull
     @Override
@@ -95,7 +92,9 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_KEY_KEYS;
         } else if (tokenType.equals(RythmTypes.BLOCK_COMMENT)) {
             return BLOCK_COMMENT_KEYS;
-        } else {
+        } else if (tokenType.equals(RythmTypes.RYTHM_ESCAPED)){
+            return RYTHM_ESCAPED_KEYS;
+        }{
             return EMPTY_KEYS;
         }
     }
