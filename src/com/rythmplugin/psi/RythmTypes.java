@@ -60,6 +60,7 @@ public interface RythmTypes {
   IElementType DOT = new RythmTokenType(".");
   IElementType EQ = new RythmTokenType("=");
   IElementType EXCL = new RythmTokenType("EXCL");
+  IElementType G = new RythmTokenType("G");
   IElementType GENERICS = new RythmTokenType("GENERICS");
   IElementType GF = new RythmTokenType("\"");
   IElementType GREATER = new RythmTokenType("GREATER");

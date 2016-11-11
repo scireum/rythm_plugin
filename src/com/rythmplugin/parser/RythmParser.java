@@ -3253,13 +3253,13 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // GENERICS RYTHM_ESCAPED
+  // GENERICS RYTHM_ESCAPED G
   public static boolean fix(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fix")) return false;
     if (!nextTokenIs(b, GENERICS)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, GENERICS, RYTHM_ESCAPED);
+    r = consumeTokens(b, 0, GENERICS, RYTHM_ESCAPED, G);
     exit_section_(b, m, FIX, r);
     return r;
   }

@@ -30,7 +30,10 @@ RYTHM_ESCAPED = @@\w+
 
 RYTHM_KEY = \@\w+
 GENERICS = \<[a-zA-Z]+\,.*?\>|\<([a-zA-Z]+\.[a-zA-Z]+)+\>|\<[A-Z].+\>
-TEXT = \<[^@}{,I]+\>|\<[^@}{,12346789I]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\"|\(\'
+TEXT = \<[^@}{,I]+\>|\<\w[^@}{,12346789I]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\"|\(\'
+
+//11.11.16 - 11:33 Uhr
+//\<[^@}{,I]+\>|\<[^@}{,12346789I]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\"|\(\'
 
 //14:10 Uhr
 //\<[^@}{,I]+\>|\<[^@}{,12346789I.]+\"|\"\>|\/[^@}{]+\/[^@]+\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/+>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\"|\(\'
@@ -62,11 +65,13 @@ TEXT = \<[^@}{,I]+\>|\<[^@}{,12346789I]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|
 "*"                             {return RythmTypes.MUL;}
 ":"                             {return RythmTypes.COLON; }
 ","                             {return RythmTypes.COMMA; }
+";"                             {return RythmTypes.SEMICOLON;}
 "|"                             {return RythmTypes.BAR; }
 "+"                             {return RythmTypes.PLUS;}
 "!"                             {return RythmTypes.EXCL;}
 "/"                             {return RythmTypes.SLASH;}
 "=="                            {return RythmTypes.EQ;}
+"="                             {return RythmTypes.G;}
 "<"                             {return RythmTypes.GREATER;}
 {GF}                            {return RythmTypes.GF;}
 "else"                          {return RythmTypes.RYTHM_ELSE;}
