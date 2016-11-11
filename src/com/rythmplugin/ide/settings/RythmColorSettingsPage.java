@@ -33,6 +33,8 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("i18n", RythmSyntaxHighlighter.RYTHM_I18N),
             new AttributesDescriptor("Comment", RythmSyntaxHighlighter.BLOCK_COMMENT),
             new AttributesDescriptor("Escaped Rythm", RythmSyntaxHighlighter.RYTHM_ESCAPED),
+            new AttributesDescriptor("Numbers", RythmSyntaxHighlighter.DIGIT),
+
 
 
     };
@@ -60,6 +62,7 @@ public class RythmColorSettingsPage implements ColorSettingsPage {
                         "@args\n" +
                         "@rythm\n" +
                         "@@thisIsEscapedRythm\n"+
+                        "var urls = [ \"www.*****.com\", 5, globalVar];\n"+
                         "@prefix\n" +
                         "@*\n" +
                         "*demo\n" +

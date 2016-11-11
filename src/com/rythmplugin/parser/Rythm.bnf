@@ -89,7 +89,7 @@ RYTHM ::= RYTHM_PREFIX|RYTHM_IF|RYTHM_I18NRYTHM_FOR|RYTHM_INVOKE|RYTHM_RENDER
 initialDeclaration ::= (RYTHM_ARGS* RYTHM_IMPORT* RYTHM_EXTENDS*) {recoverWhile = "initialDec_recover"}
 private initialDec_recover ::= !('@args'| '@import'|'@extends')
 
-fix ::= GENERICS RYTHM_ESCAPED G
+fix ::= GENERICS RYTHM_ESCAPED G VAR FUNCTION THIS NEW DIGIT
 
 RYTHM_ARGS ::= (('@args' qualifiedName)(','*qualifiedName)*) {pin = 1}
 

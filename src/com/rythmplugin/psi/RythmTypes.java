@@ -56,10 +56,12 @@ public interface RythmTypes {
   IElementType BRCSR = new RythmTokenType("]");
   IElementType COLON = new RythmTokenType(":");
   IElementType COMMA = new RythmTokenType(",");
+  IElementType DIGIT = new RythmTokenType("DIGIT");
   IElementType DOLLAR = new RythmTokenType("$");
   IElementType DOT = new RythmTokenType(".");
   IElementType EQ = new RythmTokenType("=");
   IElementType EXCL = new RythmTokenType("EXCL");
+  IElementType FUNCTION = new RythmTokenType("FUNCTION");
   IElementType G = new RythmTokenType("G");
   IElementType GENERICS = new RythmTokenType("GENERICS");
   IElementType GF = new RythmTokenType("\"");
@@ -71,6 +73,7 @@ public interface RythmTypes {
   IElementType LEFTBRACES = new RythmTokenType("{:");
   IElementType LPAREN = new RythmTokenType("(");
   IElementType MUL = new RythmTokenType("*");
+  IElementType NEW = new RythmTokenType("NEW");
   IElementType PLUS = new RythmTokenType("+");
   IElementType RBRACE = new RythmTokenType("}");
   IElementType RIGHTBRACES = new RythmTokenType(":}");
@@ -86,6 +89,8 @@ public interface RythmTypes {
   IElementType SEMICOLON = new RythmTokenType(";");
   IElementType SLASH = new RythmTokenType("/");
   IElementType TEXT = new RythmTokenType("TEXT");
+  IElementType THIS = new RythmTokenType("THIS");
+  IElementType VAR = new RythmTokenType("VAR");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {

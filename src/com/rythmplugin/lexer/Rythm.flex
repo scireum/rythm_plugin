@@ -23,7 +23,7 @@ BLOCK_COMMENT = \@\*|\*\@|\*(\s*\w+.*)+|\*\s
 
 IDENTIFIER = {LETTER}+|{DIGIT}+
 LETTER = [a-zA-Z_]
-DIGIT = [0-9]
+DIGIT = [0-9]+
 GF = \"
 STRING_LITERAL = \"[a-zA-Z0-9]+\.*\w*\"
 RYTHM_ESCAPED = @@\w+
@@ -86,6 +86,12 @@ TEXT = \<[^@}{,I]+\>|\<\w[^@}{,12346789I]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]
 "@render"                       {return RythmTypes.RYTHM_RENDER;}
 "@invoke"                       {return RythmTypes.RYTHM_INVOKE;}
 "JAVA_CODE"                     {return RythmTypes.JAVA_CODE; }
+
+"var"                           {return RythmTypes.VAR;}
+"function"                      {return RythmTypes.FUNCTION;}
+"this"                          {return RythmTypes.THIS;}
+"new"                           {return RythmTypes.NEW;}
+{DIGIT}                         {return RythmTypes.DIGIT;}
 
 {RYTHM_ESCAPED}                 {return RythmTypes.RYTHM_ESCAPED;}
 {STRING_LITERAL}                {return RythmTypes.STRING_LITERAL;}

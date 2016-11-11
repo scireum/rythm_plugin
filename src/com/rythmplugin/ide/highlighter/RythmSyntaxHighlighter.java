@@ -33,10 +33,16 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey RYTHM_KEY = createTextAttributesKey("RYTHM_KEY", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey RYTHM_I18N = createTextAttributesKey("RYTHM_I18N", JavaHighlightingColors.KEYWORD);
     public static final TextAttributesKey BLOCK_COMMENT = createTextAttributesKey("BLOCK_COMMENT", JavaHighlightingColors.JAVA_BLOCK_COMMENT);
-    public static final TextAttributesKey FUNCTION = createTextAttributesKey("FUNCTION", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey RYTHM_ELSE = createTextAttributesKey("RYTHM_ELSE", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey STATEMENT = createTextAttributesKey("STATEMENT", JavaHighlightingColors.CLASS_NAME_ATTRIBUTES);
     public static final TextAttributesKey RYTHM_ESCAPED = createTextAttributesKey("RYTHM_ESCAPED", DefaultLanguageHighlighterColors.METADATA);
+    public static final TextAttributesKey VAR = createTextAttributesKey("VAR,", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey FUNCTION = createTextAttributesKey("FUNCTION", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey THIS = createTextAttributesKey("THIS", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey NEW = createTextAttributesKey("NEW", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey DIGIT = createTextAttributesKey("DIGIT", DefaultLanguageHighlighterColors.NUMBER);
+    public static final TextAttributesKey SEMICOLON = createTextAttributesKey("SEMICOLON", DefaultLanguageHighlighterColors.SEMICOLON);
+    public static final TextAttributesKey COMMA = createTextAttributesKey("COMMA", DefaultLanguageHighlighterColors.COMMA);
 
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
     private static final TextAttributesKey[] RYTHM_ARGS_KEYS = new TextAttributesKey[]{RYTHM_ARGS};
@@ -52,10 +58,17 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] RYTHM_KEY_KEYS = new TextAttributesKey[]{RYTHM_KEY};
     private static final TextAttributesKey[] RYTHM_I18N_KEYS = new TextAttributesKey[]{RYTHM_I18N};
     private static final TextAttributesKey[] BLOCK_COMMENT_KEYS = new TextAttributesKey[]{BLOCK_COMMENT};
-    private static final TextAttributesKey[] FUNCTION_KEYS = new TextAttributesKey[]{FUNCTION};
     private static final TextAttributesKey[] RYTHM_ELSE_KEYS = new TextAttributesKey[]{RYTHM_ELSE};
     private static final TextAttributesKey[] STATEMENT_KEYS = new TextAttributesKey[]{STATEMENT};
     private static final TextAttributesKey[] RYTHM_ESCAPED_KEYS = new TextAttributesKey[]{RYTHM_ESCAPED};
+    private static final TextAttributesKey[] VAR_KEYS = new TextAttributesKey[]{VAR};
+    private static final TextAttributesKey[] FUNCTION_KEYS = new TextAttributesKey[]{FUNCTION};
+    private static final TextAttributesKey[] THIS_KEYS = new TextAttributesKey[]{THIS};
+    private static final TextAttributesKey[] NEW_KEYS = new TextAttributesKey[]{NEW};
+    private static final TextAttributesKey[] DIGIT_KEYS = new TextAttributesKey[]{DIGIT};
+    private static final TextAttributesKey[] SEMICOLON_KEYS = new TextAttributesKey[]{SEMICOLON};
+    private static final TextAttributesKey[] COMMA_KEYS = new TextAttributesKey[]{COMMA};
+
 
     @NotNull
     @Override
@@ -92,9 +105,23 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return RYTHM_KEY_KEYS;
         } else if (tokenType.equals(RythmTypes.BLOCK_COMMENT)) {
             return BLOCK_COMMENT_KEYS;
-        } else if (tokenType.equals(RythmTypes.RYTHM_ESCAPED)){
+        } else if (tokenType.equals(RythmTypes.RYTHM_ESCAPED)) {
             return RYTHM_ESCAPED_KEYS;
-        }{
+        } else if (tokenType.equals(RythmTypes.VAR)) {
+            return VAR_KEYS;
+        } else if (tokenType.equals(RythmTypes.FUNCTION)) {
+            return FUNCTION_KEYS;
+        } else if (tokenType.equals(RythmTypes.THIS)) {
+            return THIS_KEYS;
+        } else if (tokenType.equals(RythmTypes.NEW)) {
+            return NEW_KEYS;
+        } else if (tokenType.equals(RythmTypes.DIGIT)) {
+            return DIGIT_KEYS;
+        } else if (tokenType.equals(RythmTypes.SEMICOLON)) {
+            return SEMICOLON_KEYS;
+        } else if (tokenType.equals(RythmTypes.COMMA)) {
+            return COMMA_KEYS;
+        } else {
             return EMPTY_KEYS;
         }
     }
