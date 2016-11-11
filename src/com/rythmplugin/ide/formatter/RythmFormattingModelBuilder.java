@@ -12,19 +12,17 @@ import com.intellij.psi.formatter.xml.SyntheticBlock;
 import com.intellij.psi.formatter.xml.XmlTagBlock;
 import com.intellij.psi.templateLanguages.SimpleTemplateLanguageFormattingModelBuilder;
 import com.intellij.psi.tree.IElementType;
+import com.rythmplugin.RythmLanguage;
 import com.rythmplugin.parser.RythmPsiUtil;
 import com.rythmplugin.psi.RythmTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import static com.rythmplugin.ide.formatter.RythmFormatUtil.hasElementType;
+import static com.rythmplugin.psi.RythmTypes.*;
+
 
 import java.util.List;
-
-
-import static com.rythmplugin.psi.RythmTypes.RYTHM;
-import static com.rythmplugin.psi.RythmTypes.RYTHM_IF;
-import static com.rythmplugin.psi.RythmTypes.TEXT;
 
 
 /**
@@ -69,11 +67,57 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
 
         @Override
         public Indent getIndent() {
-            if (myNode.getText().trim().length() == 0) {
-                return Indent.getNoneIndent();
+            //   if (myNode.getText().trim().length() == 0) {
+            //      return Indent.getNoneIndent();
+            //  }
+            if (myNode.getTreePrev() == TEXT) {
+                return Indent.getSpaceIndent(7);
             }
+
             if (myNode.getElementType() == RYTHM_IF){
-                return Indent.getSpaceIndent(8);
+                return Indent.getNormalIndent(true);
+            }
+            if (myNode.getElementType()== RYTHM_IF){
+                return Indent.getNormalIndent();
+            }
+
+            if (myNode.getElementType()== TEXT){
+                return Indent.getNormalIndent(true);
+            }
+
+            //if (myNode.getTreePrev() == RBRACE){
+            //    return Indent.getNoneIndent();
+            //}
+
+            //if (myNode.getElementType() == RYTHM_KEY){
+            //    return Indent.getNormalIndent();
+            //}
+
+
+            if (myNode.getElementType() == RYTHM_I_18_N) {
+                return Indent.getNormalIndent();
+            }
+
+            // if (myNode.getElementType()== TEXT){
+            //     return Indent.getNormalIndent();
+            // }
+
+
+            //if (myNode.getElementType()== RYTHM_FOR){
+            //    return Indent.getNormalIndent();
+            //}
+            //if (myNode.getElementType() == RBRACE) {
+            //    if (myNode.getTreeNext() == RBRACE) {
+             //       return Indent.getNormalIndent();
+
+             //   }
+
+             //   return Indent.getSpaceIndent(5);
+            //}
+
+
+            if (myNode.getElementType() == IDENTIFIER){
+               return Indent.getSpaceIndent(11);
             }
 
             if (RythmPsiUtil.isNonRootStatementsElement(myNode.getPsi())) {
@@ -95,10 +139,10 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
         @NotNull
         @Override
         public ChildAttributes getChildAttributes(int newChildIndex) {
-            if (hasElementType(myNode, RythmTypes.LBRACE )){
+            if (hasElementType(myNode, RythmTypes.LBRACE)) {
                 return new ChildAttributes(Indent.getSpaceIndent(4), null);
             }
-            return new ChildAttributes(null,null);
+            return new ChildAttributes(null, null);
         }
 
 
@@ -120,11 +164,18 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
                 RythmBlock firstBlock = (RythmBlock) child1;
                 RythmBlock secondBlock = (RythmBlock) child2;
 
-                if (firstBlock.getNode().getElementType() == RythmTypes.RYTHM) {
+                if (firstBlock.getNode().getElementType() == RYTHM) {
                     return null;
                 }
             }
             return null;
+        }
+
+        @NotNull
+        private static SpacingBuilder createSpacingBuilder(@NotNull CodeStyleSettings settings) {
+            return new SpacingBuilder(settings, RythmLanguage.INSTANCE)
+
+                    .before(RythmTypes.TEXT).spaces(4);
         }
 
 
@@ -139,22 +190,22 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
             return false;
         }
 
-/*
-        @NotNull
-        @Override
-        public ChildAttributes getChildAttributes(int newChildIndex) {
-            if (myNode.getElementType() == RYTHM || (getParent() instanceof DataLanguageBlockWrapper
-                    && (myNode.getElementType() != RYTHM || myNode.getTreeNext()
-                    instanceof PsiErrorElement))) {
-                return new ChildAttributes(Indent.getNormalIndent(), null);
-            } else {
+        /*
+                @NotNull
+                @Override
+                public ChildAttributes getChildAttributes(int newChildIndex) {
+                    if (myNode.getElementType() == RYTHM || (getParent() instanceof DataLanguageBlockWrapper
+                            && (myNode.getElementType() != RYTHM || myNode.getTreeNext()
+                            instanceof PsiErrorElement))) {
+                        return new ChildAttributes(Indent.getNormalIndent(), null);
+                    } else {
 
 
-                return new ChildAttributes(Indent.getNoneIndent(), null);
-            }
-        }
+                        return new ChildAttributes(Indent.getNoneIndent(), null);
+                    }
+                }
 
-*/
+        */
         private boolean hasOnlyRythmLanguageParents() {
             BlockWithParent parent = getParent();
             boolean hasOnlyRythmLanguageParents = true;
