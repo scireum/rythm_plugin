@@ -28,6 +28,7 @@ GF = \"
 STRING_LITERAL = \"[a-zA-Z0-9]+\.*\w*\"
 RYTHM_ESCAPED = @@\w+
 
+Q_RYTHM = \"@.*\"
 RYTHM_KEY = \@\w+
 GENERICS = \<[a-zA-Z]+\,.*?\>|\<([a-zA-Z]+\.[a-zA-Z]+)+\>|\<[A-Z].+\>
 TEXT = \<[^@}{,I]+\>|\<\w[^@}{,12346789I]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\"|\(\'
@@ -93,6 +94,7 @@ TEXT = \<[^@}{,I]+\>|\<\w[^@}{,12346789I]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]
 "new"                           {return RythmTypes.NEW;}
 {DIGIT}                         {return RythmTypes.DIGIT;}
 
+{Q_RYTHM}                       {return RythmTypes.Q_RYTHM;}
 {RYTHM_ESCAPED}                 {return RythmTypes.RYTHM_ESCAPED;}
 {STRING_LITERAL}                {return RythmTypes.STRING_LITERAL;}
 {RYTHM_KEY}                     {return RythmTypes.RYTHM_KEY;}
