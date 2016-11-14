@@ -46,7 +46,7 @@ public interface RythmTypes {
   IElementType RYTHM_SECTION_WOR = new RythmElementType("RYTHM_SECTION_WOR");
   IElementType RYTHM_SECTION_WR = new RythmElementType("RYTHM_SECTION_WR");
   IElementType STATEMENT = new RythmElementType("STATEMENT");
-  IElementType STRING_LITERAL = new RythmElementType("STRING_LITERAL");
+  IElementType STRING_LITERAL_1 = new RythmElementType("STRING_LITERAL_1");
 
   IElementType AT = new RythmTokenType("@");
   IElementType AUSRF = new RythmTokenType("!");
@@ -89,6 +89,7 @@ public interface RythmTypes {
   IElementType RYTHM_RENDER = new RythmTokenType("RYTHM_RENDER");
   IElementType SEMICOLON = new RythmTokenType(";");
   IElementType SLASH = new RythmTokenType("/");
+  IElementType STRING_LITERAL = new RythmTokenType("STRING_LITERAL");
   IElementType TEXT = new RythmTokenType("TEXT");
   IElementType THIS = new RythmTokenType("THIS");
   IElementType VAR = new RythmTokenType("VAR");
@@ -204,8 +205,8 @@ public interface RythmTypes {
       else if (type == STATEMENT) {
         return new RythmStatementImpl(node);
       }
-      else if (type == STRING_LITERAL) {
-        return new RythmStringLiteralImpl(node);
+      else if (type == STRING_LITERAL_1) {
+        return new RythmStringLiteral1Impl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

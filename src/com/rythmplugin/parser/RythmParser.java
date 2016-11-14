@@ -104,8 +104,8 @@ public class RythmParser implements PsiParser, LightPsiParser {
     else if (t == STATEMENT) {
       r = STATEMENT(b, 0);
     }
-    else if (t == STRING_LITERAL) {
-      r = String_Literal(b, 0);
+    else if (t == STRING_LITERAL_1) {
+      r = String_Literal1(b, 0);
     }
     else if (t == FIX) {
       r = fix(b, 0);
@@ -1022,7 +1022,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // RYTHM_KEY '(' '('* String_Literal ')'* '{'* '+'* IDENTIFIER '.' methodCallExpr ')'* ')' '{'
+  // RYTHM_KEY '(' '('* String_Literal1 ')'* '{'* '+'* IDENTIFIER '.' methodCallExpr ')'* ')' '{'
   public static boolean RYTHM_BLOCK_EX(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_BLOCK_EX")) return false;
     if (!nextTokenIs(b, RYTHM_KEY)) return false;
@@ -1031,7 +1031,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, RYTHM_KEY);
     r = r && consumeToken(b, LPAREN);
     r = r && RYTHM_BLOCK_EX_2(b, l + 1);
-    r = r && String_Literal(b, l + 1);
+    r = r && String_Literal1(b, l + 1);
     r = r && RYTHM_BLOCK_EX_4(b, l + 1);
     r = r && RYTHM_BLOCK_EX_5(b, l + 1);
     r = r && RYTHM_BLOCK_EX_6(b, l + 1);
@@ -3227,39 +3227,39 @@ public class RythmParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // '"'qualifiedName '/'* '"'
-  public static boolean String_Literal(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "String_Literal")) return false;
+  public static boolean String_Literal1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "String_Literal1")) return false;
     if (!nextTokenIs(b, GF)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, GF);
     r = r && qualifiedName(b, l + 1);
-    r = r && String_Literal_2(b, l + 1);
+    r = r && String_Literal1_2(b, l + 1);
     r = r && consumeToken(b, GF);
-    exit_section_(b, m, STRING_LITERAL, r);
+    exit_section_(b, m, STRING_LITERAL_1, r);
     return r;
   }
 
   // '/'*
-  private static boolean String_Literal_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "String_Literal_2")) return false;
+  private static boolean String_Literal1_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "String_Literal1_2")) return false;
     int c = current_position_(b);
     while (true) {
       if (!consumeToken(b, SLASH)) break;
-      if (!empty_element_parsed_guard_(b, "String_Literal_2", c)) break;
+      if (!empty_element_parsed_guard_(b, "String_Literal1_2", c)) break;
       c = current_position_(b);
     }
     return true;
   }
 
   /* ********************************************************** */
-  // GENERICS RYTHM_ESCAPED G VAR FUNCTION THIS NEW DIGIT Q_RYTHM
+  // GENERICS RYTHM_ESCAPED G VAR FUNCTION THIS NEW DIGIT Q_RYTHM STRING_LITERAL
   public static boolean fix(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fix")) return false;
     if (!nextTokenIs(b, GENERICS)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, GENERICS, RYTHM_ESCAPED, G, VAR, FUNCTION, THIS, NEW, DIGIT, Q_RYTHM);
+    r = consumeTokens(b, 0, GENERICS, RYTHM_ESCAPED, G, VAR, FUNCTION, THIS, NEW, DIGIT, Q_RYTHM, STRING_LITERAL);
     exit_section_(b, m, FIX, r);
     return r;
   }

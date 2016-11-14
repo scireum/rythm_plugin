@@ -6,6 +6,9 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
+import com.intellij.openapi.options.colors.pages.ANSIColoredConsoleColorsPage;
+import com.intellij.openapi.options.colors.pages.DefaultLanguageColorsPage;
+import com.intellij.openapi.options.colors.pages.HTMLColorsPage;
 import com.intellij.psi.tree.IElementType;
 import com.rythmplugin.lexer.RythmLexerAdapter;
 import com.rythmplugin.psi.RythmTypes;
@@ -43,6 +46,9 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey DIGIT = createTextAttributesKey("DIGIT", DefaultLanguageHighlighterColors.NUMBER);
     public static final TextAttributesKey SEMICOLON = createTextAttributesKey("SEMICOLON", DefaultLanguageHighlighterColors.SEMICOLON);
     public static final TextAttributesKey COMMA = createTextAttributesKey("COMMA", DefaultLanguageHighlighterColors.COMMA);
+    public static final TextAttributesKey Q_RYTHM = createTextAttributesKey("Q_RYTHM", DefaultLanguageHighlighterColors.OPERATION_SIGN);
+    public static final TextAttributesKey STRING_LITERAL = createTextAttributesKey("STRING_LITERAL", DefaultLanguageHighlighterColors.STRING);
+
 
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
     private static final TextAttributesKey[] RYTHM_ARGS_KEYS = new TextAttributesKey[]{RYTHM_ARGS};
@@ -68,7 +74,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] DIGIT_KEYS = new TextAttributesKey[]{DIGIT};
     private static final TextAttributesKey[] SEMICOLON_KEYS = new TextAttributesKey[]{SEMICOLON};
     private static final TextAttributesKey[] COMMA_KEYS = new TextAttributesKey[]{COMMA};
-
+    private static final TextAttributesKey[] Q_RYTHM_KEYS = new TextAttributesKey[]{Q_RYTHM};
+    private static final TextAttributesKey[] STRING_LITERAL_KEYS = new TextAttributesKey[]{STRING_LITERAL};
 
     @NotNull
     @Override
@@ -121,6 +128,10 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return SEMICOLON_KEYS;
         } else if (tokenType.equals(RythmTypes.COMMA)) {
             return COMMA_KEYS;
+        } else if (tokenType.equals(RythmTypes.Q_RYTHM)) {
+            return Q_RYTHM_KEYS;
+        } else if (tokenType.equals(RythmTypes.STRING_LITERAL)) {
+            return STRING_LITERAL_KEYS;
         } else {
             return EMPTY_KEYS;
         }

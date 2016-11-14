@@ -116,7 +116,7 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitStringLiteral(@NotNull RythmStringLiteral o) {
+  public void visitStringLiteral1(@NotNull RythmStringLiteral1 o) {
     visitPsiElement(o);
   }
 
