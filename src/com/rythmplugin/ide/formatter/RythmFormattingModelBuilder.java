@@ -117,7 +117,7 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
 
 
             if (myNode.getElementType() == IDENTIFIER){
-               return Indent.getSpaceIndent(11);
+               return Indent.getSpaceIndent(12);
             }
 
             if (RythmPsiUtil.isNonRootStatementsElement(myNode.getPsi())) {
