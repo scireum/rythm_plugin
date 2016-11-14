@@ -48,7 +48,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey COMMA = createTextAttributesKey("COMMA", DefaultLanguageHighlighterColors.COMMA);
     public static final TextAttributesKey Q_RYTHM = createTextAttributesKey("Q_RYTHM", DefaultLanguageHighlighterColors.OPERATION_SIGN);
     public static final TextAttributesKey STRING_LITERAL = createTextAttributesKey("STRING_LITERAL", DefaultLanguageHighlighterColors.STRING);
-
+    public static final TextAttributesKey NULL = createTextAttributesKey("NULL", JavaHighlightingColors.KEYWORD);
 
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
     private static final TextAttributesKey[] RYTHM_ARGS_KEYS = new TextAttributesKey[]{RYTHM_ARGS};
@@ -76,6 +76,7 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] COMMA_KEYS = new TextAttributesKey[]{COMMA};
     private static final TextAttributesKey[] Q_RYTHM_KEYS = new TextAttributesKey[]{Q_RYTHM};
     private static final TextAttributesKey[] STRING_LITERAL_KEYS = new TextAttributesKey[]{STRING_LITERAL};
+    private static final TextAttributesKey[] NULL_KEYS = new TextAttributesKey[]{NULL};
 
     @NotNull
     @Override
@@ -132,6 +133,8 @@ public class RythmSyntaxHighlighter extends SyntaxHighlighterBase {
             return Q_RYTHM_KEYS;
         } else if (tokenType.equals(RythmTypes.STRING_LITERAL)) {
             return STRING_LITERAL_KEYS;
+        } else if (tokenType.equals(RythmTypes.NULL)) {
+            return NULL_KEYS;
         } else {
             return EMPTY_KEYS;
         }

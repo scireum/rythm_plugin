@@ -25,13 +25,17 @@ IDENTIFIER = {LETTER}+|{DIGIT}+
 LETTER = [a-zA-Z_]
 DIGIT = [0-9]+
 GF = \"
-STRING_LITERAL = \"([a-zA-Z0-9]+\.*\w*)+\"
+STRING_LITERAL = \"\#*([a-zA-Z0-9]+\.*\w*)+\"|\"(\/\w+)+\"//|\"\w+\/|\/\w+\"
+
+//14.11.16 - 15:30 Uhr
+//\"([a-zA-Z0-9]+\.*\w*)+\"|\"(\/\w+)+\"
+
 RYTHM_ESCAPED = @@\w+
 
 Q_RYTHM = \"@[^i].*\"
 RYTHM_KEY = \@\w+
 GENERICS = \<[a-zA-Z]+\,.*?\>|\<([a-zA-Z]+\.[a-zA-Z]+)+\>|\<[A-Z].+\>
-TEXT = \<[^@}{,I]+\>|\<\w[^@}{,12346789I]+|\"\>|\/[^@}{]+\/\w*.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=[^@]+|selected\=\"selected\"|\(\'
+TEXT = \<[^@}{,I]+\>|\<[a-z]+[^I]\w[^@}{,12346789I]+|\"\>|\/[^@}{]+\/\w*.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=[^@]+|selected\=\"selected\"|\(\'
 
 //14.11.16 - 14:20 Uhr
 //\<[^@}{,I]+\>|\<\w[^@}{,12346789I]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=[^@]+|selected\=\"selected\"|\(\'
@@ -91,6 +95,7 @@ TEXT = \<[^@}{,I]+\>|\<\w[^@}{,12346789I]+|\"\>|\/[^@}{]+\/\w*.\>|\".*\"\>|\'[^@
 "@invoke"                       {return RythmTypes.RYTHM_INVOKE;}
 "JAVA_CODE"                     {return RythmTypes.JAVA_CODE; }
 
+"null"                          {return RythmTypes.NULL;}
 "var"                           {return RythmTypes.VAR;}
 "function"                      {return RythmTypes.FUNCTION;}
 "this"                          {return RythmTypes.THIS;}

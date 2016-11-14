@@ -74,6 +74,7 @@ public interface RythmTypes {
   IElementType LPAREN = new RythmTokenType("(");
   IElementType MUL = new RythmTokenType("*");
   IElementType NEW = new RythmTokenType("NEW");
+  IElementType NULL = new RythmTokenType("NULL");
   IElementType PLUS = new RythmTokenType("+");
   IElementType Q_RYTHM = new RythmTokenType("Q_RYTHM");
   IElementType RBRACE = new RythmTokenType("}");
