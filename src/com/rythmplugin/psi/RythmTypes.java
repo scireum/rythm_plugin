@@ -72,6 +72,7 @@ public interface RythmTypes {
   IElementType LBRACE = new RythmTokenType("{");
   IElementType LEFTBRACES = new RythmTokenType("{:");
   IElementType LPAREN = new RythmTokenType("(");
+  IElementType MINUS = new RythmTokenType("MINUS");
   IElementType MUL = new RythmTokenType("*");
   IElementType NEW = new RythmTokenType("NEW");
   IElementType NULL = new RythmTokenType("NULL");
@@ -93,6 +94,7 @@ public interface RythmTypes {
   IElementType STRING_LITERAL = new RythmTokenType("STRING_LITERAL");
   IElementType TEXT = new RythmTokenType("TEXT");
   IElementType THIS = new RythmTokenType("THIS");
+  IElementType TILDE = new RythmTokenType("TILDE");
   IElementType VAR = new RythmTokenType("VAR");
 
   class Factory {
