@@ -62,7 +62,7 @@ TEXT = \<[^@}{,I]+\>|\<[a-z]+[^I]\w*[^@}{,12346789I]+|\"\>|\/[^@}{]+\/\w*.\>|\".
 "~"                             {return RythmTypes.TILDE;}
 {GF}                            {return RythmTypes.GF;}
 "else"                          {return RythmTypes.RYTHM_ELSE;}
-"@if"                           {return RythmTypes.RYTHM_IF;}
+"@if"|"if"                      {return RythmTypes.RYTHM_IF;}
 "@for"                          {return RythmTypes.RYTHM_FOR;}
 "@extends"                      {return RythmTypes.RYTHM_EXTENDS;}
 "@import"                       {return RythmTypes.RYTHM_IMPORT;}
