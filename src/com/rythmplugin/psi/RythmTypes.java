@@ -48,6 +48,7 @@ public interface RythmTypes {
   IElementType STATEMENT = new RythmElementType("STATEMENT");
   IElementType STRING_LITERAL_1 = new RythmElementType("STRING_LITERAL_1");
 
+  IElementType AND = new RythmTokenType("AND");
   IElementType AT = new RythmTokenType("@");
   IElementType AUSRF = new RythmTokenType("!");
   IElementType BAR = new RythmTokenType("|");
@@ -67,6 +68,7 @@ public interface RythmTypes {
   IElementType GF = new RythmTokenType("\"");
   IElementType GREATER = new RythmTokenType("GREATER");
   IElementType HSHTG = new RythmTokenType("#");
+  IElementType HTML = new RythmTokenType("HTML");
   IElementType IDENTIFIER = new RythmTokenType("IDENTIFIER");
   IElementType JAVA = new RythmTokenType("JAVA");
   IElementType LBRACE = new RythmTokenType("{");
@@ -76,6 +78,7 @@ public interface RythmTypes {
   IElementType MUL = new RythmTokenType("*");
   IElementType NEW = new RythmTokenType("NEW");
   IElementType NULL = new RythmTokenType("NULL");
+  IElementType OR = new RythmTokenType("OR");
   IElementType PLUS = new RythmTokenType("+");
   IElementType Q_RYTHM = new RythmTokenType("Q_RYTHM");
   IElementType RBRACE = new RythmTokenType("}");
@@ -92,7 +95,6 @@ public interface RythmTypes {
   IElementType SEMICOLON = new RythmTokenType(";");
   IElementType SLASH = new RythmTokenType("/");
   IElementType STRING_LITERAL = new RythmTokenType("STRING_LITERAL");
-  IElementType TEXT = new RythmTokenType("TEXT");
   IElementType THIS = new RythmTokenType("THIS");
   IElementType TILDE = new RythmTokenType("TILDE");
   IElementType VAR = new RythmTokenType("VAR");

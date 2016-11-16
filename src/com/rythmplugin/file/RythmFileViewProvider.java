@@ -19,8 +19,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
+import static com.rythmplugin.psi.RythmTypes.HTML;
 import static com.rythmplugin.psi.RythmTypes.RYTHM;
-import static com.rythmplugin.psi.RythmTypes.TEXT;
 
 /**
  * Created by mpl on 06.09.2016.
@@ -34,7 +34,7 @@ public class RythmFileViewProvider extends MultiplePsiFilesPerDocumentFileViewPr
     private static TemplateDataElementType getTemplateDataElementType(Language lang) {
         TemplateDataElementType result = TEMPLATE_DATA_TO_LANG.get(lang.getID());
         if (result != null) return result;
-        TemplateDataElementType created = new TemplateDataElementType("RYTHM_TEMPLATE_DATA", lang, TEXT, RYTHM);
+        TemplateDataElementType created = new TemplateDataElementType("RYTHM_TEMPLATE_DATA", lang, HTML, RYTHM);
         TemplateDataElementType prevValue = TEMPLATE_DATA_TO_LANG.putIfAbsent(lang.getID(), created);
 
         return prevValue == null ? created : prevValue;

@@ -13,7 +13,8 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.templateLanguages.TemplateDataLanguageMappings;
 import com.rythmplugin.RythmLanguage;
 
-import static com.rythmplugin.psi.RythmTypes.TEXT;
+import static com.rythmplugin.psi.RythmTypes.HTML;
+
 
 /**
  * Created by mpl on 06.09.2016.
@@ -42,7 +43,7 @@ public class RythmLayeredSyntaxHighlighter extends LayeredLexerEditorHighlighter
         }
 
         SyntaxHighlighter outerHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(type, project, virtualFile);
-        registerLayer(TEXT, new LayerDescriptor(outerHighlighter, ""));
+        registerLayer(HTML, new LayerDescriptor(outerHighlighter, ""));
 
 
         //Test for Java implementation

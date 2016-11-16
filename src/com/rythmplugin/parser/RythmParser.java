@@ -145,26 +145,26 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // TEXT RYTHM_BLOCK_EX
+  // HTML RYTHM_BLOCK_EX
   public static boolean ANOTHER_HTML_WR_BLOCK(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ANOTHER_HTML_WR_BLOCK")) return false;
-    if (!nextTokenIs(b, TEXT)) return false;
+    if (!nextTokenIs(b, HTML)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, TEXT);
+    r = consumeToken(b, HTML);
     r = r && RYTHM_BLOCK_EX(b, l + 1);
     exit_section_(b, m, ANOTHER_HTML_WR_BLOCK, r);
     return r;
   }
 
   /* ********************************************************** */
-  // TEXT rythm_Key_Ident*  methodCall* methodCallExpr* TEXT* RYTHM_IF_Statment* RYTHM_I18N* RYTHM_ELSE* '}'*  TEXT* RYTHM_I18N* TEXT* rythm_method* TEXT* RYTHM_I18N* TEXT* rythm_method* TEXT* RYTHM_IF_Statment* TEXT* RYTHM_KEY_BLOCKS*  TEXT* '(' TEXT*   '"' qualifiedName '"' ')' '{' TEXT rythm_method* TEXT RYTHM_PREFIX TEXT RYTHM_I18N TEXT rythm_method* TEXT RYTHM_I18N TEXT RYTHM_IF_Statment  (TEXT* RYTHM_PREFIX TEXT rythm_method* TEXT RYTHM_I18N TEXT)* RYTHM_IF_Statment* rythm_method* RYTHM_IF_Statment*'}'* RYTHM_ELSE*
+  // HTML rythm_Key_Ident*  methodCall* methodCallExpr* HTML* RYTHM_IF_Statment* RYTHM_I18N* RYTHM_ELSE* '}'*  HTML* RYTHM_I18N* HTML* rythm_method* HTML* RYTHM_I18N* HTML* rythm_method* HTML* RYTHM_IF_Statment* HTML* RYTHM_KEY_BLOCKS*  HTML* '(' HTML*   '"' qualifiedName '"' ')' '{' HTML rythm_method* HTML RYTHM_PREFIX HTML RYTHM_I18N HTML rythm_method* HTML RYTHM_I18N HTML RYTHM_IF_Statment  (HTML* RYTHM_PREFIX HTML rythm_method* HTML RYTHM_I18N HTML)* RYTHM_IF_Statment* rythm_method* RYTHM_IF_Statment*'}'* RYTHM_ELSE*
   public static boolean HTML_START_RYTHM_BLOCK(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK")) return false;
-    if (!nextTokenIs(b, TEXT)) return false;
+    if (!nextTokenIs(b, HTML)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, HTML_START_RYTHM_BLOCK, null);
-    r = consumeToken(b, TEXT);
+    r = consumeToken(b, HTML);
     r = r && HTML_START_RYTHM_BLOCK_1(b, l + 1);
     r = r && HTML_START_RYTHM_BLOCK_2(b, l + 1);
     r = r && HTML_START_RYTHM_BLOCK_3(b, l + 1);
@@ -194,15 +194,15 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = p && report_error_(b, consumeToken(b, GF)) && r;
     r = p && report_error_(b, consumeToken(b, RPAREN)) && r;
     r = p && report_error_(b, consumeToken(b, LBRACE)) && r;
-    r = p && report_error_(b, consumeToken(b, TEXT)) && r;
+    r = p && report_error_(b, consumeToken(b, HTML)) && r;
     r = p && report_error_(b, HTML_START_RYTHM_BLOCK_30(b, l + 1)) && r;
-    r = p && report_error_(b, consumeTokens(b, -1, TEXT, RYTHM_PREFIX, TEXT)) && r;
+    r = p && report_error_(b, consumeTokens(b, -1, HTML, RYTHM_PREFIX, HTML)) && r;
     r = p && report_error_(b, RYTHM_I18N(b, l + 1)) && r;
-    r = p && report_error_(b, consumeToken(b, TEXT)) && r;
+    r = p && report_error_(b, consumeToken(b, HTML)) && r;
     r = p && report_error_(b, HTML_START_RYTHM_BLOCK_36(b, l + 1)) && r;
-    r = p && report_error_(b, consumeToken(b, TEXT)) && r;
+    r = p && report_error_(b, consumeToken(b, HTML)) && r;
     r = p && report_error_(b, RYTHM_I18N(b, l + 1)) && r;
-    r = p && report_error_(b, consumeToken(b, TEXT)) && r;
+    r = p && report_error_(b, consumeToken(b, HTML)) && r;
     r = p && report_error_(b, RYTHM_IF_Statment(b, l + 1)) && r;
     r = p && report_error_(b, HTML_START_RYTHM_BLOCK_41(b, l + 1)) && r;
     r = p && report_error_(b, HTML_START_RYTHM_BLOCK_42(b, l + 1)) && r;
@@ -250,12 +250,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_4")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_4", c)) break;
       c = current_position_(b);
     }
@@ -310,12 +310,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_9(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_9")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_9", c)) break;
       c = current_position_(b);
     }
@@ -334,12 +334,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_11(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_11")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_11", c)) break;
       c = current_position_(b);
     }
@@ -358,12 +358,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_13(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_13")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_13", c)) break;
       c = current_position_(b);
     }
@@ -382,12 +382,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_15(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_15")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_15", c)) break;
       c = current_position_(b);
     }
@@ -406,12 +406,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_17(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_17")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_17", c)) break;
       c = current_position_(b);
     }
@@ -430,12 +430,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_19(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_19")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_19", c)) break;
       c = current_position_(b);
     }
@@ -454,24 +454,24 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_21(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_21")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_21", c)) break;
       c = current_position_(b);
     }
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_23(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_23")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_23", c)) break;
       c = current_position_(b);
     }
@@ -502,7 +502,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // (TEXT* RYTHM_PREFIX TEXT rythm_method* TEXT RYTHM_I18N TEXT)*
+  // (HTML* RYTHM_PREFIX HTML rythm_method* HTML RYTHM_I18N HTML)*
   private static boolean HTML_START_RYTHM_BLOCK_41(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_41")) return false;
     int c = current_position_(b);
@@ -514,27 +514,27 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT* RYTHM_PREFIX TEXT rythm_method* TEXT RYTHM_I18N TEXT
+  // HTML* RYTHM_PREFIX HTML rythm_method* HTML RYTHM_I18N HTML
   private static boolean HTML_START_RYTHM_BLOCK_41_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_41_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = HTML_START_RYTHM_BLOCK_41_0_0(b, l + 1);
-    r = r && consumeTokens(b, 0, RYTHM_PREFIX, TEXT);
+    r = r && consumeTokens(b, 0, RYTHM_PREFIX, HTML);
     r = r && HTML_START_RYTHM_BLOCK_41_0_3(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && RYTHM_I18N(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_START_RYTHM_BLOCK_41_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_START_RYTHM_BLOCK_41_0_0")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_START_RYTHM_BLOCK_41_0_0", c)) break;
       c = current_position_(b);
     }
@@ -614,15 +614,15 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // TEXT RYTHM_PREFIX TEXT rythm_method TEXT RYTHM_I18N TEXT* '}'*
+  // HTML RYTHM_PREFIX HTML rythm_method HTML RYTHM_I18N HTML* '}'*
   public static boolean HTML_WR(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_WR")) return false;
-    if (!nextTokenIs(b, TEXT)) return false;
+    if (!nextTokenIs(b, HTML)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, TEXT, RYTHM_PREFIX, TEXT);
+    r = consumeTokens(b, 0, HTML, RYTHM_PREFIX, HTML);
     r = r && rythm_method(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && RYTHM_I18N(b, l + 1);
     r = r && HTML_WR_6(b, l + 1);
     r = r && HTML_WR_7(b, l + 1);
@@ -630,12 +630,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean HTML_WR_6(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "HTML_WR_6")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "HTML_WR_6", c)) break;
       c = current_position_(b);
     }
@@ -843,7 +843,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (IDENTIFIER ':' '"'* IDENTIFIER METHOD* '"'* ')'*)* TEXT* RYTHM_IF_Statement_OP* '{'* RYTHM_FOR_Statement* RYTHM_KEY_BLOCKS* RYTHM_FOR_Statement*  ',' TEXT*
+  // (IDENTIFIER ':' '"'* IDENTIFIER METHOD* '"'* ')'*)* HTML* RYTHM_IF_Statement_OP* '{'* RYTHM_FOR_Statement* RYTHM_KEY_BLOCKS* RYTHM_FOR_Statement*  ',' HTML*
   public static boolean RYTHM_BLOCK(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_BLOCK")) return false;
     boolean r;
@@ -937,12 +937,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_BLOCK_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_BLOCK_1")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_BLOCK_1", c)) break;
       c = current_position_(b);
     }
@@ -1009,12 +1009,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_BLOCK_8(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_BLOCK_8")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_BLOCK_8", c)) break;
       c = current_position_(b);
     }
@@ -1106,7 +1106,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'else' '{' RYTHM_KEY_BLOCKS* TEXT* RYTHM_I18N* (TEXT rythm_method*)*
+  // 'else' '{' RYTHM_KEY_BLOCKS* HTML* RYTHM_I18N* (HTML rythm_method*)*
   public static boolean RYTHM_ELSE(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_ELSE")) return false;
     boolean r;
@@ -1133,12 +1133,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_ELSE_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_ELSE_3")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_ELSE_3", c)) break;
       c = current_position_(b);
     }
@@ -1157,7 +1157,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // (TEXT rythm_method*)*
+  // (HTML rythm_method*)*
   private static boolean RYTHM_ELSE_5(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_ELSE_5")) return false;
     int c = current_position_(b);
@@ -1169,12 +1169,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT rythm_method*
+  // HTML rythm_method*
   private static boolean RYTHM_ELSE_5_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_ELSE_5_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, TEXT);
+    r = consumeToken(b, HTML);
     r = r && RYTHM_ELSE_5_0_1(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
@@ -1235,7 +1235,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // RYTHM_FOR '(' IDENTIFIER+ ':'* IDENTIFIER* '.'* IDENTIFIER* '.'* qualifiedName* ':'* IDENTIFIER* '('* ')'* '{' TEXT*  rythm_method TEXT RYTHM_IF_Statment_Short TEXT rythm_method TEXT '}'*
+  // RYTHM_FOR '(' IDENTIFIER+ ':'* IDENTIFIER* '.'* IDENTIFIER* '.'* qualifiedName* ':'* IDENTIFIER* '('* ')'* '{' HTML*  rythm_method HTML RYTHM_IF_Statment_Short HTML rythm_method HTML '}'*
   public static boolean RYTHM_FOR_Statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_FOR_Statement")) return false;
     if (!nextTokenIs(b, RYTHM_FOR)) return false;
@@ -1257,11 +1257,11 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = r && consumeToken(b, LBRACE);
     r = r && RYTHM_FOR_Statement_14(b, l + 1);
     r = r && rythm_method(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && RYTHM_IF_Statment_Short(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && rythm_method(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && RYTHM_FOR_Statement_21(b, l + 1);
     exit_section_(b, m, RYTHM_FOR_STATEMENT, r);
     return r;
@@ -1403,12 +1403,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_FOR_Statement_14(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_FOR_Statement_14")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_FOR_Statement_14", c)) break;
       c = current_position_(b);
     }
@@ -1518,7 +1518,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '@if' '(' IDENTIFIER '.' IDENTIFIER '(' IDENTIFIER* '.'* IDENTIFIER* '('* ')'* RYTHM_IF_Statement_OP_TEST* '{' TEXT* RYTHM_KEY_BLOCKS* '{'* RYTHM_FOR_Statement* '}'* TEXT*
+  // '@if' '(' IDENTIFIER '.' IDENTIFIER '(' IDENTIFIER* '.'* IDENTIFIER* '('* ')'* RYTHM_IF_Statement_OP_TEST* '{' HTML* RYTHM_KEY_BLOCKS* '{'* RYTHM_FOR_Statement* '}'* HTML*
   public static boolean RYTHM_IF_Statement_OP(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statement_OP")) return false;
     boolean r;
@@ -1618,12 +1618,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statement_OP_13(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statement_OP_13")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statement_OP_13", c)) break;
       c = current_position_(b);
     }
@@ -1678,12 +1678,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statement_OP_18(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statement_OP_18")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statement_OP_18", c)) break;
       c = current_position_(b);
     }
@@ -1704,7 +1704,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '@if' '(' STATEMENT '&&'* '=='* GREATER* '"'* IDENTIFIER* '"'* '.'* methodCallExpr* '>'* IDENTIFIER* ')'* '||'* IDENTIFIER* methodCall* '!='*  IDENTIFIER* ')'* '{' TEXT* '}'* rythm_method* TEXT* rythm_method* rythm_Key_Ident* RYTHM_PREFIX* TEXT* rythm_method* METHOD* TEXT* rythm_method* methodCall* RYTHM_I18N* '}'* TEXT RYTHM_FOR_Statement* rythm_method* TEXT* RYTHM_I18N* TEXT* RYTHM_IF_Statment* TEXT* RYTHM_I18N* TEXT* RYTHM_IF_Statment* TEXT*  '}' RYTHM_ELSE*
+  // '@if' '(' STATEMENT '&&'* '=='* GREATER* '"'* IDENTIFIER* '"'* '.'* methodCallExpr* '>'* IDENTIFIER* ')'* '||'* IDENTIFIER* methodCall* '!='*  IDENTIFIER* ')'* '{' HTML* '}'* rythm_method* HTML* rythm_method* rythm_Key_Ident* RYTHM_PREFIX* HTML* rythm_method* METHOD* HTML* rythm_method* methodCall* RYTHM_I18N* '}'* HTML RYTHM_FOR_Statement* rythm_method* HTML* RYTHM_I18N* HTML* RYTHM_IF_Statment* HTML* RYTHM_I18N* HTML* RYTHM_IF_Statment* HTML*  '}' RYTHM_ELSE*
   public static boolean RYTHM_IF_Statment(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment")) return false;
     boolean r;
@@ -1745,7 +1745,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = r && RYTHM_IF_Statment_33(b, l + 1);
     r = r && RYTHM_IF_Statment_34(b, l + 1);
     r = r && RYTHM_IF_Statment_35(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && RYTHM_IF_Statment_37(b, l + 1);
     r = r && RYTHM_IF_Statment_38(b, l + 1);
     r = r && RYTHM_IF_Statment_39(b, l + 1);
@@ -1967,12 +1967,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statment_21(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_21")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statment_21", c)) break;
       c = current_position_(b);
     }
@@ -2003,12 +2003,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statment_24(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_24")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statment_24", c)) break;
       c = current_position_(b);
     }
@@ -2051,12 +2051,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statment_28(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_28")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statment_28", c)) break;
       c = current_position_(b);
     }
@@ -2087,12 +2087,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statment_31(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_31")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statment_31", c)) break;
       c = current_position_(b);
     }
@@ -2171,12 +2171,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statment_39(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_39")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statment_39", c)) break;
       c = current_position_(b);
     }
@@ -2195,12 +2195,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statment_41(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_41")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statment_41", c)) break;
       c = current_position_(b);
     }
@@ -2219,12 +2219,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statment_43(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_43")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statment_43", c)) break;
       c = current_position_(b);
     }
@@ -2243,12 +2243,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statment_45(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_45")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statment_45", c)) break;
       c = current_position_(b);
     }
@@ -2267,12 +2267,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_IF_Statment_47(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_47")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_IF_Statment_47", c)) break;
       c = current_position_(b);
     }
@@ -2292,7 +2292,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '@if' '('* IDENTIFIER '=='* IDENTIFIER* '.'* IDENTIFIER* '('* IDENTIFIER* '.'* IDENTIFIER* '('*')'* '.'* IDENTIFIER* methodCallExpr* '{'* TEXT '}'
+  // '@if' '('* IDENTIFIER '=='* IDENTIFIER* '.'* IDENTIFIER* '('* IDENTIFIER* '.'* IDENTIFIER* '('*')'* '.'* IDENTIFIER* methodCallExpr* '{'* HTML '}'
   public static boolean RYTHM_IF_Statment_Short(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_IF_Statment_Short")) return false;
     boolean r;
@@ -2314,7 +2314,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = r && RYTHM_IF_Statment_Short_14(b, l + 1);
     r = r && RYTHM_IF_Statment_Short_15(b, l + 1);
     r = r && RYTHM_IF_Statment_Short_16(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && consumeToken(b, RBRACE);
     exit_section_(b, l, m, r, false, null);
     return r;
@@ -2529,7 +2529,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // rythm_Key_Ident methodCall* TEXT* '}'* TEXT* rythm_param* RYTHM_IF_Statment*  '(' (IDENTIFIER ':' '"'* IDENTIFIER '"'* '.'* ','* IDENTIFIER* '.'* ':'* '"'* IDENTIFIER*'.'* '/'* IDENTIFIER* '"'* '('* ')'*  '{'* RYTHM_IF_Statment* '}'* RYTHM_IF_KEY_FOR_Statement*  TEXT* RYTHM_KEY_BLOCKS* '"'* ','*)* '"'* ')'* '}'*
+  // rythm_Key_Ident methodCall* HTML* '}'* HTML* rythm_param* RYTHM_IF_Statment*  '(' (IDENTIFIER ':' '"'* IDENTIFIER '"'* '.'* ','* IDENTIFIER* '.'* ':'* '"'* IDENTIFIER*'.'* '/'* IDENTIFIER* '"'* '('* ')'*  '{'* RYTHM_IF_Statment* '}'* RYTHM_IF_KEY_FOR_Statement*  HTML* RYTHM_KEY_BLOCKS* '"'* ','*)* '"'* ')'* '}'*
   public static boolean RYTHM_KEY_BLOCKS(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_KEY_BLOCKS")) return false;
     if (!nextTokenIs(b, RYTHM_KEY)) return false;
@@ -2563,12 +2563,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_KEY_BLOCKS_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_KEY_BLOCKS_2")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_KEY_BLOCKS_2", c)) break;
       c = current_position_(b);
     }
@@ -2587,12 +2587,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_KEY_BLOCKS_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_KEY_BLOCKS_4")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_KEY_BLOCKS_4", c)) break;
       c = current_position_(b);
     }
@@ -2623,7 +2623,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // (IDENTIFIER ':' '"'* IDENTIFIER '"'* '.'* ','* IDENTIFIER* '.'* ':'* '"'* IDENTIFIER*'.'* '/'* IDENTIFIER* '"'* '('* ')'*  '{'* RYTHM_IF_Statment* '}'* RYTHM_IF_KEY_FOR_Statement*  TEXT* RYTHM_KEY_BLOCKS* '"'* ','*)*
+  // (IDENTIFIER ':' '"'* IDENTIFIER '"'* '.'* ','* IDENTIFIER* '.'* ':'* '"'* IDENTIFIER*'.'* '/'* IDENTIFIER* '"'* '('* ')'*  '{'* RYTHM_IF_Statment* '}'* RYTHM_IF_KEY_FOR_Statement*  HTML* RYTHM_KEY_BLOCKS* '"'* ','*)*
   private static boolean RYTHM_KEY_BLOCKS_8(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_KEY_BLOCKS_8")) return false;
     int c = current_position_(b);
@@ -2635,7 +2635,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // IDENTIFIER ':' '"'* IDENTIFIER '"'* '.'* ','* IDENTIFIER* '.'* ':'* '"'* IDENTIFIER*'.'* '/'* IDENTIFIER* '"'* '('* ')'*  '{'* RYTHM_IF_Statment* '}'* RYTHM_IF_KEY_FOR_Statement*  TEXT* RYTHM_KEY_BLOCKS* '"'* ','*
+  // IDENTIFIER ':' '"'* IDENTIFIER '"'* '.'* ','* IDENTIFIER* '.'* ':'* '"'* IDENTIFIER*'.'* '/'* IDENTIFIER* '"'* '('* ')'*  '{'* RYTHM_IF_Statment* '}'* RYTHM_IF_KEY_FOR_Statement*  HTML* RYTHM_KEY_BLOCKS* '"'* ','*
   private static boolean RYTHM_KEY_BLOCKS_8_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_KEY_BLOCKS_8_0")) return false;
     boolean r;
@@ -2898,12 +2898,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_KEY_BLOCKS_8_0_22(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_KEY_BLOCKS_8_0_22")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_KEY_BLOCKS_8_0_22", c)) break;
       c = current_position_(b);
     }
@@ -2983,7 +2983,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // RYTHM_KEY '(' ')' '{' TEXT rythm_method ':' rythm_method TEXT* (RYTHM_IF_Statment HTML_WR*)*
+  // RYTHM_KEY '(' ')' '{' HTML rythm_method ':' rythm_method HTML* (RYTHM_IF_Statment HTML_WR*)*
   public static boolean RYTHM_KeyBlock(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_KeyBlock")) return false;
     if (!nextTokenIs(b, RYTHM_KEY)) return false;
@@ -2993,7 +2993,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = r && consumeToken(b, LPAREN);
     r = r && consumeToken(b, RPAREN);
     r = r && consumeToken(b, LBRACE);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && rythm_method(b, l + 1);
     r = r && consumeToken(b, COLON);
     r = r && rythm_method(b, l + 1);
@@ -3003,12 +3003,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_KeyBlock_8(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_KeyBlock_8")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_KeyBlock_8", c)) break;
       c = current_position_(b);
     }
@@ -3080,7 +3080,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '@section' PARAM '{' TEXT '}'
+  // '@section' PARAM '{' HTML '}'
   public static boolean RYTHM_SECTION_WOR(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_SECTION_WOR")) return false;
     boolean r;
@@ -3088,14 +3088,14 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, "@section");
     r = r && PARAM(b, l + 1);
     r = r && consumeToken(b, LBRACE);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && consumeToken(b, RBRACE);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   /* ********************************************************** */
-  // '@section' PARAM '{' TEXT RYTHM_I18N TEXT rythm_Key_Ident '.' methodCallExpr TEXT*  rythm_Key_Ident '.' methodCallExpr ':' rythm_Key_Ident '.' methodCallExpr TEXT '}'
+  // '@section' PARAM '{' HTML RYTHM_I18N HTML rythm_Key_Ident '.' methodCallExpr HTML*  rythm_Key_Ident '.' methodCallExpr ':' rythm_Key_Ident '.' methodCallExpr HTML '}'
   public static boolean RYTHM_SECTION_WR(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_SECTION_WR")) return false;
     boolean r;
@@ -3103,9 +3103,9 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, "@section");
     r = r && PARAM(b, l + 1);
     r = r && consumeToken(b, LBRACE);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && RYTHM_I18N(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && rythm_Key_Ident(b, l + 1);
     r = r && consumeToken(b, DOT);
     r = r && methodCallExpr(b, l + 1);
@@ -3117,18 +3117,18 @@ public class RythmParser implements PsiParser, LightPsiParser {
     r = r && rythm_Key_Ident(b, l + 1);
     r = r && consumeToken(b, DOT);
     r = r && methodCallExpr(b, l + 1);
-    r = r && consumeToken(b, TEXT);
+    r = r && consumeToken(b, HTML);
     r = r && consumeToken(b, RBRACE);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean RYTHM_SECTION_WR_9(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RYTHM_SECTION_WR_9")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "RYTHM_SECTION_WR_9", c)) break;
       c = current_position_(b);
     }
@@ -3253,13 +3253,13 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // GENERICS RYTHM_ESCAPED G VAR FUNCTION THIS NEW DIGIT Q_RYTHM STRING_LITERAL NULL MINUS TILDE
+  // GENERICS RYTHM_ESCAPED G VAR FUNCTION THIS NEW DIGIT Q_RYTHM STRING_LITERAL NULL MINUS TILDE AND OR
   public static boolean fix(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fix")) return false;
     if (!nextTokenIs(b, GENERICS)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, GENERICS, RYTHM_ESCAPED, G, VAR, FUNCTION, THIS, NEW, DIGIT, Q_RYTHM, STRING_LITERAL, NULL, MINUS, TILDE);
+    r = consumeTokens(b, 0, GENERICS, RYTHM_ESCAPED, G, VAR, FUNCTION, THIS, NEW, DIGIT, Q_RYTHM, STRING_LITERAL, NULL, MINUS, TILDE, AND, OR);
     exit_section_(b, m, FIX, r);
     return r;
   }
@@ -3809,7 +3809,7 @@ public class RythmParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // RYTHM_KEY '('* IDENTIFIER* ':'* '"'* IDENTIFIER* '"'* ','* RYTHM_BLOCK* TEXT* '.'* methodCallExpr*
+  // RYTHM_KEY '('* IDENTIFIER* ':'* '"'* IDENTIFIER* '"'* ','* RYTHM_BLOCK* HTML* '.'* methodCallExpr*
   public static boolean rythm_method(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "rythm_method")) return false;
     if (!nextTokenIs(b, RYTHM_KEY)) return false;
@@ -3927,12 +3927,12 @@ public class RythmParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // TEXT*
+  // HTML*
   private static boolean rythm_method_9(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "rythm_method_9")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!consumeToken(b, TEXT)) break;
+      if (!consumeToken(b, HTML)) break;
       if (!empty_element_parsed_guard_(b, "rythm_method_9", c)) break;
       c = current_position_(b);
     }

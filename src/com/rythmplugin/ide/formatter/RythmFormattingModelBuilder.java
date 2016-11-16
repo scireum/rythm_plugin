@@ -70,7 +70,7 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
             //   if (myNode.getText().trim().length() == 0) {
             //      return Indent.getNoneIndent();
             //  }
-            if (myNode.getTreePrev() == TEXT) {
+            if (myNode.getTreePrev() == HTML) {
                 return Indent.getSpaceIndent(7);
             }
 
@@ -81,7 +81,7 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
                 return Indent.getNormalIndent();
             }
 
-            if (myNode.getElementType()== TEXT){
+            if (myNode.getElementType()== HTML){
                 return Indent.getNormalIndent(true);
             }
 
@@ -175,13 +175,13 @@ public class RythmFormattingModelBuilder extends TemplateLanguageFormattingModel
         private static SpacingBuilder createSpacingBuilder(@NotNull CodeStyleSettings settings) {
             return new SpacingBuilder(settings, RythmLanguage.INSTANCE)
 
-                    .before(RythmTypes.TEXT).spaces(4);
+                    .before(RythmTypes.HTML).spaces(4);
         }
 
 
         @Override
         protected IElementType getTemplateTextElementType() {
-            return TEXT;
+            return HTML;
         }
 
 

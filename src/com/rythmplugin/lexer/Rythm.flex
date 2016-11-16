@@ -33,7 +33,7 @@ RYTHM_ESCAPED = @@\w+
 Q_RYTHM = \"@[^itp].*\"
 RYTHM_KEY = \@\w+
 GENERICS = \<[a-zA-Z]+\,.*?\>|\<([a-zA-Z]+\.[a-zA-Z]+)+\>|\<[A-Z].+\>
-TEXT = \<[^@}{,I]+\>|\<[a-z]+[^I]\w*[^@}{,12346789I]+|\"\>|\/[^@}{]+\/\w*.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\w*\/((\w+\/*\-*\.*)+\w+)+\/|\/\w+\"\s*class\=[^@]+|selected\=\"selected\"|\(\'
+HTML = \<[^@}{,I]+\>|\<[a-z]+[^I]\w*[^@}{,12346789I]+|\"\>|\/[^@}{]+\/\w*.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\w*\/((\w+\/*\-*\.*)+\w+)+\/|\/\w+\"\s*class\=[^@]+|selected\=\"selected\"|\(\'
 
 %%
 <YYINITIAL>{
@@ -48,6 +48,8 @@ TEXT = \<[^@}{,I]+\>|\<[a-z]+[^I]\w*[^@}{,12346789I]+|\"\>|\/[^@}{]+\/\w*.\>|\".
 "["                             {return RythmTypes.BRCSL;}
 "]"                             {return RythmTypes.BRCSR;}
 "*"                             {return RythmTypes.MUL;}
+"&&"                            {return RythmTypes.AND;}
+"||"                            {return RythmTypes.OR;}
 ":"                             {return RythmTypes.COLON; }
 ","                             {return RythmTypes.COMMA; }
 ";"                             {return RythmTypes.SEMICOLON;}
@@ -88,7 +90,7 @@ TEXT = \<[^@}{,I]+\>|\<[a-z]+[^I]\w*[^@}{,12346789I]+|\"\>|\/[^@}{]+\/\w*.\>|\".
 {GENERICS}                      {return RythmTypes.GENERICS;}
 {IDENTIFIER}                    {yybegin (YYINITIAL);return RythmTypes.IDENTIFIER; }
 {BLOCK_COMMENT}                 {yybegin (YYINITIAL);return RythmTypes.BLOCK_COMMENT; }
-{TEXT}                          {yybegin (YYINITIAL);return RythmTypes.TEXT; }
+{HTML}                          {yybegin (YYINITIAL);return RythmTypes.HTML; }
 }
 
 <OPT_JAVA_CODE>{

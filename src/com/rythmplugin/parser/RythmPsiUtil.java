@@ -29,8 +29,8 @@ public class RythmPsiUtil {
     private static TokenSet BRACES = TokenSet.create(RythmTypes.LBRACE,
             RythmTypes.RBRACE);
 
-    private static TokenSet TEXT = TokenSet.create(
-            RythmTypes.TEXT
+    private static TokenSet HTML = TokenSet.create(
+            RythmTypes.HTML
     );
 
     public static PsiElement findRythmElement(PsiElement element) {
