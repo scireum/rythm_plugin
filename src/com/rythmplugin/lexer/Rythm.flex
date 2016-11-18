@@ -19,7 +19,7 @@ import com.intellij.psi.TokenType;
 
 CRLF= \n|\r|\r\n
 WHITE_SPACE=[\ \t\f]
-BLOCK_COMMENT = \@\*|\*\@|\*(\s*\w+.*)+|\*\s|\<\!\-\-(\n.+)+\-\>
+BLOCK_COMMENT = \@\*(\n.*)+\*\@|\@\*|\*\@|\*(\s*\w+.*)+|\*\s|\<\!\-\-(\n.+)+\-\>
 
 IDENTIFIER = {LETTER}+|{DIGIT}+
 LETTER = [a-zA-Z_]
