@@ -10,45 +10,35 @@ import com.rythmplugin.psi.impl.*;
 
 public interface RythmTypes {
 
-  IElementType ANOTHER_HTML_WR_BLOCK = new RythmElementType("ANOTHER_HTML_WR_BLOCK");
   IElementType FIX = new RythmElementType("FIX");
-  IElementType HTML_START_RYTHM_BLOCK = new RythmElementType("HTML_START_RYTHM_BLOCK");
-  IElementType HTML_WR = new RythmElementType("HTML_WR");
-  IElementType IF = new RythmElementType("IF");
+  IElementType HTML_BLOCK = new RythmElementType("HTML_BLOCK");
+  IElementType IDENT_METHOD_CALL = new RythmElementType("IDENT_METHOD_CALL");
   IElementType INITIAL_DECLARATION = new RythmElementType("INITIAL_DECLARATION");
   IElementType JAVA_CODE = new RythmElementType("JAVA_CODE");
-  IElementType METHOD = new RythmElementType("METHOD");
   IElementType METHOD_CALL = new RythmElementType("METHOD_CALL");
-  IElementType METHOD_CALL_EXPR = new RythmElementType("METHOD_CALL_EXPR");
-  IElementType PARAM = new RythmElementType("PARAM");
+  IElementType OPERATOR = new RythmElementType("OPERATOR");
   IElementType QUALIFIED_NAME = new RythmElementType("QUALIFIED_NAME");
   IElementType RYTHM = new RythmElementType("RYTHM");
   IElementType RYTHM_ARGS = new RythmElementType("RYTHM_ARGS");
   IElementType RYTHM_BLOCK = new RythmElementType("RYTHM_BLOCK");
-  IElementType RYTHM_BLOCK_EX = new RythmElementType("RYTHM_BLOCK_EX");
-  IElementType RYTHM_ELSE = new RythmElementType("RYTHM_ELSE");
   IElementType RYTHM_EXTENDS = new RythmElementType("RYTHM_EXTENDS");
-  IElementType RYTHM_FOR_STATEMENT = new RythmElementType("RYTHM_FOR_STATEMENT");
-  IElementType RYTHM_IF_KEY_FOR_STATEMENT = new RythmElementType("RYTHM_IF_KEY_FOR_STATEMENT");
-  IElementType RYTHM_IF_STATEMENT_OP = new RythmElementType("RYTHM_IF_STATEMENT_OP");
-  IElementType RYTHM_IF_STATEMENT_OP_TEST = new RythmElementType("RYTHM_IF_STATEMENT_OP_TEST");
-  IElementType RYTHM_IF_STATMENT = new RythmElementType("RYTHM_IF_STATMENT");
-  IElementType RYTHM_IF_STATMENT_SHORT = new RythmElementType("RYTHM_IF_STATMENT_SHORT");
+  IElementType RYTHM_FILE = new RythmElementType("RYTHM_FILE");
+  IElementType RYTHM_FOR = new RythmElementType("RYTHM_FOR");
+  IElementType RYTHM_IF = new RythmElementType("RYTHM_IF");
+  IElementType RYTHM_IF_ELSE = new RythmElementType("RYTHM_IF_ELSE");
   IElementType RYTHM_IMPORT = new RythmElementType("RYTHM_IMPORT");
   IElementType RYTHM_I_18_N = new RythmElementType("RYTHM_I_18_N");
-  IElementType RYTHM_KEY_BLOCK = new RythmElementType("RYTHM_KEY_BLOCK");
-  IElementType RYTHM_KEY_BLOCKS = new RythmElementType("RYTHM_KEY_BLOCKS");
-  IElementType RYTHM_KEY_BLOCK_EXP = new RythmElementType("RYTHM_KEY_BLOCK_EXP");
   IElementType RYTHM_KEY_IDENT = new RythmElementType("RYTHM_KEY_IDENT");
-  IElementType RYTHM_METHOD = new RythmElementType("RYTHM_METHOD");
-  IElementType RYTHM_PARAM = new RythmElementType("RYTHM_PARAM");
+  IElementType RYTHM_METHOD_CALL = new RythmElementType("RYTHM_METHOD_CALL");
+  IElementType RYTHM_PREFIX = new RythmElementType("RYTHM_PREFIX");
   IElementType RYTHM_SECTION = new RythmElementType("RYTHM_SECTION");
-  IElementType RYTHM_SECTION_WOR = new RythmElementType("RYTHM_SECTION_WOR");
-  IElementType RYTHM_SECTION_WR = new RythmElementType("RYTHM_SECTION_WR");
+  IElementType RYTHM_SYN = new RythmElementType("RYTHM_SYN");
+  IElementType SCRIPT_BLOCK = new RythmElementType("SCRIPT_BLOCK");
   IElementType STATEMENT = new RythmElementType("STATEMENT");
-  IElementType STRING_LITERAL_1 = new RythmElementType("STRING_LITERAL_1");
+  IElementType UNDEFINED_IDENT = new RythmElementType("UNDEFINED_IDENT");
+  IElementType UNDEFINED_IDENT_BLOCK = new RythmElementType("UNDEFINED_IDENT_BLOCK");
 
-  IElementType AND = new RythmTokenType("AND");
+  IElementType AND = new RythmTokenType("&&");
   IElementType AT = new RythmTokenType("@");
   IElementType AUSRF = new RythmTokenType("!");
   IElementType BAR = new RythmTokenType("|");
@@ -74,7 +64,7 @@ public interface RythmTypes {
   IElementType LBRACE = new RythmTokenType("{");
   IElementType LEFTBRACES = new RythmTokenType("{:");
   IElementType LPAREN = new RythmTokenType("(");
-  IElementType MINUS = new RythmTokenType("MINUS");
+  IElementType MINUS = new RythmTokenType("-");
   IElementType MUL = new RythmTokenType("*");
   IElementType NEW = new RythmTokenType("NEW");
   IElementType NULL = new RythmTokenType("NULL");
@@ -84,13 +74,10 @@ public interface RythmTypes {
   IElementType RBRACE = new RythmTokenType("}");
   IElementType RIGHTBRACES = new RythmTokenType(":}");
   IElementType RPAREN = new RythmTokenType(")");
+  IElementType RYTHM_ELSE = new RythmTokenType("RYTHM_ELSE");
   IElementType RYTHM_ESCAPED = new RythmTokenType("RYTHM_ESCAPED");
-  IElementType RYTHM_FOR = new RythmTokenType("RYTHM_FOR");
-  IElementType RYTHM_I18NRYTHM_FOR = new RythmTokenType("RYTHM_I18NRYTHM_FOR");
-  IElementType RYTHM_IF = new RythmTokenType("RYTHM_IF");
   IElementType RYTHM_INVOKE = new RythmTokenType("RYTHM_INVOKE");
   IElementType RYTHM_KEY = new RythmTokenType("RYTHM_KEY");
-  IElementType RYTHM_PREFIX = new RythmTokenType("RYTHM_PREFIX");
   IElementType RYTHM_RENDER = new RythmTokenType("RYTHM_RENDER");
   IElementType SEMICOLON = new RythmTokenType(";");
   IElementType SLASH = new RythmTokenType("/");
@@ -102,20 +89,14 @@ public interface RythmTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-       if (type == ANOTHER_HTML_WR_BLOCK) {
-        return new RythmAnotherHtmlWrBlockImpl(node);
-      }
-      else if (type == FIX) {
+       if (type == FIX) {
         return new RythmFixImpl(node);
       }
-      else if (type == HTML_START_RYTHM_BLOCK) {
-        return new RythmHtmlStartRythmBlockImpl(node);
+      else if (type == HTML_BLOCK) {
+        return new RythmHtmlBlockImpl(node);
       }
-      else if (type == HTML_WR) {
-        return new RythmHtmlWrImpl(node);
-      }
-      else if (type == IF) {
-        return new RythmIfImpl(node);
+      else if (type == IDENT_METHOD_CALL) {
+        return new RythmIdentMethodCallImpl(node);
       }
       else if (type == INITIAL_DECLARATION) {
         return new RythmInitialDeclarationImpl(node);
@@ -123,17 +104,11 @@ public interface RythmTypes {
       else if (type == JAVA_CODE) {
         return new RythmJavaCodeImpl(node);
       }
-      else if (type == METHOD) {
-        return new RythmMethodImpl(node);
-      }
       else if (type == METHOD_CALL) {
         return new RythmMethodCallImpl(node);
       }
-      else if (type == METHOD_CALL_EXPR) {
-        return new RythmMethodCallExprImpl(node);
-      }
-      else if (type == PARAM) {
-        return new RythmParamImpl(node);
+      else if (type == OPERATOR) {
+        return new RythmOperatorImpl(node);
       }
       else if (type == QUALIFIED_NAME) {
         return new RythmQualifiedNameImpl(node);
@@ -147,32 +122,20 @@ public interface RythmTypes {
       else if (type == RYTHM_BLOCK) {
         return new RythmRythmBlockImpl(node);
       }
-      else if (type == RYTHM_BLOCK_EX) {
-        return new RythmRythmBlockExImpl(node);
-      }
-      else if (type == RYTHM_ELSE) {
-        return new RythmRythmElseImpl(node);
-      }
       else if (type == RYTHM_EXTENDS) {
         return new RythmRythmExtendsImpl(node);
       }
-      else if (type == RYTHM_FOR_STATEMENT) {
-        return new RythmRYTHMFORStatementImpl(node);
+      else if (type == RYTHM_FILE) {
+        return new RythmRythmFileImpl(node);
       }
-      else if (type == RYTHM_IF_KEY_FOR_STATEMENT) {
-        return new RythmRYTHMIFKEYFORStatementImpl(node);
+      else if (type == RYTHM_FOR) {
+        return new RythmRythmForImpl(node);
       }
-      else if (type == RYTHM_IF_STATEMENT_OP) {
-        return new RythmRYTHMIFStatementOPImpl(node);
+      else if (type == RYTHM_IF) {
+        return new RythmRythmIfImpl(node);
       }
-      else if (type == RYTHM_IF_STATEMENT_OP_TEST) {
-        return new RythmRYTHMIFStatementOPTESTImpl(node);
-      }
-      else if (type == RYTHM_IF_STATMENT) {
-        return new RythmRYTHMIFStatmentImpl(node);
-      }
-      else if (type == RYTHM_IF_STATMENT_SHORT) {
-        return new RythmRYTHMIFStatmentShortImpl(node);
+      else if (type == RYTHM_IF_ELSE) {
+        return new RythmRythmIfElseImpl(node);
       }
       else if (type == RYTHM_IMPORT) {
         return new RythmRythmImportImpl(node);
@@ -180,38 +143,32 @@ public interface RythmTypes {
       else if (type == RYTHM_I_18_N) {
         return new RythmRythmI18NImpl(node);
       }
-      else if (type == RYTHM_KEY_BLOCK) {
-        return new RythmRYTHMKeyBlockImpl(node);
-      }
-      else if (type == RYTHM_KEY_BLOCKS) {
-        return new RythmRythmKeyBlocksImpl(node);
-      }
-      else if (type == RYTHM_KEY_BLOCK_EXP) {
-        return new RythmRYTHMKeyBlockEXPImpl(node);
-      }
       else if (type == RYTHM_KEY_IDENT) {
         return new RythmRythmKeyIdentImpl(node);
       }
-      else if (type == RYTHM_METHOD) {
-        return new RythmRythmMethodImpl(node);
+      else if (type == RYTHM_METHOD_CALL) {
+        return new RythmRythmMethodCallImpl(node);
       }
-      else if (type == RYTHM_PARAM) {
-        return new RythmRythmParamImpl(node);
+      else if (type == RYTHM_PREFIX) {
+        return new RythmRythmPrefixImpl(node);
       }
       else if (type == RYTHM_SECTION) {
         return new RythmRythmSectionImpl(node);
       }
-      else if (type == RYTHM_SECTION_WOR) {
-        return new RythmRythmSectionWorImpl(node);
+      else if (type == RYTHM_SYN) {
+        return new RythmRythmSynImpl(node);
       }
-      else if (type == RYTHM_SECTION_WR) {
-        return new RythmRythmSectionWrImpl(node);
+      else if (type == SCRIPT_BLOCK) {
+        return new RythmScriptBlockImpl(node);
       }
       else if (type == STATEMENT) {
         return new RythmStatementImpl(node);
       }
-      else if (type == STRING_LITERAL_1) {
-        return new RythmStringLiteral1Impl(node);
+      else if (type == UNDEFINED_IDENT) {
+        return new RythmUndefinedIdentImpl(node);
+      }
+      else if (type == UNDEFINED_IDENT_BLOCK) {
+        return new RythmUndefinedIdentBlockImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

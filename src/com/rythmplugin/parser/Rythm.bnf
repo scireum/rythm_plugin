@@ -28,6 +28,8 @@
         LPAREN =        "("
         RPAREN =        ")"
 
+
+        AND =           "&&"
         SEMICOLON =     ";"
         AUSRF =         "!"
         EQ =            "="
@@ -36,16 +38,18 @@
         BRCSL =         "["
         BRCSR =         "]"
         DOLLAR =        "$"
+        MINUS =         "-"
         //GREATER =       "<"
         //SMALLER =       ">"
 
         PLUS =          "+"
         GF =            '"'
 
- /*
- commented for live preview of grammar-kit
+
+ //commented for live preview of grammar-kit
         // Rythm Keywords
         RYTHM_IF =      "@if"
+        RYTHM_ELSE =    "else"
         RYTHM_EXTENDS = "@extends"
         RYTHM_FOR =     "@for"
         RYTHM_IMPORT =  "@import"
@@ -66,109 +70,93 @@
 
         // Regex
         IDENTIFIER = "regexp:[a-zA-Z_]+|[0-9]+"
-        block_comment = 'regexp:\@\*|\*\@|\*(\s*\w+.*)+|\*\s'
+        block_comment = 'regexp:\@\*(\n.*)+\*\@|\@\*|\*\@|\*(\s*\w+.*)+|\*\s|\<\!\-\-(\n.+)+\-\>|[^:]\/\/.*'
         WHITE_SPACE ='regexp:[\ \t\f\s]'
 
         RYTHM_KEY = "regexp:\@\w+"
-        TEXT = "regexp:\<[^@}{,]+\>|\<.[^@}{,12346789]+|\"\>|\/[^@}{]+\/.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\>|\-\-\>|\/\w+\/|\/\w+\"\s*class\=|selected\=\"selected\""
-*/
+        HTML = "regexp:\<[^@}{,I]+\>|\<[a-z]+[^I]\w*[^@}{,12346789I]+|\"\>|\/[^@}{]+\/\w*.\>|\".*\"\>|\'[^@}{]+|\"[^@}{)]+?\>|\"\s|\/*>|\-\-\>|\/\w+\"\s*class\=[^@]+|selected\=\"selected\"|\(\'|var.*\{|\}\;|\$.*\}*\;*|\}.*\;|.*\;[^\s]|\'.*(\+|\;)|return.*(\;|\+)|function.*\{|\w+\/\w+\-*.\w+|\/\w+\/*|\)\;"
+
+        STRING_LITERAL ='regexp:\"\#*([a-zA-Z0-9]+\.*\w*)+\"|\"(\/\w+)+\"|\"(\w+\/\w+)+\"|\"\s*\:\s*\"'
+
 
   ]
+}
 
-pin(".*Code")=1
+{
+//pin("RYTHM_.*")=2;
+pin("RYTHM_IF")=2;
 }
 
 //FILE
 
-rythmFile ::= BLOCK_COMMENT? (initialDeclaration) RYTHM_SECTION IF
+templateFile ::= rythmFile
 
-RYTHM ::= RYTHM_PREFIX|RYTHM_IF|RYTHM_I18NRYTHM_FOR|RYTHM_INVOKE|RYTHM_RENDER
+rythmFile ::= (initialDeclaration RYTHM_SECTION+ RYTHM_BLOCK HTML_BLOCK RYTHM_SYN){pin="HTML_BLOCK"}
 
 
 // INITIAL DECLARATION
-initialDeclaration ::= (RYTHM_ARGS* RYTHM_IMPORT* RYTHM_EXTENDS*) {recoverWhile = "initialDec_recover"}
-private initialDec_recover ::= !('@args'| '@import'|'@extends')
-
-fix ::= GENERICS RYTHM_ESCAPED G VAR FUNCTION THIS NEW DIGIT Q_RYTHM STRING_LITERAL NULL MINUS TILDE AND OR
-
-RYTHM_ARGS ::= (('@args' qualifiedName)(','*qualifiedName)*) {pin = 1}
-
-RYTHM_IMPORT ::= (('@import' qualifiedName)+) {pin = 1}
-
-RYTHM_EXTENDS ::= ('@extends' '('qualifiedName',' 'title' ':' '(' IDENTIFIER '.' methodCallExpr '+' '"' ':' '"' '+' IDENTIFIER '.' methodCallExpr LPAREN*) {pin = 1}
+initialDeclaration ::= (RYTHM_ARGS RYTHM_IMPORT* RYTHM_EXTENDS) {pin="RYTHM_EXTENDS"}
 
 qualifiedName ::= (IDENTIFIER+ '.'*)+|IDENTIFIER+
 
-// SECTION
-
-RYTHM_SECTION ::= (RYTHM_SECTION_WOR  RYTHM_SECTION_WR)
-
-RYTHM_SECTION_WOR ::= '@section' PARAM '{' HTML '}'
-
-RYTHM_SECTION_WR ::= '@section' PARAM '{' HTML RYTHM_I18N HTML rythm_Key_Ident '.' methodCallExpr HTML*  rythm_Key_Ident '.' methodCallExpr ':' rythm_Key_Ident '.' methodCallExpr HTML '}'
 
 // RYTHM PARTS
+RYTHM::= RYTHM_SYN|RYTHM_INVOKE|RYTHM_RENDER|RYTHM_ELSE
 
-rythm_Key_Ident ::= RYTHM_KEY
-
-RYTHM_I18N ::= '@i18n''(''"' (IDENTIFIER'.'*)* '"' ')'
+RYTHM_SYN ::= RYTHM_I18N |RYTHM_FOR| RYTHM_IF| RYTHM_PREFIX |RYTHM_BLOCK|rythmMethodCall|RYTHM_KEY_IDENT
 
 
-PARAM ::= '('IDENTIFIER* ')'
+RYTHM_ARGS ::= '@args' (qualifiedName ','*)+
 
-RYTHM_KeyBlock ::= RYTHM_KEY '(' ')' '{' HTML rythm_method ':' rythm_method HTML* (RYTHM_IF_Statment HTML_WR*)*
+RYTHM_IMPORT ::= '@import' qualifiedName+
 
-RYTHM_KeyBlock_EXP ::= RYTHM_KEY '(' '"' qualifiedName '"' ')'
+RYTHM_EXTENDS ::= '@extends' '('+ qualifiedName ','* 'title'':' '('+ (IDENTIFIER methodCall* '+'* STRING_LITERAL* '+'* IDENTIFIER* methodCall*|qualifiedName)? ')'*
 
-IF ::= RYTHM_IF_Statment* RYTHM_IF_Statement_OP* RYTHM_IF_Statment_Short*
+RYTHM_PREFIX ::= '@prefix'
 
-RYTHM_IF_Statment ::= '@if' '(' STATEMENT '&&'* '=='* GREATER* '"'* IDENTIFIER* '"'* '.'* methodCallExpr* '>'* IDENTIFIER* ')'* '||'* IDENTIFIER* methodCall* '!='*  IDENTIFIER* ')'* '{' HTML* '}'* rythm_method* HTML* rythm_method* rythm_Key_Ident* RYTHM_PREFIX* HTML* rythm_method* METHOD* HTML* rythm_method* methodCall* RYTHM_I18N* '}'* HTML RYTHM_FOR_Statement* rythm_method* HTML* RYTHM_I18N* HTML* RYTHM_IF_Statment* HTML* RYTHM_I18N* HTML* RYTHM_IF_Statment* HTML*  '}' RYTHM_ELSE*
+RYTHM_SECTION ::= '@section''(' IDENTIFIER* ')' '{' HTML RYTHM_SYN* HTML* RYTHM_SYN* HTML* RYTHM_SYN* ':'* RYTHM_SYN* HTML* '}'
 
-RYTHM_ELSE ::= 'else' '{' RYTHM_KEY_BLOCKS* HTML* RYTHM_I18N* (HTML rythm_method*)*
+RYTHM_BLOCK ::= RYTHM_KEY_IDENT '('+ '"'* UNDEFINED_IDENT* ':'* '/'* HTML*'+'* identMethodCall* STRING_LITERAL* ','* UNDEFINED_IDENT_BLOCK* HTML* RYTHM_BLOCK* (RYTHM_SYN* HTML+)*')'+ '{' HTML* RYTHM_SYN* ':'* RYTHM_SYN* HTML* RYTHM_IF* RYTHM_SYN* (HTML RYTHM_SYN*)* '}'
 
-RYTHM_IF_Statment_Short ::= '@if' '('* IDENTIFIER '=='* IDENTIFIER* '.'* IDENTIFIER* '('* IDENTIFIER* '.'* IDENTIFIER* '('*')'* '.'* IDENTIFIER* methodCallExpr* '{'* HTML '}'
+RYTHM_I18N ::= '@i18n' '('+ STRING_LITERAL ('+' IDENTIFIER)* ')'+
 
-RYTHM_IF_Statement_OP ::= '@if' '(' IDENTIFIER '.' IDENTIFIER '(' IDENTIFIER* '.'* IDENTIFIER* '('* ')'* RYTHM_IF_Statement_OP_TEST* '{' HTML* RYTHM_KEY_BLOCKS* '{'* RYTHM_FOR_Statement* '}'* HTML*
+RYTHM_KEY_IDENT ::= RYTHM_KEY
 
-RYTHM_IF_Statement_OP_TEST ::= '<' IDENTIFIER ')'
+RYTHM_IF ::= '@if' '(' EXCL* '!'* IDENTIFIER '=='* ')'*  methodCall* '||'* '&&'* UNDEFINED_IDENT* methodCall* '>'* UNDEFINED_IDENT* DIGIT* ')'* '!='*  '{' RYTHM_SYN* HTML* (RYTHM_SYN* methodCall* HTML)* UNDEFINED_IDENT* ')'* '{'* '-'* UNDEFINED_IDENT_BLOCK* HTML* SCRIPT_BLOCK* HTML* UNDEFINED_IDENT_BLOCK* '}' ('else' '{' HTML '}')*
 
-RYTHM_FOR_Statement ::= RYTHM_FOR '(' IDENTIFIER+ ':'* IDENTIFIER* '.'* IDENTIFIER* '.'* qualifiedName* ':'* IDENTIFIER* '('* ')'* '{' HTML*  rythm_method HTML RYTHM_IF_Statment_Short HTML rythm_method HTML '}'*
+STATEMENT ::= EXCL* '!'* IDENTIFIER OPERATOR methodCall* OPERATOR* UNDEFINED_IDENT* methodCall* UNDEFINED_IDENT* DIGIT* OPERATOR
 
-STATEMENT ::='('* EXCL* IDENTIFIER ('.' methodCallExpr+)* ')'*
+OPERATOR ::= '=='|'>'|'<'|'||'|'&&'|'<='|'>='|'!='|'==='|'!'
 
-RYTHM_IF_KEY_FOR_Statement ::= '@if' STATEMENT '{' RYTHM_KEY_BLOCKS* RYTHM_FOR_Statement*
-
-rythm_method ::= RYTHM_KEY '('* IDENTIFIER* ':'* '"'* IDENTIFIER* '"'* ','* RYTHM_BLOCK* HTML* '.'* methodCallExpr*
-
-rythm_param ::= rythm_Key_Ident '(' IDENTIFIER* ')'
-
-methodCallExpr ::= LPAREN* '"'* IDENTIFIER '/'* '"'*  '+'* IDENTIFIER* methodCall* RPAREN* '{'* HTML_START_RYTHM_BLOCK*  LPAREN+ '"'* IDENTIFIER*'/'* '"'* RPAREN+ {pin = 12}
-
-methodCall ::= '.'IDENTIFIER LPAREN IDENTIFIER* '.'* IDENTIFIER*  '('* ')'* RPAREN*
-
-METHOD ::= '.' IDENTIFIER '('*  ')'*
+RYTHM_IF_ELSE ::= 'else' '{' (HTML RYTHM_SYN HTML RYTHM_SYN*) HTML* (RYTHM_SYN* HTML)+ '}'
 
 
 
-ANOTHER_HTML_WR_BLOCK ::= HTML RYTHM_BLOCK_EX
+RYTHM_FOR ::= '@for' '(' qualifiedName* UNDEFINED_IDENT* ':'* UNDEFINED_IDENT* methodCall* ')' '{' //HTML* RYTHM_SYN HTML RYTHM_IF HTML RYTHM_SYN HTML '}'
 
-RYTHM_BLOCK_EX ::= RYTHM_KEY '(' '('* String_Literal1 ')'* '{'* '+'* IDENTIFIER '.' methodCallExpr ')'* ')' '{'
-
-String_Literal1 ::= '"'qualifiedName '/'* '"'
-
-
-
-RYTHM_KEY_BLOCKS ::= rythm_Key_Ident methodCall* HTML* '}'* HTML* rythm_param* RYTHM_IF_Statment*  '(' (IDENTIFIER ':' '"'* IDENTIFIER '"'* '.'* ','* IDENTIFIER* '.'* ':'* '"'* IDENTIFIER*'.'* '/'* IDENTIFIER* '"'* '('* ')'*  '{'* RYTHM_IF_Statment* '}'* RYTHM_IF_KEY_FOR_Statement*  HTML* RYTHM_KEY_BLOCKS* '"'* ','*)* '"'* ')'* '}'*
-
-RYTHM_BLOCK ::= (IDENTIFIER ':' '"'* IDENTIFIER METHOD* '"'* ')'*)* HTML* RYTHM_IF_Statement_OP* '{'* RYTHM_FOR_Statement* RYTHM_KEY_BLOCKS* RYTHM_FOR_Statement*  ',' HTML*
 
 //HTML-RYTHM-MIX
 
-HTML_START_RYTHM_BLOCK ::= HTML rythm_Key_Ident*  methodCall* methodCallExpr* HTML* RYTHM_IF_Statment* RYTHM_I18N* RYTHM_ELSE* '}'*  HTML* RYTHM_I18N* HTML* rythm_method* HTML* RYTHM_I18N* HTML* rythm_method* HTML* RYTHM_IF_Statment* HTML* RYTHM_KEY_BLOCKS*  HTML* '(' HTML*   '"' qualifiedName '"' ')' '{' HTML rythm_method* HTML RYTHM_PREFIX HTML RYTHM_I18N HTML rythm_method* HTML RYTHM_I18N HTML RYTHM_IF_Statment  (HTML* RYTHM_PREFIX HTML rythm_method* HTML RYTHM_I18N HTML)* RYTHM_IF_Statment* rythm_method* RYTHM_IF_Statment*'}'* RYTHM_ELSE* {pin=21};
+HTML_BLOCK ::= HTML RYTHM_BLOCK (HTML* RYTHM_SYN HTML* RYTHM_IF_ELSE*) (HTML RYTHM_SYN)+'{' HTML* {pin=2}
 
-HTML_WR ::= HTML RYTHM_PREFIX HTML rythm_method HTML RYTHM_I18N HTML* '}'*
+
+//Statement-Gedöns
+
+methodCall ::= '.'IDENTIFIER'('+ identMethodCall* STRING_LITERAL* ')'
+identMethodCall ::= IDENTIFIER methodCall
+rythmMethodCall ::= RYTHM_KEY_IDENT methodCall
+
+UNDEFINED_IDENT ::= IDENTIFIER
+
+UNDEFINED_IDENT_BLOCK ::= UNDEFINED_IDENT '.'* ':'* '['* RYTHM_FOR* identMethodCall* UNDEFINED_IDENT* STRING_LITERAL* ','* '='* '<'* '('*');'* '+'* ')'* (UNDEFINED_IDENT  ';'* ':'* identMethodCall','*)*
+
+SCRIPT_BLOCK ::= (STRING_LITERAL ':'* IDENTIFIER)','*
+
 
 //For Java Language Injection
 
 java_code               ::= '{:' JAVA* ':}' {implements= "com.intellij.psi.PsiLanguageInjectionHost"
                                              mixin = "com.rythmplugin.RythmJavaImpl"}
+
+
+fix ::= GENERICS RYTHM_ESCAPED G VAR FUNCTION THIS NEW DIGIT Q_RYTHM STRING_LITERAL NULL MINUS TILDE AND OR HTML BLOCK_COMMENT GREATER EXCL

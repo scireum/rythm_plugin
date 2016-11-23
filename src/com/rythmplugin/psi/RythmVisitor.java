@@ -8,27 +8,11 @@ import com.intellij.psi.PsiLanguageInjectionHost;
 
 public class RythmVisitor extends PsiElementVisitor {
 
-  public void visitAnotherHtmlWrBlock(@NotNull RythmAnotherHtmlWrBlock o) {
+  public void visitHtmlBlock(@NotNull RythmHtmlBlock o) {
     visitPsiElement(o);
   }
 
-  public void visitHtmlStartRythmBlock(@NotNull RythmHtmlStartRythmBlock o) {
-    visitPsiElement(o);
-  }
-
-  public void visitHtmlWr(@NotNull RythmHtmlWr o) {
-    visitPsiElement(o);
-  }
-
-  public void visitIf(@NotNull RythmIf o) {
-    visitPsiElement(o);
-  }
-
-  public void visitMethod(@NotNull RythmMethod o) {
-    visitPsiElement(o);
-  }
-
-  public void visitParam(@NotNull RythmParam o) {
+  public void visitOperator(@NotNull RythmOperator o) {
     visitPsiElement(o);
   }
 
@@ -44,19 +28,11 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitRythmBlockEx(@NotNull RythmRythmBlockEx o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRythmElse(@NotNull RythmRythmElse o) {
-    visitPsiElement(o);
-  }
-
   public void visitRythmExtends(@NotNull RythmRythmExtends o) {
     visitPsiElement(o);
   }
 
-  public void visitRYTHMFORStatement(@NotNull RythmRYTHMFORStatement o) {
+  public void visitRythmFor(@NotNull RythmRythmFor o) {
     visitPsiElement(o);
   }
 
@@ -64,23 +40,11 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitRYTHMIFKEYFORStatement(@NotNull RythmRYTHMIFKEYFORStatement o) {
+  public void visitRythmIf(@NotNull RythmRythmIf o) {
     visitPsiElement(o);
   }
 
-  public void visitRYTHMIFStatementOP(@NotNull RythmRYTHMIFStatementOP o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRYTHMIFStatementOPTEST(@NotNull RythmRYTHMIFStatementOPTEST o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRYTHMIFStatment(@NotNull RythmRYTHMIFStatment o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRYTHMIFStatmentShort(@NotNull RythmRYTHMIFStatmentShort o) {
+  public void visitRythmIfElse(@NotNull RythmRythmIfElse o) {
     visitPsiElement(o);
   }
 
@@ -88,15 +52,11 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitRythmKeyBlocks(@NotNull RythmRythmKeyBlocks o) {
+  public void visitRythmKeyIdent(@NotNull RythmRythmKeyIdent o) {
     visitPsiElement(o);
   }
 
-  public void visitRYTHMKeyBlock(@NotNull RythmRYTHMKeyBlock o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRYTHMKeyBlockEXP(@NotNull RythmRYTHMKeyBlockEXP o) {
+  public void visitRythmPrefix(@NotNull RythmRythmPrefix o) {
     visitPsiElement(o);
   }
 
@@ -104,11 +64,11 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitRythmSectionWor(@NotNull RythmRythmSectionWor o) {
+  public void visitRythmSyn(@NotNull RythmRythmSyn o) {
     visitPsiElement(o);
   }
 
-  public void visitRythmSectionWr(@NotNull RythmRythmSectionWr o) {
+  public void visitScriptBlock(@NotNull RythmScriptBlock o) {
     visitPsiElement(o);
   }
 
@@ -116,11 +76,19 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitStringLiteral1(@NotNull RythmStringLiteral1 o) {
+  public void visitUndefinedIdent(@NotNull RythmUndefinedIdent o) {
+    visitPsiElement(o);
+  }
+
+  public void visitUndefinedIdentBlock(@NotNull RythmUndefinedIdentBlock o) {
     visitPsiElement(o);
   }
 
   public void visitFix(@NotNull RythmFix o) {
+    visitPsiElement(o);
+  }
+
+  public void visitIdentMethodCall(@NotNull RythmIdentMethodCall o) {
     visitPsiElement(o);
   }
 
@@ -136,23 +104,15 @@ public class RythmVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitMethodCallExpr(@NotNull RythmMethodCallExpr o) {
-    visitPsiElement(o);
-  }
-
   public void visitQualifiedName(@NotNull RythmQualifiedName o) {
     visitPsiElement(o);
   }
 
-  public void visitRythmKeyIdent(@NotNull RythmRythmKeyIdent o) {
+  public void visitRythmFile(@NotNull RythmRythmFile o) {
     visitPsiElement(o);
   }
 
-  public void visitRythmMethod(@NotNull RythmRythmMethod o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRythmParam(@NotNull RythmRythmParam o) {
+  public void visitRythmMethodCall(@NotNull RythmRythmMethodCall o) {
     visitPsiElement(o);
   }
 
