@@ -2,7 +2,7 @@
     <id>com.scireum.rythmengine.detector</id>
     <name>Rythm Engine Detector - R.E.D</name>
     <version>1.0</version>
-    <vendor email="support@scireum.net" url="http://www.scireum.de">scireum GmbH</vendor>
+    <vendor email="mpl@scireum.net" url="http://www.scireum.de">scireum GmbH</vendor>
     <description><![CDATA[
 
     --  Plugin for Rythm template engine support --
