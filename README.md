@@ -1,5 +1,5 @@
  
-## **Rythm Engine Detector R.E.D adds support for [Rythm](http://rythmengine.org/) templates**
+## **Rythm Engine Detector R.E.D adds support for [Rythm](http://rythmengine.org/) templates to [IntelliJ](https://www.jetbrains.com/idea/)**
 ***
 
 - **Syntax highlighter**
