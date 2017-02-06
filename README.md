@@ -2,6 +2,10 @@
 ## **Rythm Engine Detector R.E.D adds support for [Rythm](http://rythmengine.org/) templates to [IntelliJ](https://www.jetbrains.com/idea/)**
 ***
 
+We at scireum use Rythm in nearly all our products. As there was no plugin for syntax highlighting and code completion in IDEA IntelliJ we decided to write our own plugin an give it to the community as open source under the MIT Licence.
+
+The main features of the Rythm IntelliJ plugin are:
+
 - **Syntax highlighter**
 - **Brace matcher**
 - **Code completion for some rythm keywords**
